@@ -2,8 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/jsanders/.oh-my-zsh"
-
+export ZSH="/Users/_jacksanders/.oh-my-zsh"
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -82,7 +81,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -115,40 +114,40 @@ export EDITOR="nvim"
 
 source ~/.nvm/nvm.sh
 
-export CGB_USER="10"
-export PATH="/usr/local/opt/yq@3/bin:$PATH"
-export PATH="${HOME}/bin:${PATH}"
+# export CGB_USER="10"
+# export PATH="/usr/local/opt/yq@3/bin:$PATH"
+# export PATH="${HOME}/bin:${PATH}"
 
 
 # KUBE_PS1 start
-KUBE_PS1_SYMBOL_ENABLE=false
-KUBE_PS1_NS_ENABLE=true
+# KUBE_PS1_SYMBOL_ENABLE=false
+# KUBE_PS1_NS_ENABLE=true
 
-function get_cluster_short() {
-  CLUSTER_NAME=$(echo $1 | awk -F / '{print $2}')
-  SERVER=$(grep -A 1 -B 1 "${CLUSTER_NAME}" ~/.kube/config | grep server | sed -E "s/ *server: (.*)/\1/g")
-  NEW_CLUSTER_NAMES=$(grep -A 1 -B 1 "${SERVER}" ~/.kube/config | grep name | grep -v ${CLUSTER_NAME} | sed -E "s/ *name: (.*)/\1/g")
-  NEW_CLUSTER_NAME=${NEW_CLUSTER_NAMES%$'\n'*}
-  if [[ -n "${NEW_CLUSTER_NAME}" ]]; then
-    echo "${NEW_CLUSTER_NAME}"
-  else
-    echo ${CLUSTER_NAME}
-  fi
-}
+# function get_cluster_short() {
+#   CLUSTER_NAME=$(echo $1 | awk -F / '{print $2}')
+#   SERVER=$(grep -A 1 -B 1 "${CLUSTER_NAME}" ~/.kube/config | grep server | sed -E "s/ *server: (.*)/\1/g")
+#   NEW_CLUSTER_NAMES=$(grep -A 1 -B 1 "${SERVER}" ~/.kube/config | grep name | grep -v ${CLUSTER_NAME} | sed -E "s/ *name: (.*)/\1/g")
+#   NEW_CLUSTER_NAME=${NEW_CLUSTER_NAMES%$'\n'*}
+#   if [[ -n "${NEW_CLUSTER_NAME}" ]]; then
+#     echo "${NEW_CLUSTER_NAME}"
+#   else
+#     echo ${CLUSTER_NAME}
+#   fi
+# }
 
-KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
+# KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
 
-source "${HOME}/bin/kube-ps1.sh"
-PROMPT='$(kube_ps1)'$PROMPT
+# source "${HOME}/bin/kube-ps1.sh"
+# PROMPT='$(kube_ps1)'$PROMPT
 export PATH="${HOME}/.npm/bin:${PATH}"
 export PATH="${HOME}/bin:${PATH}"
 export PATH="${HOME}/.npm/bin:${PATH}"
-export CGB_USER="XX"
-export CGB_USER="XX"
-export CGB_USER="10"
+# export CGB_USER="XX"
+# export CGB_USER="XX"
+# export CGB_USER="10"
 export PATH="/usr/local/opt/yq@3/bin:$PATH"
 export PATH="${HOME}/bin:${PATH}"
 export PATH="${HOME}/.npm/bin:${PATH}"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
+export PATH="/usr/local/sbin:$PATH"
