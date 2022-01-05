@@ -1,4 +1,11 @@
 local actions = require("telescope.actions")
+local pickers = require("telescope.pickers")
+local finders = require("telescope.finders")
+local previewers = require("telescope.previewers")
+local action_state = require("telescope.actions.state")
+local conf = require("telescope.config").values
+
+
 require("telescope").setup({
     defaults = {
         file_sorter = require("telescope.sorters").get_fzy_sorter,
@@ -23,8 +30,7 @@ require("telescope").setup({
         },
     },
 })
-
-require("telescope").load_extension("fzy_native")
+require('telescope').load_extension('fzy_native')
 -- require("telescope").load_extension("git_worktree")
 
 local M = {}
@@ -56,7 +62,7 @@ end
 M.grep_notes = function()
     require("telescope.builtin").live_grep({
         prompt_title = "< Grep Jack's Brain >",
-        cwd = '~/vimwiki/',
+        cwd = '~/VimWiki/',
         hidden = true,
     })
 end

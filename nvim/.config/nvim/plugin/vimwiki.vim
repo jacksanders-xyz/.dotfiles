@@ -14,6 +14,7 @@ fun! ColorMarkdown()
         \{'path':'~/VimWiki/jacks_brain/RANDOM', 'syntax':'markdown','ext':'.md' },
         \{'path':'~/VimWiki/work_content', 'syntax':'markdown','ext':'.md' }]
 
+  let g:vimwiki_table_mappings=0
   let g:vimwiki_markdown_link_ext = 1
   let g:taskwiki_markup_syntax = 'markdown'
   let g:markdown_folding = 1
@@ -24,6 +25,7 @@ fun! ColorMarkdown()
   :hi VimwikiHeader6 guifg=orange
 endfun
 call ColorMarkdown()
+
 
 " MAKE A LINK FROM THE BUFFER
 map <leader>wl "*PysiW)i[]<ESC>i
@@ -37,19 +39,3 @@ endfun
 
 " PRETTY UP ANY REDHAT LESSON IN VIMWIKI
 nnoremap <leader>wpr :call PrettyMyRH()<CR>
-
-fun! MakeOutputBox()
-  norm! '<O```
-  norm! o=>
-  norm! '>o```
-endfun
-
-fun! MakeNotes()
-  norm! '<O****
-  norm! jI####
-  norm! '>o****
-endfun
-
-vnoremap <leader>wo :<C-u>call MakeOutputBox()<CR>
-vnoremap <leader>wn :<C-u>call MakeNotes()<CR>
-

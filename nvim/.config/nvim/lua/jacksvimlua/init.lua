@@ -1,6 +1,5 @@
 require("jacksvimlua.telescope")
-require("jacksvimlua.libmodal")
--- require("jacksvimlua.libmodal")
+require("jacksvimlua.lsp")
 
 P = function(v)
   print(vim.inspect(v))

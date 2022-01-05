@@ -18,7 +18,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-markdown'
 " Plug 'tpope/vim-unimpaired'
 
 " STARTIFY
@@ -72,6 +71,7 @@ Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
 
 " LANGS
+Plug 'mhartington/nvim-typescript', {'for': ['typescript', 'tsx'], 'do': './install.sh' }
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'mrk21/yaml-vim'
@@ -79,6 +79,9 @@ Plug 'osyo-manga/vim-over'
 
 " VIM-BOXDRAW
 Plug 'gyim/vim-boxdraw'
+
+" SUPERCOLLIDER
+Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
 
 " LIB-MODAL
 Plug 'Iron-E/nvim-libmodal'
@@ -92,6 +95,7 @@ Plug 'mileszs/ack.vim'
 Plug 'dense-analysis/ale'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 call plug#end()
+
 
 " LEADER
 let mapleader=" "
@@ -159,20 +163,8 @@ highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
 let g:airline#extensions#ale#enabled = 1
 autocmd BufWritePost *.js ALEFix
 
-" ULTISSNIPS SNIPPETS
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsListSnippets="<c-tab>"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/general/path/of/snippets/']
-
-"REMAPPED SNIPPETS, TO SEE THEM TYPE :Ultisnips edit, FOR THAT FILE TYPE
-nnoremap <leader>! ihb_t!
-nnoremap <leader>rf! irf__c
-nnoremap <leader>vs! ivs__j
 
 " DEOPLETE
-" let g:python_host_prog = '/usr/bin/python'
 let g:python3_host_prog = '/usr/local/bin/python3'
 autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_complete', v:false)
 let g:deoplete#enable_at_startup = 1
@@ -181,6 +173,7 @@ let g:deoplete#sources#go#gocode_binary = $GOPATH.'~/go/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" let g:python_host_prog = '/usr/bin/python'
 
 " ACK.VIM
 let g:ackprg = 'ag --nogroup --nocolor --column'
@@ -205,22 +198,56 @@ nnoremap <leader>m :Goyo<cr>
 
 " FUGITIVE
 nnoremap <leader>ga :Git add %:p<CR><CR>
-nnoremap <leader>gs :Gstatus<CR> " Views status, use `-` and `p` to add/remove files
-nnoremap <leader>gd :Gdiff<CR>
+nnoremap <leader>gs :Git status<CR> " Views status, use `-` and `p` to add/remove files
+nnoremap <leader>gd :Git diff<CR>
 nnoremap <leader>gb :Git branch<Space>
 nnoremap <leader>go :Git checkout<Space>
-nnoremap <leader>gc :Gcommit -v -q<CR>
-nnoremap <leader>gg :Gcommit -v -q %:p<CR> " Commits current file
+nnoremap <leader>gc :Git commit -v -q<CR>
+nnoremap <leader>gg :Git commit -v -q %:p<CR> " Commits current file
 nnoremap <leader>gp :Git push<CR>
 nnoremap <leader>gm :Git merge<CR>
 
-" MAXIMIZER FOR VIMSPECTOR
+" MAXIMIZER FOR THE DEBUGGER
 nnoremap <leader>, :MaximizerToggle!<CR>
+
+" VIMSPECTOR DUBUGGER
+" JUMP AROUND
+nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
+nnoremap <leader>dX :call vimspector#ClearBreakpoints()><CR>
 
 fun! GotoWindow(id)
     call win_gotoid(a:id)
     MaximizerToggle
 endfun
+nnoremap <leader>dd :call vimspector#Launch()<CR>
+nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
+nnoremap <leader>dt :call GotoWindow(g:vimspector_session_windows.tagpage)<CR>
+nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
+nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
+" nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
+nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
+nnoremap <leader>de :call vimspector#Reset()<CR>
+
+
+nmap <leader>dl <Plug>VimspectorStepInto
+nmap <leader>dj <Plug>VimspectorStepOver
+nmap <leader>dk <Plug>VimspectorStepOut
+nmap <leader>d_ <Plug>VimspectorRestart
+nnoremap <leader>d<space> :call vimspector#Continue()<CR>
+
+nmap <leader>drc <Plug>VimspectorRunToCursor
+nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
+nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
+
+nnoremap <leader>d? :call AddToWatch()<CR>
+func! AddToWatch()
+  let word = expand("<cexpr>")
+  call vimspector#AddWatch(word)
+endfunction
+
+" TOGGLE FOR DEBUG SERVERS/OFF FOR LOCAL
+" OFF IS LOCAL, ON IS GLOBAL
+" let g:vimspector_base_dir = expand('$HOME/.config/vimspector-config')
 
 "BUFFER MANAGEMENT
 nnoremap <leader>x :bd<CR> " Delete current buffer
@@ -267,6 +294,3 @@ inoremap <C-j> <esc>:m .+1<CR>==
 nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
 nnoremap ]e I<CR><ESC>==
-
-" DELETE ALL MARKS
-nnoremap <C-\> :delmarks!<CR>
