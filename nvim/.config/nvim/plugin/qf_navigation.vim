@@ -2,10 +2,10 @@ nnoremap <C-Left> :call AfPPAlternatePluthPluth()<CR>
 nnoremap <C-Up> :call AfPPAlternate()<CR>
 inoremap <C-Left> <esc>:call AfPPAlternatePluthPluth()<CR>
 inoremap <C-Up> <esc>:call AfPPAlternate()<CR>
-nnoremap <C-j> :cnext<CR>zz
-nnoremap <C-k> :cprev<CR>zz
-nnoremap <leader>J :lnext<CR>zz
-nnoremap <leader>K :lprev<CR>zz
+nnoremap <C-c>n :cnext<CR>zz
+nnoremap <C-c>p :cprev<CR>zz
+nnoremap <C-c>J :lnext<CR>zz
+nnoremap <C-c>K :lprev<CR>zz
 nnoremap <C-q> :call ToggleQFList(1)<CR>
 nnoremap <leader>q :call ToggleQFList(0)<CR>
 

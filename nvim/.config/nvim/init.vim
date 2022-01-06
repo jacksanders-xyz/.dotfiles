@@ -1,8 +1,8 @@
-"    ____      _ __        _
-"   /  _/___  (_) /__   __(_)___ ___
-"   / // __ \/ / __/ | / / / __ `__ \
-" _/ // / / / / /__| |/ / / / / / / /
-"/___/_/ /_/_/\__(_)___/_/_/ /_/ /_/
+"     ____            __         _
+"    /   _/___   ___ / / __   __(_)___ ___
+"     / // __ \/  - / /_/ / | / / / __ `__ \
+" __ / // / / / /__/ /\ \ | |/ / / / / / / /
+"/___/_/ /_/_/\___/_/_/_(_)___/_/_/ /_/ /_/
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -33,6 +33,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'ThePrimeagen/harpoon'
 
 " COLORS
 Plug 'altercation/vim-colors-solarized'
@@ -237,10 +238,10 @@ nnoremap <leader>td :enew<CR>'T
 nnoremap <leader>e :new<Bar>0r!npm run lint<CR> " Run eslint in vue
 
 " SPLIT NAVIGATION
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" nnoremap <C-J> <C-W><C-J>
+" nnoremap <C-K> <C-W><C-K>
+" nnoremap <C-L> <C-W><C-L>
+" nnoremap <C-H> <C-W><C-H>
 
 " NEWLINE GENERATION
 nmap <C-o> O<Esc>

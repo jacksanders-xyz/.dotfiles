@@ -8,7 +8,7 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fn :lua require('jacksvimlua.telescope').search_notes()<CR>
 nnoremap <leader>fs :lua require('jacksvimlua.telescope').grep_notes()<CR>
 nnoremap <leader>fdf :lua require('jacksvimlua.telescope').search_dotfiles()<CR>
-nnoremap <leader>fds :lua require('jacksvimlua.telescope').grep_dotfiles()<CR>
+nnoremap <leader>fdg :lua require('jacksvimlua.telescope').grep_dotfiles()<CR>
 
 nnoremap <leader>fps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
