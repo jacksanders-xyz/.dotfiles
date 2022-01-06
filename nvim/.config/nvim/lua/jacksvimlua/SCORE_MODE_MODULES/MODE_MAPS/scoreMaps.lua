@@ -1,8 +1,15 @@
 local numbers_gylphs = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.numbers_glyphs')
 local notes_glyphs = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.notes_glyphs')
+local sharps_flats_accidentals = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.sharps_flats_accidentals')
+local controllers_switches_routers = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.controllers_switches_routers')
+local clefs_staffs_barlines = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.clefs_staffs_barlines')
+
 local collect_tables = {
   numbers_gylphs,
-  notes_glyphs
+  notes_glyphs,
+  sharps_flats_accidentals,
+  controllers_switches_routers,
+  clefs_staffs_barlines,
 }
 
 return function()

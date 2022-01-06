@@ -27,7 +27,8 @@ require("telescope").setup({
         fzy_native = {
             override_generic_sorter = false,
             override_file_sorter = true,
-        },
+            case_mode = "smart_case"
+          },
     },
 })
 require('telescope').load_extension('fzy_native')
@@ -38,16 +39,16 @@ local M = {}
 M.search_dotfiles = function()
     require("telescope.builtin").find_files({
         prompt_title = "< .dotfiles >",
+        cwd = '~/.dotfiles',
         hidden = true,
-        cwd = '~/.config/nvim',
     })
 end
 
 M.grep_dotfiles = function()
     require("telescope.builtin").live_grep({
         prompt_title = "< Grep .dotfiles >",
-        cwd = '~/.config/nvim',
         hidden = true,
+        cwd = '~/.config/nvim',
     })
 end
 
@@ -64,7 +65,7 @@ M.grep_notes = function()
         prompt_title = "< Grep Jack's Brain >",
         cwd = '~/VimWiki/',
         hidden = true,
-    })
+      })
 end
 
 -- local function set_background(content)

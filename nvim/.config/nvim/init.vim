@@ -5,9 +5,9 @@
 "/___/_/ /_/_/\__(_)___/_/_/ /_/ /_/
 
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
@@ -32,6 +32,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
+Plug 'ThePrimeagen/harpoon'
 
 " COLORS
 Plug 'altercation/vim-colors-solarized'
@@ -110,14 +111,14 @@ filetype indent on
 
 " TRIM WHITESPACE AUTO COMMAND
 fun! TrimWhitespace()
-  let l:save = winsaveview()
-  keeppatterns %s/\s\+$//e
-  call winrestview(l:save)
+let l:save = winsaveview()
+keeppatterns %s/\s\+$//e
+call winrestview(l:save)
 endfun
 
 augroup CLEANLINESS
-  autocmd!
-  autocmd BufWritePre * :call TrimWhitespace()
+autocmd!
+autocmd BufWritePre * :call TrimWhitespace()
 augroup END
 
 " VIM-YAML
@@ -184,10 +185,10 @@ set statusline+=%*
 
 " FIND AND REPLACE
 function! VisualFindAndReplace()
-    :OverCommandLine%s/
+  :OverCommandLine%s/
 endfunction
 function! VisualFindAndReplaceWithSelection() range
-    :'<,'>OverCommandLine s/
+  :'<,'>OverCommandLine s/
 endfunction
 nnoremap <leader>fr :call VisualFindAndReplace()<CR>
 xnoremap <leader>fr :call VisualFindAndReplaceWithSelection()<CR>
@@ -216,8 +217,8 @@ nnoremap <leader>dtcb :call vimspector#CleanLineBreakpoint()<CR>
 nnoremap <leader>dX :call vimspector#ClearBreakpoints()><CR>
 
 fun! GotoWindow(id)
-    call win_gotoid(a:id)
-    MaximizerToggle
+  call win_gotoid(a:id)
+  MaximizerToggle
 endfun
 nnoremap <leader>dd :call vimspector#Launch()<CR>
 nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
@@ -241,8 +242,8 @@ nmap <leader>dcbp <Plug>VimspectorToggleConditionalBreakpoint
 
 nnoremap <leader>d? :call AddToWatch()<CR>
 func! AddToWatch()
-  let word = expand("<cexpr>")
-  call vimspector#AddWatch(word)
+let word = expand("<cexpr>")
+call vimspector#AddWatch(word)
 endfunction
 
 " TOGGLE FOR DEBUG SERVERS/OFF FOR LOCAL
@@ -264,10 +265,10 @@ nnoremap <leader>td :enew<CR>'T
 nnoremap <leader>e :new<Bar>0r!npm run lint<CR> " Run eslint in vue
 
 " SPLIT NAVIGATION
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
+" nnoremap <c-j> <C-w><C-j>
+" nnoremap <c-k> <C-w><C-k>
+" nnoremap <c-l> <C-w><C-l>
+" nnoremap <c-h> <C-w><C-w>
 
 " NEWLINE GENERATION
 nmap <C-o> O<Esc>
