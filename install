@@ -8,3 +8,6 @@ do
     stow $folder
 done
 popd
+
+
+# if you want the tmux executable global you could run $ stow scripts --target=/usr/local/bin
