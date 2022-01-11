@@ -6,7 +6,8 @@ lua require('jacksvimlua')
 
 " These functions are stored in harpoon.  A plugn that I am developing
 nnoremap <silent><leader>a :lua require("harpoon.mark").add_file()<CR>
-nnoremap <silent><C-e> :lua require("harpoon.ui").toggle_quick_menu()<CR>
+
+nnoremap <silent><C-r> :lua require("harpoon.ui").toggle_quick_menu()<CR>
 nnoremap <silent><leader>tc :lua require("harpoon.cmd-ui").toggle_quick_menu()<CR>
 
 nnoremap <silent><C-h> :lua require("harpoon.ui").nav_file(1)<CR>
