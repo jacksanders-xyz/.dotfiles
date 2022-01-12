@@ -17,5 +17,9 @@ shift + ctrl - l : chunkc tiling::window --warp east
 ## Close active application
 shift + cmd - r : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
 
+## send window to monitor and follow focus
+shift + cmd + ctrl - l : /Users/jsanders/yabScripts/moveWindowLeftAndFollowFocus.sh
+shift + cmd + ctrl - h : /Users/jsanders/yabScripts/moveWindowRightAndFollowFocus.sh
+
 # running a script:
 # hyper - u : /Users/jesseskelton/CustomScripts/SwitchSpaces/moveWindowLeftAndFollowFocus.sh
