@@ -1,4 +1,5 @@
 shift + cmd + alt - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+shift + cmd + ctrl - u : /Users/jsanders/yabScripts/killandUpdateYabai.sh
 
 # focus window
 # alt - h : yabai -m window --focus west
@@ -7,19 +8,16 @@ cmd + ctrl - l : yabai -m window --focus east
 cmd + ctrl - k : yabai -m window --focus north
 cmd + ctrl - j : yabai -m window --focus south
 
+## swap the focused window with the monitor on your left or right and keep focus
+shift + cmd + ctrl - h : /Users/jsanders/yabScripts/moveWindowLeftAndFollowFocus.sh
+shift + cmd + ctrl - l : /Users/jsanders/yabScripts/moveWindowRightAndFollowFocus.sh
 
-# move window
-shift + ctrl - h : chunkc tiling::window --warp west
-shift + ctrl - j : chunkc tiling::window --warp south
-shift + ctrl - k : chunkc tiling::window --warp north
-shift + ctrl - l : chunkc tiling::window --warp east
+## swap the focused window with the window to its left or right
+cmd + alt - h : yabai -m window --swap west
+cmd + alt - l : yabai -m window --swap east
+
+# toggle fullscreen
+cmd + ctrl - f : yabai -m window --toggle zoom-fullscreen
 
 ## Close active application
 shift + cmd - r : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
-
-## send window to monitor and follow focus
-shift + cmd + ctrl - l : /Users/jsanders/yabScripts/moveWindowLeftAndFollowFocus.sh
-shift + cmd + ctrl - h : /Users/jsanders/yabScripts/moveWindowRightAndFollowFocus.sh
-
-# running a script:
-# hyper - u : /Users/jesseskelton/CustomScripts/SwitchSpaces/moveWindowLeftAndFollowFocus.sh
