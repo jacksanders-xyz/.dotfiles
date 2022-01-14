@@ -2,22 +2,63 @@ shift + cmd + alt - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 shift + cmd + ctrl - u : /Users/jsanders/yabScripts/killandUpdateYabai.sh
 
 # focus window
-# alt - h : yabai -m window --focus west
-cmd + ctrl - h : yabai -m window --focus west
-cmd + ctrl - l : yabai -m window --focus east
-cmd + ctrl - k : yabai -m window --focus north
-cmd + ctrl - j : yabai -m window --focus south
+# cmd + ctrl - h : yabai -m window --focus west
+# cmd + ctrl - l : yabai -m window --focus east
+# cmd + ctrl - k : yabai -m window --focus north
+# cmd + ctrl - j : yabai -m window --focus south
+
+# jump to the next display
+cmd + ctrl - h : yabai -m display --focus west
+cmd + ctrl - l : yabai -m display --focus east
+
+# your new command - tab
+alt - t : yabai -m window --focus recent
+
+# focus window on the right, if there is none, jump to the next display
+alt - h : yabai -m window --focus west || yabai -m display --focus west
+alt - j : yabai -m window --focus south || yabai -m display --focus south
+alt - k : yabai -m window --focus north || yabai -m display --focus north
+alt - l : yabai -m window --focus east || yabai -m display --focus east
+
+## swap the focused window with the window to its left or right
+cmd + alt - h : yabai -m window --swap west
+cmd + alt - l : yabai -m window --swap east
+alt - x : yabai -m window --focus recent
+
 
 ## swap the focused window with the monitor on your left or right and keep focus
 shift + cmd + ctrl - h : /Users/jsanders/yabScripts/moveWindowLeftAndFollowFocus.sh
 shift + cmd + ctrl - l : /Users/jsanders/yabScripts/moveWindowRightAndFollowFocus.sh
 
-## swap the focused window with the window to its left or right
-cmd + alt - h : yabai -m window --swap west
-cmd + alt - l : yabai -m window --swap east
-
 # toggle fullscreen
 cmd + ctrl - f : yabai -m window --toggle zoom-fullscreen
 
 ## Close active application
-shift + cmd - r : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
+alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
+
+# balance size of windows
+shift + alt - 0 : yabai -m space --balance
+
+# make floating window fill screen
+shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
+
+# make floating window fill left-half of screen
+shift + alt - left   : yabai -m window --grid 1:2:0:0:1:1
+
+# make floating window fill right-half of screen
+shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
+
+# fast focus desktop
+# cmd + alt - x : yabai -m space --focus recent
+# cmd + alt - z : yabai -m space --focus prev || skhd -k "ctrl + alt + cmd - z"
+# cmd + alt - c : yabai -m space --focus next || skhd -k "ctrl + alt + cmd - c"
+cmd + alt - 1 : yabai -m space --focus  1 || skhd -k "ctrl + alt + cmd - 1"
+cmd + alt - 2 : yabai -m space --focus  2 || skhd -k "ctrl + alt + cmd - 2"
+cmd + alt - 3 : yabai -m space --focus  3 || skhd -k "ctrl + alt + cmd - 3"
+cmd + alt - 4 : yabai -m space --focus  4 || skhd -k "ctrl + alt + cmd - 4"
+cmd + alt - 5 : yabai -m space --focus  5 || skhd -k "ctrl + alt + cmd - 5"
+cmd + alt - 6 : yabai -m space --focus  6 || skhd -k "ctrl + alt + cmd - 6"
+cmd + alt - 7 : yabai -m space --focus  7 || skhd -k "ctrl + alt + cmd - 7"
+cmd + alt - 8 : yabai -m space --focus  8 || skhd -k "ctrl + alt + cmd - 8"
+cmd + alt - 9 : yabai -m space --focus  9 || skhd -k "ctrl + alt + cmd - 9"
+cmd + alt - 0 : yabai -m space --focus 10 || skhd -k "ctrl + alt + cmd - 0"
