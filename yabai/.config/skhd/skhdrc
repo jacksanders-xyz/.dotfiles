@@ -52,13 +52,20 @@ shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
 # cmd + alt - x : yabai -m space --focus recent
 # cmd + alt - z : yabai -m space --focus prev || skhd -k "ctrl + alt + cmd - z"
 # cmd + alt - c : yabai -m space --focus next || skhd -k "ctrl + alt + cmd - c"
-cmd + alt - 1 : yabai -m space --focus  1 || skhd -k "ctrl + alt + cmd - 1"
-cmd + alt - 2 : yabai -m space --focus  2 || skhd -k "ctrl + alt + cmd - 2"
-cmd + alt - 3 : yabai -m space --focus  3 || skhd -k "ctrl + alt + cmd - 3"
-cmd + alt - 4 : yabai -m space --focus  4 || skhd -k "ctrl + alt + cmd - 4"
-cmd + alt - 5 : yabai -m space --focus  5 || skhd -k "ctrl + alt + cmd - 5"
-cmd + alt - 6 : yabai -m space --focus  6 || skhd -k "ctrl + alt + cmd - 6"
-cmd + alt - 7 : yabai -m space --focus  7 || skhd -k "ctrl + alt + cmd - 7"
-cmd + alt - 8 : yabai -m space --focus  8 || skhd -k "ctrl + alt + cmd - 8"
-cmd + alt - 9 : yabai -m space --focus  9 || skhd -k "ctrl + alt + cmd - 9"
-cmd + alt - 0 : yabai -m space --focus 10 || skhd -k "ctrl + alt + cmd - 0"
+# cmd + alt - 1 : yabai -m space --focus  1 || skhd -k "ctrl + alt + cmd - 1"
+# cmd + alt - 2 : yabai -m space --focus  2 || skhd -k "ctrl + alt + cmd - 2"
+# cmd + alt - 3 : yabai -m space --focus  3 || skhd -k "ctrl + alt + cmd - 3"
+# cmd + alt - 4 : yabai -m space --focus  4 || skhd -k "ctrl + alt + cmd - 4"
+# cmd + alt - 5 : yabai -m space --focus  5 || skhd -k "ctrl + alt + cmd - 5"
+# cmd + alt - 6 : yabai -m space --focus  6 || skhd -k "ctrl + alt + cmd - 6"
+# cmd + alt - 7 : yabai -m space --focus  7 || skhd -k "ctrl + alt + cmd - 7"
+# cmd + alt - 8 : yabai -m space --focus  8 || skhd -k "ctrl + alt + cmd - 8"
+# cmd + alt - 9 : yabai -m space --focus  9 || skhd -k "ctrl + alt + cmd - 9"
+# cmd + alt - 0 : yabai -m space --focus 10 || skhd -k "ctrl + alt + cmd - 0"
+alt - g : /Users/jsanders/yabScripts/switchAndFocusSIP.sh 1
+alt - c : /Users/jsanders/yabScripts/switchAndFocusSIP.sh 2
+alt - r : /Users/jsanders/yabScripts/switchAndFocusSIP.sh 3
+#Move active window to next space on current display
+ctrl + alt - g : yabai -m query --spaces --space | jq -re ".index" | xargs -I {} bash -c "if [[ '{}' = '1' ]]; then yabai -m window --space 2; elif [[ '{}' = '2' ]]; then yabai -m window --space 1; fi"
+ctrl + alt - c : yabai -m query --spaces --space | jq -re ".index" | xargs -I {} bash -c "if [[ '{}' = '3' ]]; then yabai -m window --space 4; elif [[ '{}' = '4' ]]; then yabai -m window --space 3; fi"
+ctrl + alt - r : yabai -m query --spaces --space | jq -re ".index" | xargs -I {} bash -c "if [[ '{}' = '5' ]]; then yabai -m window --space 6; elif [[ '{}' = '6' ]]; then yabai -m window --space 5; fi"
