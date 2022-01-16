@@ -18,19 +18,19 @@ colors =
   red     : "#BF616A"
   green   : "#A3BE8C"
   blue    : "#81A1C1"
-  magenta : "#B48EAD"
+  timecolor: "#0a5ebf"
   cyan    : "#88C0D0"
   silver:  "#e4e4e4"
   elegant: "#1C2331"
   magenta: "#af005f"
   cyan:    "#00afd7"
   tmuxblue: "#a0a0e2"
-  tmuxtan: "#958978"
+  tmuxtan: "#b9aa95"
   nvimback: "#282c34"
   white: "#e0e0e0"
   nvimred: "#7c0708"
-  yellow: "#dec30a"
-
+  yellow: "#bfbf09"
+  yellow2: "#e1f408"
 
 
 command: "echo " +
@@ -186,7 +186,7 @@ style: """
   .battery
     color: #{colors.green}
   .time
-    color: #{colors.magenta}
+    color: #{colors.timecolor}
   .wifi
     color: #{colors.white}
   .volume
@@ -200,9 +200,9 @@ style: """
   .input
     color: #{colors.yellow}
   .disk
-    color: #{colors.green}
+    color: #{colors.tmuxtan}
 
-  top: 4px
+  top: 6px
   right: 14px
   font-family: 'Meslo LG S Regular for Powerline'
   font-size: 14px
