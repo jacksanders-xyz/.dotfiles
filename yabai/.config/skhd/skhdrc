@@ -2,10 +2,10 @@ shift + cmd + alt - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 shift + cmd + ctrl - u : /Users/_jacksanders/yabScripts/killandUpdateYabai.sh
 
 # focus window
-# cmd + ctrl - h : yabai -m window --focus west
-# cmd + ctrl - l : yabai -m window --focus east
-# cmd + ctrl - k : yabai -m window --focus north
-# cmd + ctrl - j : yabai -m window --focus south
+cmd + ctrl - h : yabai -m window --focus west
+cmd + ctrl - l : yabai -m window --focus east
+cmd + ctrl - k : yabai -m window --focus north
+cmd + ctrl - j : yabai -m window --focus south
 
 # jump to the next display
 cmd + ctrl - h : yabai -m display --focus west
@@ -52,8 +52,8 @@ shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
 # cmd + alt - x : yabai -m space --focus recent
 # cmd + alt - z : yabai -m space --focus prev || skhd -k "ctrl + alt + cmd - z"
 # cmd + alt - c : yabai -m space --focus next || skhd -k "ctrl + alt + cmd - c"
-# cmd + alt - 1 : yabai -m space --focus  1 || skhd -k "ctrl + alt + cmd - 1"
-# cmd + alt - 2 : yabai -m space --focus  2 || skhd -k "ctrl + alt + cmd - 2"
+shift + alt - g : yabai -m space --focus  1 || skhd -k "ctrl + alt + cmd - 1"
+shift + alt - c : yabai -m space --focus  2 || skhd -k "ctrl + alt + cmd - 2"
 # cmd + alt - 3 : yabai -m space --focus  3 || skhd -k "ctrl + alt + cmd - 3"
 # cmd + alt - 4 : yabai -m space --focus  4 || skhd -k "ctrl + alt + cmd - 4"
 # cmd + alt - 5 : yabai -m space --focus  5 || skhd -k "ctrl + alt + cmd - 5"
@@ -62,6 +62,7 @@ shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
 # cmd + alt - 8 : yabai -m space --focus  8 || skhd -k "ctrl + alt + cmd - 8"
 # cmd + alt - 9 : yabai -m space --focus  9 || skhd -k "ctrl + alt + cmd - 9"
 # cmd + alt - 0 : yabai -m space --focus 10 || skhd -k "ctrl + alt + cmd - 0"
+
 # alt - g : /Users/_jacksanders/yabScripts/switchAndFocusSIP.sh 1 */
 # alt - c : /Users/_jacksanders/yabScripts/switchAndFocusSIP.sh 2 */
 # alt - r : /Users/_jacksanders/yabScripts/switchAndFocusSIP.sh 3 */
