@@ -34,39 +34,30 @@ yabai -m config left_padding                 10
 yabai -m config right_padding                10
 yabai -m config window_gap                   10
 
-# yabai -m space 1 --label one
-# yabai -m space 2 --label two
-# yabai -m space 3 --label three
-# yabai -m space 4 --label four
-# yabai -m space 5 --label five
-# yabai -m space 6 --label six
-# yabai -m space 9 --label nine
-
 # mission-control desktop labels
-yabai -m space 1 --label fun-browser
-yabai -m space 2 --label work-browser
+yabai -m space 1 --label fun-brows
+yabai -m space 2 --label work-web
 yabai -m space 3 --label terminal
-yabai -m space 4 --label outlook
-yabai -m space 5 --label slack
-yabai -m space 6 --label spotify
-yabai -m space 7 --label random
-yabai -m space 8 --label webex
-yabai -m space 9 --label utilities
+yabai -m space 4 --label spotify
+# yabai -m space 6 --label spotify
+# yabai -m space 7 --label random
+# yabai -m space 8 --label webex
+# yabai -m space 9 --label utilities
 
 # specific space settings
-yabai -m config --space utilities layout        float
-yabai -m config --space random layout           float
+# yabai -m config --space utilities layout        float
+# yabai -m config --space random layout           float
 
 # window rules
-yabai -m rule --add app="^Google Chrome$" space=fun-browser
-yabai -m rule --add app="^Google Chrome$" space=work-browser
-yabai -m rule --add app="iTerm$" space=terminal
-yabai -m rule --add app="Microsoft Outlook^$" space=outlook
-yabai -m rule --add app="^Slack$" space=slack
-yabai -m rule --add app="^Spotify$" space=spotify
-yabai -m rule --add app="^Cisco Webex Meetings$" space=webex
-yabai -m rule --add app="^System Preferences$" manage=off space=utilities
-yabai -m rule --add app="^Cisco AnyConnect Secure Mobility Client$" manage=off space=utilities
+# yabai -m rule --add app="^Google Chrome$" space=fun-browser
+# yabai -m rule --add app="^Google Chrome$" space=work-browser
+# yabai -m rule --add app="iTerm$" space=terminal
+# yabai -m rule --add app="^Spotify$" space=spotify
+# yabai -m rule --add app="Microsoft Outlook^$" space=outlook
+# yabai -m rule --add app="^Slack$" space=slack
+# yabai -m rule --add app="^Cisco Webex Meetings$" space=webex
+# yabai -m rule --add app="^System Preferences$" manage=off space=utilities
+# yabai -m rule --add app="^Cisco AnyConnect Secure Mobility Client$" manage=off space=utilities
 
 ## If I close the active window, focus on any other visible window.
 yabai -m signal --add event=window_destroyed action="bash /Users/_jacksanders/yabScripts/window-focus-on-destroy.sh"
