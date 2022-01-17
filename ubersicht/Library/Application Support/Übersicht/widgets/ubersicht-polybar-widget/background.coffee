@@ -5,8 +5,8 @@ render: (output) ->
 
 style: """
     top: 3px
-    left: 14px;
-    right: 14px;
+    left: 10px;
+    right: 10px;
 
     height: 18px
     background-color: #282c34
