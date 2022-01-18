@@ -30,8 +30,8 @@ alt - x : yabai -m window --focus recent
 # shift + cmd + ctrl - h : yabai -m window --space prev; yabai -m space --focus prev
 
 ## SD swap the focused window with the monitor on your left or right and keep focus
-# shift + cmd + ctrl - l : /Users/_jacksanders/yabScripts/moveWindowLeftAndFollowFocus.sh
-# shift + cmd + ctrl - h : /Users/_jacksanders/yabScripts/moveWindowRightAndFollowFocus.sh
+shift + cmd + ctrl - h : /Users/_jacksanders/yabScripts/moveWindowLeftAndFollowFocus.sh
+shift + cmd + ctrl - l : /Users/_jacksanders/yabScripts/moveWindowRightAndFollowFocus.sh
 
 # toggle fullscreen
 cmd + ctrl - f : yabai -m window --toggle zoom-fullscreen
@@ -54,6 +54,7 @@ shift + alt - 0 : yabai -m space --balance
 # fast focus desktop
 # cmd + alt - x : yabai -m space --focus recent
 # cmd + alt - z : yabai -m space --focus prev || skhd -k "ctrl + alt + cmd - z"
+#
 # cmd + alt - c : yabai -m space --focus next || skhd -k "ctrl + alt + cmd - c"
 # shift + alt - g : yabai -m space --focus  1 || skhd -k "ctrl + alt + cmd - 1"
 # shift + alt - c : yabai -m space --focus  2 || skhd -k "ctrl + alt + cmd - 2"
@@ -66,11 +67,18 @@ shift + alt - 0 : yabai -m space --balance
 # cmd + alt - 9 : yabai -m space --focus  9 || skhd -k "ctrl + alt + cmd - 9"
 # cmd + alt - 0 : yabai -m space --focus 10 || skhd -k "ctrl + alt + cmd - 0"
 
+# create a space
 
 alt - g : yabai -m space --focus 1 && /Users/_jacksanders/polybar-refresh.sh
-alt - c : yabai -m space --focus 2 && /Users/_jacksanders/polybar-refresh.sh
-alt - r : yabai -m space --focus 3 && /Users/_jacksanders/polybar-refresh.sh
-alt - l : yabai -m space --focus 4 && /Users/_jacksanders/polybar-refresh.sh
+alt - c : /Users/_jacksanders/yabScripts/spaceSelector.sh 2
+
+
+# alt - c : yabai -m space --focus 2 && /Users/_jacksanders/polybar-refresh.sh \
+#     || yabai -m space --create && \
+#     index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+#     yabai -m space --focus "${index}"
+# alt - r : yabai -m space --focus 3 && /Users/_jacksanders/polybar-refresh.sh
+# alt - l : yabai -m space --focus 4 && /Users/_jacksanders/polybar-refresh.sh
 # alt - & : yabai -m space --focus 5 && /Users/_jacksanders/polybar-refresh.sh
 
 # alt - = : yabai -m space --focus 6 && /usr/local/bin/polybar-refresh.sh
