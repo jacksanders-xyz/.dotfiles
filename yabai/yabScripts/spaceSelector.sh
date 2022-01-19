@@ -1,50 +1,30 @@
 #!/bin/dash
 
-# By me.. Jesse. Sorry in advance.
-# I press the Hyper key + 1-3 for switching spaces. Hyper + 1 will switch between spaces 1 & 2 for example.
-# This script will make it so I *never lose focus on applications while switching spaces.
-# If I have focus of window on display 1 and change spaces on display 2, i'll keep focus on display 1.
-# If I have focus of window on display 1 and change spces on display 1, I'll check to see if there is any windows to focus on on display 1's next space, if there IS, i'll move foucs to it, else I'll move focus to any VISIBLE window on display's 2 or 3 in order to keep SOMETHING focused. If there is no visible windows on the new space or displays 2 and 3, Nothing will take focus, which is fine.
-# If I have NOTHING focused and I change spaces, try to focus on ANY visible window on the new space. Else, try to focus on any visibe window on any visible space.
-# the end.
-
-# I call this script like this in skhd >> hyper - 3 : /path/to/thisScript.sh 3
-
 inputKeyNumber=$1 # input argument : 1 - 3
 
-# CurrentlyFocusedWindow=$(yabai -m query --windows --window | jq -re ".")
+newestSpaceIndex=$(yabai -m query --spaces | jq -re '[.[] | select(."is-visible" == true and ."index" <= 10)]' | jq -re '.[-1].index')
+let "newestSpaceIndex=newestSpaceIndex+1"
 
-# CurrentlyFocusedWindowID=$(echo $CurrentlyFocusedWindow | jq -re ".id")
-
-# CurrentlyFocusedDisplay=$(echo $CurrentlyFocusedWindow | jq -re ".display")
-
-# CurrentlyVisibleSpaceNames=$(yabai -m query --spaces | jq -re ".[] | select(.visible == 1)" | jq -re ".label")
-newestSpaceIndex=$(yabai -m query --spaces | jq -re '.[] | select(."is-visible" == true and .index <= 10)' | jq -re '.[-1]')
-SPACE_WEBCHECK=$(yabai -m query --spaces | jq -re '.[] | select(."is-visible" == true and .index <= 10 and .label=="web")' | jq -re "any(.)")
-SPACE_WEB=$(yabai -m query --spaces | jq -re '.[] | select(.label == "web")' | jq -re ".index")
+SPACE_WEBCHECK=$(yabai -m query --spaces | jq -re '[.[] | select(."label"=="web")]' | jq -re 'any(.)')
+SPACE_WEB_INDEX=$(yabai -m query --spaces | jq -re '.[] | select(.label == "web")' | jq -re ".index")
 
 case $inputKeyNumber in
 '2')
-if [ "$SPACE_WEBCHECK"=false ]; then
-  $(yabai -m space --create)
-  $(echo "$newestSpaceIndex")
-  # $(yabai -m space 2 --label web && \
-  # yabai -m space --focus 2 && /Users/_jacksanders/polybar-refresh.sh)
-  # $(yabai -m space $SPACE_WEB --label web && \
-  #   yabai -m space --focus $SPACE_WEB && /Users/_jacksanders/polybar-refresh.sh)
+if $SPACE_WEBCHECK; then
+  $(yabai -m space --focus $SPACE_WEB_INDEX && /Users/_jacksanders/polybar-refresh.sh)
 else
-$(echo "IWisaVAL")
-$(echo $SPACE_WEB)
-  # $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
-  # $(yabai -m space --focus $SPACE_WEBCHECK && /Users/_jacksanders/polybar-refresh.sh)
+  $(yabai -m space --create && \
+    yabai -m space $newestSpaceIndex --label web && \
+    yabai -m space --focus $newestSpaceIndex && /Users/_jacksanders/polybar-refresh.sh)
+    SPACE_WEB_INDEX=$newestSpaceIndex
 fi
 ;;
-# $(echo "hello_dorld")
-# $(echo $CurrentlyVisibleSpaceNames)
-  # $(yabai -m space --focus $INDEXWEB && /Users/_jacksanders/polybar-refresh.sh \
-  #   || yabai -m space --create && \
-  #   yabai -m space $INDEXWEB --label web && \
-  #   yabai -m space --focus $INDEXWEB && /Users/_jacksanders/polybar-refresh.sh)
+'4')
+$(yabai -m query --spaces \
+    | jq -re 'map(select(."has-focus"==true))' && \
+    yabai -m space --destroy && \
+    /Users/_jacksanders/polybar-refresh.sh)
+;;
 esac
 
 
@@ -56,27 +36,6 @@ esac
 #  yabai -m space 4 --label four
 #  yabai -m space 5 --label five
 #  yabai -m space 6 --label six
-# case $inputKeyNumber in
-# '1')
-#     firstSpaceName='one'
-#     firstspacenumber='1'
-#     secondSpaceName='two'
-#     secondSpacenumber='2'
-#     ;;
-# '2')
-#     firstSpaceName='three'
-#     firstspacenumber='3'
-#     secondSpaceName='four'
-#     secondSpacenumber='4'
-#     ;;
-# '3')
-#     firstSpaceName='five'
-#     firstspacenumber='5'
-#     secondSpaceName='six'
-#     secondSpacenumber='6'
-#     ;;
-# esac
-
 # focusWindow() {                   # function
 #     sleep .3                      # Sip Enabled, waiting for stupid spaces animation to finish
 #     $(yabai -m window --focus $1) # $1 is the first argument passed in (window id).

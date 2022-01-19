@@ -42,6 +42,14 @@ alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") 
 # balance size of windows
 shift + alt - 0 : yabai -m space --balance
 
+# delete window then close space
+ctrl + alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close) && \
+    yabai -m query --spaces | jq -re 'map(select(."is-visible"==true))' && \
+    yabai -m space --destroy && \
+    /Users/_jacksanders/polybar-refresh.sh
+
+alt - g : yabai -m space --focus 1 && /Users/_jacksanders/polybar-refresh.sh
+alt - c : bash /Users/_jacksanders/yabScripts/spaceSelector.sh 2
 # make floating window fill screen
 # shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
 
@@ -68,11 +76,6 @@ shift + alt - 0 : yabai -m space --balance
 # cmd + alt - 0 : yabai -m space --focus 10 || skhd -k "ctrl + alt + cmd - 0"
 
 # create a space
-
-alt - g : yabai -m space --focus 1 && /Users/_jacksanders/polybar-refresh.sh
-alt - c : /Users/_jacksanders/yabScripts/spaceSelector.sh 2
-
-
 # alt - c : yabai -m space --focus 2 && /Users/_jacksanders/polybar-refresh.sh \
 #     || yabai -m space --create && \
 #     index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
