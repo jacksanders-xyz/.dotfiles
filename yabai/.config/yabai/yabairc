@@ -40,11 +40,21 @@ yabai -m space 1 --label home
 # yabai -m space 3 --label term
 # yabai -m space 4 --label conf
 # yabai -m space 5 --label chat
-# yabai -m space 6 --label cal
+# yabai -m space 6 --label spotify
 # yabai -m space 7 --label mail
 # yabai -m space 8 --label todo
 # yabai -m space 9 --label music
 # yabai -m space 10 --label misc
+
+# window rules
+# yabai -m rule --add app="^Google Chrome$" space=web
+# yabai -m rule --add app="iTerm$" space=term
+# yabai -m rule --add app="^Spotify$" space=spotify
+# yabai -m rule --add app="Microsoft Outlook^$" space=outlook
+# yabai -m rule --add app="^Slack$" space=slack
+# yabai -m rule --add app="^Cisco Webex Meetings$" space=webex
+# yabai -m rule --add app="^System Preferences$" manage=off space=utilities
+# yabai -m rule --add app="^Cisco AnyConnect Secure Mobility Client$" manage=off space=utilities
 
 
 # yabai -m space 1 --label fun-brows
@@ -75,9 +85,9 @@ yabai -m space 1 --label home
 ## If I close the active window, focus on any other visible window.
 yabai -m signal --add event=window_destroyed action="bash /Users/_jacksanders/yabScripts/window-focus-on-destroy.sh"
 
-
-# kill any existing limelight process if one exists, before we launch a new one
-# killall limelight &> /dev/null
-# limelight &> /dev/null &
+# IGNORE THESE APPS
+# yabai -m rule --add label="Finder" app="^Finder$" manage=off layer=normal
+# yabai -m rule --add label="App Store" app="^App Store$" manage=off layer=normal
+# yabai -m rule --add label="Spotify" app="^Spotify$" manage=off layer=normal
 
 echo "yabai configuration loaded.."

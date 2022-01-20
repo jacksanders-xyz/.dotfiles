@@ -1,5 +1,5 @@
 shift + cmd + alt - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
-shift + cmd + ctrl - u : /Users/_jacksanders/yabScripts/killandUpdateYabai.sh
+shift + cmd + ctrl - u : /Users/_jacksanders/yabScripts/killandUpdateYabai.sh && Users/_jacksanders/polybar-refresh.sh
 
 # focus window
 cmd + ctrl - h : yabai -m window --focus west
@@ -48,8 +48,16 @@ ctrl + alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re 
     yabai -m space --destroy && \
     /Users/_jacksanders/polybar-refresh.sh
 
-alt - g : yabai -m space --focus 1 && /Users/_jacksanders/polybar-refresh.sh
-alt - c : bash /Users/_jacksanders/yabScripts/spaceSelector.sh 2
+alt - f : yabai -m space --focus 1 && /Users/_jacksanders/polybar-refresh.sh
+alt - g : yabai -m space --focus 2 && /Users/_jacksanders/polybar-refresh.sh && /Users/_jacksanders/reFocus || \
+  /Users/_jacksanders/yabScripts/spaceCreator.sh 2
+
+# alt - g : yabai -m space --focus 2 && /Users/_jacksanders/reFocus && 2 $(exec "Users/_jacksanders/polybar-refresh.sh") || \
+#   /Users/_jacksanders/yabScripts/spaceCreator.sh 2
+alt - c : yabai -m space --focus 3 && /Users/_jacksanders/polybar-refresh.sh || /Users/_jacksanders/yabScripts/spaceCreator.sh 3
+alt - r : yabai -m space --focus 4 && /Users/_jacksanders/polybar-refresh.sh || /Users/_jacksanders/yabScripts/spaceCreator.sh 4
+
+# alt - c : source /Users/_jacksanders/yabScripts/spaceSelector.sh 2
 # make floating window fill screen
 # shift + alt - up     : yabai -m window --grid 1:1:0:0:1:1
 

@@ -2,31 +2,46 @@
 
 inputKeyNumber=$1 # input argument : 1 - 3
 
-newestSpaceIndex=$(yabai -m query --spaces | jq -re '[.[] | select(."is-visible" == true and ."index" <= 10)]' | jq -re '.[-1].index')
-let "newestSpaceIndex=newestSpaceIndex+1"
+# newestSpaceIndex=$(yabai -m query --spaces | jq -re '[.[] | select(."is-visible" == true and ."index" <= 10)]' | jq -re '.[-1].index')
+# let "newestSpaceIndex=newestSpaceIndex+1"
 
-SPACE_WEBCHECK=$(yabai -m query --spaces | jq -re '[.[] | select(."label"=="web")]' | jq -re 'any(.)')
-SPACE_WEB_INDEX=$(yabai -m query --spaces | jq -re '.[] | select(.label == "web")' | jq -re ".index")
+# SPACE_WEBCHECK=$(yabai -m query --spaces | jq -re '[.[] | select(."label"=="web")]' | jq -re 'any(.)')
+# SPACE_WEB_INDEX=$(yabai -m query --spaces | jq -re '.[] | select(.label == "web")' | jq -re ".index")
+
 
 case $inputKeyNumber in
 '2')
-if $SPACE_WEBCHECK; then
-  $(yabai -m space --focus $SPACE_WEB_INDEX && /Users/_jacksanders/polybar-refresh.sh)
-else
   $(yabai -m space --create && \
-    yabai -m space $newestSpaceIndex --label web && \
-    yabai -m space --focus $newestSpaceIndex && /Users/_jacksanders/polybar-refresh.sh)
-    SPACE_WEB_INDEX=$newestSpaceIndex
-fi
+    yabai -m space 2 --label web && \
+    yabai -m space --focus 2 && /Users/_jacksanders/polybar-refresh.sh)
+    $(osascript -e 'launch the application "Brave Browser"')
+;;
+'3')
+  $(yabai -m space --create && \
+    yabai -m space 3 --label term && \
+    yabai -m space --focus 3 && /Users/_jacksanders/polybar-refresh.sh)
+    $(osascript -e 'launch the application "Brave Browser"')
 ;;
 '4')
-$(yabai -m query --spaces \
-    | jq -re 'map(select(."has-focus"==true))' && \
-    yabai -m space --destroy && \
-    /Users/_jacksanders/polybar-refresh.sh)
+  $(yabai -m space --create && \
+    yabai -m space 4 --label spotify && \
+    yabai -m space --focus 4 && /Users/_jacksanders/polybar-refresh.sh)
 ;;
 esac
 
+
+# case $inputKeyNumber in
+# '2')
+# if $SPACE_WEBCHECK; then
+#   $(yabai -m space --focus $SPACE_WEB_INDEX && /Users/_jacksanders/polybar-refresh.sh)
+# else
+#   $(yabai -m space --create && \
+#     yabai -m space $newestSpaceIndex --label web && \
+#     yabai -m space --focus $newestSpaceIndex && /Users/_jacksanders/polybar-refresh.sh)
+#     export SPACE_WEB_INDEX=$newestSpaceIndex
+# fi
+# ;;
+# esac
 
 
 # my custom space names in yabairc:
