@@ -11,6 +11,7 @@ inputKeyNumber=$1 # input argument : 1 - 3
 
 case $inputKeyNumber in
 '2')
+ # check to see if the window exists
   $(yabai -m space --create && \
     yabai -m space 2 --label web && \
     yabai -m space --focus 2 && /Users/_jacksanders/polybar-refresh.sh)
@@ -20,7 +21,7 @@ case $inputKeyNumber in
   $(yabai -m space --create && \
     yabai -m space 3 --label term && \
     yabai -m space --focus 3 && /Users/_jacksanders/polybar-refresh.sh)
-    $(osascript -e 'launch the application "Brave Browser"')
+    $(osascript -e 'launch the application "iTerm"')
 ;;
 '4')
   $(yabai -m space --create && \

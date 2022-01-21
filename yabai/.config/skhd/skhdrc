@@ -1,6 +1,5 @@
 shift + cmd + alt - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
-shift + cmd + ctrl - u : /Users/_jacksanders/yabScripts/killandUpdateYabai.sh && Users/_jacksanders/polybar-refresh.sh
-
+shift + cmd + ctrl - u : /Users/_jacksanders/yabScripts/killandUpdateYabai.sh
 # focus window
 cmd + ctrl - h : yabai -m window --focus west
 cmd + ctrl - l : yabai -m window --focus east
@@ -40,7 +39,22 @@ cmd + ctrl - f : yabai -m window --toggle zoom-fullscreen
 alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
 
 # balance size of windows
-shift + alt - 0 : yabai -m space --balance
+# shift + alt - 0 : yabai -m space --balance
+
+alt - f : yabai -m space --focus 1 && /Users/_jacksanders/polybar-refresh.sh
+alt - g : yabai -m space --focus 2 && /Users/_jacksanders/polybar-refresh.sh
+alt - c : yabai -m space --focus 3 && /Users/_jacksanders/polybar-refresh.sh
+alt - r : yabai -m space --focus 4 && /Users/_jacksanders/polybar-refresh.sh
+alt - 0x17 : yabai -m space --focus 5 && /Users/_jacksanders/polybar-refresh.sh
+alt - 0x16 : yabai -m space --focus 6 && /Users/_jacksanders/polybar-refresh.sh
+alt - 0x1A : yabai -m space --focus 7 && /Users/_jacksanders/polybar-refresh.sh
+alt - 0x1C : yabai -m space --focus 8 && /Users/_jacksanders/polybar-refresh.sh
+alt - 0x19 : yabai -m space --focus 9 && /Users/_jacksanders/polybar-refresh.sh
+
+#Move active window to next space on current display
+# ctrl + alt - g : yabai -m query --spaces --space | jq -re ".index" | xargs -I {} bash -c "if [[ '{}' = '1' ]]; then yabai -m window --space 2; elif [[ '{}' = '2' ]]; then yabai -m window --space 1; fi"
+# ctrl + alt - c : yabai -m query --spaces --space | jq -re ".index" | xargs -I {} bash -c "if [[ '{}' = '3' ]]; then yabai -m window --space 4; elif [[ '{}' = '4' ]]; then yabai -m window --space 3; fi"
+# ctrl + alt - r : yabai -m query --spaces --space | jq -re ".index" | xargs -I {} bash -c "if [[ '{}' = '5' ]]; then yabai -m window --space 6; elif [[ '{}' = '6' ]]; then yabai -m window --space 5; fi"
 
 # delete window then close space
 ctrl + alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close) && \
@@ -48,14 +62,14 @@ ctrl + alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re 
     yabai -m space --destroy && \
     /Users/_jacksanders/polybar-refresh.sh
 
-alt - f : yabai -m space --focus 1 && /Users/_jacksanders/polybar-refresh.sh
-alt - g : yabai -m space --focus 2 && /Users/_jacksanders/polybar-refresh.sh && /Users/_jacksanders/reFocus || \
-  /Users/_jacksanders/yabScripts/spaceCreator.sh 2
-
-# alt - g : yabai -m space --focus 2 && /Users/_jacksanders/reFocus && 2 $(exec "Users/_jacksanders/polybar-refresh.sh") || \
-#   /Users/_jacksanders/yabScripts/spaceCreator.sh 2
-alt - c : yabai -m space --focus 3 && /Users/_jacksanders/polybar-refresh.sh || /Users/_jacksanders/yabScripts/spaceCreator.sh 3
-alt - r : yabai -m space --focus 4 && /Users/_jacksanders/polybar-refresh.sh || /Users/_jacksanders/yabScripts/spaceCreator.sh 4
+# alt - f : yabai -m space --focus 1 && /Users/_jacksanders/polybar-refresh.sh
+# alt - g : $(yabai -m space --focus 2 && \
+#   /Users/_jacksanders/polybar-refresh.sh && /Users/_jacksanders/reFocus || \
+#   /Users/_jacksanders/yabScripts/spaceCreator.sh 2)
+# alt - c : $(yabai -m space --focus 3 && /Users/_jacksanders/polybar-refresh.sh && /Users/_jacksanders/reFocus) || \
+#   /Users/_jacksanders/yabScripts/spaceCreator.sh 3
+# alt - r : yabai -m space --focus 4 && /Users/_jacksanders/polybar-refresh.sh && /Users/_jacksanders/reFocus || \
+#   /Users/_jacksanders/yabScripts/spaceCreator.sh 4
 
 # alt - c : source /Users/_jacksanders/yabScripts/spaceSelector.sh 2
 # make floating window fill screen
@@ -88,6 +102,7 @@ alt - r : yabai -m space --focus 4 && /Users/_jacksanders/polybar-refresh.sh || 
 #     || yabai -m space --create && \
 #     index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
 #     yabai -m space --focus "${index}"
+
 # alt - r : yabai -m space --focus 3 && /Users/_jacksanders/polybar-refresh.sh
 # alt - l : yabai -m space --focus 4 && /Users/_jacksanders/polybar-refresh.sh
 # alt - & : yabai -m space --focus 5 && /Users/_jacksanders/polybar-refresh.sh
@@ -100,12 +115,7 @@ alt - r : yabai -m space --focus 4 && /Users/_jacksanders/polybar-refresh.sh || 
 # alt - t : yabai -m window --focus next || yabai -m window --focus first
 # alt - n : yabai -m window --focus prev || yabai -m window --focus last
 
-
 # SD
 # alt - g : /Users/_jacksanders/yabScripts/switchAndFocusSIP.sh 1 */
 # alt - c : /Users/_jacksanders/yabScripts/switchAndFocusSIP.sh 2 */
 # alt - r : /Users/_jacksanders/yabScripts/switchAndFocusSIP.sh 3 */
-#Move active window to next space on current display
-# ctrl + alt - g : yabai -m query --spaces --space | jq -re ".index" | xargs -I {} bash -c "if [[ '{}' = '1' ]]; then yabai -m window --space 2; elif [[ '{}' = '2' ]]; then yabai -m window --space 1; fi"
-# ctrl + alt - c : yabai -m query --spaces --space | jq -re ".index" | xargs -I {} bash -c "if [[ '{}' = '3' ]]; then yabai -m window --space 4; elif [[ '{}' = '4' ]]; then yabai -m window --space 3; fi"
-# ctrl + alt - r : yabai -m query --spaces --space | jq -re ".index" | xargs -I {} bash -c "if [[ '{}' = '5' ]]; then yabai -m window --space 6; elif [[ '{}' = '6' ]]; then yabai -m window --space 5; fi"
