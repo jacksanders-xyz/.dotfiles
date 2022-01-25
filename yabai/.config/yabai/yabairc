@@ -45,23 +45,25 @@ yabai -m space 3 --label term
 yabai -m space 4 --label slack
 yabai -m space 5 --label outlook
 yabai -m space 6 --label spotify
-yabai -m space 7 --label random
-yabai -m space 8 --label webex
-yabai -m space 9 --label utilities
+yabai -m space 7 --label quip
+yabai -m space 8 --label utils
+yabai -m space 9 --label random
+yabai -m space 10 --label webex
 
 # specific space settings
-yabai -m config --space utilities layout        float
+yabai -m config --space utils layout        float
 yabai -m config --space home layout           float
 
 # window rules
 yabai -m rule --add app="^Google Chrome$" space=web
-yabai -m rule --add app="iTerm$" space=terminal
+yabai -m rule --add app="iTerm$" space=term
 yabai -m rule --add app="Microsoft Outlook^$" space=outlook
 yabai -m rule --add app="^Slack$" space=slack
 yabai -m rule --add app="^Spotify$" space=spotify
 yabai -m rule --add app="^Cisco Webex Meetings$" space=webex
-yabai -m rule --add app="^System Preferences$" manage=off space=utilities
-yabai -m rule --add app="^Cisco AnyConnect Secure Mobility Client$" manage=off space=utilities
+yabai -m rule --add app="^Quip$" space=quip
+yabai -m rule --add app="^System Preferences$" manage=off space=utils
+yabai -m rule --add app="^Cisco AnyConnect Secure Mobility Client$" manage=off space=utils
 
 # refresh my Übersicht bar when the space changes
 yabai -m signal --add event=space_changed \

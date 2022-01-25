@@ -151,4 +151,4 @@ export PATH="${HOME}/bin:${PATH}"
 export PATH="${HOME}/.npm/bin:${PATH}"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
-
+source $HOME/.zsh_profile
