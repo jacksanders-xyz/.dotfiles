@@ -61,7 +61,7 @@ yabai -m space 9 --label misc
 yabai -m rule --add app="^Google Chrome$" space=web
 yabai -m rule --add app="iTerm$" space=term
 yabai -m rule --add app="^Spotify$" space=spotify
-yabai -m rule --add app="^Discord$" space=spotify
+yabai -m rule --add app="^Discord$" space=discord
 yabai -m rule --add app="^System Preferences$" manage=off space=misc
 
 yabai -m config --space misc layout        float

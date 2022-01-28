@@ -10,4 +10,4 @@ fun! ScoreModeInit()
   endif
 endfun
 
-nnoremap <buffer> <Leader><Tab> :call ScoreModeInit()<CR>
+nnoremap <buffer> <silent><Leader><Tab> :call ScoreModeInit()<CR>

@@ -1,12 +1,18 @@
-local numbers_gylphs = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.numbers_glyphs')
-local notes_glyphs = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.notes_glyphs')
-local sharps_flats_accidentals = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.sharps_flats_accidentals')
+local numbers_gylphs = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.NUMBERS.numbers_glyphs')
+local black_noteheads = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.NOTES.black_noteheads')
+local half_notes = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.NOTES.half_notes')
+local quarter_notes = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.NOTES.quarter_notes')
+local eighth_notes = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.NOTES.eighth_notes')
+local sharps_flats_accidentals = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.ACCIDENTALS.sharps_flats_accidentals')
 local controllers_switches_routers = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.controllers_switches_routers')
 local clefs_staffs_barlines = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.clefs_staffs_barlines')
 
 local collect_tables = {
   numbers_gylphs,
-  notes_glyphs,
+  black_noteheads,
+  half_notes,
+  quarter_notes,
+  eighth_notes,
   sharps_flats_accidentals,
   controllers_switches_routers,
   clefs_staffs_barlines,
@@ -23,7 +29,6 @@ return function()
     end
   return MasterTable
 end
-
 
 -- tables of glyphs:
 -- local activeMap = require('jacksvimlua.SCORE_MODE_MODULES.numbers_glyphs')

@@ -101,17 +101,8 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias c="clear"
 
-alias vim="nvim"
-alias t="task list"
-alias tc="task calendar"
-alias td="task done"
-alias tu="task add +URGENT"
-alias ta="task add"
 export EDITOR="nvim"
-
-
 source ~/.nvm/nvm.sh
 
 # export CGB_USER="10"
@@ -151,3 +142,5 @@ export PATH="${HOME}/.npm/bin:${PATH}"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 export PATH="/usr/local/sbin:$PATH"
+
+source $HOME/.zsh_profile

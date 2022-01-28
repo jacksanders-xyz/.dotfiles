@@ -1,0 +1,14 @@
+# Where should I put you?
+# bindkey -s ^. "/Users/_jacksanders/tmux-sessionizer.sh\n"
+
+alias c="clear"
+alias vim="nvim"
+alias t="task list"
+alias tc="task calendar"
+alias td="task done"
+alias tu="task add +URGENT"
+alias ta="task add"
+
+
+
+

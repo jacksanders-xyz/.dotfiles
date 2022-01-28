@@ -262,7 +262,7 @@ nnoremap <Tab> :b#<CR> " Tab between buffers
 nnoremap <leader>td :enew<CR>'T
 
 " ESLINT
-nnoremap <leader>e :new<Bar>0r!npm run lint<CR> " Run eslint in vue
+" nnoremap <leader>e :new<Bar>0r!npm run lint<CR> " Run eslint in vue
 
 " SPLIT NAVIGATION
 " nnoremap <c-j> <C-w><C-j>
@@ -296,4 +296,5 @@ nnoremap <leader>j :m .+1<CR>==
 nnoremap <leader>k :m .-2<CR>==
 nnoremap ]e I<CR><ESC>==
 
+nnoremap <silent><C-\> :delmarks!<CR>
 
