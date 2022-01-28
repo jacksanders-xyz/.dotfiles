@@ -1,5 +1,6 @@
 local numbers_gylphs = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.NUMBERS.numbers_glyphs')
 local black_noteheads = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.NOTES.black_noteheads')
+local whole_notes = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.NOTES.whole_notes')
 local half_notes = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.NOTES.half_notes')
 local quarter_notes = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.NOTES.quarter_notes')
 local eighth_notes = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.NOTES.eighth_notes')
@@ -8,12 +9,14 @@ local thirtysecond_notes = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.NOTES.
 local sharps = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.ACCIDENTALS.sharps')
 local flats = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.ACCIDENTALS.flats')
 local naturals = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.ACCIDENTALS.naturals')
+local rests = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.RESTS.rests')
 local controllers_switches_routers = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.controllers_switches_routers')
 local clefs_staffs_barlines = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.clefs_staffs_barlines')
 
 local collect_tables = {
   numbers_gylphs,
   black_noteheads,
+  whole_notes,
   half_notes,
   quarter_notes,
   eighth_notes,
@@ -22,6 +25,7 @@ local collect_tables = {
   sharps,
   flats,
   naturals,
+  rests,
   controllers_switches_routers,
   clefs_staffs_barlines,
 }
