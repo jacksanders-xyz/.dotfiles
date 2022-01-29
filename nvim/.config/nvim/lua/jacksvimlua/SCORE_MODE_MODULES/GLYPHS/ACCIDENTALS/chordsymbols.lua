@@ -1,9 +1,8 @@
-
 return {
 -- stem up
     -- whole
-     ['<leader>rw'] = {
-      ['rhs'] = 'r',
+     ['+'] = {
+      ['rhs'] = 'vlc<esc>h',
       ['noremap'] = true,
       ['silent'] = true
     },

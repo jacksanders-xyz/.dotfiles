@@ -12,6 +12,7 @@ local naturals = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.ACCIDENTALS.natu
 local doublesharps = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.ACCIDENTALS.doublesharps')
 local doubleflats = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.ACCIDENTALS.doubleflats')
 local rests = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.RESTS.rests')
+-- local ties = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.TIES.ties')
 local controllers_switches_routers = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.controllers_switches_routers')
 local clefs_staffs_barlines = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.clefs_staffs_barlines')
 

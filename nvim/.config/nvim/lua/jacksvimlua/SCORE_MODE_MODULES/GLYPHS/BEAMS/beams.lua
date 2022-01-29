@@ -2,20 +2,20 @@
 return {
 -- stem up
     -- whole
-     ['<leader>rw'] = {
-      ['rhs'] = 'r',
+     ['<leader>--'] = {
+      ['rhs'] = 'vlc<Esc>h',
       ['noremap'] = true,
       ['silent'] = true
     },
     -- half
-     ['<leader>rh'] = {
-      ['rhs'] = 'r',
+     ['<leader>-2'] = {
+      ['rhs'] = 'vlc<Esc>h',
       ['noremap'] = true,
       ['silent'] = true
     },
     -- staffPosRaise6
-     ['<leader>rq'] = {
-      ['rhs'] = 'r',
+     ['<leader>-3'] = {
+      ['rhs'] = 'vlc',
       ['noremap'] = true,
       ['silent'] = true
     },

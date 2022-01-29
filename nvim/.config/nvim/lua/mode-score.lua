@@ -3,7 +3,7 @@ local libmodal = require('libmodal')
 local scoreMaps = require('jacksvimlua.SCORE_MODE_MODULES.MODE_MAPS.scoreMaps')()
 
 local staffConstructorMaps = require('jacksvimlua.SCORE_MODE_MODULES.MODE_MAPS.staffConstructorMaps')
-local noteFloatMaps = require('jacksvimlua.SCORE_MODE_MODULES.MODE_MAPS.noteFloatMaps')
+local chordFloatMaps = require('jacksvimlua.SCORE_MODE_MODULES.MODE_MAPS.chordFloatMaps')
 
 local unMap = require('jacksvimlua.SCORE_MODE_MODULES.UTILITY_FUNCTIONS.unMap')
 local reMap = require('jacksvimlua.SCORE_MODE_MODULES.UTILITY_FUNCTIONS.reMap')
@@ -13,7 +13,7 @@ local runningMap = table_copy(scoreMaps)
 local modeIdentifier = 'score'
 local api = vim.api
 local score_layer = libmodal.Layer.new(runningMap)
-local note_float = libmodal.Mode.new('NOTE FLOAT', noteFloatMaps)
+local chord_float = libmodal.Mode.new('CHORD FLOAT', chordFloatMaps)
 
 -- function talk()
   -- vim.g.MI = runningMap
@@ -37,17 +37,17 @@ end
 
 function re_entry_SL()
   reMap(score_layer)
-  api.nvim_command("set colorcolumn=130")
+  api.nvim_command("set colorcolumn=149")
 end
 
-function exit_NF()
-  note_float:exit()
+function exit_CF()
+  chord_float:exit()
   modeIdentifier = 'score'
   handlerFunction()
 end
 
-function enter_NF()
-  modeIdentifier = 'note_float'
+function enter_CF()
+  modeIdentifier = 'chord_float'
   handlerFunction()
 end
 
@@ -76,9 +76,9 @@ function handlerFunction()
   if(modeIdentifier == 'score')
     then
       score_layer:enter()
-  elseif(modeIdentifier == 'note_float')
+  elseif(modeIdentifier == 'chord_float')
     then
-      note_float:enter()
+      chord_float:enter()
   elseif(modeIdentifier == 'staff_constructor')
     then
       libmodal.mode.enter('STAFF', staffConstructorMaps, true)
@@ -86,6 +86,6 @@ function handlerFunction()
 end
 
 return function()
-  api.nvim_command("set colorcolumn=130")
+  api.nvim_command("set colorcolumn=149")
   handlerFunction()
 end
