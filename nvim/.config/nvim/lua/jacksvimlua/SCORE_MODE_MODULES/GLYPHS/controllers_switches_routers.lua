@@ -1,6 +1,6 @@
 return {
-    ['<C-f>'] = {
-      ['rhs'] = ':lua enter_NF()<CR>',
+    ['<C-g>'] = {
+      ['rhs'] = ':lua enter_CF()<CR>',
       ['noremap'] = true
     },
     ['<C-s>'] = {

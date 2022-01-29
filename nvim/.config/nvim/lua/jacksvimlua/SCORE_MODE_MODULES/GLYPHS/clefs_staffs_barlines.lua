@@ -12,8 +12,28 @@ return {
       ['silent'] = true
     },
     -- staff
-    ['s'] = {
+    ['sw'] = {
       ['rhs'] = 'i<Esc>',
+      ['noremap'] = true,
+      ['silent'] = true
+    },
+     ['s1'] = {
+      ['rhs'] = 'vlc<Esc>h',
+      ['noremap'] = true,
+      ['silent'] = true
+    },
+    ['s2'] = {
+      ['rhs'] = 'i<Esc>',
+      ['noremap'] = true,
+      ['silent'] = true
+    },
+    ['s3'] = {
+      ['rhs'] = 'i<Esc>',
+      ['noremap'] = true,
+      ['silent'] = true
+    },
+    ['s4'] = {
+      ['rhs'] = 'i<Esc>',
       ['noremap'] = true,
       ['silent'] = true
     },
