@@ -1,4 +1,4 @@
 return {
-  ['w'] = 'bn',
+  ['<leader>u'] = ':lua toggle_fwin()<CR>',
   ['<Esc>'] = ':lua exit_CF()<CR>',
 }

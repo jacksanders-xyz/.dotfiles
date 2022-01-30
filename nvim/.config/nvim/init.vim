@@ -102,24 +102,24 @@ call plug#end()
 let mapleader=" "
 
 " GENERAL CONFIG
-inoremap jj <ESC>
-inoremap jk <ESC>
+" inoremap jj <ESC>
+" inoremap jk <ESC>
 syntax enable
 command E Ex " Disambiguates E
 filetype plugin on
 filetype indent on
 
 " TRIM WHITESPACE AUTO COMMAND
-fun! TrimWhitespace()
-let l:save = winsaveview()
-keeppatterns %s/\s\+$//e
-call winrestview(l:save)
-endfun
+" fun! TrimWhitespace()
+"   let l:save = winsaveview()
+"   keeppatterns %s/\s\+$//e
+"   call winrestview(l:save)
+" endfun
 
-augroup CLEANLINESS
-autocmd!
-autocmd BufWritePre * :call TrimWhitespace()
-augroup END
+" augroup CLEANLINESS
+" autocmd!
+" autocmd BufWritePre * :call TrimWhitespace()
+" augroup END
 
 " VIM-YAML
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab

@@ -1,6 +1,10 @@
 return {
+    -- ['<C-g>'] = {
+    --   ['rhs'] = ':lua enter_CF()<CR>',
+    --   ['noremap'] = true
+    -- },
     ['<C-g>'] = {
-      ['rhs'] = ':lua enter_CF()<CR>',
+      ['rhs'] = ':lua toggle_fwin()<CR>',
       ['noremap'] = true
     },
     ['<C-s>'] = {
