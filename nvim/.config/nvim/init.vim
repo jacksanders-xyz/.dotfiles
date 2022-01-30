@@ -95,6 +95,8 @@ Plug 'posva/vim-vue'
 Plug 'mileszs/ack.vim'
 Plug 'dense-analysis/ale'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+Plug 'j-hui/fidget.nvim'
+
 call plug#end()
 
 

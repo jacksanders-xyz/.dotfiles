@@ -11,13 +11,13 @@ cmd + ctrl - h : yabai -m display --focus west
 cmd + ctrl - l : yabai -m display --focus east
 
 # your new command - tab
-# alt - t : yabai -m window --focus recent
+alt - t : yabai -m window --focus recent
 
 # focus window on the right, if there is none, jump to the next display
-# alt - h : yabai -m window --focus west || yabai -m display --focus west
-# alt - j : yabai -m window --focus south || yabai -m display --focus south
-# alt - k : yabai -m window --focus north || yabai -m display --focus north
-# alt - l : yabai -m window --focus east || yabai -m display --focus east
+alt - h : yabai -m window --focus west || yabai -m display --focus west
+alt - j : yabai -m window --focus south || yabai -m display --focus south
+alt - k : yabai -m window --focus north || yabai -m display --focus north
+alt - l : yabai -m window --focus east || yabai -m display --focus east
 
 ## swap the focused window with the window to its left or right
 cmd + alt - h : yabai -m window --swap west
@@ -32,18 +32,18 @@ shift + cmd + ctrl - l : /Users/_jacksanders/yabScripts/moveWindowRightAndFollow
 cmd + ctrl - f : yabai -m window --toggle zoom-fullscreen
 
 ## Close active application
-# alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
+alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
 
 ## swiching spaces
-# alt - f : yabai -m space --focus 1 && /Users/_jacksanders/polybar-refresh.sh
-# alt - g : yabai -m space --focus 2 && /Users/_jacksanders/polybar-refresh.sh
-# alt - c : yabai -m space --focus 3 && /Users/_jacksanders/polybar-refresh.sh
-# alt - r : yabai -m space --focus 4 && /Users/_jacksanders/polybar-refresh.sh
-# alt - 0x17 : yabai -m space --focus 5 && /Users/_jacksanders/polybar-refresh.sh
-# alt - 0x16 : yabai -m space --focus 6 && /Users/_jacksanders/polybar-refresh.sh
-# alt - 0x1A : yabai -m space --focus 7 && /Users/_jacksanders/polybar-refresh.sh
-# alt - 0x1C : yabai -m space --focus 8 && /Users/_jacksanders/polybar-refresh.sh
-# alt - 0x19 : yabai -m space --focus 9 && /Users/_jacksanders/polybar-refresh.sh
+alt - f : yabai -m space --focus 1 && /Users/_jacksanders/polybar-refresh.sh
+alt - g : yabai -m space --focus 2 && /Users/_jacksanders/polybar-refresh.sh
+alt - c : yabai -m space --focus 3 && /Users/_jacksanders/polybar-refresh.sh
+alt - r : yabai -m space --focus 4 && /Users/_jacksanders/polybar-refresh.sh
+alt - 0x17 : yabai -m space --focus 5 && /Users/_jacksanders/polybar-refresh.sh
+alt - 0x16 : yabai -m space --focus 6 && /Users/_jacksanders/polybar-refresh.sh
+alt - 0x1A : yabai -m space --focus 7 && /Users/_jacksanders/polybar-refresh.sh
+alt - 0x1C : yabai -m space --focus 8 && /Users/_jacksanders/polybar-refresh.sh
+alt - 0x19 : yabai -m space --focus 9 && /Users/_jacksanders/polybar-refresh.sh
 
 # delete window then close space
 ctrl + alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close) && \
