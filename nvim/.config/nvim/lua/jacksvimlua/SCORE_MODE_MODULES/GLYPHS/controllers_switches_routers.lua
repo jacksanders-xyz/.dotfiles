@@ -4,7 +4,7 @@ return {
     --   ['noremap'] = true
     -- },
     ['<C-g>'] = {
-      ['rhs'] = ':lua toggle_fwin()<CR>',
+      ['rhs'] = ':lua chord_constructor("CF_7", "7")<CR>',
       ['noremap'] = true
     },
     ['<C-s>'] = {

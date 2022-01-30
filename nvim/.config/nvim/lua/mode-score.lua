@@ -59,7 +59,7 @@ end
 --     api.nvim_open_win(Chord_win_id, true)
 -- end
 
-function toggle_fwin()
+function toggle_fwin(chord_id)
     if Chord_win_id ~= nil and api.nvim_win_is_valid(Chord_win_id) then
         close_menu()
         return
@@ -72,13 +72,14 @@ function toggle_fwin()
       
     local win_info = create_cw()
     local contents = {}
-
+    contents[1] = chord_id
+    
     Chord_win_id = win_info.win_id
     Chord_bufh = win_info.bufnr
 
     api.nvim_win_set_option(Chord_win_id, "number", true)
     api.nvim_buf_set_name(Chord_bufh, "chord_menu")
-    -- api.nvim_buf_set_lines(Chord_bufh, 0, 10, false, contents)
+    api.nvim_buf_set_lines(Chord_bufh, 0, #contents, false, contents)
     api.nvim_buf_set_option(Chord_bufh, "filetype", "vimwiki")
     -- api.nvim_buf_set_option(Chord_bufh, "buftype", "acwrite")
     api.nvim_buf_set_option(Chord_bufh, "bufhidden", "delete")
@@ -89,6 +90,16 @@ function toggle_fwin()
         ":lua toggle_fwin()<CR>",
         { silent = true }
     )
+end
+
+function chord_constructor(chord_id, space_id)
+  local space_lookup = {
+    ["7"] = "GlyqP',true,false,true),'m',true)",
+  }
+  toggle_fwin(chord_id)
+  local Action = "lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('A<tab><Esc>ggh<C-v>"
+  Action = Action..space_lookup[space_id]
+  api.nvim_command(Action)
 end
 
 function set_coordinates()
@@ -137,11 +148,6 @@ function exit_SC()
   -- handlerFunction()
 end
 
-function chord_constructor(chord_num)
-  local string_prep = "lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('q:norm i"..staff_instruction
-  string_prep = string_prep.."<cr>A<tab>',true,false,true),'m',true)"
-  api.nvim_command(string_prep)
-end
 
 function snip_builder_func(staff_instruction)
   local string_prep = "lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('q:norm i"..staff_instruction
