@@ -1,2 +1,2 @@
 # Where should I put you?
-bindkey -s ^k "/Users/jsanders/tmux-sessionizer.sh\n"
+# bindkey -s ^k "/Users/jsanders/tmux-sessionizer.sh\n"

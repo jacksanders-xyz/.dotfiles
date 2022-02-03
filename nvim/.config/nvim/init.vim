@@ -1,5 +1,5 @@
-"     ____            __         _
-"    /   _/___   ___ / / __   __(_)___ ___
+"     ____            __          _
+"    /   _/___   ___ / / __    __(_)___ ___
 "     / // __ \/  - / /_/ / | / / / __ `__ \
 " __ / // / / / /__/ /\ \ | |/ / / / / / / /
 "/___/_/ /_/_/\___/_/_/_(_)___/_/_/ /_/ /_/
@@ -83,6 +83,9 @@ Plug 'gyim/vim-boxdraw'
 
 " LIB-MODAL
 Plug 'Iron-E/nvim-libmodal'
+
+" MEEE
+" Plug 'jacksanders-xyz/plugin_practice'
 
 " OTHER
 Plug 'thinca/vim-qfreplace'
@@ -206,11 +209,11 @@ nnoremap <leader>m :Goyo<cr>
 
 " FUGITIVE
 nnoremap <leader>ga :Git add %:p<CR><CR>
-nnoremap <leader>gs :Gstatus<CR> " Views status, use `-` and `p` to add/remove files
+nnoremap <leader>gs :Git<CR> " Views status, use `-` and `p` to add/remove files
 nnoremap <leader>gd :Gdiff<CR>
 nnoremap <leader>gb :Git branch<Space>
 nnoremap <leader>go :Git checkout<Space>
-nnoremap <leader>gc :Gcommit -v -q<CR>
+nnoremap <leader>gc :Git commit -v -q<CR>
 nnoremap <leader>gg :Gcommit -v -q %:p<CR> " Commits current file
 nnoremap <leader>gp :Git push<CR>
 nnoremap <leader>gm :Git merge<CR>
@@ -271,3 +274,6 @@ nnoremap ]e I<CR><ESC>==
 
 " DELETE ALL MARKS
 nnoremap <C-\> :delmarks!<CR>
+
+" NERDTREE
+nnoremap <leader>iv :Ex<CR>
