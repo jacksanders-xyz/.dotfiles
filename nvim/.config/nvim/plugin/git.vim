@@ -9,3 +9,5 @@ nnoremap <leader>gg :Gcommit -v -q %:p<CR> " Commits current file
 nnoremap <leader>gp :Git push<CR>
 nnoremap <leader>gm :Git merge<CR>
 
+nmap <leader>gh :diffget //3<CR>
+nmap <leader>gu :diffget //2<CR>
