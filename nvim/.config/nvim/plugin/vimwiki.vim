@@ -46,10 +46,9 @@ endfun
 
 fun! MakeNotes()
   norm! '<O****
-  norm! jI####
   norm! '>o****
+  :exe 'normal!' "kI#### NOTE\r"
 endfun
-
 vnoremap <leader>wo :<C-u>call MakeOutputBox()<CR>
 vnoremap <leader>wn :<C-u>call MakeNotes()<CR>
 
