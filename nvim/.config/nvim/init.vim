@@ -207,17 +207,6 @@ xnoremap <leader>fr :call VisualFindAndReplaceWithSelection()<CR>
 let g:goyo_width=90
 nnoremap <leader>m :Goyo<cr>
 
-" FUGITIVE
-nnoremap <leader>ga :Git add %:p<CR><CR>
-nnoremap <leader>gs :Git<CR> " Views status, use `-` and `p` to add/remove files
-nnoremap <leader>gd :Gdiff<CR>
-nnoremap <leader>gb :Git branch<Space>
-nnoremap <leader>go :Git checkout<Space>
-nnoremap <leader>gc :Git commit -v -q<CR>
-nnoremap <leader>gg :Gcommit -v -q %:p<CR> " Commits current file
-nnoremap <leader>gp :Git push<CR>
-nnoremap <leader>gm :Git merge<CR>
-
 " MAXIMIZER FOR VIMSPECTOR
 nnoremap <leader>, :MaximizerToggle!<CR>
 
