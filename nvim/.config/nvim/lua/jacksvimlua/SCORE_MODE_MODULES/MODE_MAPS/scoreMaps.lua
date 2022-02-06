@@ -6,6 +6,7 @@ local quarter_notes = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.NOTES.quart
 local eighth_notes = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.NOTES.eighth_notes')
 local sixteenth_notes = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.NOTES.sixteenth_notes')
 local thirtysecond_notes = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.NOTES.thirtysecond_notes')
+local chords = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.CHORDS.chords')
 local sharps = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.ACCIDENTALS.sharps')
 local flats = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.ACCIDENTALS.flats')
 local naturals = require('jacksvimlua.SCORE_MODE_MODULES.GLYPHS.ACCIDENTALS.naturals')
@@ -25,6 +26,7 @@ local collect_tables = {
   eighth_notes,
   sixteenth_notes,
   thirtysecond_notes,
+  chords,
   sharps,
   flats,
   doublesharps,

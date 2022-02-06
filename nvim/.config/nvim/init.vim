@@ -1,8 +1,8 @@
-"    ____      _ __        _
-"   /  _/___  (_) /__   __(_)___ ___
-"   / // __ \/ / __/ | / / / __ `__ \
-" _/ // / / / / /__| |/ / / / / / / /
-"/___/_/ /_/_/\__(_)___/_/_/ /_/ /_/
+"     ____            __          _
+"    /   _/___   ___ / / __    __(_)___ ___
+"     / // __ \/  - / /_/ / | / / / __ `__ \
+" __ / // / / / /__/ /\ \ | |/ / / / / / / /
+"/___/_/ /_/_/\___/_/_/_(_)___/_/_/ /_/ /_/
 
 if empty(glob('~/.vim/autoload/plug.vim'))
 silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -199,17 +199,6 @@ xnoremap <leader>fr :call VisualFindAndReplaceWithSelection()<CR>
 let g:goyo_width=90
 nnoremap <leader>m :Goyo<cr>
 
-" FUGITIVE
-nnoremap <leader>ga :Git add %:p<CR><CR>
-nnoremap <leader>gs :Git status<CR> " Views status, use `-` and `p` to add/remove files
-nnoremap <leader>gd :Git diff<CR>
-nnoremap <leader>gb :Git branch<Space>
-nnoremap <leader>go :Git checkout<Space>
-nnoremap <leader>gc :Git commit -v -q<CR>
-nnoremap <leader>gg :Git commit -v -q %:p<CR> " Commits current file
-nnoremap <leader>gp :Git push<CR>
-nnoremap <leader>gm :Git merge<CR>
-
 " MAXIMIZER FOR THE DEBUGGER
 nnoremap <leader>, :MaximizerToggle!<CR>
 
@@ -300,3 +289,5 @@ nnoremap ]e I<CR><ESC>==
 
 nnoremap <silent><C-\> :delmarks!<CR>
 
+" NETRW
+nnoremap <leader>iv :Ex<CR>

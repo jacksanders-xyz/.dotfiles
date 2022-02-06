@@ -94,7 +94,8 @@ end
 
 function chord_constructor(chord_id, space_id)
   local space_lookup = {
-    ["7"] = "Glyq<C-v>4jlP',true,false,true),'m',true)",
+    ["sevU"] = "Glyq<C-v>4khP',true,false,true),'m',true)",
+    ["sevD"] = "Glyq<C-v>4jlP',true,false,true),'m',true)",
   }
   toggle_fwin(chord_id)
   local Action = "lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('A<tab><Esc>ggh<C-v>"
