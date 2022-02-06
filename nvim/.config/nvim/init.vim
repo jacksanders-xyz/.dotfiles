@@ -247,7 +247,7 @@ nnoremap <leader>X :bd!<CR> " Delete current buffer
 nnoremap <leader>n :bn!<CR> " Next buffer
 nnoremap <leader>N :bN!<CR> " Previous buffer
 nnoremap <leader>tn :enew<CR> " Make a new empty buffer
-nnoremap <Tab> :b#<CR> " Tab between buffers
+" nnoremap <Tab> :b#<CR> " Tab between buffers
 
 " GOTO todo LIST
 nnoremap <leader>td :enew<CR>'T
