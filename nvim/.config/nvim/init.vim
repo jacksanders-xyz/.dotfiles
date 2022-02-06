@@ -3,7 +3,6 @@
 "     / // __ \/  - / /_/ / | / / / __ `__ \
 " __ / // / / / /__/ /\ \ | |/ / / / / / / /
 "/___/_/ /_/_/\___/_/_/_(_)___/_/_/ /_/ /_/
-
 if empty(glob('~/.vim/autoload/plug.vim'))
 silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
   \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
