@@ -19,6 +19,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-markdown'
+Plug 'tpope/vim-rhubarb'
 " Plug 'tpope/vim-unimpaired'
 
 " STARTIFY
