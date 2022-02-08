@@ -18,7 +18,11 @@ nnoremap <leader>fpw :lua require('telescope.builtin').grep_string { search = vi
 nnoremap <leader>fpb :lua require('telescope.builtin').buffers()<CR>
 
 nnoremap <leader>gc :lua require('jacksvimlua.telescope').git_branches()<CR>
+nnoremap <leader>gC :lua require('telescope.builtin').git_commits()<CR>
+nnoremap <leader>gBC :lua require('telescope.builtin').git_bcommits()<CR>
+nnoremap <leader>gS :lua require('telescope.builtin').git_status()<CR>
 
+" builtin.git_commits
 " nnoremap <leader>rr :lua require('jacksvimlua.telescope').refactors()<CR>
 " vnoremap <leader>rr :lua require('jacksvimlua.telescope').refactors()<CR>
 " nnoremap <leader>vh :lua require('telescope.builtin').help_tags()<CR>
