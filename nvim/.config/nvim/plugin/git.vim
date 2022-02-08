@@ -2,6 +2,10 @@
 nnoremap <leader>gs :Git<CR> " Views status, use `-` and `p` to add/remove files
 nnoremap <leader>gp :Git push<CR>
 nnoremap <leader>gm :Git merge<CR>
+nnoremap <leader>gfa :Git fetch --all<CR>
+nnoremap <leader>gfp :Git fetch --prune<CR>
+nnoremap <leader>grum :Git rebase upstream/master<CR>
+nnoremap <leader>grom :Git rebase origin/master<CR>
 
 nmap <leader>gh :diffget //3<CR>
 nmap <leader>gu :diffget //2<CR>
