@@ -35,6 +35,7 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'ThePrimeagen/harpoon'
+Plug 'ThePrimeagen/git-worktree.nvim'
 
 " COLORS
 Plug 'altercation/vim-colors-solarized'
