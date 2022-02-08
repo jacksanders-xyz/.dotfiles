@@ -1,7 +1,7 @@
 " FUGITIVE
 nnoremap <leader>gs :Git<CR> " Views status, use `-` and `p` to add/remove files
 nnoremap <leader>gp :Git push<CR>
-nnoremap <leader>gm :Git merge<CR>
+nnoremap <leader>gm :Git merge
 nnoremap <leader>gfa :Git fetch --all<CR>
 nnoremap <leader>gfp :Git fetch --prune<CR>
 nnoremap <leader>grum :Git rebase upstream/master<CR>
