@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/learn/learnMods/ ~/VimWiki ~/.dotfiles ~/.dotfiles/nvim/.config/nvim/lua/ ~/ -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find ~/learn/learnMods/ ~/personal ~/VimWiki ~/.dotfiles ~/.dotfiles/nvim/.config/nvim/lua/ ~/ -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then

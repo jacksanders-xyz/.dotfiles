@@ -3,8 +3,11 @@ lua require('jacksvimlua')
 " TELESCOPE
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
+
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
 nnoremap <leader>fn :lua require('jacksvimlua.telescope').search_notes()<CR>
 nnoremap <leader>fs :lua require('jacksvimlua.telescope').grep_notes()<CR>
 nnoremap <leader>fdf :lua require('jacksvimlua.telescope').search_dotfiles()<CR>
