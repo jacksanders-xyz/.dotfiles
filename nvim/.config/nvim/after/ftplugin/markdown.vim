@@ -6,7 +6,7 @@ fun! ScoreModeInit()
   endif
   if !exists('g:score_was_triggered')
     let g:score_was_triggered = 1 
-    call ScoreModeStart
+    call ScoreModeStart()
   endif
 endfun
 
