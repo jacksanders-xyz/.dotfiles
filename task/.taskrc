@@ -11,6 +11,8 @@
 # Use the command 'task show' to see all defaults and overrides
 
 # Files
+# include /Users/jsanders/Documents/mbadolato-iTerm2-Color-Schemes-bf16592/xfce4terminal/colorschemes/AlienBlood.theme
+# include /Users/jsanders/Documents/mbadolato-iTerm2-Color-Schemes-bf16592/xfce4terminal/colorschemes/ayu.theme
 data.location=~/.task
 
 # Color theme (uncomment one to use)
@@ -21,7 +23,7 @@ data.location=~/.task
 #include /usr/local/Cellar/task/2.5.3_1/share/doc/task/rc/dark-256.theme
 #include /usr/local/Cellar/task/2.5.3_1/share/doc/task/rc/dark-red-256.theme
 #include /usr/local/Cellar/task/2.5.3_1/share/doc/task/rc/dark-green-256.theme
-#include /usr/local/Cellar/task/2.5.3_1/share/doc/task/rc/dark-blue-256.theme
+# include /usr/local/Cellar/task/2.5.3_1/share/doc/task/rc/dark-blue-256.theme
 #include /usr/local/Cellar/task/2.5.3_1/share/doc/task/rc/dark-violets-256.theme
 # include /usr/local/Cellar/task/2.5.3_1/share/doc/task/rc/dark-yellow-green.theme
 #include /usr/local/Cellar/task/2.5.3_1/share/doc/task/rc/dark-gray-256.theme

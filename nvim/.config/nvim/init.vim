@@ -47,6 +47,7 @@ Plug 'tjdevries/gruvbuddy.nvim'
 
 "LSP
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 
 " VIMSPECTOR
 Plug 'puremourning/vimspector'
@@ -88,6 +89,9 @@ Plug 'Iron-E/nvim-libmodal'
 
 " MEEE
 " Plug 'jacksanders-xyz/plugin_practice'
+
+" COFFEE SCRIPT UNTIL TREE SITTER SUPPORTS
+Plug 'kchmck/vim-coffee-script'
 
 " OTHER
 Plug 'thinca/vim-qfreplace'
@@ -173,9 +177,9 @@ let g:UltiSnipsListSnippets="<c-tab>"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/general/path/of/snippets/']
 
 "REMAPPED SNIPPETS, TO SEE THEM TYPE :Ultisnips edit, FOR THAT FILE TYPE
-nnoremap <leader>! ihb_t!
-nnoremap <leader>rf! irf__c
-nnoremap <leader>vs! ivs__j
+" nnoremap <leader>! ihb_t!
+" nnoremap <leader>rf! irf__c
+" nnoremap <leader>vs! ivs__j
 
 " DEOPLETE
 " let g:python_host_prog = '/usr/bin/python'
@@ -218,12 +222,12 @@ fun! GotoWindow(id)
 endfun
 
 "BUFFER MANAGEMENT
-nnoremap <leader>x :bd<CR> " Delete current buffer
-nnoremap <leader>X :bd!<CR> " Delete current buffer
-nnoremap <leader>n :bn!<CR> " Next buffer
-nnoremap <leader>N :bN!<CR> " Previous buffer
-nnoremap <leader>tn :enew<CR> " Make a new empty buffer
-nnoremap <Tab> :b#<CR> " Tab between buffers
+nnoremap <silent><leader>x :bd<CR> " Delete current buffer
+nnoremap <silent><leader>X :bd!<CR> " Delete current buffer
+nnoremap <silent><leader>n :bn!<CR> " Next buffer
+nnoremap <silent><leader>N :bN!<CR> " Previous buffer
+nnoremap <silent><leader>tn :enew<CR> " Make a new empty buffer
+nnoremap <silent><Tab> :b#<CR> " Tab between buffers
 
 " GOTO todo LIST
 nnoremap <leader>td :enew<CR>'T
