@@ -44,6 +44,7 @@ Plug 'tjdevries/gruvbuddy.nvim'
 
 "LSP
 Plug 'neovim/nvim-lspconfig'
+Plug 'williamboman/nvim-lsp-installer'
 
 " VIMSPECTOR
 Plug 'puremourning/vimspector'
