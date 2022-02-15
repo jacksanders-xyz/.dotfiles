@@ -127,7 +127,7 @@ update: (output) ->
   $(".time-output")    .text("#{time}")
   $(".wifi-output")    .text("#{wifi}")
   $(".volume-output")  .text("#{volume}%")
-  $(".volume-input")  .text("#{input}%")
+  $(".volume-input")   .text("#{input}%")
   $(".date-output")    .text("#{date}")
   $(".cpu-output")     .text("#{cpu}%")
   $(".disk-output")    .text("#{disk}")
@@ -149,7 +149,6 @@ handleBattery: ( percentage, charging ) ->
     when percentage <= 100 then "fa-battery-4"
 
   $(".battery-icon").html("<i class=\"fa #{batteryIcon} \"></i>")
-
 
 
 handleVolume: (volume) ->
