@@ -9,11 +9,10 @@ set incsearch
 set nohlsearch
 set t_Co=256
 set number
-set tabstop=2
+set tabstop=4 softtabstop=4
+set shiftwidth=4
 set expandtab
 set autoindent smartindent
-set softtabstop=2
-set shiftwidth=2
 set nobackup
 set noswapfile
 set noerrorbells
