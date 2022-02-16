@@ -76,7 +76,6 @@ Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
 
 " LANGS
-Plug 'HerringtonDarkholme/yats.vim'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'mrk21/yaml-vim'
 Plug 'osyo-manga/vim-over'
@@ -99,7 +98,7 @@ Plug 'kshenoy/vim-signature'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'posva/vim-vue'
 Plug 'mileszs/ack.vim'
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 call plug#end()
 
@@ -134,7 +133,7 @@ let g:indentLine_char = '⦙'
 lua require'nvim-treesitter.configs'.setup { highlight = { enable = true }}
 
 " TYPESCRIPT
-autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
+" autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
 
 au FileType go set noexpandtab
 au FileType go set shiftwidth=4
@@ -156,30 +155,12 @@ au Filetype go nnoremap <leader>goa <Plug>(go-alternate-edit)
 au FileType go nnoremap <leader>goc :GoCoverageToggle -short<cr>
 au FileType go nnoremap <leader>god <Plug>(go-def)
 
-" ALE
-let g:ale_linters = {'javascript': ['eslint']}
-let g:ale_lint_on_save = 1
-let g:ale_fixers = ['eslint']
-let g:ale_fix_on_save = 1
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-let g:airline#extensions#ale#enabled = 1
-autocmd BufWritePost *.js ALEFix
-
 " ULTISSNIPS SNIPPETS
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsListSnippets="<c-tab>"
 let g:UltiSnipsSnippetDirectories=[$HOME.'/general/path/of/snippets/']
-
-"REMAPPED SNIPPETS, TO SEE THEM TYPE :Ultisnips edit, FOR THAT FILE TYPE
-" nnoremap <leader>! ihb_t!
-" nnoremap <leader>rf! irf__c
-" nnoremap <leader>vs! ivs__j
 
 " DEOPLETE
 " let g:python_host_prog = '/usr/bin/python'
@@ -249,6 +230,7 @@ nnoremap <leader>. @: " Repeat last ex command
 
 " YANK/PUT FROM/TO CLIPBOARD
 vnoremap <leader>y "*y
+
 map<leader>p "*P
 inoremap<c-p> <ESC>"*Pi
 
