@@ -1,5 +1,6 @@
 require("jacksvimlua.telescope")
 require("jacksvimlua.lsp")
+require("jacksvimlua.treesitter")
 require("jacksvimlua.libmodal")
 require("jacksvimlua.lsp-installer")
 
