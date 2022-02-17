@@ -100,7 +100,7 @@ Plug 'j-hui/fidget.nvim'
 call plug#end()
 
 " ADDING LOCAL MODULES
-let &runtimepath.=',' . expand("$HOME") . '/personal/dictator/'
+" let &runtimepath.=',' . expand("$HOME") . '/personal/dictator/'
 
 " LEADER
 let mapleader=" "
