@@ -99,6 +99,8 @@ Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'j-hui/fidget.nvim'
 call plug#end()
 
+" ADDING LOCAL MODULES
+let &runtimepath.=',' . expand("$HOME") . '/personal/dictator/'
 
 " LEADER
 let mapleader=" "

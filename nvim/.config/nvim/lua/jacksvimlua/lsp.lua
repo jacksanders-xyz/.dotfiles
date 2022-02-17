@@ -1,7 +1,9 @@
 local runtime_path = vim.split(package.path, ';')
+
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
+require'lspconfig'.tsserver.setup{}
 require'lspconfig'.sumneko_lua.setup {
   settings = {
     Lua = {
@@ -28,3 +30,4 @@ require'lspconfig'.sumneko_lua.setup {
 }
 
 require'lspconfig'.vimls.setup{}
+require'lspconfig'.vuels.setup{}

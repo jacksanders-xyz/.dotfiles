@@ -1,5 +1,7 @@
 require("jacksvimlua.telescope")
 require("jacksvimlua.lsp")
+require("jacksvimlua.treesitter")
+require("jacksvimlua.lsp-installer")
 
 P = function(v)
   print(vim.inspect(v))
@@ -14,4 +16,3 @@ if pcall(require, 'plenary') then
     return require(name)
   end
 end
-
