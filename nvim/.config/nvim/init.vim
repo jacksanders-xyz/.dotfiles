@@ -86,9 +86,6 @@ Plug 'gyim/vim-boxdraw'
 " LIB-MODAL
 Plug 'Iron-E/nvim-libmodal'
 
-" MEEE
-" Plug 'jacksanders-xyz/plugin_practice'
-
 " COFFEE SCRIPT UNTIL TREE SITTER SUPPORTS
 Plug 'kchmck/vim-coffee-script'
 
@@ -102,12 +99,13 @@ Plug 'mileszs/ack.vim'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 call plug#end()
 
+" ADDING LOCAL MODULES
+let &runtimepath.=',' . expand("$HOME") . '/personal/wiki-Flash'
+
 " LEADER
 let mapleader=" "
 
 " GENERAL CONFIG
-inoremap jj <ESC>
-inoremap jk <ESC>
 syntax enable
 command E Ex " Disambiguates E
 filetype plugin on
@@ -254,3 +252,4 @@ nnoremap <C-\> :delmarks!<CR>
 
 " NERDTREE
 nnoremap <leader>iv :Ex<CR>
+nnoremap <leader>is <C-w><C-v>:Ex<CR>

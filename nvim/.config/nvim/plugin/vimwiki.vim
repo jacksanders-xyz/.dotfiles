@@ -49,6 +49,13 @@ fun! MakeNotes()
   norm! '>o****
   :exe 'normal!' "kI#### NOTE\r"
 endfun
+
+fun! MakeFlash()
+  :exe 'normal!' ":VimwikiFollowLink\r"
+  :exe 'normal!' "f(aFLASH_DECK/"
+endfun
+
 vnoremap <leader>wo :<C-u>call MakeOutputBox()<CR>
 vnoremap <leader>wn :<C-u>call MakeNotes()<CR>
-
+nmap <leader>wf :<C-u>call MakeFlash()<CR>
+nmap <C-f> :<C-u>call WikiFlash()<CR>

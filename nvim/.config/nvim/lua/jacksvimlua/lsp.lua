@@ -31,3 +31,5 @@ require'lspconfig'.sumneko_lua.setup {
 
 require'lspconfig'.vimls.setup{}
 require'lspconfig'.vuels.setup{}
+require'lspconfig'.jsonls.setup{}
+require'lspconfig'.bashls.setup{}

@@ -7,6 +7,11 @@ cmd + ctrl - l : yabai -m display --focus east
 
 # your new command - tab
 alt - t : yabai -m window --focus recent
+alt - n : yabai -m window --focus recent && skhd -k "space" && yabai -m window --focus recent
+# manipulate a youtube vid while in vim
+alt - n : yabai -m window --focus recent && skhd -k "space" && yabai -m window --focus recent
+alt - y : yabai -m window --focus recent && skhd -k "right" && yabai -m window --focus recent
+alt - e : yabai -m window --focus recent && skhd -k "left" && yabai -m window --focus recent
 
 # focus window on the right, if there is none, jump to the next display
 alt - h : yabai -m window --focus west || yabai -m display --focus west
