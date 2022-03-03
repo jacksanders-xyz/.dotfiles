@@ -1,4 +1,7 @@
 #!/bin/bash
+INPUT="$1"
+
+echo "$INPUT"
 osascript <<EOD
 on setActiveTabIndex(searchString)
 	tell application "Google Chrome"
@@ -14,10 +17,7 @@ end tell
 end setActiveTabIndex
 
 on run
-setActiveTabIndex("Youtube")
+setActiveTabIndex("$INPUT")
 return
 end run
 EOD
-
-
-echo "Google Chrome is now open in Kiosk Mode"
