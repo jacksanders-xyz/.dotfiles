@@ -8,14 +8,13 @@ fun! SetWorkspace()
 endfun
 
 fun! GrabWindowTab()
-    let bufname = expand('%:r')
-    let prep_string = ":! /Users/jsanders/tab_tracker.sh " . bufname
-    :execute prep_string
-    " :echom bufname
+    " let bufname = expand('%:r')
+    let prep_string = ":! /Users/jsanders/tab_tracker.sh " . expand('%:t:r')
+    " let prep_string = ":! /Users/jsanders/tab_tracker.sh " . bufname
+    :silent execute prep_string
 endfun
 
 let g:trackTabTrigger = 0
-
 fun! TrackTabFunc()
     if g:trackTabTrigger == 0
         let g:trackTabTrigger=1
@@ -28,8 +27,9 @@ endfun
 nmap <leader>MP <Plug>MarkdownPreview<CR>
 nmap <leader>MS <Plug>MarkdownPreviewStop<CR>
 nmap <C-g> <Plug>MarkdownPreviewToggle
+nnoremap <silent><leader>/ :call GrabWindowTab()<CR>
 
-nnoremap <leader>MT :call TrackTabFunc()<CR>
+" nnoremap <leader>MT :call TrackTabFunc()<CR>
 
 let g:mkdp_auto_close = 0
 " let g:mkdp_page_title = '「${name}」'
@@ -39,10 +39,10 @@ let g:mkdp_page_title = '${name}'
     " \ }
 
 augroup trackTabs
-    autocmd! BufEnter *.md
-         \ if g:trackTabTrigger==1
-             \ | execute 'autocmd! BufEnter *.md :call GrabWindowTab()'
-        \ | endif
+    " autocmd! BufEnter *.md
+    "      \ if g:trackTabTrigger==1
+    "          \ | execute 'autocmd! BufEnter *.md :call GrabWindowTab()'
+    "     \ | endif
 
     " autocmd!
     " autocmd! BufEnter *.md :call GrabWindowTab()
