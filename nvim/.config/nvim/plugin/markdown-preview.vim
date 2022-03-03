@@ -7,10 +7,11 @@
 fun! SetWorkspace()
 endfun
 
-fun! GrabWindowTab(param)
-    let prep_string = ":! /Users/jsanders/tab_tracker.sh " . a:param
-    " :echom prep_string
+fun! GrabWindowTab()
+    let bufname = expand('%:r')
+    let prep_string = ":! /Users/jsanders/tab_tracker.sh " . bufname
     :execute prep_string
+    " :echom bufname
 endfun
 
 let g:trackTabTrigger = 0
@@ -40,7 +41,7 @@ let g:mkdp_page_title = '${name}'
 augroup trackTabs
     autocmd! BufEnter *.md
          \ if g:trackTabTrigger==1
-             \ | execute 'autocmd! BufEnter *.md :call GrabWindowTab("usingLaTeX")'
+             \ | execute 'autocmd! BufEnter *.md :call GrabWindowTab()'
         \ | endif
 
     " autocmd!
