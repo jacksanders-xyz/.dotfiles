@@ -34,6 +34,9 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'ThePrimeagen/harpoon'
 Plug 'ThePrimeagen/git-worktree.nvim'
 
+" STATUSLINE FOR WORKTREE
+Plug 'nvim-lualine/lualine.nvim'
+
 " COLORS
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
@@ -100,30 +103,29 @@ Plug 'j-hui/fidget.nvim'
 call plug#end()
 
 " ADDING LOCAL MODULES
-" let &runtimepath.=',' . expand("$HOME") . '/personal/dictator/'
+let &runtimepath.=',' . expand("$HOME") . '/personal/dictator'
 
+let &runtimepath.=',' . expand("$HOME") . '/personal/wiki-Flash/master'
 " LEADER
 let mapleader=" "
 
-" GENERAL CONFIG
-" inoremap jj <ESC>
-" inoremap jk <ESC>
 syntax enable
 command E Ex " Disambiguates E
 filetype plugin on
 filetype indent on
 
-" TRIM WHITESPACE AUTO COMMAND
-" fun! TrimWhitespace()
-"   let l:save = winsaveview()
-"   keeppatterns %s/\s\+$//e
-"   call winrestview(l:save)
-" endfun
 
-" augroup CLEANLINESS
-" autocmd!
-" autocmd BufWritePre * :call TrimWhitespace()
-" augroup END
+" TRIM WHITESPACE AUTO COMMAND EXCEPT FOR MD AND ULTISNIPS
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+augroup CLEANLINESS
+    autocmd!
+    autocmd BufWritePre *\(.md\|.snippets\)\@<! :call TrimWhitespace()
+augroup END
 
 " VIM-YAML
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
@@ -200,7 +202,7 @@ xnoremap <leader>fr :call VisualFindAndReplaceWithSelection()<CR>
 let g:goyo_width=90
 nnoremap <leader>m :Goyo<cr>
 
-" MAXIMIZER 
+" MAXIMIZER
 nnoremap <leader>, :MaximizerToggle!<CR>
 
 "BUFFER MANAGEMENT
@@ -252,3 +254,4 @@ nnoremap <silent><C-\> :delmarks!<CR>
 
 " NETRW
 nnoremap <leader>iv :Ex<CR>
+nnoremap <leader>is <c-w><c-v>:Ex<CR>

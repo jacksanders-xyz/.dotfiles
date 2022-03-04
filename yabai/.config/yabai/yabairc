@@ -65,6 +65,7 @@ yabai -m rule --add app="^Discord$" space=discord
 yabai -m rule --add app="^System Preferences$" manage=off space=misc
 
 yabai -m config --space misc layout        float
+yabai -m config --space home layout        float
 
 # yabai -m rule --add app="Microsoft Outlook^$" space=outlook
 # yabai -m rule --add app="^Slack$" space=slack
