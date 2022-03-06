@@ -2,6 +2,9 @@ require("jacksvimlua.telescope")
 require("jacksvimlua.lsp")
 require("jacksvimlua.treesitter")
 require("jacksvimlua.lsp-installer")
+require("jacksvimlua.feline")
+require("jacksvimlua.barbar")
+
 
 P = function(v)
   print(vim.inspect(v))

@@ -1,4 +1,5 @@
 "SETS FOR NVIM
+set termguicolors
 set encoding=utf-8
 set exrc
 set laststatus=2

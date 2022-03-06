@@ -34,14 +34,21 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'ThePrimeagen/harpoon'
 Plug 'ThePrimeagen/git-worktree.nvim'
 
-" STATUSLINE FOR WORKTREE
-Plug 'nvim-lualine/lualine.nvim'
+" STATUSLINE FOR WORKTREE/DICTATOR
+" Plug 'nvim-lualine/lualine.nvim'
+
+" TABLINE
+Plug 'romgrk/barbar.nvim'
+
+" STATUSLINE
+Plug 'feline-nvim/feline.nvim'
+
+" OLD STATUSLINE:
+" Plug 'altercation/vim-colors-solarized'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
 
 " COLORS
-Plug 'altercation/vim-colors-solarized'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'gruvbox-community/gruvbox'
 Plug 'tjdevries/colorbuddy.vim'
 Plug 'tjdevries/gruvbuddy.nvim'
 
@@ -76,10 +83,10 @@ Plug 'vimwiki/vimwiki'
 Plug 'voldikss/vim-floaterm'
 
 " LANGS
-Plug 'mhartington/nvim-typescript', {'for': ['typescript', 'tsx'], 'do': './install.sh' }
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'mrk21/yaml-vim'
+
+" OVER THE CL
 Plug 'osyo-manga/vim-over'
 
 " VIM-BOXDRAW
@@ -96,8 +103,6 @@ Plug 'thinca/vim-qfreplace'
 Plug 'kshenoy/vim-signature'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'posva/vim-vue'
-Plug 'mileszs/ack.vim'
-Plug 'dense-analysis/ale'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'j-hui/fidget.nvim'
 call plug#end()
@@ -137,39 +142,6 @@ lua require'nvim-treesitter.configs'.setup { highlight = { enable = true }}
 " TYPESCRIPT
 autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
 
-au FileType go set noexpandtab
-au FileType go set shiftwidth=4
-au FileType go set softtabstop=4
-au FileType go set tabstop=4
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-let g:go_auto_sameids = 1
-let g:go_fmt_command = "goimports"
-let g:go_auto_type_info = 1
-au FileType go nnoremap <leader>got :GoTest -short<cr>
-au Filetype go nnoremap <leader>goa <Plug>(go-alternate-edit)
-au FileType go nnoremap <leader>goc :GoCoverageToggle -short<cr>
-au FileType go nnoremap <leader>god <Plug>(go-def)
-
-" ALE
-let g:ale_linters = {'javascript': ['eslint']}
-let g:ale_lint_on_save = 1
-let g:ale_fixers = ['eslint']
-let g:ale_fix_on_save = 1
-let g:ale_sign_column_always = 1
-let g:ale_sign_error = '❌'
-let g:ale_sign_warning = '⚠️'
-highlight ALEErrorSign ctermbg=NONE ctermfg=red
-highlight ALEWarningSign ctermbg=NONE ctermfg=yellow
-let g:airline#extensions#ale#enabled = 1
-autocmd BufWritePost *.js ALEFix
-
 " DEOPLETE
 let g:python3_host_prog = '/usr/local/bin/python3'
 autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_complete', v:false)
@@ -179,10 +151,6 @@ let g:deoplete#sources#go#gocode_binary = $GOPATH.'~/go/bin/gocode'
 let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
 inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-" let g:python_host_prog = '/usr/bin/python'
-
-" ACK.VIM
-let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " STATUS LINES
 set statusline+=%#warningmsg#
@@ -195,6 +163,7 @@ endfunction
 function! VisualFindAndReplaceWithSelection() range
   :'<,'>OverCommandLine s/
 endfunction
+
 nnoremap <leader>fr :call VisualFindAndReplace()<CR>
 xnoremap <leader>fr :call VisualFindAndReplaceWithSelection()<CR>
 
@@ -216,9 +185,6 @@ nnoremap <leader>tn :enew<CR> " Make a new empty buffer
 " GOTO todo LIST
 nnoremap <leader>td :enew<CR>'T
 
-" ESLINT
-" nnoremap <leader>e :new<Bar>0r!npm run lint<CR> " Run eslint in vue
-
 " SPLIT NAVIGATION
 " nnoremap <c-j> <C-w><C-j>
 " nnoremap <c-k> <C-w><C-k>
@@ -239,8 +205,9 @@ inoremap<c-p> <ESC>"*Pi
 " MAKE Y BEHAVE LIKE ALL THE OTHER CAPITAL LETTERS
 nnoremap Y y$
 
-" SPELLCHECK TOGGLE IS <F4>
-:map <F4> :setlocal spell! spelllang=en_us<CR>
+" SPELLCHECK TOGGLE
+" :map <F4> :setlocal spell! spelllang=en_us<CR>
+nnoremap <leader>s :setlocal spell! spelllang=en_us<CR>
 
 " MOVING TEXT AROUND
 vnoremap J :m '>+1<CR>gv=gv

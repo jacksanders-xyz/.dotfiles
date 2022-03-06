@@ -1,14 +1,15 @@
 " ~THEMES AND COLORS~
 fun! ColorMyPencils()
     set background=dark
-    let g:gruvbox_contrast_dark = 'hard'
     lua require('colorbuddy').colorscheme('gruvbuddy')
-    let g:airline#extensions#tabline#enabled = 1
-    let g:airline#extensions#tabline#left_sep = ' '
-    let g:airline#extensions#tabline#left_alt_sep = '|'
-    let g:airline_theme='base16_gruvbox_dark_pale'
+    " let g:airline_powerline_fonts=1
+    " let g:airline#extensions#tabline#enabled = 1
+    " let g:airline#extensions#tabline#left_sep = ' '
+    " let g:airline#extensions#tabline#left_alt_sep = '|'
+    " let g:airline_theme='base16_gruvbox_dark_pale'
 endfun
 call ColorMyPencils()
+
 " base16_gruvbox_dark_pale
 
 " hi! link markdownH1 yellow

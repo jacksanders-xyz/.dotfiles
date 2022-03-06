@@ -1,10 +1,5 @@
 shift + cmd + alt - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 shift + cmd + ctrl - u : /Users/_jacksanders/yabScripts/killandUpdateYabai.sh
-# focus window
-cmd + ctrl - h : yabai -m window --focus west
-cmd + ctrl - l : yabai -m window --focus east
-cmd + ctrl - k : yabai -m window --focus north
-cmd + ctrl - j : yabai -m window --focus south
 
 # jump to the next display
 cmd + ctrl - h : yabai -m display --focus west
