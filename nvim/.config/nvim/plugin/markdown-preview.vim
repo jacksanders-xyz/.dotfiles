@@ -8,6 +8,9 @@
 
 
 fun! SetWorkspaceAndReturnToIterm()
+    " :execute "MarkdownPreview"
+    let prep_string = ":! /Users/jsanders/iterm_back.sh"
+    :silent execute prep_string
 endfun
 
 fun! GrabWindowTab()
@@ -28,7 +31,9 @@ endfun
 " nmap <silent> <leader>MP :call SetWorkspace()<CR>
 nmap <leader>MP <Plug>MarkdownPreview<CR>
 nmap <leader>MS <Plug>MarkdownPreviewStop<CR>
-nmap <C-g> <Plug>MarkdownPreviewToggle
+nmap <C-g> <Plug>MarkdownPreviewToggle<CR>
+" nmap <C-g> <Plug>MarkdownPreviewToggle<CR>:call SetWorkspaceAndReturnToIterm()<CR>
+
 nnoremap <silent><leader>/ :call GrabWindowTab()<CR>
 nnoremap <leader>MT :call TrackTabFunc()<CR>
 
