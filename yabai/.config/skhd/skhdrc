@@ -9,12 +9,14 @@ cmd + ctrl - l : yabai -m display --focus east
 alt - t : yabai -m window --focus recent
 
 # manipulate a youtube vid from anywhere
-alt - n : osascript /Users/_jacksanders/PLAYPAUSE.scpt
+# alt - n : osascript /Users/_jacksanders/PLAYPAUSE.scpt
 
 # manipulate a youtube vid while in vim
-# alt - n : yabai -m window --focus recent && skhd -k "space" ; sleep 0.18; skhd -k "alt - t"
-alt - y : yabai -m window --focus recent && skhd -k "right" ; sleep 0.18; skhd -k "alt - t"
+alt - n : yabai -m window --focus recent && skhd -k "space" ; sleep 0.26; skhd -k "alt - t"
+alt - y : yabai -m window --focus recent && skhd -k "right" ; sleep 0.26; skhd -k "alt - t"
 alt - e : yabai -m window --focus recent && skhd -k "left left" ; sleep 0.28; skhd -k "alt - t"
+shift + alt - e : yabai -m window --focus recent && skhd -k "left" && skhd -k "left" ; sleep 0.28; skhd -k "alt - t"
+shift + alt - y : yabai -m window --focus recent && skhd -k "right" && skhd -k "right" ; sleep 0.28; skhd -k "alt - t"
 
 # If you can get away with it/ even faster
 # alt - n : yabai -m window --focus recent && skhd -k "space" && yabai -m window --focus recent
