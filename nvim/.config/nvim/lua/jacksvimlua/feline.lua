@@ -220,7 +220,8 @@ require('feline').setup(
                         return mode_name..' '
                     end,
                     hl = function()
-						local mode_color = _MODES[vim.api.nvim_get_mode().mode][2][1]
+						local mode_color = vim.g.libmodalLayerActive==1 and _MODES['SCORE'][1] or _MODES[vim.api.nvim_get_mode().mode][2][1]
+                        -- print(_MODES['SCORE'][1])
                         return {
                             fg = "black",
                             bg = mode_color,
