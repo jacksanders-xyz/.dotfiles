@@ -12,7 +12,8 @@
 -- local highlight = require('highlite').highlight
 
 --[[/* CONSTANTS */]]
-
+local vi_mode_utils = require("feline.providers.vi_mode")
+local feline = require("feline")
 local _BUF_ICON =
 { -- {{{
 	dbui     = '  ',
@@ -62,9 +63,35 @@ local _PINK_LIGHT   = {'#ffb7b7', 217, 'white'}
 local _PURPLE       = {'#cf55f0', 171, 'magenta'}
 local _PURPLE_LIGHT = {'#af60af', 133, 'darkmagenta'}
 
+
 local _SIDEBAR = _BLACK
 local _MIDBAR = _GRAY_DARK
 local _TEXT = _GRAY_LIGHT
+
+local vi_mode_colors = {
+    ['COMMAND-LINE'] =       '#ee4a59',
+    ['NORMAL EX'] =          '#a80000',
+    ['EX'] =                 '#ff4090',
+    ['INSERT'] =             '#22ff22',
+    ['INS-COMPLETE'] =       '#99ff99',
+    ['NORMAL'] =             '#af60af',
+    ['OPERATOR-PENDING'] =   '#cf55f0',
+    ['HIT-ENTER'] =          '#33dbc3',
+    [':CONFIRM'] =           '#33dbc3',
+    ['--MORE'] =             '#95c5ff',
+    ['REPLACE'] =            '#ffa6ff',
+    ['VIRTUAL'] =            '#ffb7b7',
+    ['SELECT'] =             '#2bff99',
+    ['TERMINAL'] =           '#ff8900',
+    ['VISUAL'] =             '#7766ff',
+    ['VISUAL LINE'] =        '#7766ff',
+    ['VISUAL BLOCK'] =       '#7766ff',
+    ['SHELL'] =              '#f0df33',
+	-- libmodal
+	['STAFF'] = '#f0df33',
+	['SCORE'] = '#ee4a59',
+}
+
 
 local _MODES =
 { -- {{{
@@ -80,7 +107,7 @@ local _MODES =
 	['rm'] = {'--MORE',            _ICE},
 	['R']  = {'REPLACE',           _PINK},
 	['Rv'] = {'VIRTUAL',           _PINK_LIGHT},
-	['s']  = {'SELECT',            _TURQOISE},
+    ['s']  = {'SELECT',            _TURQOISE},
 	['S']  = {'SELECT',            _TURQOISE},
 	[''] = {'SELECT',            _TURQOISE},
 	['t']  = {'TERMINAL',          _ORANGE},
@@ -93,6 +120,31 @@ local _MODES =
 	['STAFF'] = _YELLOW,
 	['SCORE'] = _RED,
 } -- }}}
+
+-- local vi_mode_colors = {
+--     ['COMMAND-LINE'] =       _RED,
+--     ['NORMAL EX'] =          _RED_DARK,
+--     ['EX'] =                 _RED_LIGHT,
+--     ['INSERT'] =             _GREEN,
+--     ['INS-COMPLETE'] =       _GREEN_LIGHT,
+--     -- ['NORMAL'] =             _PURPLE_LIGHT,
+--     ['NORMAL'] =             'violet',
+--     ['OPERATOR-PENDING'] =   _PURPLE,
+--     ['HIT-ENTER'] =          _CYAN,
+--     [':CONFIRM'] =           _CYAN,
+--     ['--MORE'] =             _ICE,
+--     ['REPLACE'] =            _PINK,
+--     ['VIRTUAL'] =            _PINK_LIGHT,
+--     ['SELECT'] =             _TURQOISE,
+--     ['TERMINAL'] =           _ORANGE,
+--     ['VISUAL'] =             _BLUE,
+--     ['VISUAL LINE'] =        _BLUE,
+--     ['VISUAL BLOCK'] =       _BLUE,
+--     ['SHELL'] =              _YELLOW,
+-- 	-- libmodal
+-- 	['STAFF'] = _YELLOW,
+-- 	['SCORE'] = _RED,
+-- }
 
 local _LEFT_SEPARATOR = ''
 local _RIGHT_SEPARATOR = ''
@@ -146,28 +198,35 @@ require('feline').setup(
 					-- icon = '▊ ',
 					icon = '▊ ',
                     provider = function() -- auto change color according the vim mode
-						local mode_color
+						-- local mode_color
 						local mode_name
 
                         if vim.g.libmodalActiveModeName then
 							mode_name = vim.g.libmodalActiveModeName
-							mode_color = _MODES[mode_name]
+							-- mode_color = _MODES[mode_name]
+							-- mode_color = vi_mode_colors[mode_name]
 						elseif vim.g.libmodalLayerActive == 1 then
 							mode_name = "SCORE"
-							mode_color = _MODES[mode_name]
+							-- mode_color = vi_mode_colors[mode_name]
+							-- mode_color = _MODES[mode_name]
 						else
 							local current_mode = _MODES[vim.api.nvim_get_mode().mode]
-
 							if not current_mode then
-								-- Dump(vim.api.nvim_get_mode())
+                                current_mode = "error"
                         end
-
                         mode_name = current_mode[1]
-                        mode_color = current_mode[2]
+                        -- mode_color = current_mode[2]
                     end
-    -- highlight('FelineViMode', {fg=mode_color, style='bold'})
-
                         return mode_name..' '
+                    end,
+                    hl = function()
+						local mode_color = _MODES[vim.api.nvim_get_mode().mode][2][1]
+                        return {
+                            fg = "black",
+                            bg = mode_color,
+                            style = "bold"
+                        }
+
                     end,
                     right_sep = function() return
                         {
@@ -408,20 +467,6 @@ require('feline').setup(
 		},
 	}, -- }}}
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
