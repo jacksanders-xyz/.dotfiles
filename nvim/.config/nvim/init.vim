@@ -46,6 +46,9 @@ Plug 'feline-nvim/feline.nvim'
 " GIT SIGNS FOR STATUSLINE
 Plug 'lewis6991/gitsigns.nvim'
 
+" ICONS FOR STATUSLINE
+" Plug 'ryanoasis/vim-devicons'
+
 " OLD STATUSLINE:
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'vim-airline/vim-airline'

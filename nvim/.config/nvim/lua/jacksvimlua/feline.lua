@@ -16,17 +16,35 @@ local vi_mode_utils = require("feline.providers.vi_mode")
 local feline = require("feline")
 local _BUF_ICON =
 { -- {{{
-	dbui     = '  ',
-	diff     = ' 繁',
-	help     = '  ',
-	NvimTree = ' פּ ',
-	packer   = '  ',
-	qf       = '  ',
-	undotree = '  ',
-	vista    = '  ',
-	vista_kind = '  ',
-	vista_markdown = '  ',
+
+        dbui     = '  ',
+
+
+        diff     = ' 繁',
+
+
+        help     = '  ',
+
+
+        NvimTree = ' פּ ',
+
+
+        packer   = '  ',
+
+
+
+        qf       = '  ',
+
+        undotree = '  ',
+
+        vista    = '  ',
+
+        vista_kind = '  ',
+
+        vista_markdown = '  ',
 } -- }}}
+
+                -- ﬀ use this maybe?
 
 local gitsigns = require('gitsigns').setup()
 
@@ -204,7 +222,7 @@ require('feline').setup(
                                 hl = {
                                     fg = _SIDEBAR[1],
                                     -- bg = file_color()
-                                bg = '#ffffff'
+                                -- bg = '#ffffff'
                                 }, str = _LEFT_SEPARATOR,
                             }
                         end,
@@ -213,15 +231,24 @@ require('feline').setup(
                     {
                         colored_icon = false,
                         enabled = buffer_not_empty,
-                        file_modified_icon = 'change',
+                        -- file_modified_icon = ' ﬀ  ',
+
 					hl = {
                                     fg = _TEXT[1],
                                     bg = _SIDEBAR[1],
                                     style = 'bold'
                                 },
 					icon = '',
-					provider  = 'file_info',
-					right_sep =
+                    -- icon = 'ﬀ ',
+					provider  = {
+                        name = 'file_info',
+                        opts = {
+                        type = 'unique',
+                      -- HERE, THIS IS WHERE YOU CHANGE THE ICON FOR FILE CHANGES!!
+                        file_modified_icon = 'ﬀ  ',
+                        }
+                    },
+                     right_sep =
 					{
 						hl = {bg = _SIDEBAR[1]},
 						str = ' ',
@@ -362,7 +389,7 @@ require('feline').setup(
 					enabled = buffer_not_empty,
 					hl = {fg = _TEXT[1], bg = _SIDEBAR[1]},
 					provider = function()
-						return ' '..(vim.api.nvim_win_get_cursor(0)[2] + 1)
+						return '┫'..(vim.api.nvim_win_get_cursor(0)[2] + 1)
 					end,
 				},
 
@@ -422,7 +449,6 @@ require('feline').setup(
 			}}, -- }}}
 		},
 	}, -- }}}
-
 	force_inactive =
 	{ -- {{{
 		bufnames = {},
