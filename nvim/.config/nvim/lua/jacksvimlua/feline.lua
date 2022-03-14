@@ -28,6 +28,10 @@ local _BUF_ICON =
 	vista_markdown = '  ',
 } -- }}}
 
+local gitsigns = require('gitsigns').setup()
+
+
+
 -- Defined in https://github.com/Iron-E/nvim-highlite
 local _BLACK       = {'#202020', 235, 'black'}
 local _GRAY        = {'#808080', 244, 'gray'}
@@ -68,31 +72,6 @@ local _SIDEBAR = _BLACK
 local _MIDBAR = _GRAY_DARK
 local _TEXT = _GRAY_LIGHT
 
-local vi_mode_colors = {
-    ['COMMAND-LINE'] =       '#ee4a59',
-    ['NORMAL EX'] =          '#a80000',
-    ['EX'] =                 '#ff4090',
-    ['INSERT'] =             '#22ff22',
-    ['INS-COMPLETE'] =       '#99ff99',
-    ['NORMAL'] =             '#af60af',
-    ['OPERATOR-PENDING'] =   '#cf55f0',
-    ['HIT-ENTER'] =          '#33dbc3',
-    [':CONFIRM'] =           '#33dbc3',
-    ['--MORE'] =             '#95c5ff',
-    ['REPLACE'] =            '#ffa6ff',
-    ['VIRTUAL'] =            '#ffb7b7',
-    ['SELECT'] =             '#2bff99',
-    ['TERMINAL'] =           '#ff8900',
-    ['VISUAL'] =             '#7766ff',
-    ['VISUAL LINE'] =        '#7766ff',
-    ['VISUAL BLOCK'] =       '#7766ff',
-    ['SHELL'] =              '#f0df33',
-	-- libmodal
-	['STAFF'] = '#f0df33',
-	['SCORE'] = '#ee4a59',
-}
-
-
 local _MODES =
 { -- {{{
 	['c']  = {'COMMAND-LINE',      _RED},
@@ -117,34 +96,9 @@ local _MODES =
 	['!']  = {'SHELL',             _YELLOW},
 
 	-- libmodal
-	['STAFF'] = _YELLOW,
-	['SCORE'] = _RED,
+	['STAFF'] = {'STAFF', _YELLOW},
+	['SCORE'] = {'SCORE', _RED}
 } -- }}}
-
--- local vi_mode_colors = {
---     ['COMMAND-LINE'] =       _RED,
---     ['NORMAL EX'] =          _RED_DARK,
---     ['EX'] =                 _RED_LIGHT,
---     ['INSERT'] =             _GREEN,
---     ['INS-COMPLETE'] =       _GREEN_LIGHT,
---     -- ['NORMAL'] =             _PURPLE_LIGHT,
---     ['NORMAL'] =             'violet',
---     ['OPERATOR-PENDING'] =   _PURPLE,
---     ['HIT-ENTER'] =          _CYAN,
---     [':CONFIRM'] =           _CYAN,
---     ['--MORE'] =             _ICE,
---     ['REPLACE'] =            _PINK,
---     ['VIRTUAL'] =            _PINK_LIGHT,
---     ['SELECT'] =             _TURQOISE,
---     ['TERMINAL'] =           _ORANGE,
---     ['VISUAL'] =             _BLUE,
---     ['VISUAL LINE'] =        _BLUE,
---     ['VISUAL BLOCK'] =       _BLUE,
---     ['SHELL'] =              _YELLOW,
--- 	-- libmodal
--- 	['STAFF'] = _YELLOW,
--- 	['SCORE'] = _RED,
--- }
 
 local _LEFT_SEPARATOR = ''
 local _RIGHT_SEPARATOR = ''
@@ -169,18 +123,17 @@ end
 -- end
 
 --- @return string color
-local function file_color()
+-- local function file_color()
 	-- if not vim.b.file_color then set_devicons() end
-
-	return vim.b.file_color
-end
+	-- return vim.b.file_color
+-- end
 
 --- @return string icon
-local function file_icon()
+-- local function file_icon()
 	-- if not vim.b.file_icon then set_devicons() end
 
-	return vim.b.file_icon
-end
+	-- return vim.b.file_icon
+-- end
 
 -- vim.cmd 'hi clear FelineViMode'
 
@@ -195,7 +148,6 @@ require('feline').setup(
 		{
 			{ -- Left {{{
 				{
-					-- icon = '▊ ',
 					icon = '▊ ',
                     provider = function() -- auto change color according the vim mode
 						-- local mode_color
@@ -220,31 +172,40 @@ require('feline').setup(
                         return mode_name..' '
                     end,
                     hl = function()
-						local mode_color = vim.g.libmodalLayerActive==1 and _MODES['SCORE'][1] or _MODES[vim.api.nvim_get_mode().mode][2][1]
-                        -- print(_MODES['SCORE'][1])
+						local mode_color = vim.g.libmodalLayerActive==1 and _MODES['SCORE'][2][1] or _MODES[vim.api.nvim_get_mode().mode][2][1]
                         return {
                             fg = "black",
                             bg = mode_color,
                             style = "bold"
                         }
-
                     end,
                     right_sep = function() return
                         {
-                            hl = {fg = _SIDEBAR[1], bg = file_color()},
-                            str = _RIGHT_SEPARATOR,
+                            hl = {
+                                fg = _SIDEBAR[1],
+                                -- bg = file_color()
+                                -- bg = '#ffffff'
+                                }, str = _RIGHT_SEPARATOR,
                         }
                     end,
                 },
-
-                {
-                    hl = function() return {fg = _SIDEBAR[1], bg = file_color()} end,
+               {
+                    -- provider = 'git_branch',
+					-- icon = '  ',
+                    -- hl = function() return {
+                    --                 fg = _SIDEBAR[1],
+                    --                 bg = '#ffffff'
+                    --             } end,
                     -- provider  = function() return ' '..file_icon()..' ' end,
-                    provider  = function() return ' '..' ' end,
+                    -- git_branch here
+                    -- provider  = function() return ' helleo'..' ' end,
                     right_sep = function() return
                             {
-                                hl = {fg = _SIDEBAR[1], bg = file_color()},
-                                str = _LEFT_SEPARATOR,
+                                hl = {
+                                    fg = _SIDEBAR[1],
+                                    -- bg = file_color()
+                                bg = '#ffffff'
+                                }, str = _LEFT_SEPARATOR,
                             }
                         end,
                     },
@@ -252,8 +213,12 @@ require('feline').setup(
                     {
                         colored_icon = false,
                         enabled = buffer_not_empty,
-                        file_modified_icon = '',
-					hl = {fg = _TEXT[1], bg = _SIDEBAR[1], style = 'bold'},
+                        file_modified_icon = 'change',
+					hl = {
+                                    fg = _TEXT[1],
+                                    bg = _SIDEBAR[1],
+                                    style = 'bold'
+                                },
 					icon = '',
 					provider  = 'file_info',
 					right_sep =
@@ -311,7 +276,6 @@ require('feline').setup(
 					icon = '~',
 					provider = 'git_diff_changed',
 				},
-
 				{
 					enabled = checkwidth,
 					hl = {fg = _RED_LIGHT[1], bg = _MIDBAR[1]},
@@ -333,7 +297,7 @@ require('feline').setup(
 
 				{
 					hl = {fg = _MAGENTA[1], bg = _MIDBAR[1]},
-					icon = ' 💡',
+					icon = '💡',
 					provider = 'diagnostic_hints',
 				},
 
@@ -368,17 +332,27 @@ require('feline').setup(
 				},
 
 				{
-					hl = function() return {fg = _BLACK[1], bg = file_color(), style = 'bold'} end,
+					hl = function() return {
+                                    fg = _BLACK[1],
+                                    -- bg = file_color(),
+                                    style = 'bold'
+                                } end,
 					left_sep = function() return
 						{
-							hl = {fg = file_color(), bg = _SIDEBAR[1]},
+							hl = {
+                                -- fg = file_color(),
+                                bg = _SIDEBAR[1]
+                            },
 							str = _LEFT_SEPARATOR,
 						}
 					end,
 					provider = 'file_type',
 					right_sep = function() return
 						{
-							hl = {fg = file_color(), bg = _SIDEBAR[1]},
+							hl = {
+                                -- fg = file_color(),
+                                bg = _SIDEBAR[1]
+                            },
 							str = _RIGHT_SEPARATOR..' ',
 						}
 					end,
@@ -468,82 +442,3 @@ require('feline').setup(
 		},
 	}, -- }}}
 })
-
-
-
--- OLD CONFIG:
--- local feline = require("feline")
-
--- -- Initialize the components table
--- local components = {
--- active = {},
--- inactive = {}
--- }
--- require('feline').setup()
--- local gruvbuddy = {
--- 	fg = "#ebdbb2",
--- 	bg = "#32302f",
--- 	black = "#32302f",
---     white = '#f2e5bc',
---     red = '#cc6666',
---     pink = '#fef601',
---     green = '#99cc99',
---     yellow = '#f8fe7a',
---     blue = '#81a2be',
---     aqua = '#8ec07c',
---     cyan = '#8abeb7',
---     purple = '#8e6fbd',
---     violet = '#b294bb',
---     orange = '#de935f',
---     brown = '#a3685a',
---     seagreen = '#698b69',
---     turquoise = '#698b69',
--- }
-
-
--- feline.use_theme(gruvbuddy)
-
--- local colorbuddy = {
---     NORMAL = Color.green,
---     INSERT = Color.red,
---     VISUAL = Color.magenta,
---     OP = Color.green,
---     BLOCK = Color.blue,
---     REPLACE = Color.violet,
---     ['V-REPLACE'] = Color.violet,
---     ENTER = Color.cyan,
---     MORE = Color.cyan,
---     SELECT = Color.orange,
---     COMMAND = Color.green,
---     SHELL = Color.green,
---     TERM = Color.green,
---     NONE = Color.yellow
--- }
-
--- local colorbuddy = {
---     green = Color.green,
---     red = Color.red,
---     magenta = Color.magenta,
---     blue = Color.blue,
---     violet = Color.violet,
---     cyan = Color.cyan,
---     orange = Color.orange,
---     yellow = Color.yellow
--- }
-
--- local feline_gruvbox = {
--- 	fg = "#ebdbb2",
--- 	bg = "#32302f",
--- 	black = "#32302f",
--- 	skyblue = "#83a598",
--- 	cyan = "#a89984",
--- 	green = "#98971a",
--- 	oceanblue = "#458588",
--- 	magenta = "#fb4934",
--- 	orange = "#d65d0e",
--- 	red = "#fb4934",
--- 	violet = "#b16286",
--- 	white = "#ebdbb2",
--- 	yellow = "#d79921",
--- }
--- feline.use_theme(feline_gruvbox)

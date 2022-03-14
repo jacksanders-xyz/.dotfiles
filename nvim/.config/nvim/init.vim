@@ -43,6 +43,9 @@ Plug 'romgrk/barbar.nvim'
 " STATUSLINE
 Plug 'feline-nvim/feline.nvim'
 
+" GIT SIGNS FOR STATUSLINE
+Plug 'lewis6991/gitsigns.nvim'
+
 " OLD STATUSLINE:
 " Plug 'altercation/vim-colors-solarized'
 " Plug 'vim-airline/vim-airline'
