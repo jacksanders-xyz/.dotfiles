@@ -92,8 +92,6 @@ local _TURQUOISE    = {'#698b69', 48,  'green'}
 local _SEAGREEN    = {'#698b69', 48,  'seagreen'}
 
 local _BLUE = {'#81a2be', 63,  'darkblue'}
-local _TMUXDARK = {'#57577b', 63,  'darkblue'}
-local _TMUXBLUE = {'#5b5b81', 63,  'darkblue'}
 local _AQUA = {'#8ec07c', 63,  'aqua'}
 local _CYAN = {'#8abeb7', 80,  'cyan'}
 local _ICE  = {'#95c5ff', 111, 'cyan'}
@@ -119,8 +117,7 @@ local _MODES =
 	['cv'] = {'EX',                _RED_LIGHT},
 	['i']  = {'INSERT',            _GREEN},
 	['ic'] = {'INS-COMPLETE',      _GREEN_LIGHT},
-	-- ['n']  = {'NORMAL',            _PURPLE_LIGHT},
-	['n']  = {'NORMAL',            _TMUXBLUE},
+	['n']  = {'NORMAL',            _PURPLE_LIGHT},
 	['no'] = {'OPERATOR-PENDING',  _PURPLE},
 	['r']  = {'HIT-ENTER',         _CYAN},
 	['r?'] = {':CONFIRM',          _CYAN},
@@ -390,7 +387,7 @@ require('feline').setup(
 					left_sep = function() return
 						{
 							hl = {
-                                -- fg = file_color(),
+                                fg = _TURQUOISE[1],
                                 bg = _SIDEBAR[1]
                             },
 							str = _LEFT_SEPARATOR,
@@ -415,24 +412,25 @@ require('feline').setup(
 						return '┫'..(vim.api.nvim_win_get_cursor(0)[2] + 1)
 					end,
 				},
+
 				{
-					hl = {fg = _WHITE[1], bg = _TURQUOISE[1]},
+					hl = {fg = _WHITE[1], bg = _MAGENTA_DARK[1]},
 					left_sep =
                                     -- hl = {bg = _TURQUOISE[1]},
 					{
-						hl = {fg = _TURQUOISE[1], bg = _SIDEBAR[1]},
+						hl = {fg = _MAGENTA_DARK[1], bg = _SIDEBAR[1]},
 						str = ' '.._LEFT_SEPARATOR,
 					},
 					provider = 'line_percentage',
 					right_sep =
 					{
-						hl = {bg = _TURQUOISE[1]},
+						hl = {bg = _MAGENTA_DARK[1]},
 						str = ' ',
 					},
 				},
 
 				{
-					hl = {fg = _BLACK[1], bg = _TURQUOISE[1]},
+					hl = {fg = _GRAY[1], bg = _MAGENTA_DARK[1]},
 					provider = 'scroll_bar',
 				},
 			}, -- }}}

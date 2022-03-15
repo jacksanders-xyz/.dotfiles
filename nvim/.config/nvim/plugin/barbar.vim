@@ -1,8 +1,26 @@
 " Initialize highlights
+" Color.new('white',     '#f2e5bc')
+" Color.new('red',       '#cc6666')
+" Color.new('pink',      '#fef601')
+" Color.new('green',     '#99cc99')
+" Color.new('yellow',    '#f8fe7a')
+" Color.new('blue',      '#81a2be')
+" Color.new('aqua',      '#8ec07c')
+" Color.new('cyan',      '#8abeb7')
+" Color.new('purple',    '#8e6fbd')
+" Color.new('violet',    '#b294bb')
+" Color.new('orange',    '#de935f')
+" Color.new('brown',     '#a3685a')
+
+" Color.new('seagreen',  '#698b69')
+" Color.new('turquoise', '#698b69')
+
+
 function BufferlineTime()
    let fg_target = 'red'
-   let fg_current  = s:fg(['Normal'], '#efefef')
-   let fg_visible  = s:fg(['TabLineSel'], '#efefef')
+   let fg_current  = s:fg(['Normal'], '#698b69')
+   let fg_visible  = s:fg(['TabLineSel'], '#698b69')
+   " let fg_visible  = s:fg(['TabLineSel'], '#efefef')
    let fg_inactive = s:fg(['TabLineFill'], '#888888')
 
    let fg_modified = s:fg(['WarningMsg'], '#E5AB0E')
@@ -10,8 +28,8 @@ function BufferlineTime()
    let fg_subtle   = s:fg(['NonText', 'Comment'], '#555555')
 
    let bg_current  = s:bg(['Normal'], 'none')
-   let bg_visible  = s:bg(['TabLineSel', 'Normal'], 'none')
-   let bg_inactive = s:bg(['TabLineFill', 'StatusLine'], 'none')
+   let bg_visible  = s:bg(['TabLineSel', 'Normal'], '#353535')
+   let bg_inactive = s:bg(['TabLineFill', 'StatusLine'], '#353535')
 
    "      Current: current buffer
    "      Visible: visible but not current buffer
