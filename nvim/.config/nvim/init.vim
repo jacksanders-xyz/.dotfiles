@@ -77,7 +77,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'voldikss/vim-floaterm'
 
 " LANGS
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'mrk21/yaml-vim'
 Plug 'osyo-manga/vim-over'
 
@@ -95,8 +94,6 @@ Plug 'thinca/vim-qfreplace'
 Plug 'kshenoy/vim-signature'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'posva/vim-vue'
-Plug 'mileszs/ack.vim'
-" Plug 'dense-analysis/ale'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 call plug#end()
 
@@ -111,6 +108,9 @@ syntax enable
 command E Ex " Disambiguates E
 filetype plugin on
 filetype indent on
+
+" :W now also writes, same as :w
+command! -bar -nargs=* -complete=file -range=% -bang W         <line1>,<line2>write<bang> <args>
 
 " TRIM WHITESPACE AUTO COMMAND
 fun! TrimWhitespace()
@@ -127,53 +127,6 @@ augroup END
 " VIM-YAML
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 let g:indentLine_char = '⦙'
-
-" TREESITTER
-lua require'nvim-treesitter.configs'.setup { highlight = { enable = true }}
-
-" TYPESCRIPT
-" autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
-
-au FileType go set noexpandtab
-au FileType go set shiftwidth=4
-au FileType go set softtabstop=4
-au FileType go set tabstop=4
-let g:go_highlight_build_constraints = 1
-let g:go_highlight_extra_types = 1
-let g:go_highlight_fields = 1
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_types = 1
-let g:go_auto_sameids = 1
-let g:go_fmt_command = "goimports"
-let g:go_auto_type_info = 1
-au FileType go nnoremap <leader>got :GoTest -short<cr>
-au Filetype go nnoremap <leader>goa <Plug>(go-alternate-edit)
-au FileType go nnoremap <leader>goc :GoCoverageToggle -short<cr>
-au FileType go nnoremap <leader>god <Plug>(go-def)
-
-" ULTISSNIPS SNIPPETS
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-let g:UltiSnipsListSnippets="<c-tab>"
-let g:UltiSnipsSnippetDirectories=[$HOME.'/general/path/of/snippets/']
-
-" DEOPLETE
-" let g:python_host_prog = '/usr/bin/python'
-let g:python3_host_prog = '/usr/local/bin/python3'
-autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_complete', v:false)
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'~/go/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" ACK.VIM
-let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " STATUS LINES
 set statusline+=%#warningmsg#
@@ -196,12 +149,7 @@ nnoremap <leader>m :Goyo<cr>
 " MAXIMIZER FOR VIMSPECTOR
 nnoremap <leader>, :MaximizerToggle!<CR>
 
-fun! GotoWindow(id)
-    call win_gotoid(a:id)
-    MaximizerToggle
-endfun
-
-"BUFFER MANAGEMENT
+" BUFFER MANAGEMENT
 nnoremap <silent><leader>x :bd<CR> " Delete current buffer
 nnoremap <silent><leader>X :bd!<CR> " Delete current buffer
 nnoremap <silent><leader>n :bn!<CR> " Next buffer
@@ -215,21 +163,14 @@ nnoremap <leader>td :enew<CR>'T
 " ESLINT
 nnoremap <leader>e :new<Bar>0r!npm run lint<CR> " Run eslint in vue
 
-" SPLIT NAVIGATION
-" nnoremap <C-J> <C-W><C-J>
-" nnoremap <C-K> <C-W><C-K>
-" nnoremap <C-L> <C-W><C-L>
-" nnoremap <C-H> <C-W><C-H>
-
 " NEWLINE GENERATION
 nmap <C-o> O<Esc>
-nmap <CR> o<Esc>
+" nmap <CR> o<Esc>
 
 nnoremap <leader>. @: " Repeat last ex command
 
 " YANK/PUT FROM/TO CLIPBOARD
 vnoremap <leader>y "*y
-
 map<leader>p "*P
 inoremap<c-p> <ESC>"*Pi
 
@@ -237,7 +178,7 @@ inoremap<c-p> <ESC>"*Pi
 nnoremap Y y$
 
 " SPELLCHECK TOGGLE IS <F4>
-:map <F4> :setlocal spell! spelllang=en_us<CR>
+nnoremap <leader>s :setlocal spell! spelllang=en_us<CR>
 
 " MOVING TEXT AROUND
 vnoremap J :m '>+1<CR>gv=gv

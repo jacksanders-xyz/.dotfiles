@@ -40,6 +40,10 @@ func! AddToWatch()
   call vimspector#AddWatch(word)
 endfunction
 
+fun! GotoWindow(id)
+    call win_gotoid(a:id)
+    MaximizerToggle
+endfun
 " TOGGLE FOR DEBUG SERVERS/OFF FOR LOCAL
 " OFF IS LOCAL, ON IS GLOBAL
 " let g:vimspector_base_dir = expand('$HOME/.config/vimspector-config')
