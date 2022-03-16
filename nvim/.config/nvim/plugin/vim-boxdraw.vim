@@ -103,19 +103,23 @@ endfunction
 fun! BoxDrawParagraph()
     :set ve=block
     :execute "normal gv\"aymfyypg'>yypmg\<c-v>'fI \<esc>\<c-v>'gg_l+o\<c-v>`fio\"aP"
-    :set ve=none
+    :set ve=onemore
+    :set incsearch
     :delmarks f g
 endfun
 
+fun! DeleteBox()
+    :set ve=block
+endfun
 " TOGGLE VIRTUAL EDIT
 fun! ToggleVE()
-    :if &ve == 'none' ||  empty(&ve)
+    :if &ve=='block'
+        :set ve=onemore
+    :elseif &ve=='onemore'
         :set ve=block
-    :elseif &ve=='block'
-        :set ve=none
     :endif
 endfun
+
 nnoremap ]ov :call ToggleVE()<CR>
 vnoremap <leader>bp :<C-u>call BoxDrawParagraph()<CR>
-vnoremap <leader>bb :<C-u>call Prepatory()<CR>
-vnoremap <leader>bf :<C-u>call GetRightmostCol()<CR>
+vnoremap <leader>bd :<C-u>call DeleteBox()<CR>
