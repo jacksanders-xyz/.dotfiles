@@ -109,9 +109,9 @@ fun! BoxDrawParagraph()
 endfun
 
 fun! DeleteBox()
-    :set ve=block
+    :execute "normal h\<c-v>lao:s/|//g\<CR>gv:s/+-.*+//g\<CR>"
 endfun
-" TOGGLE VIRTUAL EDIT
+
 fun! ToggleVE()
     :if &ve=='block'
         :set ve=onemore
@@ -122,4 +122,4 @@ endfun
 
 nnoremap ]ov :call ToggleVE()<CR>
 vnoremap <leader>bp :<C-u>call BoxDrawParagraph()<CR>
-vnoremap <leader>bd :<C-u>call DeleteBox()<CR>
+nnoremap <leader>bd :<C-u>call DeleteBox()<CR>
