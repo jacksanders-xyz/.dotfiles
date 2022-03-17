@@ -102,7 +102,11 @@ endfunction
 
 fun! BoxDrawParagraph()
     :set ve=block
-    :execute "normal gv\"aymfyypg'>yypmg\<c-v>'fI \<esc>\<c-v>'gg_l+o\<c-v>`fio\"aP"
+    :execute "norm! gv"
+    :call GetRightmostCol()
+    " :execute "normal gv\"aymfyypg'>yypmg\<c-v>'fI \<esc>\<c-v>'gg_l+o\<c-v>`fio\"aP"
+    :execute "normal gv\"aymfyypg'>yypmg\<c-v>'fI \<esc>\<c-v>'g@ll+o\<c-v>`fio\"aP"
+    " :execute "normal gv\"aymfyypg'>yypmg\<c-v>'fI \<esc>\<c-v>'gg_l+o"
     :set ve=onemore
     :set incsearch
     :delmarks f g
