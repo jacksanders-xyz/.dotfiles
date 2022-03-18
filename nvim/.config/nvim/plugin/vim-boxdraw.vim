@@ -100,16 +100,35 @@ endfunction
 "   let @l = ''
 " endfun
 
+" When only one on line
 fun! BoxDrawParagraph()
-    :set ve=block
+    :set ve=all
     :execute "norm! gv"
     :call GetRightmostCol()
-    " :execute "normal gv\"aymfyypg'>yypmg\<c-v>'fI \<esc>\<c-v>'gg_l+o\<c-v>`fio\"aP"
     :execute "normal gv\"aymfyypg'>yypmg\<c-v>'fI \<esc>\<c-v>'g@ll+o\<c-v>`fio\"aP"
-    " :execute "normal gv\"aymfyypg'>yypmg\<c-v>'fI \<esc>\<c-v>'gg_l+o"
     :set ve=onemore
     :set incsearch
     :delmarks f g
+endfun
+
+" " Next to another on the same line, must be delimited with ]ov
+" fun! BoxDrawParagraphTwin()
+"     :set ve=block
+"     :execute "normal gv\<c-c>a \<esc>meg'<mfgv\"ay'fyyp'eyyp\<c-v>'fI \<esc>mfmf`eja \<esc>me`f\<c-v>`e+o\<c-v>`fio\"aP"
+"     :set ve=onemore
+"     :set incsearch
+"     :set nohlsearch
+"     :delmarks f g
+" endfun
+
+" Next to another on the same line, must be delimited with ]ov
+fun! BoxDrawParagraphTwin()
+    :set ve=all
+    :execute "normal gv\<c-c>mpg'<mogv\"ay\<c-v>'pI \<esc>kmb`pjllme\<c-v>`b+o`o\<c-v>`pio\"aP"
+    :set ve=onemore
+    :set incsearch
+    :set nohlsearch
+    :delmarks b o p e
 endfun
 
 fun! DeleteBox()
@@ -117,13 +136,14 @@ fun! DeleteBox()
 endfun
 
 fun! ToggleVE()
-    :if &ve=='block'
+    :if &ve=='all'
         :set ve=onemore
     :elseif &ve=='onemore'
-        :set ve=block
+        :set ve=all
     :endif
 endfun
 
-nnoremap ]ov :call ToggleVE()<CR>
+nnoremap <silent>]ov :call ToggleVE()<CR>
 vnoremap <leader>bp :<C-u>call BoxDrawParagraph()<CR>
+vnoremap <leader>bt :<C-u>call BoxDrawParagraphTwin()<CR>
 nnoremap <leader>bd :<C-u>call DeleteBox()<CR>
