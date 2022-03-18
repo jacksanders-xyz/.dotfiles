@@ -25,7 +25,6 @@ fun! ColorMarkdown()
 endfun
 call ColorMarkdown()
 
-
 fun! PrettyMyRH()
   :%s/^\[student@workstation \~]/\## [student@workstation \~]/e | %s/^>/\## >/e
 endfun
@@ -51,7 +50,15 @@ endfun
 map <leader>wl "*PysiW)i[]<ESC>i
 
 " MAKE AN IMAGE, REQUIRES PATH TO IMAGE
-nnoremap <leader>wi i{{file:/Users/jsanders/Desktop/}}<ESC>F/a
+
+" nnoremap <leader>wi i{{file:~/VimWiki/IMAGE_POOL/}}<ESC>F/a
+nnoremap <leader>wi :lua require('jacksvimlua.ImagePathAutomator').toggle_fwin()<CR>
+
+" MAKE AN clickable on github IMAGE, REQUIRES PATH TO IMAGE
+nnoremap <leader>wg i{{file:~/VimWiki/IMAGE_POOL/}}<ESC>F/a
+
+" OPEN THE IMAGES FOLDER TO PUSH AND PULL
+nnoremap <leader>wG <C-w><C-v>:Ex ~/VimWiki/IMAGE_POOL/<CR>
 
 " MAKE A TABLE. THIS FUNCTION TAKES 2 NUMS, COLUMNS THEN (ROWS - 1)
 map <leader>wT :VimwikiTable col rows-1
