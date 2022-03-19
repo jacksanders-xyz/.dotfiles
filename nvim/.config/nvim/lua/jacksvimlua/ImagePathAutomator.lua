@@ -33,6 +33,8 @@ local function create_cw()
         win_id = Iff_win_id,
     }
 end
+
+
 local function toggle_fwin()
     if Iff_win_id ~= nil and api.nvim_win_is_valid(Iff_win_id) then
         close_menu()
@@ -40,6 +42,7 @@ local function toggle_fwin()
     end
 
     local win_info = create_cw()
+
     local contents = {}
     -- contents[1] = iff_id
     Iff_win_id = win_info.win_id
@@ -55,14 +58,18 @@ local function toggle_fwin()
         Iff_bufh,
         "n",
         "q",
-        ":lua require('dictator').toggle_fwin()<CR>",
+        ":lua require('jacksvimlua.ImagePathAutomator').formatAndToggle()<CR>",
         { silent = true }
     )
 end
 
+local function formatAndToggle()
+    toggle_fwin()
+end
 
 return {
     toggle_fwin = toggle_fwin,
     create_cw = create_cw,
     close_menu = close_menu,
+    formatAndToggle = formatAndToggle,
 }
