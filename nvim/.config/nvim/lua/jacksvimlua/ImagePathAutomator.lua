@@ -1,6 +1,7 @@
 local libmodal = require('libmodal')
 local popup = require("plenary.popup")
 local api = vim.api
+vim.g.LastImagePath = ''
 
 local function close_menu()
     api.nvim_win_close(Iff_win_id, true)
@@ -9,12 +10,12 @@ local function close_menu()
 end
 
 local function create_cw()
-    local width = 60
-    local height = 10
+    local width = 130
+    local height = 1
     local borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
     local bufnr = api.nvim_create_buf(false, false)
     local Iff_win_id, win = popup.create(bufnr, {
-        title = "Iff",
+        title = "Path to Image",
         highlight = "IffWindow",
         line = math.floor(((vim.o.lines - height) / 2) - 1),
         col = math.floor((vim.o.columns - width) / 2),
@@ -35,7 +36,7 @@ local function create_cw()
 end
 
 
-local function toggle_fwin()
+local function toggle_fwin(currPath)
     if Iff_win_id ~= nil and api.nvim_win_is_valid(Iff_win_id) then
         close_menu()
         return
@@ -44,7 +45,12 @@ local function toggle_fwin()
     local win_info = create_cw()
 
     local contents = {}
-    -- contents[1] = iff_id
+    -- if vim.g.LastImagePath ~= '' then
+    -- end
+    -- api.nvim_command("let g:IPAcurrPath = expand('%:p')")
+    -- local currPath = vim.g.IPAcurrPath
+    contents[1] = currPath
+
     Iff_win_id = win_info.win_id
     Iff_bufh = win_info.bufnr
 
@@ -64,7 +70,13 @@ local function toggle_fwin()
 end
 
 local function formatAndToggle()
-    toggle_fwin()
+    local currPath = vim.fn.expand('%:p')
+    -- local currPath = "hey"
+    toggle_fwin(currPath)
+end
+
+local function ImagePathFind()
+    formatAndToggle()
 end
 
 return {
@@ -72,4 +84,5 @@ return {
     create_cw = create_cw,
     close_menu = close_menu,
     formatAndToggle = formatAndToggle,
+    ImagePathFind = ImagePathFind
 }
