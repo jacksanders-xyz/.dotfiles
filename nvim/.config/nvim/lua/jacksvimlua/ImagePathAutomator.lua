@@ -10,7 +10,7 @@ local function close_menu()
 end
 
 local function create_cw()
-    local width = 130
+    local width = 200
     local height = 1
     local borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
     local bufnr = api.nvim_create_buf(false, false)
@@ -37,7 +37,7 @@ end
 
 
 local function toggle_fwin(currPath)
-    if Iff_win_id ~= nil and api.nvim_win_is_valid(Iff_win_id) then
+    if currPath == "" then
         close_menu()
         return
     end
@@ -64,15 +64,40 @@ local function toggle_fwin(currPath)
         Iff_bufh,
         "n",
         "q",
-        ":lua require('jacksvimlua.ImagePathAutomator').formatAndToggle()<CR>",
+        ":lua require('jacksvimlua.ImagePathAutomator').toggle_fwin('')<CR>",
         { silent = true }
     )
+    api.nvim_buf_set_keymap(
+        Iff_bufh,
+        "i",
+        "<c-f>",
+        "<Esc>:lua require('jacksvimlua.ImagePathAutomator').Reformat_and_put('LOCAL')<CR>",
+        { silent = true }
+    )
+    api.nvim_buf_set_keymap(
+        Iff_bufh,
+        "i",
+        "<C-g>",
+        ":lua require('jacksvimlua.ImagePathAutomator').Reformat_and_put('WEB')<CR>",
+        { silent = true }
+    )
+end
+ -- ![](path/to/image)
+local function Reformat_and_put(REFORMAT_TYPE)
+    local ACTION
+    if REFORMAT_TYPE == "WEB" then
+        ACTION = "lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>$vT/yVs(I![<C-r>\"ap]<C-o>h',true,false,true),'m',true)"
+    else
+        ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>$vT/\"ayyss(lx$hxI![<C-r>a]<esc>V\"ayq\"ap',true,false,true),'m',true)"
+    end
+    api.nvim_command(ACTION)
 end
 
 local function formatAndToggle()
     local currPath = vim.fn.expand('%:p')
-    -- local currPath = "hey"
     toggle_fwin(currPath)
+    local Action = "lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('/VimWiki<CR>f/lCIMAGE_POOL/',true,false,true),'m',true)"
+    api.nvim_command(Action)
 end
 
 local function ImagePathFind()
@@ -84,5 +109,6 @@ return {
     create_cw = create_cw,
     close_menu = close_menu,
     formatAndToggle = formatAndToggle,
-    ImagePathFind = ImagePathFind
+    ImagePathFind = ImagePathFind,
+    Reformat_and_put = Reformat_and_put,
 }

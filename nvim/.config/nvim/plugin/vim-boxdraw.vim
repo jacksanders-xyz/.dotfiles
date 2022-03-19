@@ -107,6 +107,7 @@ fun! BoxDrawParagraph()
     :call GetRightmostCol()
     :execute "normal gv\"aymfyypg'>yypmg\<c-v>'fI \<esc>\<c-v>'g@ll+o\<c-v>`fio\"aP"
     :set ve=onemore
+    :set nohlsearch
     :set incsearch
     :delmarks f g
 endfun
