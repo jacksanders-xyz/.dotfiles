@@ -77,16 +77,31 @@ local function toggle_fwin(currPath)
     api.nvim_buf_set_keymap(
         Iff_bufh,
         "i",
-        "<C-g>",
-        ":lua require('jacksvimlua.ImagePathAutomator').Reformat_and_put('WEB')<CR>",
+        "<C-j>",
+        "<Esc>:lua require('jacksvimlua.ImagePathAutomator').Reformat_and_put('JACKS_BRAIN')<CR>",
+        { silent = true }
+    )
+    api.nvim_buf_set_keymap(
+        Iff_bufh,
+        "i",
+        "<C-w>",
+        "<Esc>:lua require('jacksvimlua.ImagePathAutomator').Reformat_and_put('WORK')<CR>",
         { silent = true }
     )
 end
  -- ![](path/to/image)
+-- [alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
+-- https://github.com/jacksanders-xyz/images4jacks_brain/blob/main/TEST/Screen%20Shot%202021-08-11%20at%201.23.17%20PM.png?
 local function Reformat_and_put(REFORMAT_TYPE)
     local ACTION
-    if REFORMAT_TYPE == "WEB" then
-        ACTION = "lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>$vT/yVs(I![<C-r>\"ap]<C-o>h',true,false,true),'m',true)"
+    -- local GIT_STRING = 'https://github.com/jacksanders-xyz/images4jacks_brain/blob/main/TEST/Screen%20Shot%202021-08-11%20at%201.23.17%20PM.png?'
+    local GIT_JACKS_BRAIN_LOCATION_START = 'https://github.com/jacksanders-xyz/images4jacks_brain/blob/main'
+    -- local GIT_JACKS_BRAIN_LOCATION_END = 'https://github.com/jacksanders-xyz/images4jacks_brain/blob/main/TEST/Screen%20Shot%202021-08-11%20at%201.23.17%20PM.png?'
+    -- local GIT_WORK_LOCATION = 'https://github.com/jacksanders-xyz/images4jacks_brain/blob/main/TEST/Screen%20Shot%202021-08-11%20at%201.23.17%20PM.png?'
+    if REFORMAT_TYPE == "JACKS_BRAIN" then
+        ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>?jacks_brain<CR>f/d0$vF/\"ny fr /%/g<cr>$a?raw=true)<Esc>I<c-r>n]<esc>I!["..GIT_JACKS_BRAIN_LOCATION_START.."<Esc>I',true,false,true),'m',true)"
+    elseif REFORMAT_TYPE == "JACKS_BRAIN" then
+        ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>$vT/\"ayyss(lx$hxI![<C-r>a]<esc>V\"ayq\"ap',true,false,true),'m',true)"
     else
         ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>$vT/\"ayyss(lx$hxI![<C-r>a]<esc>V\"ayq\"ap',true,false,true),'m',true)"
     end

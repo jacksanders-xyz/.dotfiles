@@ -52,7 +52,8 @@ map <leader>wl "*PysiW)i[]<ESC>i
 " MAKE AN IMAGE, REQUIRES PATH TO IMAGE
 
 " nnoremap <leader>wi i{{file:~/VimWiki/IMAGE_POOL/}}<ESC>F/a
-nnoremap <leader>wI :lua require('jacksvimlua.ImagePathAutomator').ImagePathFind()<CR>
+" nnoremap <leader>wI :lua require('jacksvimlua.ImagePathAutomator').ImagePathFind()<CR>
+nnoremap <leader>wI :lua require('jacksvimlua.telescope').ImagePathFinder()<CR>
 
 " MAKE AN clickable on github IMAGE, REQUIRES PATH TO IMAGE
 nnoremap <leader>wg i{{file:~/VimWiki/IMAGE_POOL/}}<ESC>F/a

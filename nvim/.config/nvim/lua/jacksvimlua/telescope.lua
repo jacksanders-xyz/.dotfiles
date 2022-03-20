@@ -48,6 +48,7 @@ end
 M.search_notes = function()
     require("telescope.builtin").find_files({
         prompt_title = "< Jack's Brain >",
+        file_ignore_patterns = {"^IMAGE_POOL/"},
         cwd = '~/VimWiki/',
         hidden = true,
     })
@@ -56,7 +57,20 @@ end
 M.grep_notes = function()
     require("telescope.builtin").live_grep({
         prompt_title = "< Grep Jack's Brain >",
-        cwd = '~/vimwiki/',
+        file_ignore_patterns = {"^IMAGE_POOL/"},
+        cwd = '~/VimWiki/',
+        hidden = true,
+    })
+end
+
+M.ImagePathFinder = function()
+    require("telescope.builtin").find_files({
+        prompt_title = "< Image Finder >",
+        file_ignore_patterns = {
+            "%.git",
+            "%.DS_Store",
+        },
+        cwd = '~/VimWiki/IMAGE_POOL/',
         hidden = true,
     })
 end
