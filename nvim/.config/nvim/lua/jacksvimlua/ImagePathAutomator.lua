@@ -100,7 +100,7 @@ local function Reformat_and_put(DESTINATION)
     if DESTINATION == "JACKS_BRAIN" then
         ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>?jacks_brain<CR>f/d0$vF/l\"ay fr /%20/g<cr>$a?raw=true)<Esc>I<c-r>a]<esc>I![<Esc>f]a("..GIT_JACKS_BRAIN_LOCATION.."<Esc>Vyqp',true,false,true),'m',true)"
     elseif DESTINATION == "WORK" then
-        ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>?jacks_brain<CR>f/d0$vF/l\"ay fr /%20/g<cr>$a?raw=true)<Esc>I<c-r>a]<esc>I![<Esc>f]a("..GIT_WORK_LOCATION.."<Esc>Vyqp',true,false,true),'m',true)"
+        ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>?work_content<CR>f/d0$vF/l\"ay fr /%20/g<cr>$a?raw=true)<Esc>I<c-r>a]<esc>I![<Esc>f]a("..GIT_WORK_LOCATION.."<Esc>Vyqp',true,false,true),'m',true)"
     else
         ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>$vT/\"ayyss(lx$hxI![<C-r>a]<esc>Vyqp',true,false,true),'m',true)"
     end
