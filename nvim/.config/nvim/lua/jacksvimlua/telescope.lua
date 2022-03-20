@@ -81,25 +81,28 @@ M.grep_notes = function()
 end
 
 local function GrabImagePath(prompt_bufnr, map)
-   	local function set_the_image_path(close)
+   	local function set_the_image_path(close, DESTINATION)
 		local content = require("telescope.actions.state").get_selected_entry(prompt_bufnr)[1]
         vim.g.telec = content
         -- local content = require("telescope.actions.state").get_selected_entry(prompt_bufnr)
 		-- set_background(content.cwd .. "/" .. content.value)
 		if close then
 			require("telescope.actions").close(prompt_bufnr)
-            IPA.Telescope_Path_Constructor(content, 'LOCAL')
+            IPA.Telescope_Path_Constructor(content, DESTINATION)
 		end
 	end
 
 	map("i", "<CR>", function()
-		set_the_image_path(true)
+		set_the_image_path(true, 'LOCAL')
 	end)
 
-    map("i", "<CR>", function()
-		set_the_image_path(true)
+    map("i", "<c-j>", function()
+		set_the_image_path(true, 'JACKS_BRAIN')
 	end)
-    -- vim.fn.system("dconf write /org/mate/desktop/background/picture-filename \"'" .. content .. "'\"")
+
+    map("i", "<c-w>", function()
+		set_the_image_path(true, 'WORK')
+	end)
 end
 
 M.ImagePathFinder = function()

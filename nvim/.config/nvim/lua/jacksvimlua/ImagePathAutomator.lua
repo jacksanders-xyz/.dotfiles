@@ -92,29 +92,28 @@ end
  -- ![](path/to/image)
 -- [alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
 -- https://github.com/jacksanders-xyz/images4jacks_brain/blob/main/TEST/Screen%20Shot%202021-08-11%20at%201.23.17%20PM.png?
+
+-- https://github.com/jacksanders-xyz/images4jacks_brain/blob/main/TEST/Screen%20Shot%202021-08-11%20at%201.23.17%20PM.png
 local function Reformat_and_put(REFORMAT_TYPE)
     local ACTION
-    -- local GIT_STRING = 'https://github.com/jacksanders-xyz/images4jacks_brain/blob/main/TEST/Screen%20Shot%202021-08-11%20at%201.23.17%20PM.png?'
     local GIT_JACKS_BRAIN_LOCATION_START = 'https://github.com/jacksanders-xyz/images4jacks_brain/blob/main'
-    -- local GIT_JACKS_BRAIN_LOCATION_END = 'https://github.com/jacksanders-xyz/images4jacks_brain/blob/main/TEST/Screen%20Shot%202021-08-11%20at%201.23.17%20PM.png?'
     -- local GIT_WORK_LOCATION = 'https://github.com/jacksanders-xyz/images4jacks_brain/blob/main/TEST/Screen%20Shot%202021-08-11%20at%201.23.17%20PM.png?'
     if REFORMAT_TYPE == "JACKS_BRAIN" then
-        ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>?jacks_brain<CR>f/d0$vF/\"ny fr /%/g<cr>$a?raw=true)<Esc>I<c-r>n]<esc>I!["..GIT_JACKS_BRAIN_LOCATION_START.."<Esc>I',true,false,true),'m',true)"
+        ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>?jacks_brain<CR>f/d0$vF/l\"ay fr /%20/g<cr>$a?raw=true)<Esc>I<c-r>a]<esc>I![<Esc>f]a("..GIT_JACKS_BRAIN_LOCATION_START.."<Esc>Vyqp',true,false,true),'m',true)"
     elseif REFORMAT_TYPE == "WORK" then
         ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>$vT/\"ayyss(lx$hxI![<C-r>a]<esc>V\"ayq\"ap',true,false,true),'m',true)"
     else
         ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>$vT/\"ayyss(lx$hxI![<C-r>a]<esc>Vyqp',true,false,true),'m',true)"
-        -- ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>$vT/\"ayyss(<esc>',true,false,true),'m',true)"
     end
     api.nvim_command(ACTION)
 end
 
 -- THIS IS THE FUNCTION FOR THE TELEMODULE...
-local function Telescope_Path_Constructor(PATH, REFORMAT_TYPE)
+local function Telescope_Path_Constructor(PATH, DESTINATION)
     toggle_fwin(PATH)
     local reformat = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>I~/VimWiki/IMAGE_POOL/<Esc>$a',true,false,true),'m',true)"
     api.nvim_command(reformat)
-    Reformat_and_put('LOCAL')
+    Reformat_and_put(DESTINATION)
 end
 
 
