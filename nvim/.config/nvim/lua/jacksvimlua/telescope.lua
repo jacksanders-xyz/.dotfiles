@@ -91,7 +91,6 @@ local function GrabImagePath(prompt_bufnr, map)
             IPA.Telescope_Path_Constructor(content, DESTINATION)
 		end
 	end
-
 	map("i", "<CR>", function()
 		set_the_image_path(true, 'LOCAL')
 	end)
