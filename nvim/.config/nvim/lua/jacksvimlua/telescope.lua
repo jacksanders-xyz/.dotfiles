@@ -1,4 +1,6 @@
 local actions = require("telescope.actions")
+local IPA = require("jacksvimlua.ImagePathAutomator")
+
 require("telescope").setup({
     defaults = {
         file_sorter = require("telescope.sorters").get_fzy_sorter,
@@ -28,10 +30,13 @@ require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("git_worktree")
 
 local M = {}
-
 M.search_dotfiles = function()
     require("telescope.builtin").find_files({
         prompt_title = "< .dotfiles >",
+        file_ignore_patterns = {
+            "%.git",
+            "%.DS_Store",
+        },
         hidden = true,
         cwd = '~/.dotfiles',
     })
@@ -40,6 +45,10 @@ end
 M.grep_dotfiles = function()
     require("telescope.builtin").live_grep({
         prompt_title = "< Grep .dotfiles >",
+        file_ignore_patterns = {
+            "%.git",
+            "%.DS_Store",
+        },
         cwd = '~/.config/nvim',
         hidden = true,
     })
@@ -48,7 +57,11 @@ end
 M.search_notes = function()
     require("telescope.builtin").find_files({
         prompt_title = "< Jack's Brain >",
-        file_ignore_patterns = {"^IMAGE_POOL/"},
+        file_ignore_patterns = {
+            "^IMAGE_POOL/",
+            "%.git",
+            "%.DS_Store",
+        },
         cwd = '~/VimWiki/',
         hidden = true,
     })
@@ -57,14 +70,41 @@ end
 M.grep_notes = function()
     require("telescope.builtin").live_grep({
         prompt_title = "< Grep Jack's Brain >",
-        file_ignore_patterns = {"^IMAGE_POOL/"},
+        file_ignore_patterns = {
+            "^IMAGE_POOL/",
+            "%.git",
+            "%.DS_Store",
+        },
         cwd = '~/VimWiki/',
         hidden = true,
     })
 end
 
+local function GrabImagePath(prompt_bufnr, map)
+   	local function set_the_image_path(close)
+		local content = require("telescope.actions.state").get_selected_entry(prompt_bufnr)[1]
+        vim.g.telec = content
+        -- local content = require("telescope.actions.state").get_selected_entry(prompt_bufnr)
+		-- set_background(content.cwd .. "/" .. content.value)
+		if close then
+			require("telescope.actions").close(prompt_bufnr)
+            IPA.Telescope_Path_Constructor(content, 'LOCAL')
+		end
+	end
+
+	map("i", "<CR>", function()
+		set_the_image_path(true)
+	end)
+
+    map("i", "<CR>", function()
+		set_the_image_path(true)
+	end)
+    -- vim.fn.system("dconf write /org/mate/desktop/background/picture-filename \"'" .. content .. "'\"")
+end
+
 M.ImagePathFinder = function()
     require("telescope.builtin").find_files({
+        layout_strategy = "vertical",
         prompt_title = "< Image Finder >",
         file_ignore_patterns = {
             "%.git",
@@ -72,6 +112,10 @@ M.ImagePathFinder = function()
         },
         cwd = '~/VimWiki/IMAGE_POOL/',
         hidden = true,
+        attach_mappings = function(prompt_bufnr, map)
+                GrabImagePath(prompt_bufnr, map)
+                return true
+        end,
     })
 end
 
@@ -111,7 +155,6 @@ end
 
 --             attach_mappings = function(prompt_bufnr, map)
 --                 select_background(prompt_bufnr, map)
-
 --                 -- Please continue mapping (attaching additional key maps):
 --                 -- Ctrl+n/p to move up and down the list.
 --                 return true

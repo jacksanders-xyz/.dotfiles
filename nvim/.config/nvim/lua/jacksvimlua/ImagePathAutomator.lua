@@ -100,18 +100,28 @@ local function Reformat_and_put(REFORMAT_TYPE)
     -- local GIT_WORK_LOCATION = 'https://github.com/jacksanders-xyz/images4jacks_brain/blob/main/TEST/Screen%20Shot%202021-08-11%20at%201.23.17%20PM.png?'
     if REFORMAT_TYPE == "JACKS_BRAIN" then
         ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>?jacks_brain<CR>f/d0$vF/\"ny fr /%/g<cr>$a?raw=true)<Esc>I<c-r>n]<esc>I!["..GIT_JACKS_BRAIN_LOCATION_START.."<Esc>I',true,false,true),'m',true)"
-    elseif REFORMAT_TYPE == "JACKS_BRAIN" then
+    elseif REFORMAT_TYPE == "WORK" then
         ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>$vT/\"ayyss(lx$hxI![<C-r>a]<esc>V\"ayq\"ap',true,false,true),'m',true)"
     else
-        ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>$vT/\"ayyss(lx$hxI![<C-r>a]<esc>V\"ayq\"ap',true,false,true),'m',true)"
+        ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>$vT/\"ayyss(lx$hxI![<C-r>a]<esc>Vyqp',true,false,true),'m',true)"
+        -- ACTION = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>$vT/\"ayyss(<esc>',true,false,true),'m',true)"
     end
     api.nvim_command(ACTION)
 end
 
+-- THIS IS THE FUNCTION FOR THE TELEMODULE...
+local function Telescope_Path_Constructor(PATH, REFORMAT_TYPE)
+    toggle_fwin(PATH)
+    local reformat = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>I~/VimWiki/IMAGE_POOL/<Esc>$a',true,false,true),'m',true)"
+    api.nvim_command(reformat)
+    Reformat_and_put('LOCAL')
+end
+
+
 local function formatAndToggle()
     local currPath = vim.fn.expand('%:p')
     toggle_fwin(currPath)
-    local Action = "lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('/VimWiki<CR>f/lCIMAGE_POOL/',true,false,true),'m',true)"
+    local Action = "lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('/VimWiki<CR>hc0~<Esc>/jacks_brain<CR>iIMAGE_POOL/<Esc>lC',true,false,true),'m',true)"
     api.nvim_command(Action)
 end
 
@@ -126,4 +136,5 @@ return {
     formatAndToggle = formatAndToggle,
     ImagePathFind = ImagePathFind,
     Reformat_and_put = Reformat_and_put,
+    Telescope_Path_Constructor = Telescope_Path_Constructor
 }
