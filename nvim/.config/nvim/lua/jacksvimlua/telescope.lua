@@ -81,22 +81,30 @@ M.grep_notes = function()
 end
 
 local function GrabImagePath(prompt_bufnr, map)
-   	local function set_the_image_path(close, Destination)
+   	local function set_the_image_path(close, Destination, editing)
 		local content = require("telescope.actions.state").get_selected_entry(prompt_bufnr)[1]
         vim.g.telec = content
 		if close then
 			require("telescope.actions").close(prompt_bufnr)
-            IPA.Telescope_Path_Constructor(content, Destination)
+            IPA.Telescope_Path_Constructor(content, Destination, editing)
 		end
         -- leave open to possibly enter multiple images
 	end
 
-	map("i", "<c-g>", function()
-		set_the_image_path(true, 'GIT_GUESS')
+	map("i", "<c-e>", function()
+		set_the_image_path(true, 'GIT_GUESS', true)
+	end)
+
+    map("i", "<c-g>", function()
+		set_the_image_path(true, 'GIT_GUESS', false)
 	end)
 
     map("i", "<CR>", function()
-		set_the_image_path(true, 'LOCAL')
+		set_the_image_path(true, 'LOCAL', false)
+	end)
+
+    map("i", "<c-l>", function()
+		set_the_image_path(true, 'LOCAL', true)
 	end)
 end
 
