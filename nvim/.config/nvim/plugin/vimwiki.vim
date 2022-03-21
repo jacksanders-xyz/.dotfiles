@@ -49,16 +49,11 @@ endfun
 " MAKE A LINK FROM THE BUFFER
 map <leader>wl "*PysiW)i[]<ESC>i
 
-" MAKE AN IMAGE, REQUIRES PATH TO IMAGE
-
 " GET IMAGES WITH TELE
 nnoremap <leader>wI :lua require('jacksvimlua.telescope').ImagePathFinder()<CR>
 
-" PATH BY HAND
+" IMAGE PATH BY HAND
 nnoremap <leader>wP :lua require('jacksvimlua.ImagePathAutomator').ImagePathFind()<CR>
-
-" MAKE AN clickable on github IMAGE, REQUIRES PATH TO IMAGE
-nnoremap <leader>wg i{{file:~/VimWiki/IMAGE_POOL/}}<ESC>F/a
 
 " OPEN THE IMAGES FOLDER TO PUSH AND PULL
 nnoremap <leader>wG <C-w><C-v>:Ex ~/VimWiki/IMAGE_POOL/<CR>

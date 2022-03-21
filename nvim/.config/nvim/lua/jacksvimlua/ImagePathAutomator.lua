@@ -45,10 +45,6 @@ local function toggle_fwin(currPath)
     local win_info = create_cw()
 
     local contents = {}
-    -- if vim.g.LastImagePath ~= '' then
-    -- end
-    -- api.nvim_command("let g:IPAcurrPath = expand('%:p')")
-    -- local currPath = vim.g.IPAcurrPath
     contents[1] = currPath
 
     Iff_win_id = win_info.win_id
@@ -58,7 +54,6 @@ local function toggle_fwin(currPath)
     api.nvim_buf_set_name(Iff_bufh, "iff_menu")
     api.nvim_buf_set_lines(Iff_bufh, 0, #contents, false, contents)
     api.nvim_buf_set_option(Iff_bufh, "filetype", "vimwiki")
-    -- api.nvim_buf_set_option(Iff_bufh, "buftype", "acwrite")
     api.nvim_buf_set_option(Iff_bufh, "bufhidden", "delete")
 
     api.nvim_buf_set_keymap(
@@ -110,7 +105,6 @@ end
 -- [alt text](https://github.com/[username]/[reponame]/blob/[branch]/image.jpg?raw=true)
 -- https://github.com/jacksanders-xyz/images4jacks_brain/blob/main/TEST/Screen%20Shot%202021-08-11%20at%201.23.17%20PM.png?
 -- https://github.com/jacksanders-xyz/images4jacks_brain/blob/main/TEST/Screen%20Shot%202021-08-11%20at%201.23.17%20PM.png
-
 
 local function Reformat_and_put(DESTINATION, editing)
     local ACTION
