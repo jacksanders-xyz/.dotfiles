@@ -13,7 +13,7 @@ local function create_cw()
     local width = 200
     local height = 1
     local borderchars = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" }
-    local bufnr = api.nvim_create_buf(false, false)
+    local bufnr = api.nvim_create_buf(false, true)
     local Iff_win_id, win = popup.create(bufnr, {
         title = "Path to Image",
         highlight = "IffWindow",
