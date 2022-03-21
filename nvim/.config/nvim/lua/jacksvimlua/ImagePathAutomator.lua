@@ -137,7 +137,7 @@ local function Telescope_Path_Constructor(PATH, Destination)
     -- Reformat_and_put(DESTINATION)
     if (Destination == 'LOCAL') then
         Reformat_and_put('LOCAL')
-    elseif (Destination == 'GIT_GUESS') then
+    else
         CheckPathAgainstDestination()
     end
 end

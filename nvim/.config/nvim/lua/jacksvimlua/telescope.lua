@@ -91,20 +91,12 @@ local function GrabImagePath(prompt_bufnr, map)
         -- leave open to possibly enter multiple images
 	end
 
-	map("i", "<c-a>", function()
+	map("i", "<c-g>", function()
 		set_the_image_path(true, 'GIT_GUESS')
 	end)
 
-    map("i", "<c-l>", function()
+    map("i", "<CR>", function()
 		set_the_image_path(true, 'LOCAL')
-	end)
-
-    map("i", "<c-j>", function()
-		set_the_image_path(true, 'jacks_brain')
-	end)
-
-    map("i", "<c-w>", function()
-		set_the_image_path(true, 'work_content')
 	end)
 end
 
