@@ -81,26 +81,30 @@ M.grep_notes = function()
 end
 
 local function GrabImagePath(prompt_bufnr, map)
-   	local function set_the_image_path(close, DESTINATION)
+   	local function set_the_image_path(close, Destination)
 		local content = require("telescope.actions.state").get_selected_entry(prompt_bufnr)[1]
         vim.g.telec = content
-        -- local content = require("telescope.actions.state").get_selected_entry(prompt_bufnr)
-		-- set_background(content.cwd .. "/" .. content.value)
 		if close then
 			require("telescope.actions").close(prompt_bufnr)
-            IPA.Telescope_Path_Constructor(content, DESTINATION)
+            IPA.Telescope_Path_Constructor(content, Destination)
 		end
+        -- leave open to possibly enter multiple images
 	end
-	map("i", "<CR>", function()
+
+	map("i", "<c-a>", function()
+		set_the_image_path(true, 'GIT_GUESS')
+	end)
+
+    map("i", "<c-l>", function()
 		set_the_image_path(true, 'LOCAL')
 	end)
 
     map("i", "<c-j>", function()
-		set_the_image_path(true, 'JACKS_BRAIN')
+		set_the_image_path(true, 'jacks_brain')
 	end)
 
     map("i", "<c-w>", function()
-		set_the_image_path(true, 'WORK')
+		set_the_image_path(true, 'work_content')
 	end)
 end
 
@@ -111,6 +115,7 @@ M.ImagePathFinder = function()
         file_ignore_patterns = {
             "%.git",
             "%.DS_Store",
+            "%README.md",
         },
         cwd = '~/VimWiki/IMAGE_POOL/',
         hidden = true,
