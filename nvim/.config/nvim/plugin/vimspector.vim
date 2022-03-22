@@ -1,10 +1,22 @@
 " VIMSPECTOR DUBUGGER
 
+fun! StartWithMultiStatusLine()
+    " :hi WinSeparator guibg=white
+    :set laststatus=2
+    :call vimspector#Launch()
+endfun
+
+fun! StopWithMultiStatusLine()
+    :set laststatus=3
+    " :hi WinSeparator guibg=none
+    :call vimspector#Reset()
+endfun
+
 " FIRE UP
-nnoremap <leader>dd :call vimspector#Launch()<CR>
+nnoremap <leader>dd :call StartWithMultiStatusLine()<CR>
 
 " SHUT DOWN
-nnoremap <leader>de :call vimspector#Reset()<CR>
+nnoremap <leader>de :call StopWithMultiStatusLine()<CR>
 
 " PICK A WINDOW (ONCE MAXIMIZED, TO TURN IT OFF JUST UNMAXIMIZE: <leader>,
 nnoremap <leader>dc :call GotoWindow(g:vimspector_session_windows.code)<CR>
