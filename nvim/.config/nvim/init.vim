@@ -124,9 +124,9 @@ augroup CLEANLINESS
   autocmd BufWritePre * :call TrimWhitespace()
 augroup END
 
-" VIM-YAML
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-let g:indentLine_char = '⦙'
+" " VIM-YAML
+" let g:indentLine_char = '⦙'
+" autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
 
 " STATUS LINES
 set statusline+=%#warningmsg#
@@ -155,7 +155,6 @@ nnoremap <silent><leader>X :bd!<CR> " Delete current buffer
 nnoremap <silent><leader>n :bn!<CR> " Next buffer
 nnoremap <silent><leader>N :bN!<CR> " Previous buffer
 nnoremap <silent><leader>tn :enew<CR> " Make a new empty buffer
-nnoremap <silent><Tab> :b#<CR> " Tab between buffers
 
 " GOTO todo LIST
 nnoremap <leader>td :enew<CR>'T

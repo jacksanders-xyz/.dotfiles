@@ -6,12 +6,11 @@
 "     :! /Users/jsanders/split_browser_tab.sh
 " endfun
 
-
-fun! SetWorkspaceAndReturnToIterm()
-    " :execute "MarkdownPreview"
-    let prep_string = ":! /Users/jsanders/iterm_back.sh"
-    :silent execute prep_string
-endfun
+" fun! SetWorkspaceAndReturnToIterm()
+"     " :execute "MarkdownPreview"
+"     let prep_string = ":! /Users/jsanders/iterm_back.sh"
+"     :silent execute prep_string
+" endfun
 
 fun! GrabWindowTab()
     " let bufname = expand('%:r')

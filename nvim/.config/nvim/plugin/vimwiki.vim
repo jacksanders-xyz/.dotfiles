@@ -13,7 +13,7 @@ fun! ColorMarkdown()
         \{'path':'~/VimWiki/jacks_brain/WORKFLOW', 'syntax':'markdown','ext':'.md' },
         \{'path':'~/VimWiki/jacks_brain/RANDOM', 'syntax':'markdown','ext':'.md' },
         \{'path':'~/VimWiki/work_content', 'syntax':'markdown','ext':'.md' }]
-
+  let g:vimwiki_table_mappings=0
   let g:vimwiki_markdown_link_ext = 1
   let g:taskwiki_markup_syntax = 'markdown'
   let g:markdown_folding = 1
