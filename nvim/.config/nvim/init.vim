@@ -84,6 +84,7 @@ Plug 'airblade/vim-gitgutter'
 
 " VIM WIKI
 Plug 'vimwiki/vimwiki'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
 " FLOATTERM
 Plug 'voldikss/vim-floaterm'

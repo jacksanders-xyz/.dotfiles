@@ -2,7 +2,7 @@
 set termguicolors
 set encoding=utf-8
 set exrc
-set laststatus=2
+set laststatus=3
 set nocompatible
 set nowrap
 set ignorecase smartcase

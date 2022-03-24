@@ -31,7 +31,6 @@ local _BUF_ICON =
         packer   = '  ',
 
 
-
         qf       = '  ',
 
         undotree = '  ',
@@ -93,7 +92,8 @@ local _SEAGREEN    = {'#698b69', 48,  'seagreen'}
 
 local _BLUE = {'#81a2be', 63,  'darkblue'}
 local _TMUXDARK = {'#57577b', 63,  'darkblue'}
-local _TMUXBLUE = {'#5b5b81', 63,  'darkblue'}
+local _TMUXBLUE = {'#5b5b81', 63,  'blue'}
+local _TMUXBLUE_LIGHT = {'#7878aa', 63,  'lightblue'}
 local _AQUA = {'#8ec07c', 63,  'aqua'}
 local _CYAN = {'#8abeb7', 80,  'cyan'}
 local _ICE  = {'#95c5ff', 111, 'cyan'}
@@ -117,7 +117,8 @@ local _MODES =
 	['c']  = {'COMMAND-LINE',      _RED},
 	['ce'] = {'NORMAL EX',         _RED_DARK},
 	['cv'] = {'EX',                _RED_LIGHT},
-	['i']  = {'INSERT',            _GREEN},
+	['i']  = {'INSERT',            _YELLOW},
+	-- ['i']  = {'INSERT',            _GREEN},
 	['ic'] = {'INS-COMPLETE',      _GREEN_LIGHT},
 	-- ['n']  = {'NORMAL',            _PURPLE_LIGHT},
 	['n']  = {'NORMAL',            _TMUXBLUE},
@@ -296,7 +297,7 @@ require('feline').setup(
 					left_sep =
 					{
 						always_visible = true,
-						hl = {fg = _SIDEBAR[1], bg = _GREEN_DARK[1]},
+						hl = {fg = _SIDEBAR[1], bg = _BLACK[1]},
 						str = _RIGHT_SEPARATOR,
 					},
 					provider = 'git_branch',

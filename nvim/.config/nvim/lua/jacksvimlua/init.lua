@@ -4,6 +4,7 @@ require("jacksvimlua.treesitter")
 require("jacksvimlua.lsp-installer")
 require("jacksvimlua.feline")
 require("jacksvimlua.barbar")
+require("jacksvimlua.ImagePathAutomator")
 
 
 P = function(v)
