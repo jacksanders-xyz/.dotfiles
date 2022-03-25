@@ -34,9 +34,6 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'ThePrimeagen/harpoon'
 Plug 'ThePrimeagen/git-worktree.nvim'
 
-" STATUSLINE FOR WORKTREE/DICTATOR
-" Plug 'nvim-lualine/lualine.nvim'
-
 " TABLINE
 Plug 'romgrk/barbar.nvim'
 
@@ -144,24 +141,8 @@ augroup CLEANLINESS
 augroup END
 
 " VIM-YAML
-autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
-let g:indentLine_char = '⦙'
-
-" TREESITTER
-lua require'nvim-treesitter.configs'.setup { highlight = { enable = true }}
-
-" TYPESCRIPT
-autocmd FileType typescript setlocal formatprg=prettier\ --parser\ typescript
-
-" DEOPLETE
-let g:python3_host_prog = '/usr/local/bin/python3'
-autocmd FileType TelescopePrompt call deoplete#custom#buffer_option('auto_complete', v:false)
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#go#gocode_binary = $GOPATH.'~/go/bin/gocode'
-let g:deoplete#sources#go#sort_class = ['package', 'func', 'type', 'var', 'const']
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+" let g:indentLine_char = '⦙'
 
 " STATUS LINES
 set statusline+=%#warningmsg#
@@ -191,21 +172,6 @@ nnoremap <leader>X :bd!<CR> " Delete current buffer
 nnoremap <leader>n :bn!<CR> " Next buffer
 nnoremap <leader>N :bN!<CR> " Previous buffer
 nnoremap <leader>tn :enew<CR> " Make a new empty buffer
-" nnoremap <Tab> :b#<CR> " Tab between buffers
-
-" GOTO todo LIST
-nnoremap <leader>td :enew<CR>'T
-
-" SPLIT NAVIGATION
-" nnoremap <c-j> <C-w><C-j>
-" nnoremap <c-k> <C-w><C-k>
-" nnoremap <c-l> <C-w><C-l>
-" nnoremap <c-h> <C-w><C-w>
-
-" NEWLINE GENERATION
-nmap <C-o> O<Esc>
-nmap <CR> o<Esc>
-
 nnoremap <leader>. @: " Repeat last ex command
 
 " YANK/PUT FROM/TO CLIPBOARD

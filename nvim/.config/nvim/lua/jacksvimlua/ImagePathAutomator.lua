@@ -1,7 +1,7 @@
 local libmodal = require('libmodal')
-local homeDir = os.getenv('HOME')
 local popup = require("plenary.popup")
 local api = vim.api
+local homeDir = os.getenv('HOME')
 vim.g.LastImagePath = ''
 
 local function close_menu()
@@ -90,14 +90,14 @@ local function toggle_fwin(currPath)
         "i",
         "<C-j>",
         -- "<Esc>:lua require('jacksvimlua.ImagePathAutomator').CheckPathAgainstDestination('jacks_brain')<CR>",
-        "<Esc>:lua require('jacksvimlua.ImagePathAutomator').Reformat_and_put('JACKS_BRAIN', false)<CR>",
+        "<Esc>:lua require('jacksvimlua.ImagePathAutomator').Reformat_and_put('work_content', false)<CR>",
         { silent = true }
     )
     api.nvim_buf_set_keymap(
         Iff_bufh,
         "i",
         "<C-w>",
-        "<Esc>:lua require('jacksvimlua.ImagePathAutomator').Reformat_and_put('JACKS_BRAIN', false)<CR>",
+        "<Esc>:lua require('jacksvimlua.ImagePathAutomator').Reformat_and_put('work_content', false)<CR>",
         { silent = true }
     )
 end
@@ -112,7 +112,7 @@ local function Reformat_and_put(DESTINATION, editing)
     local GIT_JACKS_BRAIN_LOCATION = 'https://github.com/jacksanders-xyz/images4jacks_brain/blob/main'
     local GIT_WORK_LOCATION = 'https://github.ibm.com/Jack-Sanders/images4work_content/blob/main'
     local OPENING = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>"
-    local JACKS_BRAIN_SETUP
+    -- local JACKS_BRAIN_SETUP
     local END_AND_PUT = "<Esc>Vyqp',true,false,true),'m',true)"
     local END_AND_REPLACE_BRACKETS = "<Esc>0lci]',true,false,true),'m',true)"
     local END_AND_AWAIT = "',true,false,true),'m',true)"
@@ -127,10 +127,10 @@ local function Reformat_and_put(DESTINATION, editing)
             ['no_edit'] = OPENING.."?jacks_brain<CR>f/d0$vF/l\"ay fr /%20/g<cr>$a?raw=true)<Esc>I<c-r>a]<esc>I![<Esc>f]a("..GIT_JACKS_BRAIN_LOCATION..END_AND_PUT,
             ['edit'] = OPENING.."?jacks_brain<CR>f/d0$vF/l\"ay fr /%20/g<cr>$a?raw=true)<Esc>I<c-r>a]<esc>I![<Esc>f]a("..GIT_JACKS_BRAIN_LOCATION..END_AND_REPLACE_BRACKETS,
         },
-        ['work_content'] = {
-            ['no_edit'] = OPENING.."?work_content<CR>f/d0$vF/l\"ay fr /%20/g<cr>$a?raw=true)<Esc>I<c-r>a]<esc>I![<Esc>f]a("..GIT_WORK_LOCATION..END_AND_PUT,
-            ['edit'] = OPENING.."?work_content<CR>f/d0$vF/l\"ay fr /%20/g<cr>$a?raw=true)<Esc>I<c-r>a]<esc>I![<Esc>f]a("..GIT_WORK_LOCATION..END_AND_REPLACE_BRACKETS,
-        },
+        -- ['work_content'] = {
+        --     ['no_edit'] = OPENING.."?work_content<CR>f/d0$vF/l\"ay fr /%20/g<cr>$a?raw=true)<Esc>I<c-r>a]<esc>I![<Esc>f]a("..GIT_WORK_LOCATION..END_AND_PUT,
+        --     ['edit'] = OPENING.."?work_content<CR>f/d0$vF/l\"ay fr /%20/g<cr>$a?raw=true)<Esc>I<c-r>a]<esc>I![<Esc>f]a("..GIT_WORK_LOCATION..END_AND_REPLACE_BRACKETS,
+        -- },
         ['LOCAL'] = {
             ['no_edit'] = OPENING.."$vT/\"ayyss(lx$hxI![<C-r>a]"..END_AND_PUT,
             ['edit'] = OPENING.."$vT/\"ayyss(lx$hxI![]<esc>i"..END_AND_AWAIT
@@ -171,7 +171,6 @@ local function Telescope_Path_Constructor(PATH_CONTENT, Destination, editing)
         CheckPathAgainstDestination(editing)
     end
 end
-
 
 local function formatAndToggle()
     local currPath = vim.fn.expand('%:p')

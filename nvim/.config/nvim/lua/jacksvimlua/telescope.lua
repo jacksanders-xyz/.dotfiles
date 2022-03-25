@@ -4,7 +4,7 @@ local finders = require("telescope.finders")
 local previewers = require("telescope.previewers")
 local action_state = require("telescope.actions.state")
 local conf = require("telescope.config").values
-
+local IPA = require("jacksvimlua.ImagePathAutomator")
 
 require("telescope").setup({
     defaults = {
@@ -12,7 +12,8 @@ require("telescope").setup({
         prompt_prefix = " > ",
         color_devicons = true,
 
-        file_previewer = require("telescope.previewers").vim_buffer_cat.new, grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+        file_previewer = require("telescope.previewers").vim_buffer_cat.new,
+        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
 
         mappings = {
@@ -117,6 +118,7 @@ M.ImagePathFinder = function()
     require("telescope.builtin").find_files({
         layout_strategy = "vertical",
         prompt_title = "< Image Finder >",
+        previewer = false,
         file_ignore_patterns = {
             "%.git",
             "%.DS_Store",
