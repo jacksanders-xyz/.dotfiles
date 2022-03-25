@@ -13,7 +13,6 @@ fun! ColorMarkdown()
         \{'path':'~/VimWiki/jacks_brain/WORKFLOW', 'syntax':'markdown','ext':'.md' },
         \{'path':'~/VimWiki/jacks_brain/RANDOM', 'syntax':'markdown','ext':'.md' },
         \{'path':'~/VimWiki/work_content', 'syntax':'markdown','ext':'.md' }]
-
   let g:vimwiki_table_mappings=0
   let g:vimwiki_markdown_link_ext = 1
   let g:taskwiki_markup_syntax = 'markdown'
@@ -26,16 +25,46 @@ fun! ColorMarkdown()
 endfun
 call ColorMarkdown()
 
+fun! PrettyMyRH()
+  :%s/^\[student@workstation \~]/\## [student@workstation \~]/e | %s/^>/\## >/e
+endfun
+
+fun! MakeOutputBox()
+  norm! '<O```
+  norm! o=>
+  norm! '>o```
+endfun
+
+fun! MakeNotes()
+  norm! '<O****
+  norm! '>o****
+  :exe 'normal!' "kI#### NOTE\r"
+endfun
+
+fun! MakeFlash()
+  :exe 'normal!' ":VimwikiFollowLink\r"
+  :exe 'normal!' "f(aFLASH_DECK/"
+endfun
 
 " MAKE A LINK FROM THE BUFFER
 map <leader>wl "*PysiW)i[]<ESC>i
 
-" MAKE A TABLE. THIS FUNCTION TAKES 2 NUMS, COLUMNS THEN (ROWS - 1)
-map <leader>wT :VimwikiTable
+" GET IMAGES WITH TELE
+nnoremap <leader>wI :lua require('jacksvimlua.telescope').ImagePathFinder()<CR>
 
-fun! PrettyMyRH()
-  :%s/^\[student@workstation \~]/\## [student@workstation \~]/e | %s/^>/\## >/e
-endfun
+" IMAGE PATH BY HAND
+nnoremap <leader>wP :lua require('jacksvimlua.ImagePathAutomator').ImagePathFind()<CR>
+
+" OPEN THE IMAGES FOLDER TO PUSH AND PULL
+nnoremap <leader>wG <C-w><C-v>:Ex ~/VimWiki/IMAGE_POOL/<CR>
+
+" MAKE A TABLE. THIS FUNCTION TAKES 2 NUMS, COLUMNS THEN (ROWS - 1)
+map <leader>wT :VimwikiTable col rows-1
+
+vnoremap <leader>wo :<C-u>call MakeOutputBox()<CR>
+vnoremap <leader>wn :<C-u>call MakeNotes()<CR>
+nmap <leader>wf :<C-u>call MakeFlash()<CR>
+nmap <C-f> :<C-u>call WikiFlash()<CR>
 
 " PRETTY UP ANY REDHAT LESSON IN VIMWIKI
 nnoremap <leader>wpr :call PrettyMyRH()<CR>

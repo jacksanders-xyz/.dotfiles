@@ -1,4 +1,5 @@
 local libmodal = require('libmodal')
+local homeDir = os.getenv('HOME')
 local popup = require("plenary.popup")
 local api = vim.api
 vim.g.LastImagePath = ''
@@ -183,6 +184,18 @@ local function ImagePathFind()
     formatAndToggle()
 end
 
+local function MakeImageDirectory()
+    local baseString = homeDir.."/VimWiki/IMAGE_POOL/"
+    local ImagePath = vim.fn.expand('%:p:h')
+    ImagePath = string.sub(ImagePath, 25)
+    local ImageDirPath = baseString..ImagePath
+    local CopyToClipboard = "let @*='"..ImageDirPath.."'"
+    -- print(ImageDirPath, "has been made and is copied to clipboard")
+    api.nvim_command(CopyToClipboard)
+    os.execute("mkdir " .. ImageDirPath)
+end
+
+
 return {
     toggle_fwin = toggle_fwin,
     create_cw = create_cw,
@@ -192,4 +205,5 @@ return {
     Reformat_and_put = Reformat_and_put,
     Telescope_Path_Constructor = Telescope_Path_Constructor,
     CheckPathAgainstDestination = CheckPathAgainstDestination,
+    MakeImageDirectory = MakeImageDirectory,
 }

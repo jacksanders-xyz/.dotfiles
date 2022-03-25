@@ -203,7 +203,7 @@ style: """
     color: #{colors.tmuxtan}
 
   top: 6px
-  right: 14px
+  right: 5px
   font-family: 'Meslo LG S Regular for Powerline'
   font-size: 14px
   font-smoothing: antialiasing

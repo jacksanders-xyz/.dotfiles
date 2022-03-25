@@ -38,22 +38,35 @@ local M = {}
 M.search_dotfiles = function()
     require("telescope.builtin").find_files({
         prompt_title = "< .dotfiles >",
-        cwd = '~/.dotfiles',
+        file_ignore_patterns = {
+            "%.git",
+            "%.DS_Store",
+        },
         hidden = true,
+        cwd = '~/.dotfiles',
     })
 end
 
 M.grep_dotfiles = function()
     require("telescope.builtin").live_grep({
         prompt_title = "< Grep .dotfiles >",
-        hidden = true,
+        file_ignore_patterns = {
+            "%.git",
+            "%.DS_Store",
+        },
         cwd = '~/.config/nvim',
+        hidden = true,
     })
 end
 
 M.search_notes = function()
     require("telescope.builtin").find_files({
         prompt_title = "< Jack's Brain >",
+        file_ignore_patterns = {
+            "^IMAGE_POOL/",
+            "%.git",
+            "%.DS_Store",
+        },
         cwd = '~/VimWiki/',
         hidden = true,
     })
@@ -62,9 +75,60 @@ end
 M.grep_notes = function()
     require("telescope.builtin").live_grep({
         prompt_title = "< Grep Jack's Brain >",
+        file_ignore_patterns = {
+            "^IMAGE_POOL/",
+            "%.git",
+            "%.DS_Store",
+        },
         cwd = '~/VimWiki/',
         hidden = true,
-      })
+    })
+end
+
+local function GrabImagePath(prompt_bufnr, map)
+   	local function set_the_image_path(close, Destination, editing)
+		local content = require("telescope.actions.state").get_selected_entry(prompt_bufnr)[1]
+        vim.g.telec = content
+		if close then
+			require("telescope.actions").close(prompt_bufnr)
+            IPA.Telescope_Path_Constructor(content, Destination, editing)
+		end
+        -- leave open to possibly enter multiple images
+	end
+
+	map("i", "<c-e>", function()
+		set_the_image_path(true, 'GIT_GUESS', true)
+	end)
+
+    map("i", "<c-g>", function()
+		set_the_image_path(true, 'GIT_GUESS', false)
+	end)
+
+    map("i", "<CR>", function()
+		set_the_image_path(true, 'LOCAL', false)
+	end)
+
+    map("i", "<c-l>", function()
+		set_the_image_path(true, 'LOCAL', true)
+	end)
+end
+
+M.ImagePathFinder = function()
+    require("telescope.builtin").find_files({
+        layout_strategy = "vertical",
+        prompt_title = "< Image Finder >",
+        file_ignore_patterns = {
+            "%.git",
+            "%.DS_Store",
+            "%README.md",
+        },
+        cwd = '~/VimWiki/IMAGE_POOL/',
+        hidden = true,
+        attach_mappings = function(prompt_bufnr, map)
+                GrabImagePath(prompt_bufnr, map)
+                return true
+        end,
+    })
 end
 
 -- local function set_background(content)

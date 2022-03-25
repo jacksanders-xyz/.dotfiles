@@ -29,10 +29,10 @@ yabai -m config mouse_drop_action            swap
 # general space setting
 yabai -m config layout                       bsp
 yabai -m config top_padding                  24
-yabai -m config bottom_padding               10
-yabai -m config left_padding                 10
-yabai -m config right_padding                10
-yabai -m config window_gap                   10
+yabai -m config bottom_padding               5
+yabai -m config left_padding                 5
+yabai -m config right_padding                5
+yabai -m config window_gap                   5
 # alt - c : yabai -m space --focus 2 && /Users/_jacksanders/polybar-refresh.sh \
 #     || yabai -m space --create && \
 #     index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
