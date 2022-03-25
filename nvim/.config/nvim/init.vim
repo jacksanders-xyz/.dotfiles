@@ -118,14 +118,18 @@ call plug#end()
 let &runtimepath.=',' . expand("$HOME") . '/personal/dictator'
 
 let &runtimepath.=',' . expand("$HOME") . '/personal/wiki-Flash/master'
+
 " LEADER
 let mapleader=" "
 
+" GENERAL CONFIG
 syntax enable
 command E Ex " Disambiguates E
 filetype plugin on
 filetype indent on
 
+" :W now also writes, same as :w
+command! -bar -nargs=* -complete=file -range=% -bang W         <line1>,<line2>write<bang> <args>
 
 " TRIM WHITESPACE AUTO COMMAND EXCEPT FOR MD AND ULTISNIPS
 fun! TrimWhitespace()
