@@ -55,6 +55,11 @@ nnoremap <leader>wI :lua require('jacksvimlua.telescope').ImagePathFinder()<CR>
 " IMAGE PATH BY HAND
 nnoremap <leader>wP :lua require('jacksvimlua.ImagePathAutomator').ImagePathFind()<CR>
 
+" " MAKE A PATH FOR THE IMAGE INSIDE YOUR IMAGE FOLDER
+" nnoremap <leader>wpath :lua require('jacksvimlua.telescope').ImagePathFinder()<CR>
+
+command! Wpath lua require("jacksvimlua.ImagePathAutomator").MakeImageDirectory()
+
 " OPEN THE IMAGES FOLDER TO PUSH AND PULL
 nnoremap <leader>wG <C-w><C-v>:Ex ~/VimWiki/IMAGE_POOL/<CR>
 

@@ -185,18 +185,13 @@ end
 
 local function MakeImageDirectory()
     local baseString = homeDir.."/VimWiki/IMAGE_POOL/"
-    local ImagePath = vim.fn.expand('%:p')
+    local ImagePath = vim.fn.expand('%:p:h')
     ImagePath = string.sub(ImagePath, 25)
     local ImageDirPath = baseString..ImagePath
     local CopyToClipboard = "let @*='"..ImageDirPath.."'"
-    print(ImageDirPath, "has been made and is copied to clipboard")
+    -- print(ImageDirPath, "has been made and is copied to clipboard")
     api.nvim_command(CopyToClipboard)
     os.execute("mkdir " .. ImageDirPath)
-    -- 34
-    -- local SetReg = "let @0='"..ImagePath.."'"
-    -- local CommandString = "let @0='"..ImagePath.."'"
-    -- api.nvim_command(SetReg)
-    -- api.nvim_command(ImagePathFind)
 end
 
 
