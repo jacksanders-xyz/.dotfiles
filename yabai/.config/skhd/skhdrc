@@ -44,7 +44,7 @@ cmd + ctrl - f : yabai -m window --toggle zoom-fullscreen
 ## Close active application
 alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
 
-## swiching spaces
+## swiching spaces, use skhd -o in terminal to see the keyvalues
 alt - f : yabai -m space --focus 1 && /Users/_jacksanders/polybar-refresh.sh
 alt - g : yabai -m space --focus 2 && /Users/_jacksanders/polybar-refresh.sh
 alt - c : yabai -m space --focus 3 && /Users/_jacksanders/polybar-refresh.sh
@@ -54,6 +54,8 @@ alt - 0x16 : yabai -m space --focus 6 && /Users/_jacksanders/polybar-refresh.sh
 alt - 0x1A : yabai -m space --focus 7 && /Users/_jacksanders/polybar-refresh.sh
 alt - 0x1C : yabai -m space --focus 8 && /Users/_jacksanders/polybar-refresh.sh
 alt - 0x19 : yabai -m space --focus 9 && /Users/_jacksanders/polybar-refresh.sh
+alt - 0x1D : yabai -m space --focus 10 && /Users/_jacksanders/polybar-refresh.sh
+
 
 # delete window then close space
 ctrl + alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close) && \

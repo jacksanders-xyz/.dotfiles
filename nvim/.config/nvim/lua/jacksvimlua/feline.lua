@@ -62,7 +62,6 @@ local gitsigns = require('gitsigns').setup()
 -- ('turquoise', '#698b69')
 
 
-
 -- Defined in https://github.com/Iron-E/nvim-highlite
 local _BLACK       = {'#202020', 235, 'black'}
 local _GRAY        = {'#808080', 244, 'gray'}
@@ -227,9 +226,10 @@ require('feline').setup(
                                 fg = _SIDEBAR[1],
                                 -- bg = file_color()
                                 -- bg = '#ffffff'
-                                }, str = _RIGHT_SEPARATOR,
+                                }, str = ' ',
+                                -- }, str = _RIGHT_SEPARATOR,
                         }
-                    end,
+                        end,
                 },
                {
                     -- provider = 'git_branch',
@@ -247,7 +247,8 @@ require('feline').setup(
                                     fg = _SIDEBAR[1],
                                     -- bg = file_color()
                                 -- bg = '#ffffff'
-                                }, str = _LEFT_SEPARATOR,
+                                },
+                                        -- str = _LEFT_SEPARATOR,
                             }
                         end,
                     },
@@ -294,12 +295,12 @@ require('feline').setup(
 				{
 					hl = {fg = _SIDEBAR[1], bg = _GREEN_DARK[1], style = 'bold'},
 					icon = '  ',
-					left_sep =
-					{
-						always_visible = true,
-						hl = {fg = _SIDEBAR[1], bg = _BLACK[1]},
-						str = _RIGHT_SEPARATOR,
-					},
+					-- left_sep =
+					-- {
+					-- 	always_visible = true,
+					-- 	hl = {fg = _SIDEBAR[1], bg = _BLACK[1]},
+					-- 	str = _RIGHT_SEPARATOR,
+					-- },
 					provider = 'git_branch',
 				},
 
@@ -309,7 +310,8 @@ require('feline').setup(
 					{
 						always_visible = true,
 						hl = {fg = _MIDBAR[1], bg = _GREEN_DARK[1]},
-						str = ' '.._LEFT_SEPARATOR,
+						-- str = ' '.._LEFT_SEPARATOR,
+						str = ' ',
 					},
 					provider = '',
 				},
@@ -394,7 +396,7 @@ require('feline').setup(
                                 -- fg = file_color(),
                                 bg = _SIDEBAR[1]
                             },
-							str = _LEFT_SEPARATOR,
+							-- str = _LEFT_SEPARATOR,
 						}
 					end,
 					provider = 'file_type',
@@ -404,7 +406,7 @@ require('feline').setup(
                                 -- fg = file_color(),
                                 bg = _SIDEBAR[1]
                             },
-							str = _RIGHT_SEPARATOR..' ',
+							-- str = _RIGHT_SEPARATOR..' ',
 						}
 					end,
 				},
@@ -438,7 +440,6 @@ require('feline').setup(
 				},
 			}, -- }}}
 		},
-
 		inactive =
 		{
 			{ -- Left {{{
