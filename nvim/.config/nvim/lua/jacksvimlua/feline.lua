@@ -13,6 +13,7 @@
 --[[/* CONSTANTS */]]
 local vi_mode_utils = require("feline.providers.vi_mode")
 local feline = require("feline")
+-- local CurrProfile = os.getenv("ITERM_PROFILE")
 local _BUF_ICON =
 { -- {{{
 
@@ -41,10 +42,10 @@ local _BUF_ICON =
 
         vista_markdown = '  ',
 } -- }}}
-
+-- ┼
                 -- ﬀ use this maybe?
 
-local gitsigns = require('gitsigns').setup()
+-- local gitsigns = require('gitsigns').setup()
 
 -- ('white',     '#f2e5bc')
 -- ('red',       '#cc6666')
@@ -60,6 +61,7 @@ local gitsigns = require('gitsigns').setup()
 -- ('brown',     '#a3685a')
 -- ('seagreen',  '#698b69')
 -- ('turquoise', '#698b69')
+
 
 
 -- Defined in https://github.com/Iron-E/nvim-highlite
@@ -106,6 +108,18 @@ local _PURPLE       = {'#8e6fbd', 171, 'magenta'}
 local _PURPLE_LIGHT = {'#af60af', 133, 'darkmagenta'}
 local _VIOLET = {'#b294bb', 133, 'violet'}
 
+local FILE_MODIFIED_ICON
+local FMI_SET = function()
+    -- ┼
+    local prof_dict = {
+        ['BASE_PROF'] = '┼ ',
+        ['DICTATOR_PROF'] = 'ﬀ  '
+    }
+    local CurrProfile = vim.g.FelineItermProf
+    -- FILE_MODIFIED_ICON = prof_dict[CurrProfile]
+    return prof_dict[CurrProfile]
+end
+FMI_SET()
 
 local _SIDEBAR = _BLACK
 local _MIDBAR = _GRAY_DARK
@@ -142,6 +156,8 @@ local _MODES =
 } -- }}}
 
 local _LEFT_SEPARATOR = ''
+local _RIGHT_SEPARATOR = ''
+
 local _RIGHT_SEPARATOR = ''
 
 --[[/* HELPERS */]]
@@ -252,7 +268,6 @@ require('feline').setup(
                             }
                         end,
                     },
-
                     {
                         colored_icon = false,
                         enabled = buffer_not_empty,
@@ -264,17 +279,17 @@ require('feline').setup(
                                     style = 'bold'
                                 },
 					icon = '',
-                    -- icon = 'ﬀ ',
-					provider  = {
+                    provider  = {
                         name = 'file_info',
                         opts = {
                         type = 'unique',
                       -- HERE, THIS IS WHERE YOU CHANGE THE ICON FOR FILE CHANGES!!
-                        file_modified_icon = 'ﬀ  ',
+                        file_modified_icon = FMI_SET(),
                         }
                     },
-                     right_sep =
-					{
+                    -- provider = function(file_info)
+                    -- end,
+                    right_sep = {
 						hl = {bg = _SIDEBAR[1]},
 						str = ' ',
 					},
@@ -415,7 +430,7 @@ require('feline').setup(
 					enabled = buffer_not_empty,
 					hl = {fg = _TEXT[1], bg = _SIDEBAR[1]},
 					provider = function()
-						return '┫'..(vim.api.nvim_win_get_cursor(0)[2] + 1)
+						return ' ┫'..(vim.api.nvim_win_get_cursor(0)[2] + 1)
 					end,
 				},
 				{
@@ -493,3 +508,6 @@ require('feline').setup(
 		},
 	}, -- }}}
 })
+return {
+    FMI_SET = FMI_SET,
+}

@@ -199,3 +199,6 @@ nnoremap <silent><C-\> :delmarks!<CR>
 " NETRW
 nnoremap <leader>iv :Ex<CR>
 nnoremap <leader>is <c-w><c-v>:Ex<CR>
+
+
+

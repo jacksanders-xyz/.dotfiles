@@ -64,9 +64,7 @@ ctrl + alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re 
        /Users/_jacksanders/polybar-refresh.sh
 
 
-
 # OLD AND UNUSED:
-
 # SE
 # shift + cmd + ctrl - l : yabai -m window --space next; yabai -m space --focus next
 # shift + cmd + ctrl - h : yabai -m window --space prev; yabai -m space --focus prev
@@ -98,28 +96,6 @@ ctrl + alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re 
 
 # make floating window fill right-half of screen
 # shift + alt - right  : yabai -m window --grid 1:2:1:0:1:1
-
-# fast focus desktop
-# cmd + alt - x : yabai -m space --focus recent
-# cmd + alt - z : yabai -m space --focus prev || skhd -k "ctrl + alt + cmd - z"
-#
-# cmd + alt - c : yabai -m space --focus next || skhd -k "ctrl + alt + cmd - c"
-# shift + alt - g : yabai -m space --focus  1 || skhd -k "ctrl + alt + cmd - 1"
-# shift + alt - c : yabai -m space --focus  2 || skhd -k "ctrl + alt + cmd - 2"
-# cmd + alt - r : yabai -m space --focus  3 || skhd -k "ctrl + alt + cmd - 3"
-# cmd + alt - 4 : yabai -m space --focus  4 || skhd -k "ctrl + alt + cmd - 4"
-# cmd + alt - 5 : yabai -m space --focus  5 || skhd -k "ctrl + alt + cmd - 5"
-# cmd + alt - 6 : yabai -m space --focus  6 || skhd -k "ctrl + alt + cmd - 6"
-# cmd + alt - 7 : yabai -m space --focus  7 || skhd -k "ctrl + alt + cmd - 7"
-# cmd + alt - 8 : yabai -m space --focus  8 || skhd -k "ctrl + alt + cmd - 8"
-# cmd + alt - 9 : yabai -m space --focus  9 || skhd -k "ctrl + alt + cmd - 9"
-# cmd + alt - 0 : yabai -m space --focus 10 || skhd -k "ctrl + alt + cmd - 0"
-
-# create a space
-# alt - c : yabai -m space --focus 2 && /Users/_jacksanders/polybar-refresh.sh \
-#     || yabai -m space --create && \
-#     index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
-#     yabai -m space --focus "${index}"
 
 # alt - r : yabai -m space --focus 3 && /Users/_jacksanders/polybar-refresh.sh
 # alt - l : yabai -m space --focus 4 && /Users/_jacksanders/polybar-refresh.sh
