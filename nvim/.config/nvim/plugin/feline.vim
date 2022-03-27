@@ -9,7 +9,6 @@ fun! SetStatusIconPref()
     :elseif g:FelineItermProf=='DICTATOR_PROF'
         :let g:FelineItermProf = 'BASE_PROF'
     :endif
-    " :lua require("jacksvimlua.feline").FMI_SET()
     :so /Users/_jacksanders/.dotfiles/nvim/.config/nvim/lua/jacksvimlua/feline.lua
 endfun
 

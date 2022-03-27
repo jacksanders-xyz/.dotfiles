@@ -15,19 +15,23 @@
 " Color.new('seagreen',  '#698b69')
 " Color.new('turquoise', '#698b69')
 
-
 function BufferlineTime()
    let fg_target = 'red'
+
    let fg_current  = s:fg(['Normal'], '#698b69')
    let fg_visible  = s:fg(['TabLineSel'], '#698b69')
    " let fg_visible  = s:fg(['TabLineSel'], '#efefef')
    let fg_inactive = s:fg(['TabLineFill'], '#888888')
-
-   let fg_modified = s:fg(['WarningMsg'], '#E5AB0E')
+" #b3b309 let fg_modified = s:fg(['WarningMsg'], '#0b530b')
+   let fg_modified = s:fg(['WarningMsg'], '#66999B')
+   " let fg_modified = s:fg(['Normal'], '#66999B')
+   " let fg_modified = s:fg(['Normal'], '#698b69')
    let fg_special  = s:fg(['Special'], '#599eff')
    let fg_subtle   = s:fg(['NonText', 'Comment'], '#555555')
-
    let bg_current  = s:bg(['Normal'], 'none')
+   " let bg_modified = s:bg(['Normal'],'#b3b309')
+   let bg_modified = s:bg(['Normal'],'#66999B')
+   " let bg_visible  = s:bg(['TabLineSel', 'Normal'], '#353535')
    let bg_visible  = s:bg(['TabLineSel', 'Normal'], '#353535')
    let bg_inactive = s:bg(['TabLineFill', 'StatusLine'], '#353535')
 
@@ -38,11 +42,12 @@ function BufferlineTime()
    "       -Index: buffer index
    "         -Mod: when modified
    "        -Sign: the separator between buffers
+               " \ ['BufferCurrentMod',     fg_modified, bg_current],
    "      -Target: letter in buffer-picking mode
    call s:hi_all([
    \ ['BufferCurrent',        fg_current,  bg_current],
    \ ['BufferCurrentIndex',   fg_special,  bg_current],
-   \ ['BufferCurrentMod',     fg_modified, bg_current],
+   \ ['BufferCurrentMod',     fg_modified, bg_modified],
    \ ['BufferCurrentSign',    fg_special,  bg_current],
    \ ['BufferCurrentTarget',  fg_target,   bg_current,   'bold'],
    \ ['BufferVisible',        fg_visible,  bg_visible],

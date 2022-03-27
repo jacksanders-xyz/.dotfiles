@@ -1,9 +1,22 @@
 -- BARBAR
+-- ahesnuh
+-- - local FILE_MODIFIED_ICON
+-- local FMI_SET = function()
+--     -- notehun┼
+--     local prof_dict = {
+--         ['BASE_PROF'] = '┼ ',
+--         ['DICTATOR_PROF'] = 'ﬀ  '
+--     }
+--     local CurrProfile = vim.g.FelineItermProf
+--     -- FILE_MODIFIED_ICON = prof_dict[CurrProfile]
+--     return prof_dict[CurrProfile]
+-- end
 vim.g.bufferline = {
   -- Enable/disable animations
   animation = false,
 
   -- Enable/disable auto-hiding the tab bar when there is a single buffer
+  -- auto_hide = false,
   auto_hide = false,
 
   -- Enable/disable current/total tabpages indicator (top right corner)
@@ -22,7 +35,9 @@ vim.g.bufferline = {
   -- Enable/disable icons
   -- if set to 'numbers', will show buffer index in the tabline
   -- if set to 'both', will show buffer index and icons in the tabline
-  icons = false,
+  -- icons = 'numbers',
+  -- icons = false,
+  icons = 'numbers',
 
   -- If set, the icon color will follow its corresponding buffer
   -- highlight group. By default, the Buffer*Icon group is linked to the
@@ -33,7 +48,8 @@ vim.g.bufferline = {
   -- Configure icons on the bufferline.
   icon_separator_active = '▎',
   icon_separator_inactive = '▎',
-  icon_close_tab_modified = '●',
+  -- icon_close_tab_modified = '●',
+  icon_close_tab_modified = '┼',
   icon_close_tab = '',
   icon_pinned = '車',
 

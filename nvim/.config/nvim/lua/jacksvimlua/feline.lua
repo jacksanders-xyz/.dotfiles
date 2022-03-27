@@ -45,7 +45,7 @@ local _BUF_ICON =
 -- ┼
                 -- ﬀ use this maybe?
 
--- local gitsigns = require('gitsigns').setup()
+local gitsigns = require('gitsigns').setup()
 
 -- ('white',     '#f2e5bc')
 -- ('red',       '#cc6666')
@@ -84,12 +84,29 @@ local _ORANGE       = {'#de935f', 208, 'darkyellow'}
 local _ORANGE_LIGHT = {'#f0af00', 214, 'darkyellow'}
 
 local _YELLOW = {'#f8fe7a', 227, 'yellow'}
+local _OLD_CONFIG_YELLOW = {'#b3b309', 227, 'yellow'}
+
+local _WEIRD_PINK = {'#b8376c', 227, 'yellow'}
+
+
+local _CELADON_GREEN       = {'#048A81', 46,  'green'}
+local _PTHALO_GREEN       = {'#012622', 46,  'green'}
 
 local _GREEN_DARK  = {'#99cc99', 113, 'darkgreen'}
 local _GREEN       = {'#22ff22', 46,  'green'}
+local _NU_GREEN       = {'#0b530b', 46,  'green'}
+local _NU_GREEN2       = {'#0a880a', 46,  'green'}
 local _GREEN_LIGHT = {'#99ff99', 120, 'green'}
 local _TURQUOISE    = {'#698b69', 48,  'green'}
 local _SEAGREEN    = {'#698b69', 48,  'seagreen'}
+
+
+local _PINE = {'#292E1E'}
+local _MID_TURQUOISE = {'#4ECDC4'}
+local _COFFEE = {'#A77E58'}
+local _RUST = {'#BA3F1D'}
+
+local _CADET_BLUE = {'#66999B', 63,  'darkblue'}
 
 local _BLUE = {'#81a2be', 63,  'darkblue'}
 local _TMUXDARK = {'#57577b', 63,  'darkblue'}
@@ -127,13 +144,11 @@ local _TEXT = _GRAY_LIGHT
 
 local _MODES =
 { -- {{{
-	['c']  = {'COMMAND-LINE',      _RED},
+	['c']  = {'COMMAND-LINE',      _COFFEE},
 	['ce'] = {'NORMAL EX',         _RED_DARK},
 	['cv'] = {'EX',                _RED_LIGHT},
-	['i']  = {'INSERT',            _YELLOW},
-	-- ['i']  = {'INSERT',            _GREEN},
-	['ic'] = {'INS-COMPLETE',      _GREEN_LIGHT},
-	-- ['n']  = {'NORMAL',            _PURPLE_LIGHT},
+	['i']  = {'INSERT',            _NU_GREEN},
+	['ic'] = {'INS-COMPLETE',      _NU_GREEN},
 	['n']  = {'NORMAL',            _TMUXBLUE},
 	['no'] = {'OPERATOR-PENDING',  _PURPLE},
 	['r']  = {'HIT-ENTER',         _CYAN},
@@ -158,7 +173,6 @@ local _MODES =
 local _LEFT_SEPARATOR = ''
 local _RIGHT_SEPARATOR = ''
 
-local _RIGHT_SEPARATOR = ''
 
 --[[/* HELPERS */]]
 
@@ -310,12 +324,12 @@ require('feline').setup(
 				{
 					hl = {fg = _SIDEBAR[1], bg = _GREEN_DARK[1], style = 'bold'},
 					icon = '  ',
-					-- left_sep =
-					-- {
-					-- 	always_visible = true,
-					-- 	hl = {fg = _SIDEBAR[1], bg = _BLACK[1]},
-					-- 	str = _RIGHT_SEPARATOR,
-					-- },
+
+					{
+						always_visible = true,
+						hl = {fg = _SIDEBAR[1], bg = _BLACK[1]},
+						str = _RIGHT_SEPARATOR,
+					},
 					provider = 'git_branch',
 				},
 
@@ -324,9 +338,10 @@ require('feline').setup(
 					left_sep =
 					{
 						always_visible = true,
-						hl = {fg = _MIDBAR[1], bg = _GREEN_DARK[1]},
-						-- str = ' '.._LEFT_SEPARATOR,
-						str = ' ',
+						hl = {fg = _MIDBAR[1], bg = _MIDBAR[1]},
+						str = ' '.._LEFT_SEPARATOR,
+						-- str = ' '.._RIGHT_SEPARATOR,
+						-- str = '',
 					},
 					provider = '',
 				},
