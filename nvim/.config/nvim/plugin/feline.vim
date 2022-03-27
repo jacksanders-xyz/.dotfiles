@@ -12,4 +12,4 @@ fun! SetStatusIconPref()
     :so /Users/_jacksanders/.dotfiles/nvim/.config/nvim/lua/jacksvimlua/feline.lua
 endfun
 
-command! SetScoreMode call SetStatusIconPref()
+command! SetScoreModeStatusIcon call SetStatusIconPref()

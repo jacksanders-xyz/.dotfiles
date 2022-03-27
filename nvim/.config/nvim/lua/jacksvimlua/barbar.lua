@@ -38,6 +38,7 @@ vim.g.bufferline = {
   -- icons = 'numbers',
   -- icons = false,
   icons = 'numbers',
+  -- icons = '',
 
   -- If set, the icon color will follow its corresponding buffer
   -- highlight group. By default, the Buffer*Icon group is linked to the

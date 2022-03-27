@@ -19,14 +19,15 @@ function BufferlineTime()
    let fg_target = 'red'
 
    let fg_current  = s:fg(['Normal'], '#698b69')
-   let fg_visible  = s:fg(['TabLineSel'], '#698b69')
-   " let fg_visible  = s:fg(['TabLineSel'], '#efefef')
-   let fg_inactive = s:fg(['TabLineFill'], '#888888')
+   " let fg_visible  = s:fg(['TabLineSel'], '#698b69')
+   let fg_visible  = s:fg(['TabLineSel'], '#efefef')
+let fg_inactive = s:fg(['TabLineFill'], '#888888')
 " #b3b309 let fg_modified = s:fg(['WarningMsg'], '#0b530b')
    let fg_modified = s:fg(['WarningMsg'], '#66999B')
    " let fg_modified = s:fg(['Normal'], '#66999B')
    " let fg_modified = s:fg(['Normal'], '#698b69')
    let fg_special  = s:fg(['Special'], '#599eff')
+   " let fg_special  = s:fg(['Special'], '#698b69')
    let fg_subtle   = s:fg(['NonText', 'Comment'], '#555555')
    let bg_current  = s:bg(['Normal'], 'none')
    " let bg_modified = s:bg(['Normal'],'#b3b309')
@@ -57,7 +58,7 @@ function BufferlineTime()
    \ ['BufferVisibleTarget',  fg_target,   bg_visible,   'bold'],
    \ ['BufferInactive',       fg_inactive, bg_inactive],
    \ ['BufferInactiveIndex',  fg_subtle,   bg_inactive],
-   \ ['BufferInactiveMod',    fg_modified, bg_inactive],
+   \ ['BufferInactiveMod',    fg_modified, bg_modified],
    \ ['BufferInactiveSign',   fg_subtle,   bg_inactive],
    \ ['BufferInactiveTarget', fg_target,   bg_inactive,  'bold'],
    \ ['BufferTabpages',       fg_special,  bg_inactive, 'bold'],
