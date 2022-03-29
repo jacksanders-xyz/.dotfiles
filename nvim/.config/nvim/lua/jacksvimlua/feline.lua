@@ -339,9 +339,9 @@ require('feline').setup(
 					{
 						always_visible = true,
 						hl = {fg = _MIDBAR[1], bg = _MIDBAR[1]},
-						str = ' '.._LEFT_SEPARATOR,
+						-- str = ' '.._LEFT_SEPARATOR,
 						-- str = ' '.._RIGHT_SEPARATOR,
-						-- str = '',
+						str = '',
 					},
 					provider = '',
 				},
