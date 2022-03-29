@@ -90,14 +90,14 @@ local function toggle_fwin(currPath)
         "i",
         "<C-j>",
         -- "<Esc>:lua require('jacksvimlua.ImagePathAutomator').CheckPathAgainstDestination('jacks_brain')<CR>",
-        "<Esc>:lua require('jacksvimlua.ImagePathAutomator').Reformat_and_put('JACKS_BRAIN', false)<CR>",
+        "<Esc>:lua require('jacksvimlua.ImagePathAutomator').Reformat_and_put('jacks_brain', false)<CR>",
         { silent = true }
     )
     api.nvim_buf_set_keymap(
         Iff_bufh,
         "i",
         "<C-w>",
-        "<Esc>:lua require('jacksvimlua.ImagePathAutomator').Reformat_and_put('JACKS_BRAIN', false)<CR>",
+        "<Esc>:lua require('jacksvimlua.ImagePathAutomator').Reformat_and_put('work_content', false)<CR>",
         { silent = true }
     )
 end
@@ -112,7 +112,7 @@ local function Reformat_and_put(DESTINATION, editing)
     local GIT_JACKS_BRAIN_LOCATION = 'https://github.com/jacksanders-xyz/images4jacks_brain/blob/main'
     local GIT_WORK_LOCATION = 'https://github.ibm.com/Jack-Sanders/images4work_content/blob/main'
     local OPENING = ":lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Esc>"
-    local JACKS_BRAIN_SETUP
+    -- local JACKS_BRAIN_SETUP
     local END_AND_PUT = "<Esc>Vyqp',true,false,true),'m',true)"
     local END_AND_REPLACE_BRACKETS = "<Esc>0lci]',true,false,true),'m',true)"
     local END_AND_AWAIT = "',true,false,true),'m',true)"

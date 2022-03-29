@@ -61,6 +61,7 @@ M.search_notes = function()
             "^IMAGE_POOL/",
             "%.git",
             "%.DS_Store",
+            "^jacks_brain/MUSIC"
         },
         cwd = '~/VimWiki/',
         hidden = true,
@@ -74,6 +75,7 @@ M.grep_notes = function()
             "^IMAGE_POOL/",
             "%.git",
             "%.DS_Store",
+            "^jacks_brain/MUSIC"
         },
         cwd = '~/VimWiki/',
         hidden = true,
@@ -112,12 +114,12 @@ M.ImagePathFinder = function()
     require("telescope.builtin").find_files({
         layout_strategy = "vertical",
         prompt_title = "< Image Finder >",
+        cwd = '~/VimWiki/IMAGE_POOL/',
         file_ignore_patterns = {
             "%.git",
             "%.DS_Store",
             "%README.md",
         },
-        cwd = '~/VimWiki/IMAGE_POOL/',
         hidden = true,
         attach_mappings = function(prompt_bufnr, map)
                 GrabImagePath(prompt_bufnr, map)
