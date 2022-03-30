@@ -338,10 +338,10 @@ require('feline').setup(
 					left_sep =
 					{
 						always_visible = true,
-						hl = {fg = _MIDBAR[1], bg = _MIDBAR[1]},
-						-- str = ' '.._LEFT_SEPARATOR,
+						hl = {fg = _MIDBAR[1], bg = _GREEN_DARK[1]},
+						str = ' '.._LEFT_SEPARATOR,
 						-- str = ' '.._RIGHT_SEPARATOR,
-						str = '',
+						-- str = '',
 					},
 					provider = '',
 				},
@@ -474,20 +474,20 @@ require('feline').setup(
 		{
 			{ -- Left {{{
 				{
-					hl = {fg = _BLACK[1], bg = _PURPLE[1], style = 'bold'},
+					hl = {fg = _GRAY[1], bg = _BLACK[1], style = 'bold'},
 					left_sep =
 					{
-						hl = {bg = _PURPLE[1]},
+						hl = {bg = _RUST[1]},
 						str = ' ',
 					},
 					provider = 'file_type',
 				},
 				{
-					hl = {bg = _PURPLE[1]},
+					hl = {bg = _RUST[1]},
 					provider = ' ',
 					right_sep =
 					{
-						hl = {fg = _PURPLE[1], bg = _MIDBAR[1]},
+						hl = {fg = _GRAY[1], bg = _GRAY_DARK[1]},
 						str = _RIGHT_SEPARATOR,
 					},
 				},
