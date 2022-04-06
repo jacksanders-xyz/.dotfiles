@@ -186,7 +186,8 @@ end
 local function MakeImageDirectory()
     local baseString = homeDir.."/VimWiki/IMAGE_POOL/"
     local ImagePath = vim.fn.expand('%:p:h')
-    ImagePath = string.sub(ImagePath, 25)
+   -- THIS CHANGES, THE LENGTH OF THE SPLIT, DEPENDS ON THE LENGTH OF THE PATH... SO IF YOUR ROOT NAME IS DIFF, YOU MUST CHANGE IT
+    ImagePath = string.sub(ImagePath, 29)
     local ImageDirPath = baseString..ImagePath
     local CopyToClipboard = "let @*='"..ImageDirPath.."'"
     -- print(ImageDirPath, "has been made and is copied to clipboard")

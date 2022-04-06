@@ -61,6 +61,9 @@ command! Wpath lua require("jacksvimlua.ImagePathAutomator").MakeImageDirectory(
 "OPEN DAILY MUSIC TASKS
 command! MT :e /Users/_jacksanders/VimWiki/jacks_brain/MUSIC/SELF_LEARNING_STRUCTURE.md
 
+" OPEN NEVER FORGET LIST
+command! NF :e /Users/_jacksanders/VimWiki/jacks_brain/MUSIC/Never_forget.md
+
 " OPEN THE IMAGES FOLDER TO PUSH AND PULL
 nnoremap <leader>wG <C-w><C-v>:Ex ~/VimWiki/IMAGE_POOL/<CR>
 
