@@ -110,6 +110,7 @@ alias tc="task calendar"
 alias td="task done"
 alias tu="task add +URGENT"
 alias ta="task add"
+alias tl="tmux ls"
 export EDITOR="nvim"
 
 

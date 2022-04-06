@@ -115,6 +115,7 @@ M.ImagePathFinder = function()
         layout_strategy = "vertical",
         prompt_title = "< Image Finder >",
         cwd = '~/VimWiki/IMAGE_POOL/',
+        previewer = false,
         file_ignore_patterns = {
             "%.git",
             "%.DS_Store",

@@ -19,3 +19,10 @@ gdb
 python
 ruby
 latex
+ansible
+ansible-doc
+ansible-galaxy
+ansible-inventory
+ansible-playbook
+ansible-pull
+ansible-vault
