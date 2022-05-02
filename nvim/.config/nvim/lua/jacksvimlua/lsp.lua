@@ -28,7 +28,17 @@ require'lspconfig'.sumneko_lua.setup {
     },
   },
 }
-
+require("lspconfig").gopls.setup({
+	cmd = { "gopls", "serve" },
+	settings = {
+		gopls = {
+			analyses = {
+				unusedparams = true,
+			},
+			staticcheck = true,
+		},
+	},
+})
 require'lspconfig'.vimls.setup{}
 require'lspconfig'.vuels.setup{}
 require'lspconfig'.jsonls.setup{}

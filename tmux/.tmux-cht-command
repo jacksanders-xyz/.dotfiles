@@ -17,7 +17,6 @@ less
 head
 tail
 tar
-cp
 rm
 rename
 jq
@@ -36,4 +35,5 @@ chmod
 chown
 make
 oc
+kubectl
 podman

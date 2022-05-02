@@ -75,7 +75,6 @@ style: """
     background: #{colors.tmuxblue}
 
   top: 4px
-  left: 14px
   font-family: 'Meslo LG S Regular for Powerline'
   font-size: 14px
   font-smoothing: antialiasing

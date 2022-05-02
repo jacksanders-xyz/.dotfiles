@@ -24,4 +24,4 @@ nnoremap <leader>gC :lua require('telescope.builtin').git_commits()<CR>
 nnoremap <leader>gBC :lua require('telescope.builtin').git_bcommits()<CR>
 nnoremap <leader>gS :lua require('telescope.builtin').git_status()<CR>
 nnoremap <leader>gw :lua require('telescope').extensions.git_worktree.git_worktrees()<CR>
-nnoremap <leader>gm :lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>
+nnoremap <leader>gM :lua require('telescope').extensions.git_worktree.create_git_worktree()<CR>

@@ -59,6 +59,7 @@ Plug 'nvim-treesitter/playground'
 " DEOPLETE
 Plug 'Shougo/deoplete.nvim'
 Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 
@@ -79,6 +80,9 @@ Plug 'voldikss/vim-floaterm'
 " LANGS
 Plug 'mrk21/yaml-vim'
 Plug 'osyo-manga/vim-over'
+Plug 'darrikonn/vim-gofmt', { 'do': ':GoUpdateBinaries' }
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+Plug 'stamblerre/gocode', { 'rtp': 'vim', 'do': '~/.vim/plugged/gocode/vim/symlink.sh' }
 
 " VIM-BOXDRAW
 Plug 'gyim/vim-boxdraw'

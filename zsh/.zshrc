@@ -110,7 +110,9 @@ alias tc="task calendar"
 alias td="task done"
 alias tu="task add +URGENT"
 alias ta="task add"
+
 alias tl="tmux ls"
+alias tma="tmux attach -t"
 export EDITOR="nvim"
 
 
@@ -119,6 +121,13 @@ source ~/.nvm/nvm.sh
 export CGB_USER="10"
 export PATH="/usr/local/opt/yq@3/bin:$PATH"
 export PATH="${HOME}/bin:${PATH}"
+
+# GOLANG
+export GOPATH=$HOME/go
+export GOROOT="$(brew --prefix golang)/libexec"
+export GOPATH=$HOME/goprojects
+export PATH=$PATH:$GOPATH/bin
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
 
 # KUBE_PS1 start
