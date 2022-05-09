@@ -38,7 +38,7 @@ yabai -m config top_padding                  15
 yabai -m config bottom_padding               0
 yabai -m config left_padding                 0
 yabai -m config right_padding                0
-yabai -m config window_gap                   0
+yabai -m config window_gap                   2
 
 # mission-control desktop labels
 yabai -m space 1 --label home
