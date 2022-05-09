@@ -201,7 +201,7 @@ style: """
   .disk
     color: #{colors.tmuxtan}
 
-  top: 6px
+  top: 1px
   right: 14px
   font-family: 'Meslo LG S Regular for Powerline'
   font-size: 14px
