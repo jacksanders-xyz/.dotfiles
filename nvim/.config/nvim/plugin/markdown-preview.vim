@@ -22,6 +22,8 @@ endfun
 nmap <leader>MP <Plug>MarkdownPreview<CR>
 nmap <leader>MS <Plug>MarkdownPreviewStop<CR>
 nmap <C-g> <Plug>MarkdownPreviewToggle<CR>
+
+" UNCOMMENT THE AUGROUP BELOW TO USE
 nmap <leader>MT :let g:trackTabTrigger = !get(g:, 'trackTabTrigger', 1)<CR>
 " nmap <C-g> <Plug>MarkdownPreviewToggle<CR>:call SetWorkspaceAndReturnToIterm()<CR>
 
@@ -34,7 +36,7 @@ let g:mkdp_page_title = '${name}'
     " \ 'disable_filename': 1
     " \ }
 
-augroup trackTabs
-    " autocmd!
-    autocmd! BufEnter *.md if get(g:, 'trackTabTrigger', 1) | :call GrabWindowTab() | endif
-augroup END
+" TO TRACKTABS UNCOMMENT THE BELOW BLOCK:
+" augroup trackTabs
+    " autocmd! BufEnter *.md if get(g:, 'trackTabTrigger', 1) | :call GrabWindowTab() | endif
+" augroup END

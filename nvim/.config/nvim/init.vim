@@ -18,9 +18,9 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-markdown'
+" Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-rhubarb'
-" Plug 'tpope/vim-unimpaired'
+"" Plug 'tpope/vim-unimpaired'
 
 " STARTIFY
 Plug 'mhinz/vim-startify'
@@ -57,13 +57,12 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 
 " DEOPLETE
-Plug 'Shougo/deoplete.nvim'
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-
+" Plug 'Shougo/deoplete.nvim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 
-" PRODUCTIVITY/VISUAL
+" " PRODUCTIVITY/VISUAL
 Plug 'sirVer/ultisnips'
 Plug 'szw/vim-maximizer'
 Plug 'reedes/vim-pencil'
