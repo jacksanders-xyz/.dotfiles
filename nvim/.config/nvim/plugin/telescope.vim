@@ -22,7 +22,7 @@ nnoremap <leader>fpb :lua require('telescope.builtin').buffers()<CR>
 nnoremap <leader>fc :Telescope neoclip<CR>
 
 " BOOKMARKS
-nnoremap <leader>fc :Telescope neoclip<CR>
+nnoremap <leader>fB :Telescope bookmarks<CR>
 
 " GIT
 nnoremap <leader>gc :lua require('jacksvimlua.telescope').git_branches()<CR>
