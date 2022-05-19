@@ -29,13 +29,15 @@ Plug 'mhinz/vim-startify'
 Plug 'xarthurx/taskwarrior.vim'
 Plug 'tools-life/taskwiki'
 
-" FIND FILES
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
+" FIND FILES / TELESCOPE
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'ThePrimeagen/harpoon'
+Plug 'dhruvmanila/telescope-bookmarks.nvim'
 Plug 'ThePrimeagen/git-worktree.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
+Plug 'AckslD/nvim-neoclip.lua'
 
 " COLORS
 Plug 'altercation/vim-colors-solarized'

@@ -1,11 +1,11 @@
 lua require('jacksvimlua')
 
 " TELESCOPE GENERAL
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>ff <cmd>Telescope find_files<CR>
+nnoremap <leader>fg <cmd>Telescope live_grep<CR>
+nnoremap <leader>fb <cmd>Telescope buffers<CR>
 nnoremap <C-p> :lua require('telescope.builtin').git_files()<CR>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<CR>
 
 " CUSTOM LOOKIN AROUND
 nnoremap <leader>fn :lua require('jacksvimlua.telescope').search_notes()<CR>
@@ -17,6 +17,12 @@ nnoremap <leader>fdg :lua require('jacksvimlua.telescope').grep_dotfiles({ hidde
 nnoremap <leader>fps :lua require('telescope.builtin').grep_string({ search = vim.fn.input("Grep For > ")})<CR>
 nnoremap <leader>fpw :lua require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }<CR>
 nnoremap <leader>fpb :lua require('telescope.builtin').buffers()<CR>
+
+" NEO-CLIP
+nnoremap <leader>fc :Telescope neoclip<CR>
+
+" BOOKMARKS
+nnoremap <leader>fc :Telescope neoclip<CR>
 
 " GIT
 nnoremap <leader>gc :lua require('jacksvimlua.telescope').git_branches()<CR>
