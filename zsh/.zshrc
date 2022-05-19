@@ -129,6 +129,8 @@ export GOPATH=$HOME/goprojects
 export PATH=$PATH:$GOPATH/bin
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
+# ZOXIDE
+eval "$(zoxide init zsh)"
 
 # KUBE_PS1 start
 KUBE_PS1_SYMBOL_ENABLE=false

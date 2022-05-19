@@ -23,11 +23,13 @@ require("telescope").setup({
             override_generic_sorter = false,
             override_file_sorter = true,
         },
+        file_browser = {
+           path = "%:p:h"
+        },
         bookmarks = {
           selected_browser = 'chrome',
           -- Either provide a shell command to open the URL
           url_open_command = 'open',
-
           -- Available: 'vim_external', 'open_browser'
           url_open_plugin = nil,
           full_path = true,
@@ -39,6 +41,9 @@ require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("git_worktree")
 require('telescope').load_extension('bookmarks')
 require('telescope').load_extension('neoclip')
+require'telescope'.load_extension('zoxide')
+require("telescope").load_extension("file_browser")
+
 require'neoclip'.setup({
      keys = {
         telescope = {

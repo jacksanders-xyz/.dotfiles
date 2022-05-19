@@ -33,11 +33,15 @@ Plug 'tools-life/taskwiki'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'ThePrimeagen/harpoon'
-Plug 'dhruvmanila/telescope-bookmarks.nvim'
-Plug 'ThePrimeagen/git-worktree.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-lua/popup.nvim'
+
+" TELESCOPE EXTENSIONS
+Plug 'dhruvmanila/telescope-bookmarks.nvim'
+Plug 'ThePrimeagen/git-worktree.nvim'
 Plug 'AckslD/nvim-neoclip.lua'
+Plug 'jvgrootveld/telescope-zoxide'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 
 " COLORS
 Plug 'altercation/vim-colors-solarized'

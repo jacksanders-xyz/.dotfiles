@@ -21,6 +21,9 @@ nnoremap <leader>fpb :lua require('telescope.builtin').buffers()<CR>
 " NEO-CLIP
 nnoremap <leader>fc :Telescope neoclip<CR>
 
+" FILE BROWSER
+nnoremap <leader>fl :Telescope file_browser<CR>
+
 " BOOKMARKS
 nnoremap <leader>fB :Telescope bookmarks<CR>
 
