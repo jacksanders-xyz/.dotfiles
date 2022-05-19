@@ -24,7 +24,8 @@ require("telescope").setup({
             override_file_sorter = true,
         },
         file_browser = {
-           path = "%:p:h"
+            path = "%:p:h",
+            dir_icon = ''
         },
         bookmarks = {
           selected_browser = 'chrome',
