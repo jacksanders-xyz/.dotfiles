@@ -143,3 +143,9 @@ function! s:hi(name, ...)
    end
 endfunc
 call BufferlineTime()
+
+
+" augroup jack_BARBAR
+"     autocmd! BufNew * :BufferOrderByWindowNumber
+" augroup END
+

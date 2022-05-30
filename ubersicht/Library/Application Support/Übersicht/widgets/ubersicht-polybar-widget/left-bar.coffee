@@ -74,10 +74,9 @@ style: """
     color: #{colors.nvimback}
     background: #{colors.tmuxblue}
 
-  top: 4px
-  left: 5px
+  top: 0px
   font-family: 'Meslo LG S Regular for Powerline'
-  font-size: 14px
+  font-size: 13px
   font-smoothing: antialiasing
   z-index: 0
 """

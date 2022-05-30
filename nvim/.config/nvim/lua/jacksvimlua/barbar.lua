@@ -70,7 +70,8 @@ vim.g.bufferline = {
   -- already assigned, the behavior is to assign letters in order of
   -- usability (see order below)
   semantic_letters = false,
-
+    -- order_by_window_number = true,
+  -- order_by_buffer_number = true,
   -- Sets the name of unnamed buffers. By default format is "[Buffer X]"
   -- where X is the buffer number. But only a static string is accepted here.
   no_name_title = nil,

@@ -11,5 +11,9 @@ alias tu="task add +URGENT"
 alias ta="task add"
 
 
+alias tl="tmux ls"
+alias tma="tmux attach -t"
+
+
 
 

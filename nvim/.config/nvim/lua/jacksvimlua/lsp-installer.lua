@@ -1,6 +1,6 @@
 local lsp_installer = require("nvim-lsp-installer")
 
-lsp_installer.on_server_ready(function(server)
+lsp_installer.setup{ (function(server)
   local opts = {
      highlight_hovered_item = true,
   }
@@ -29,4 +29,4 @@ lsp_installer.on_server_ready(function(server)
     end
 
     server:setup(opts)
-end)
+end)}

@@ -26,13 +26,19 @@ Plug 'mhinz/vim-startify'
 Plug 'xarthurx/taskwarrior.vim'
 Plug 'tools-life/taskwiki'
 
-" FIND FILES
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
+" FIND FILES / TELESCOPE
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'ThePrimeagen/harpoon'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-lua/popup.nvim'
+
+" TELESCOPE EXTENSIONS
+Plug 'dhruvmanila/telescope-bookmarks.nvim'
 Plug 'ThePrimeagen/git-worktree.nvim'
+Plug 'AckslD/nvim-neoclip.lua'
+Plug 'jvgrootveld/telescope-zoxide'
+Plug 'nvim-telescope/telescope-file-browser.nvim'
 
 " TABLINE
 Plug 'romgrk/barbar.nvim'
@@ -68,9 +74,9 @@ Plug 'nvim-treesitter/playground'
 
 " DEOPLETE
 Plug 'Shougo/deoplete.nvim'
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
+" Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+" Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 
 " PRODUCTIVITY/VISUAL
 Plug 'sirVer/ultisnips'

@@ -128,6 +128,9 @@ source ~/.nvm/nvm.sh
 
 # KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
 
+# ZOXIDE
+eval "$(zoxide init zsh)"
+
 # source "${HOME}/bin/kube-ps1.sh"
 # PROMPT='$(kube_ps1)'$PROMPT
 export PATH="${HOME}/.npm/bin:${PATH}"

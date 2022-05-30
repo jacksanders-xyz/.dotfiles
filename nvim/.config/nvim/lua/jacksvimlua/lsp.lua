@@ -29,5 +29,14 @@ require'lspconfig'.sumneko_lua.setup {
   },
 }
 
+require'lspconfig'.jedi_language_server.setup{}
 require'lspconfig'.vimls.setup{}
 require'lspconfig'.vuels.setup{}
+
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+require'lspconfig'.jsonls.setup {
+  capabilities = capabilities,
+}
+require'lspconfig'.jsonls.setup{}

@@ -127,7 +127,7 @@ update: (output) ->
   $(".time-output")    .text("#{time}")
   $(".wifi-output")    .text("#{wifi}")
   $(".volume-output")  .text("#{volume}%")
-  $(".volume-input")  .text("#{input}%")
+  $(".volume-input")   .text("#{input}%")
   $(".date-output")    .text("#{date}")
   $(".cpu-output")     .text("#{cpu}%")
   $(".disk-output")    .text("#{disk}")
@@ -151,7 +151,6 @@ handleBattery: ( percentage, charging ) ->
   $(".battery-icon").html("<i class=\"fa #{batteryIcon} \"></i>")
 
 
-
 handleVolume: (volume) ->
   volumeIcon = switch
     when volume ==   0 then "fa-volume-off"
@@ -167,22 +166,18 @@ handleInput: (volume) ->
 
 
 style: """
-
   .elements
     display: flex
     align-items: stretch
     height: 14px
     margin: 0 4px
-
   .elements > div
     display: flex
     align-items: center
     padding: 2px 2px
     margin: 0px auto
-
   .spacer
     color: #{colors.gray}
-
   .battery
     color: #{colors.green}
   .time
@@ -201,9 +196,8 @@ style: """
     color: #{colors.yellow}
   .disk
     color: #{colors.tmuxtan}
-
-  top: 6px
-  right: 5px
+  top: 1px
+  right: 0px
   font-family: 'Meslo LG S Regular for Powerline'
   font-size: 14px
   font-smoothing: antialiasing
