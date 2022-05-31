@@ -40,7 +40,7 @@
                         "manipulators": [
                             {
                                 "from": {
-                                    "key_code": "h",
+                                    "key_code": "j",
                                     "modifiers": {
                                         "mandatory": [
                                             "right_command"
