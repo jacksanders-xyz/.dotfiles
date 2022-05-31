@@ -11,7 +11,8 @@ alt - t : yabai -m window --focus recent
 # manipulate a youtube vid from anywhere
 # alt - n : osascript /Users/jsanders/PLAYPAUSE2.scpt
 
-alt - n : skhd -k "alt - l" && skhd -k "space" ; sleep 0.18; skhd -k "alt - h"
+# alt - n : skhd -k "alt - l" && skhd -k "space" ; sleep 0.18; skhd -k "alt - h"
+# right now, karabiner is doing alt-h
 alt - e : skhd -k "alt - l" && skhd -k "left" ; sleep 0.18; skhd -k "alt - h"
 alt - y : skhd -k "alt - l" && skhd -k "right" ; sleep 0.18; skhd -k "alt - h"
 

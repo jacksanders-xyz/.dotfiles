@@ -20,14 +20,14 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 " Plug 'tpope/vim-markdown'
 Plug 'tpope/vim-rhubarb'
-"" Plug 'tpope/vim-unimpaired'
+" Plug 'tpope/vim-unimpaired'
 
 " STARTIFY
-Plug 'mhinz/vim-startify'
+ Plug 'mhinz/vim-startify'
 
 " TASKWARRIOR
 Plug 'xarthurx/taskwarrior.vim'
-Plug 'tools-life/taskwiki'
+" Plug 'tools-life/taskwiki'
 
 " FIND FILES / TELESCOPE
 Plug 'nvim-telescope/telescope.nvim'
@@ -47,11 +47,10 @@ Plug 'nvim-telescope/telescope-file-browser.nvim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'gruvbox-community/gruvbox'
 Plug 'tjdevries/colorbuddy.vim'
 Plug 'tjdevries/gruvbuddy.nvim'
 
-"LSP
+" LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
 
@@ -79,8 +78,8 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vimwiki/vimwiki'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 
-" FLOATTERM
-Plug 'voldikss/vim-floaterm'
+" " FLOATTERM
+" Plug 'voldikss/vim-floaterm'
 
 " LANGS
 Plug 'mrk21/yaml-vim'
