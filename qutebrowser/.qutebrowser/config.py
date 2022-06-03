@@ -186,30 +186,35 @@ c.colors.webpage.darkmode.enabled = True
 #   - lightness-hsl: Modify colors by converting them to the HSL color space and inverting the lightness (i.e. the "L" in HSL).
 #   - brightness-rgb: Modify colors by subtracting each of r, g, and b from their maximum value.
 c.colors.webpage.darkmode.algorithm = 'lightness-cielab'
+import dracula.draw
+# Load existing settings made via :set
+config.load_autoconfig()
+
+dracula.draw.blood(c, {
+    'spacing': {
+        'vertical': 6,
+        'horizontal': 8
+    }
+})
 
 # Bindings for normal mode
 config.bind('<<', ':tab-move -')
+config.bind('>>', ':tab-move +')
+
 config.bind('<Ctrl+c>', 'clear-keychain ;; search ;; fullscreen --leave')
 config.bind('<Ctrl+e>', 'scroll-page 0 0.3')
 config.bind('<Ctrl+y>', 'scroll-page 0 -0.3')
-config.bind('>>', ':tab-move +')
 config.bind('J', 'tab-prev')
 config.bind('K', 'tab-next')
-config.bind('down', 'open')
-config.bind('x', 'tab-close')
-config.bind('yt', ':tab-clone')
+# config.bind('down', 'open')
+# config.bind('x', ':tab-close')
+config.bind('yt', 'tab-clone')
+
+# config.bind("<Ctrl-p>", "completion-item-focus prev", "command")
+# config.bind("<Ctrl-n>", "completion-item-focus next", "command")
+# config.bind("<Ctrl-k>", "command-history-next", "command")
+# config.bind("<Ctrl-j>", "command-history-prev", "command")
 
 config.bind("<Ctrl-p>", "fake-key <Up>", "insert")
 config.bind("<Ctrl-n>", "fake-key <Down>", "insert")
 config.bind("<Ctrl-w>", "fake-key <Alt-Backspace>", "insert")
-
-# import dracula.draw
-# # Load existing settings made via :set
-# config.load_autoconfig()
-
-# dracula.draw.blood(c, {
-#     'spacing': {
-#         'vertical': 6,
-#         'horizontal': 8
-#     }
-# })
