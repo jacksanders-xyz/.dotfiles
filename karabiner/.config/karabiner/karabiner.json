@@ -123,7 +123,7 @@
                     {
                         "manipulators": [
                             {
-                                "description": "change left arrow in ableton to u",
+                                "description": "change left arrow to right in ableton on the macropad",
                                 "from": {
                                     "key_code": "left_arrow"
                                 },
@@ -138,6 +138,15 @@
                                               "bundle_identifiers": [
                                                 "^com\\.ableton\\.live$"
                                               ]
+                                            },
+                                            {
+                                                "type": "device_if",
+                                                "identifiers": [
+                                                    {
+                                                        "vendor_id": 51984,
+                                                        "product_id": 8499
+                                                    }
+                                                ]
                                             }
                                           ],
                                 "type": "basic"
