@@ -57,6 +57,16 @@ alt - 0x1C : yabai -m space --focus 8 && /Users/_jacksanders/polybar-refresh.sh
 alt - 0x19 : yabai -m space --focus 9 && /Users/_jacksanders/polybar-refresh.sh
 alt - 0x1D : yabai -m space --focus 10 && /Users/_jacksanders/polybar-refresh.sh
 
+# alt - f : yabai -m space --focus 1
+# alt - g : yabai -m space --focus 2
+# alt - c : yabai -m space --focus 3
+# alt - r : yabai -m space --focus 4
+# alt - 0x17 : yabai -m space --focus 5
+# alt - 0x16 : yabai -m space --focus 6
+# alt - 0x1A : yabai -m space --focus 7
+# alt - 0x1C : yabai -m space --focus 8
+# alt - 0x19 : yabai -m space --focus 9
+# alt - 0x1D : yabai -m space --focus 10
 
 # delete window then close space
 ctrl + alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close) && \

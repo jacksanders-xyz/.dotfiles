@@ -109,6 +109,7 @@ Plug 'davidgranstrom/scnvim', { 'do': {-> scnvim#install() } }
 Plug 'Iron-E/nvim-libmodal'
 
 " OTHER
+Plug 'kchmck/vim-coffee-script'
 Plug 'thinca/vim-qfreplace'
 Plug 'kshenoy/vim-signature'
 Plug 'editorconfig/editorconfig-vim'

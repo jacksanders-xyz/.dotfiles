@@ -12,6 +12,7 @@ yabai -m config window_opacity               off
 yabai -m config window_opacity_duration      0.0
 yabai -m config active_window_opacity        1.0
 yabai -m config normal_window_opacity        0.90
+
 yabai -m config window_border                on
 yabai -m config window_border_width          6
 yabai -m config active_window_border_color   0xff3e5ea3
@@ -72,8 +73,14 @@ yabai -m rule --add app="^Ableton Live 11 Standard$" manage=off space=ableton
 yabai -m config --space misc layout        float
 yabai -m config --space home layout        float
 
+# refresh my Übersicht bar when the space changes
+# yabai -m signal --add event=space_changed \
+#     action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"ubersicht-polybar-widget-left-bar-coffee\"'"
+
 ## If I close the active window, focus on any other visible window.
-yabai -m signal --add event=window_destroyed action="bash /Users/_jacksanders/yabScripts/window-focus-on-destroy.sh"
+yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
+
+echo "yabai configuration loaded.."
 
 # IGNORE THESE APPS
 yabai -m rule --add label="Finder" app="^Finder$" manage=off layer=normal
