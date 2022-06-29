@@ -123,34 +123,139 @@
                     {
                         "manipulators": [
                             {
-                                "description": "change left arrow to right in ableton on the macropad",
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.ableton\\.live$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    },
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 8499,
+                                                "vendor_id": 51984
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "MACROPAD, change down arrow to space in ableton (start/stop)",
                                 "from": {
-                                    "key_code": "left_arrow"
+                                    "key_code": "down_arrow"
                                 },
                                 "to": [
                                     {
-                                        "key_code": "right_arrow"
+                                        "key_code": "spacebar"
                                     }
                                 ],
+                                "type": "basic"
+                            },
+                            {
                                 "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.ableton\\.live$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    },
+                                    {
+                                        "identifiers": [
                                             {
-                                              "type": "frontmost_application_if",
-                                              "bundle_identifiers": [
-                                                "^com\\.ableton\\.live$"
-                                              ]
-                                            },
-                                            {
-                                                "type": "device_if",
-                                                "identifiers": [
-                                                    {
-                                                        "vendor_id": 51984,
-                                                        "product_id": 8499
-                                                    }
-                                                ]
+                                                "product_id": 8499,
+                                                "vendor_id": 51984
                                             }
-                                          ],
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "MACROPAD, change macromod + play/pause button to record",
+                                "from": {
+                                    "key_code": "play_or_pause"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "f9"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.ableton\\.live$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    },
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 8499,
+                                                "vendor_id": 51984
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "MACROPAD, change macromod + right arrow to do another take",
+                                "from": {
+                                    "key_code": "fastforward"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "spacebar"
+                                    },
+                                    {
+                                        "key_code": "vk_none",
+                                        "hold_down_milliseconds": 100
+                                    },
+                                    {
+                                        "key_code": "f9"
+                                    }
+                                ],
+                                "type": "basic"
+                            },
+                            {
+                                "conditions": [
+                                    {
+                                        "bundle_identifiers": [
+                                            "^com\\.ableton\\.live$"
+                                        ],
+                                        "type": "frontmost_application_if"
+                                    },
+                                    {
+                                        "identifiers": [
+                                            {
+                                                "product_id": 8499,
+                                                "vendor_id": 51984
+                                            }
+                                        ],
+                                        "type": "device_if"
+                                    }
+                                ],
+                                "description": "MACROPAD, change macromod + left arrow to do beginning",
+                                "from": {
+                                    "key_code": "rewind"
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "spacebar"
+                                    },
+                                    {
+                                        "key_code": "vk_none",
+                                        "hold_down_milliseconds": 100
+                                    },
+                                    {
+                                        "key_code": "home"
+                                    },
+                                    {
+                                        "key_code": "spacebar"
+                                    }
+                                ],
                                 "type": "basic"
                             }
+
                         ]
                     }
                 ]
@@ -419,4 +524,3 @@
         }
     ]
 }
-
