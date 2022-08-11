@@ -4,6 +4,7 @@ require("jacksvimlua.treesitter")
 require("jacksvimlua.libmodal")
 require("jacksvimlua.lsp-installer")
 require("jacksvimlua.ImagePathAutomator")
+require("jacksvimlua.nvim-docker")
 
 P = function(v)
   print(vim.inspect(v))

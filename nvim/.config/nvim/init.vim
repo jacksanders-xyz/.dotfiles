@@ -50,6 +50,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'tjdevries/colorbuddy.vim'
 Plug 'tjdevries/gruvbuddy.nvim'
 
+
 " LSP
 Plug 'neovim/nvim-lspconfig'
 Plug 'williamboman/nvim-lsp-installer'
@@ -61,13 +62,12 @@ Plug 'puremourning/vimspector'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 
-" DEOPLETE
-" Plug 'Shougo/deoplete.nvim'
+Plug 'Shougo/deoplete.nvim'
+" Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'deoplete-plugins/deoplete-go', { 'do': 'make'}
-Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
+" Plug 'tbodt/deoplete-tabnine', { 'do': './install.sh' }
 
-" " PRODUCTIVITY/VISUAL
+" PRODUCTIVITY/VISUAL
 Plug 'sirVer/ultisnips'
 Plug 'szw/vim-maximizer'
 Plug 'reedes/vim-pencil'
@@ -96,6 +96,10 @@ Plug 'Iron-E/nvim-libmodal'
 
 " COFFEE SCRIPT UNTIL TREE SITTER SUPPORTS
 Plug 'kchmck/vim-coffee-script'
+
+" DOCKER CONTAINERS
+Plug 'dgrbrady/nvim-docker'
+Plug 'MunifTanjim/nui.nvim'
 
 " OTHER
 Plug 'thinca/vim-qfreplace'
@@ -144,6 +148,7 @@ set statusline+=%*
 function! VisualFindAndReplace()
     :OverCommandLine%s/
 endfunction
+
 function! VisualFindAndReplaceWithSelection() range
     :'<,'>OverCommandLine s/
 endfunction

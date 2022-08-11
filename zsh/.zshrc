@@ -113,6 +113,7 @@ alias ta="task add"
 
 alias tl="tmux ls"
 alias tma="tmux attach -t"
+alias tmn="tmux new -t"
 export EDITOR="nvim"
 
 
