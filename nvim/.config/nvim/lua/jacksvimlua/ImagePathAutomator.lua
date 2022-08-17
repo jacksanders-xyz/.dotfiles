@@ -203,5 +203,4 @@ return {
     Reformat_and_put = Reformat_and_put,
     Telescope_Path_Constructor = Telescope_Path_Constructor,
     CheckPathAgainstDestination = CheckPathAgainstDestination,
-    MakeImageDirectory = MakeImageDirectory,
 }
