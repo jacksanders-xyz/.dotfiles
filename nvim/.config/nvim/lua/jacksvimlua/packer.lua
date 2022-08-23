@@ -12,16 +12,13 @@ return require('packer').startup(function(use)
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
     use 'tpope/vim-commentary'
-    -- use 'tpope/vim-markdown'
     use 'tpope/vim-rhubarb'
-    -- use 'tpope/vim-unimpaired'
 
     -- STARTIFY
      use 'mhinz/vim-startify'
 
     -- TASKWARRIOR
     use 'xarthurx/taskwarrior.vim'
-    -- use 'tools-life/taskwiki'
 
     -- FIND FILES / TELESCOPE
     use 'nvim-telescope/telescope.nvim'
@@ -56,13 +53,8 @@ return require('packer').startup(function(use)
     -- use('simrat39/symbols-outline.nvim')
 
     -- ICONS
-    -- use {
-    --     'yamatsum/nvim-nonicons',
-    --     requires = {'kyazdani42/nvim-web-devicons'}
-    -- }
-
-    -- ORG MODE
-    use 'nvim-orgmode/orgmode'
+    use 'kyazdani42/nvim-web-devicons'
+    -- use { 'yamatsum/nvim-nonicons', requires = {'kyazdani42/nvim-web-devicons'} }
 
     -- LSP
     use 'neovim/nvim-lspconfig'
@@ -85,9 +77,6 @@ return require('packer').startup(function(use)
     -- VIM WIKI
     use 'vimwiki/vimwiki'
     use { 'iamcco/markdown-preview.nvim', run = 'cd app && yarn install', cmd = 'MarkdownPreview' }
-
-    -- FLOATTERM
-    -- use 'voldikss/vim-floaterm'
 
     -- LANGS
     use 'mrk21/yaml-vim'
@@ -115,4 +104,3 @@ return require('packer').startup(function(use)
     use 'posva/vim-vue'
     use { 'kevinhwang91/rnvimr', run = 'make sync'}
 end)
-
