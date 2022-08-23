@@ -6,7 +6,7 @@ local inoremap = Remap.inoremap
 local xnoremap = Remap.xnoremap
 local nmap = Remap.nmap
 
--- BASIC REMAPS
+-- GENERAL VIM REMAPS
 
 -- EASIER SEARCH AND REPLACE
 nnoremap("<leader>fr", ":%s/")
@@ -31,6 +31,7 @@ nnoremap("<leader>.", "@:")
 -- YANK/PUT FROM/TO CLIPBOARD
 vnoremap('<leader>y', '"*y')
 nnoremap('<leader>p', '"*P')
+vnoremap('<leader>p', '"*P')
 inoremap('<c-p>', '<ESC>*Pi"')
 
 -- MAKE Y BEHAVE LIKE ALL THE OTHER CAPITAL LETTERS

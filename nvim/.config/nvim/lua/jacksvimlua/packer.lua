@@ -3,7 +3,7 @@
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function(use)
-  -- Packer can manage itself
+    -- Packer can manage itself
     use 'wbthomason/packer.nvim'
 
     -- T-POPE
@@ -44,6 +44,25 @@ return require('packer').startup(function(use)
     use 'tjdevries/colorbuddy.vim'
     use 'tjdevries/gruvbuddy.nvim'
 
+    -- COMPLETION
+    use('hrsh7th/nvim-cmp')
+    use('tzachar/cmp-tabnine', { run = './install.sh', requires = 'hrsh7th/nvim-cmp' })
+    use('hrsh7th/cmp-nvim-lsp')
+    use('hrsh7th/cmp-buffer')
+    use('nvim-lua/lsp_extensions.nvim')
+    use('quangnguyen30192/cmp-nvim-ultisnips')
+    use('onsails/lspkind-nvim')
+    use('glepnir/lspsaga.nvim')
+    -- use('simrat39/symbols-outline.nvim')
+
+    -- ICONS
+    -- use {
+    --     'yamatsum/nvim-nonicons',
+    --     requires = {'kyazdani42/nvim-web-devicons'}
+    -- }
+
+    -- ORG MODE
+    use 'nvim-orgmode/orgmode'
 
     -- LSP
     use 'neovim/nvim-lspconfig'
@@ -55,9 +74,6 @@ return require('packer').startup(function(use)
     -- TREESITTER
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'nvim-treesitter/playground'
-
-    use { 'Shougo/deoplete.nvim', run = ':UpdateRemotePlugins' }
-    use { 'tbodt/deoplete-tabnine', run = './install.sh' }
 
     -- PRODUCTIVITY/VISUAL
     use 'sirVer/ultisnips'
@@ -77,7 +93,6 @@ return require('packer').startup(function(use)
     use 'mrk21/yaml-vim'
     use 'osyo-manga/vim-over'
     use { 'darrikonn/vim-gofmt', run = ':GoUpdateBinaries' }
-    use { 'deoplete-plugins/deoplete-go', run = 'make'}
     -- use {'stamblerre/gocode', rtp = 'vim', run = '~/.vim/plugged/gocode/vim/symlink.sh' }}
 
     -- VIM-BOXDRAW

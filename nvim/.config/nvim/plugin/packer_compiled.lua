@@ -69,25 +69,30 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
+  },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-ultisnips"] = {
+    loaded = true,
+    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/cmp-nvim-ultisnips",
+    url = "https://github.com/quangnguyen30192/cmp-nvim-ultisnips"
+  },
+  ["cmp-tabnine"] = {
+    loaded = true,
+    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/cmp-tabnine",
+    url = "https://github.com/tzachar/cmp-tabnine"
+  },
   ["colorbuddy.vim"] = {
     loaded = true,
     path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/colorbuddy.vim",
     url = "https://github.com/tjdevries/colorbuddy.vim"
-  },
-  ["deoplete-go"] = {
-    loaded = true,
-    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/deoplete-go",
-    url = "https://github.com/deoplete-plugins/deoplete-go"
-  },
-  ["deoplete-tabnine"] = {
-    loaded = true,
-    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/deoplete-tabnine",
-    url = "https://github.com/tbodt/deoplete-tabnine"
-  },
-  ["deoplete.nvim"] = {
-    loaded = true,
-    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/deoplete.nvim",
-    url = "https://github.com/Shougo/deoplete.nvim"
   },
   ["editorconfig-vim"] = {
     loaded = true,
@@ -114,6 +119,21 @@ _G.packer_plugins = {
     path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/harpoon",
     url = "https://github.com/ThePrimeagen/harpoon"
   },
+  ["lsp_extensions.nvim"] = {
+    loaded = true,
+    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/lsp_extensions.nvim",
+    url = "https://github.com/nvim-lua/lsp_extensions.nvim"
+  },
+  ["lspkind-nvim"] = {
+    loaded = true,
+    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/lspkind-nvim",
+    url = "https://github.com/onsails/lspkind-nvim"
+  },
+  ["lspsaga.nvim"] = {
+    loaded = true,
+    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/lspsaga.nvim",
+    url = "https://github.com/glepnir/lspsaga.nvim"
+  },
   ["markdown-preview.nvim"] = {
     commands = { "MarkdownPreview" },
     loaded = false,
@@ -126,6 +146,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/nui.nvim",
     url = "https://github.com/MunifTanjim/nui.nvim"
+  },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-docker"] = {
     loaded = true,
@@ -156,6 +181,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  orgmode = {
+    loaded = true,
+    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/orgmode",
+    url = "https://github.com/nvim-orgmode/orgmode"
   },
   ["packer.nvim"] = {
     loaded = true,

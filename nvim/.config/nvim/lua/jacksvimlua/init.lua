@@ -3,6 +3,7 @@ require("jacksvimlua.packer")
 require("jacksvimlua.remap-binder-helper")
 require("jacksvimlua.harpoon")
 require('jacksvimlua.treesitter')
+require('jacksvimlua.orgmode')
 
 P = function(v)
   print(vim.inspect(v))
