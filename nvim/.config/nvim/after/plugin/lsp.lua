@@ -6,7 +6,8 @@ local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
--- SET UP NVIM CMP
+
+-- NVIM CMP
 local cmp = require("cmp")
 local source_mapping = {
 	buffer = "[Buffer]",
@@ -83,14 +84,9 @@ local function config(_config)
 end
 
 -- LSP CONFIG
--- local runtime_path = vim.split(package.path, ';')
--- table.insert(runtime_path, "lua/?.lua")
--- table.insert(runtime_path, "lua/?/init.lua")
--- require("symbols-outline").setup(opts)
-
 -- LSP LANGUAGE SERVERS
-require'lspconfig'.tsserver.setup{}
-require'lspconfig'.sumneko_lua.setup {
+require'lspconfig'.tsserver.setup(config())
+require'lspconfig'.sumneko_lua.setup(config({
 -- cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
   settings = {
     Lua = {
@@ -114,8 +110,9 @@ require'lspconfig'.sumneko_lua.setup {
       },
     },
   },
-}
-require("lspconfig").gopls.setup({
+}))
+
+require("lspconfig").gopls.setup(config({
 	cmd = { "gopls", "serve" },
 	settings = {
 		gopls = {
@@ -125,8 +122,8 @@ require("lspconfig").gopls.setup({
 			staticcheck = true,
 		},
 	},
-})
-require'lspconfig'.vimls.setup{}
-require'lspconfig'.vuels.setup{}
-require'lspconfig'.jsonls.setup{}
-require'lspconfig'.bashls.setup{}
+}))
+require'lspconfig'.vimls.setup(config())
+require'lspconfig'.vuels.setup(config())
+require'lspconfig'.jsonls.setup(config())
+require'lspconfig'.bashls.setup(config())
