@@ -55,3 +55,13 @@ nnoremap("<C-\\>", ":delmarks!<CR>")
 -- NERDTREE
 nnoremap("<leader>iv", ":Ex<CR>")
 nnoremap("<leader>is", "<C-w><C-v>:Ex<CR>")
+
+-- COMMANDS
+
+-- REMAP W to :w
+vim.api.nvim_create_user_command('W', 'write', {})
+
+
+
+
+

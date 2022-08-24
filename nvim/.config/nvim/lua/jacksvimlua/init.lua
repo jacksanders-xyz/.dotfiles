@@ -4,6 +4,7 @@ require("jacksvimlua.remap-binder-helper")
 require("jacksvimlua.harpoon")
 require('jacksvimlua.treesitter')
 require('jacksvimlua.orgmode')
+require('jacksvimlua.ImagePathAutomator')
 
 P = function(v)
   print(vim.inspect(v))

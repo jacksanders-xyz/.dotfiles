@@ -193,8 +193,8 @@ local function MakeImageDirectory()
     api.nvim_command(CopyToClipboard)
     os.execute("mkdir "..ImageDirPath)
 end
-
 return {
+    MakeImageDirectory = MakeImageDirectory,
     toggle_fwin = toggle_fwin,
     create_cw = create_cw,
     close_menu = close_menu,
