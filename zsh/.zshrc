@@ -123,6 +123,11 @@ export CGB_USER="10"
 export PATH="/usr/local/opt/yq@3/bin:$PATH"
 export PATH="${HOME}/bin:${PATH}"
 
+# JAVA
+# export JAVA_HOME=/Library/Java/Home
+# export JAVA_HOME=/user/local/Cellar/openjdk/java
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
+
 # GOLANG
 export GOPATH=$HOME/go
 export GOROOT="$(brew --prefix golang)/libexec"

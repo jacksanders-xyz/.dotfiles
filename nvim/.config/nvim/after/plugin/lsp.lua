@@ -4,6 +4,10 @@ local inoremap = Remap.inoremap
 local sumneko_root_path = "~/.local/share/nvim/lsp_servers/sumneko_lua/extension/server"
 local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
 
+-- LSP INSTALLER
+local lsp_installer = require("nvim-lsp-installer")
+require("nvim-lsp-installer").setup {}
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
@@ -78,7 +82,7 @@ local function config(_config)
 			nnoremap("<leader>vca", function() vim.lsp.buf.code_action() end)
 			nnoremap("<leader>vrr", function() vim.lsp.buf.references() end)
 			nnoremap("<leader>vrn", function() vim.lsp.buf.rename() end)
-			inoremap("<C-h>", function() vim.lsp.buf.signature_help() end)
+			-- inoremap("<C-h>", function() vim.lsp.buf.signature_help() end)
 		end,
 	}, _config or {})
 end
@@ -122,6 +126,9 @@ require("lspconfig").gopls.setup(config({
 			staticcheck = true,
 		},
 	},
+}))
+require'lspconfig'.lemminx.setup(config({
+    filetypes = {"xml", "xsd", "xsl", "xslt", "svg"}
 }))
 require'lspconfig'.vimls.setup(config())
 require'lspconfig'.vuels.setup(config())

@@ -8,7 +8,8 @@ return require('packer').startup(function(use)
 
     -- T-POPE
     use 'tpope/vim-vinegar'
-    use 'tpope/vim-fugitive'
+    -- use 'tpope/vim-fugitive'
+    use 'TimUntersberger/neogit'
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
     use 'tpope/vim-commentary'
