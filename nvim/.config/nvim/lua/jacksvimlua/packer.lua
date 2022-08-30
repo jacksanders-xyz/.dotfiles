@@ -15,7 +15,8 @@ return require('packer').startup(function(use)
 
     -- GIT
     -- use 'tpope/vim-fugitive'
-    use 'TimUntersberger/neogit'
+	use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+    use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
     -- STARTIFY
     use 'mhinz/vim-startify'

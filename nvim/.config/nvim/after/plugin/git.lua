@@ -26,7 +26,11 @@
 local neogit = require('neogit')
 local nnoremap = require('jacksvimlua.remap-binder-helper').nnoremap
 
-neogit.setup {}
+neogit.setup {
+    integrations = {
+        diffview = true
+    }
+}
 
 nnoremap("<leader>gs", function()
     neogit.open({ })
