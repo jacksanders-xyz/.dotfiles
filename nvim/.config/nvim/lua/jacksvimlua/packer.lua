@@ -8,14 +8,17 @@ return require('packer').startup(function(use)
 
     -- T-POPE
     use 'tpope/vim-vinegar'
-    use 'tpope/vim-fugitive'
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
     use 'tpope/vim-commentary'
     use 'tpope/vim-rhubarb'
 
+    -- GIT
+    -- use 'tpope/vim-fugitive'
+    use 'TimUntersberger/neogit'
+
     -- STARTIFY
-     use 'mhinz/vim-startify'
+    use 'mhinz/vim-startify'
 
     -- TASKWARRIOR
     use 'xarthurx/taskwarrior.vim'
