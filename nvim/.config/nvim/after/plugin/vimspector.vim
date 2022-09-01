@@ -1,5 +1,4 @@
 " VIMSPECTOR DUBUGGER
-
 fun! StartWithMultiStatusLine()
     " :hi WinSeparator guibg=white
     :set laststatus=2
@@ -25,7 +24,6 @@ nnoremap <leader>dv :call GotoWindow(g:vimspector_session_windows.variables)<CR>
 nnoremap <leader>dw :call GotoWindow(g:vimspector_session_windows.watches)<CR>
 nnoremap <leader>ds :call GotoWindow(g:vimspector_session_windows.stack_trace)<CR>
 nnoremap <leader>do :call GotoWindow(g:vimspector_session_windows.output)<CR>
-
 
 " BREAKPOINTS
 nmap <leader>dbp <Plug>VimspectorToggleBreakpoint
@@ -56,6 +54,7 @@ fun! GotoWindow(id)
     call win_gotoid(a:id)
     MaximizerToggle
 endfun
+
 " TOGGLE FOR DEBUG SERVERS/OFF FOR LOCAL
 " OFF IS LOCAL, ON IS GLOBAL
 " let g:vimspector_base_dir = expand('$HOME/.config/vimspector-config')

@@ -37,6 +37,13 @@ inoremap('<c-p>', '<ESC>*Pi"')
 -- MAKE Y BEHAVE LIKE ALL THE OTHER CAPITAL LETTERS
 nnoremap("Y", "y$")
 
+-- CENTER
+nnoremap("n", "nzzzv")
+nnoremap("N", "Nzzzv")
+nnoremap("J", "mzJ`z")
+nnoremap("<C-d>", "<C-d>zz")
+nnoremap("<C-u>", "<C-u>zz")
+
 -- SPELLCHECK TOGGLE IS <F4>
 nnoremap('<leader>s', ':setlocal spell! spelllang=en_us<CR>"')
 
