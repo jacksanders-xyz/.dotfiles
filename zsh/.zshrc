@@ -131,7 +131,6 @@ export JAVA_HOME=/Library/Java/JavaVirtualMachines/openjdk.jdk/Contents/Home
 # GOLANG
 export GOPATH=$HOME/go
 export GOROOT="$(brew --prefix golang)/libexec"
-export GOPATH=$HOME/goprojects
 export PATH=$PATH:$GOPATH/bin
 export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 
