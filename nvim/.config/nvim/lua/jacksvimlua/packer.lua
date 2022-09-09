@@ -7,11 +7,9 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
 
     -- T-POPE
-    use 'tpope/vim-vinegar'
     use 'tpope/vim-surround'
     use 'tpope/vim-repeat'
     use 'tpope/vim-commentary'
-    use 'tpope/vim-rhubarb'
 
     -- GIT
     use 'tpope/vim-fugitive'
@@ -20,9 +18,6 @@ return require('packer').startup(function(use)
 
     -- STARTIFY
     use 'mhinz/vim-startify'
-
-    -- TASKWARRIOR
-    use 'xarthurx/taskwarrior.vim'
 
     -- FIND FILES / TELESCOPE
     use 'nvim-telescope/telescope.nvim'
@@ -50,6 +45,7 @@ return require('packer').startup(function(use)
     use('tzachar/cmp-tabnine', { run = './install.sh', requires = 'hrsh7th/nvim-cmp' })
     use('hrsh7th/cmp-nvim-lsp')
     use('hrsh7th/cmp-buffer')
+    use('hrsh7th/cmp-path')
     use('nvim-lua/lsp_extensions.nvim')
     use('quangnguyen30192/cmp-nvim-ultisnips')
     use('onsails/lspkind-nvim')
@@ -58,7 +54,6 @@ return require('packer').startup(function(use)
 
     -- ICONS
     use 'kyazdani42/nvim-web-devicons'
-    -- use { 'yamatsum/nvim-nonicons', requires = {'kyazdani42/nvim-web-devicons'} }
 
     -- LSP
     use 'neovim/nvim-lspconfig'
@@ -86,7 +81,6 @@ return require('packer').startup(function(use)
     use 'mrk21/yaml-vim'
     use 'osyo-manga/vim-over'
     use { 'darrikonn/vim-gofmt', run = ':GoUpdateBinaries' }
-    -- use {'stamblerre/gocode', rtp = 'vim', run = '~/.vim/plugged/gocode/vim/symlink.sh' }}
 
     -- VIM-BOXDRAW
     use 'gyim/vim-boxdraw'
@@ -98,13 +92,13 @@ return require('packer').startup(function(use)
     use 'kchmck/vim-coffee-script'
 
     -- DOCKER CONTAINERS
-    use 'dgrbrady/nvim-docker'
-    use 'MunifTanjim/nui.nvim'
 
-    -- OTHER
-    use 'thinca/vim-qfreplace'
-    use 'kshenoy/vim-signature'
-    use 'editorconfig/editorconfig-vim'
-    use 'posva/vim-vue'
-    use { 'kevinhwang91/rnvimr', run = 'make sync'}
+    -- -- ORGMODE
+    use {'nvim-orgmode/orgmode', config = function()
+        require('orgmode').setup{}
+    end
+    }
+
+    -- MARKS
+    use 'chentoast/marks.nvim'
 end)

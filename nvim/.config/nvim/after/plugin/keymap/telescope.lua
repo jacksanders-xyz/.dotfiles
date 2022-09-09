@@ -34,10 +34,10 @@ end)
 
 -- QFIX STUFF
 nnoremap("<leader>fps", function()
-	require('telescope.builtin').grep_string({ search = vim.fn.input("--Grep For > --")})
+	require('telescope.builtin').grep_string({ search = vim.fn.input("--Grep For > ")})
 end)
 nnoremap("<leader>fpw", function()
-	require('telescope.builtin').grep_string({ search = vim.fn.expand("--<cword>--") })
+    require('telescope.builtin').grep_string { search = vim.fn.expand("<cword>") }
 end)
 nnoremap("<leader>fpb", function()
 	require('telescope.builtin').buffers()

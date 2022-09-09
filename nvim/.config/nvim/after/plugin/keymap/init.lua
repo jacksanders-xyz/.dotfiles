@@ -8,6 +8,10 @@ local nmap = Remap.nmap
 
 -- GENERAL VIM REMAPS
 
+-- SCROLL
+nnoremap("<C-E>", 'jzz')
+nnoremap("<C-Y>", 'kzz')
+
 -- EASIER SEARCH AND REPLACE
 nnoremap("<leader>fr", ":%s/")
 xnoremap("<leader>fr", ":s/")
@@ -56,9 +60,6 @@ nnoremap("<leader>j", ":m .+1<CR>==")
 nnoremap("<leader>k", ":m .-2<CR>==")
 nnoremap("]e", "I<CR><ESC>==")
 
--- DELETE ALL MARKS
-nnoremap("<C-\\>", ":delmarks!<CR>")
-
 -- NERDTREE
 nnoremap("<leader>iv", ":Ex<CR>")
 nnoremap("<leader>is", "<C-w><C-v>:Ex<CR>")
@@ -67,8 +68,3 @@ nnoremap("<leader>is", "<C-w><C-v>:Ex<CR>")
 
 -- REMAP W to :w
 vim.api.nvim_create_user_command('W', 'write', {})
-
-
-
-
-
