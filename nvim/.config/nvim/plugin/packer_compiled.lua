@@ -9,23 +9,26 @@ vim.api.nvim_command('packadd packer.nvim')
 
 local no_errors, error_msg = pcall(function()
 
-  local time
-  local profile_info
-  local should_profile = false
-  if should_profile then
-    local hrtime = vim.loop.hrtime
-    profile_info = {}
-    time = function(chunk, start)
-      if start then
-        profile_info[chunk] = hrtime()
-      else
-        profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
-      end
+_G._packer = _G._packer or {}
+_G._packer.inside_compile = true
+
+local time
+local profile_info
+local should_profile = false
+if should_profile then
+  local hrtime = vim.loop.hrtime
+  profile_info = {}
+  time = function(chunk, start)
+    if start then
+      profile_info[chunk] = hrtime()
+    else
+      profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
     end
-  else
-    time = function(chunk, start) end
   end
-  
+else
+  time = function(chunk, start) end
+end
+
 local function save_profiles(threshold)
   local sorted_times = {}
   for chunk_name, time_taken in pairs(profile_info) do
@@ -38,8 +41,10 @@ local function save_profiles(threshold)
       results[i] = elem[1] .. ' took ' .. elem[2] .. 'ms'
     end
   end
+  if threshold then
+    table.insert(results, '(Only showing plugins that took longer than ' .. threshold .. ' ms ' .. 'to load)')
+  end
 
-  _G._packer = _G._packer or {}
   _G._packer.profile_output = results
 end
 
@@ -84,6 +89,11 @@ _G.packer_plugins = {
     path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/cmp-nvim-ultisnips",
     url = "https://github.com/quangnguyen30192/cmp-nvim-ultisnips"
   },
+  ["cmp-path"] = {
+    loaded = true,
+    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
+  },
   ["cmp-tabnine"] = {
     loaded = true,
     path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/cmp-tabnine",
@@ -93,11 +103,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/colorbuddy.vim",
     url = "https://github.com/tjdevries/colorbuddy.vim"
-  },
-  ["editorconfig-vim"] = {
-    loaded = true,
-    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/editorconfig-vim",
-    url = "https://github.com/editorconfig/editorconfig-vim"
   },
   ["git-worktree.nvim"] = {
     loaded = true,
@@ -142,20 +147,15 @@ _G.packer_plugins = {
     path = "/Users/jsanders/.local/share/nvim/site/pack/packer/opt/markdown-preview.nvim",
     url = "https://github.com/iamcco/markdown-preview.nvim"
   },
-  ["nui.nvim"] = {
+  ["marks.nvim"] = {
     loaded = true,
-    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/nui.nvim",
-    url = "https://github.com/MunifTanjim/nui.nvim"
+    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/marks.nvim",
+    url = "https://github.com/chentoast/marks.nvim"
   },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
-  },
-  ["nvim-docker"] = {
-    loaded = true,
-    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/nvim-docker",
-    url = "https://github.com/dgrbrady/nvim-docker"
   },
   ["nvim-libmodal"] = {
     loaded = true,
@@ -182,6 +182,11 @@ _G.packer_plugins = {
     path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
+  },
   orgmode = {
     loaded = true,
     path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/orgmode",
@@ -206,16 +211,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/popup.nvim",
     url = "https://github.com/nvim-lua/popup.nvim"
-  },
-  rnvimr = {
-    loaded = true,
-    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/rnvimr",
-    url = "https://github.com/kevinhwang91/rnvimr"
-  },
-  ["taskwarrior.vim"] = {
-    loaded = true,
-    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/taskwarrior.vim",
-    url = "https://github.com/xarthurx/taskwarrior.vim"
   },
   ["telescope-bookmarks.nvim"] = {
     loaded = true,
@@ -307,25 +302,10 @@ _G.packer_plugins = {
     path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/vim-pencil",
     url = "https://github.com/reedes/vim-pencil"
   },
-  ["vim-qfreplace"] = {
-    loaded = true,
-    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/vim-qfreplace",
-    url = "https://github.com/thinca/vim-qfreplace"
-  },
   ["vim-repeat"] = {
     loaded = true,
     path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/vim-repeat",
     url = "https://github.com/tpope/vim-repeat"
-  },
-  ["vim-rhubarb"] = {
-    loaded = true,
-    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/vim-rhubarb",
-    url = "https://github.com/tpope/vim-rhubarb"
-  },
-  ["vim-signature"] = {
-    loaded = true,
-    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/vim-signature",
-    url = "https://github.com/kshenoy/vim-signature"
   },
   ["vim-startify"] = {
     loaded = true,
@@ -336,16 +316,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/vim-surround",
     url = "https://github.com/tpope/vim-surround"
-  },
-  ["vim-vinegar"] = {
-    loaded = true,
-    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/vim-vinegar",
-    url = "https://github.com/tpope/vim-vinegar"
-  },
-  ["vim-vue"] = {
-    loaded = true,
-    path = "/Users/jsanders/.local/share/nvim/site/pack/packer/start/vim-vue",
-    url = "https://github.com/posva/vim-vue"
   },
   vimspector = {
     loaded = true,
@@ -370,6 +340,13 @@ time([[Defining packer_plugins]], false)
 time([[Defining lazy-load commands]], true)
 pcall(vim.cmd, [[command -nargs=* -range -bang -complete=file MarkdownPreview lua require("packer.load")({'markdown-preview.nvim'}, { cmd = "MarkdownPreview", l1 = <line1>, l2 = <line2>, bang = <q-bang>, args = <q-args>, mods = "<mods>" }, _G.packer_plugins)]])
 time([[Defining lazy-load commands]], false)
+
+
+_G._packer.inside_compile = false
+if _G._packer.needs_bufread == true then
+  vim.cmd("doautocmd BufRead")
+end
+_G._packer.needs_bufread = false
 
 if should_profile then save_profiles() end
 

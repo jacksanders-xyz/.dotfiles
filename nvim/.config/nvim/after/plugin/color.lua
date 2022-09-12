@@ -2,7 +2,6 @@ function ColorMyPencils()
     vim.g['airline#extensions#tabline#enabled'] = 1
     -- vim.g.airline_theme = 'base16_gruvbox_dark_pale'
     -- vim.g.airline_theme = 'base16_harmonic_dark'
-
     vim.g.airline_theme = 'angr'
     require('colorbuddy').colorscheme('gruvbuddy')
     vim.g.gruvbox_contrast_dark = 'hard'

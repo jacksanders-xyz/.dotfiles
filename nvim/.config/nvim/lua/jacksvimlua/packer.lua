@@ -59,6 +59,9 @@ return require('packer').startup(function(use)
     use 'neovim/nvim-lspconfig'
     use 'williamboman/nvim-lsp-installer'
 
+    -- UNDOTREE
+    use 'mbbill/undotree'
+
     -- VIMSPECTOR
     use 'puremourning/vimspector'
 
@@ -94,10 +97,7 @@ return require('packer').startup(function(use)
     -- DOCKER CONTAINERS
 
     -- -- ORGMODE
-    use {'nvim-orgmode/orgmode', config = function()
-        require('orgmode').setup{}
-    end
-    }
+    use {'nvim-orgmode/orgmode' }
 
     -- MARKS
     use 'chentoast/marks.nvim'

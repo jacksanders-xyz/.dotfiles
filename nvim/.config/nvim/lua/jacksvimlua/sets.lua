@@ -31,7 +31,7 @@ vim.opt.isfname:append("@-@")
 
 vim.opt.cmdheight = 1 -- GIVE MORE SPACE FOR DISPLAYING MESSAGES.
 
-vim.opt.updatetime = 50 
+vim.opt.updatetime = 50
 -- HAVING LONGER UPDATETIME (DEFAULT IS 4000 MS = 4 S) LEADS TO NOTICEABLE
 -- DELAYS AND POOR USER EXPERIENCE.
 

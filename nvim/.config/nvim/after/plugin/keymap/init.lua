@@ -60,9 +60,12 @@ nnoremap("<leader>j", ":m .+1<CR>==")
 nnoremap("<leader>k", ":m .-2<CR>==")
 nnoremap("]e", "I<CR><ESC>==")
 
--- NERDTREE
+-- NETRW
 nnoremap("<leader>iv", ":Ex<CR>")
 nnoremap("<leader>is", "<C-w><C-v>:Ex<CR>")
+
+-- UNDOTREE
+nnoremap("<leader>u", ":UndotreeToggle<CR>")
 
 -- COMMANDS
 
