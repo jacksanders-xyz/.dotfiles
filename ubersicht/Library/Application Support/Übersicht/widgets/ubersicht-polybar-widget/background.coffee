@@ -9,7 +9,7 @@ style: """
     right: 0px;
 
     height: 15px
-    background-color: #282c34
+    background-color: #1b1f30
     //opacity: 0.125
     z-index: -1
 """

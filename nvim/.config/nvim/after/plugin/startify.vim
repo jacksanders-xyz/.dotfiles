@@ -19,8 +19,8 @@ EOF
 endfunction
 
 " :h startify-colors
-highlight StartifyFile  guifg=yellow
-highlight StartifySection  guifg=blue
+" highlight StartifyFile  guifg=orange
+" highlight StartifySection  guifg=blue
 
 let g:startify_enable_special = 0
 let g:startify_lists = [

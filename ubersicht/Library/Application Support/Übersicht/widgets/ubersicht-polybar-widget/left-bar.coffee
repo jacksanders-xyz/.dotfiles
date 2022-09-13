@@ -11,6 +11,7 @@ colors =
   elegant: "#1C2331"
   magenta: "#af005f"
   cyan:    "#00afd7"
+  tokyonightfg: "#6789d1"
   tmuxblue: "#a0a0e2"
   tmuxtan: "#958978"
   nvimback: "#282c34"
@@ -72,10 +73,10 @@ style: """
 
   .active
     color: #{colors.nvimback}
-    background: #{colors.tmuxblue}
+    background: #{colors.tokyonightfg}
 
   top: 0px
-  font-family: 'Meslo LG S Regular for Powerline'
+  font-family: 'MesloLGL Nerd Font'
   font-size: 13px
   font-smoothing: antialiasing
   z-index: 0

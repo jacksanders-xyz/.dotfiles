@@ -33,12 +33,26 @@ return require('packer').startup(function(use)
     use 'jvgrootveld/telescope-zoxide'
     use 'nvim-telescope/telescope-file-browser.nvim'
 
+    -- STATUSLINE AND BAR
+    use({
+        'nvim-lualine/lualine.nvim',
+        requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    })
+    use {
+        'romgrk/barbar.nvim',
+        requires = {'kyazdani42/nvim-web-devicons'}
+    }
+
     -- COLORS
-    use 'altercation/vim-colors-solarized'
-    use 'vim-airline/vim-airline'
-    use 'vim-airline/vim-airline-themes'
-    use 'tjdevries/colorbuddy.vim'
-    use 'tjdevries/gruvbuddy.nvim'
+    -- use 'altercation/vim-colors-solarized'
+    -- use 'vim-airline/vim-airline'
+    -- use 'vim-airline/vim-airline-themes'
+    -- use("gruvbox-community/gruvbox")
+
+    use 'folke/tokyonight.nvim'
+    -- use 'jacksanders-xyz/tokyonight.nvim'
+    -- use 'tjdevries/colorbuddy.vim'
+    -- use 'tjdevries/gruvbuddy.nvim'
 
     -- COMPLETION
     use('hrsh7th/nvim-cmp')
@@ -96,7 +110,7 @@ return require('packer').startup(function(use)
 
     -- DOCKER CONTAINERS
 
-    -- -- ORGMODE
+    -- ORGMODE
     use {'nvim-orgmode/orgmode' }
 
     -- MARKS

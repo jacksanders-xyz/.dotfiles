@@ -1,12 +1,46 @@
+require("tokyonight").setup({
+    style = "night",
+    terminal_colors = true,
+    on_highlights = function(hl, c)
+        local prompt = "#2d3149"
+        hl.TelescopeNormal = {
+            bg = c.bg_dark,
+            fg = c.fg_dark,
+        }
+        hl.TelescopeBorder = {
+            bg = c.bg_dark,
+            fg = c.bg_dark,
+        }
+        hl.TelescopePromptNormal = {
+            bg = prompt,
+        }
+        hl.TelescopePromptBorder = {
+            bg = prompt,
+            fg = prompt,
+        }
+        hl.TelescopePromptTitle = {
+            bg = prompt,
+            fg = prompt,
+        }
+        hl.TelescopePreviewTitle = {
+            bg = c.bg_dark,
+            fg = c.bg_dark,
+        }
+        hl.TelescopeResultsTitle = {
+            bg = c.bg_dark,
+            fg = c.bg_dark,
+        }
+    end,
+    on_colors = function(colors)
+        colors.bg = "#1b1f30"
+        -- colors.green1 = "#1b1f30"
+    end,
+})
+
 function ColorMyPencils()
-    vim.g['airline#extensions#tabline#enabled'] = 1
-    -- vim.g.airline_theme = 'base16_gruvbox_dark_pale'
-    -- vim.g.airline_theme = 'base16_harmonic_dark'
-    vim.g.airline_theme = 'angr'
-    require('colorbuddy').colorscheme('gruvbuddy')
-    vim.g.gruvbox_contrast_dark = 'hard'
-    vim.g['airline#extensions#tabline#left_sep'] = ' '
-    vim.g['airline#extensions#tabline#left_alt_sep'] = '|'
+    vim.cmd("colorscheme tokyonight")
+    vim.g.tokyonight_transparent_sidebar = true
+    vim.g.tokyonight_transparent = true
     vim.opt.laststatus=3
     vim.api.nvim_set_hl(0, "WinSeparator", {bg='NONE'})
 end
