@@ -69,7 +69,7 @@ style: """
     color: #{colors.nvimwhite}
     align-items: center
     justify-content: center
-    padding: 8px 8px
+    padding: 7px 7px
 
   .active
     color: #{colors.nvimback}
