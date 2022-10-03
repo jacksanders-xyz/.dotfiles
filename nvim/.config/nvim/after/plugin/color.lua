@@ -1,6 +1,7 @@
 require("tokyonight").setup({
     style = "night",
     terminal_colors = true,
+    transparent = true, -- Enable this to disable setting the background color
     on_highlights = function(hl, c)
         local prompt = "#2d3149"
         hl.TelescopeNormal = {
