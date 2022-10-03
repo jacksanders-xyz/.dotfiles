@@ -32,7 +32,7 @@ require("telescope").setup({
           -- Either provide a shell command to open the URL
           url_open_command = 'open',
           url_open_plugin = nil,
-          full_path = true,
+          -- full_path = true,
         },
     },
 })

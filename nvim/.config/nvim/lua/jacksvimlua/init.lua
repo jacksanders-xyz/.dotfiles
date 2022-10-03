@@ -1,6 +1,7 @@
 require("jacksvimlua.sets")
 require("jacksvimlua.packer")
 require("jacksvimlua.remap-binder-helper")
+require("jacksvimlua.telescope")
 require("jacksvimlua.harpoon")
 require('jacksvimlua.treesitter')
 require('jacksvimlua.ImagePathAutomator')

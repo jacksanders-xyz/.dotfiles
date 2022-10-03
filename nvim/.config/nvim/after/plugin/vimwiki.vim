@@ -17,6 +17,12 @@ fun! ColorMarkdown()
   let g:vimwiki_markdown_link_ext = 1
   let g:taskwiki_markup_syntax = 'markdown'
   let g:markdown_folding = 1
+
+  " :hi VimwikiBold            guifg=red
+  " :hi VimwikiBoldChar guifg=red
+  " :hi VimwikiBoldCharT guifg=red
+  " :hi VimwikiBoldT           guifg=red
+
   :hi VimwikiHeader2 guifg=yellow
   :hi VimwikiHeader3 guifg=green
   :hi VimwikiHeader4 guifg=blue
