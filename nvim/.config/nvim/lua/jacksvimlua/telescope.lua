@@ -113,6 +113,31 @@ M.grep_notes = function()
     })
 end
 
+M.search_sc_tutorial = function()
+    require("telescope.builtin").find_files({
+        prompt_title = "< SuperCollider vids >",
+        file_ignore_patterns = {
+            "^IMAGE_POOL/",
+            "%.git",
+            "%.DS_Store",
+        },
+        cwd = '/Users/_jacksanders/secrets/SC/SuperCollider-Tutorials/full video scripts/',
+        hidden = true,
+    })
+end
+
+M.grep_sc_tutorial = function()
+    require("telescope.builtin").live_grep({
+        prompt_title = "< SC tutorial notes >",
+        file_ignore_patterns = {
+            "^IMAGE_POOL/",
+            "%.git",
+            "%.DS_Store",
+        },
+        cwd = '/Users/_jacksanders/secrets/SC/SuperCollider-Tutorials/full video scripts/',
+        hidden = true,
+    })
+end
 local function GrabImagePath(prompt_bufnr, map)
    	local function set_the_image_path(close, Destination, editing)
 		local content = require("telescope.actions.state").get_selected_entry(prompt_bufnr)[1]

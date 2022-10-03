@@ -1,20 +1,20 @@
 #!/usr/bin/env sh
-
 sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 
-# yabai -m config window_origin_display        default
+yabai -m config window_origin_display        default
 yabai -m config window_placement             second_child
 yabai -m config window_topmost               off
 yabai -m config window_shadow                off
 yabai -m config window_opacity               off
 
-yabai -m config window_opacity_duration      0.0
-yabai -m config active_window_opacity        1.0
-yabai -m config normal_window_opacity        0.90
+# yabai -m config window_opacity_duration      1.0
+# yabai -m config active_window_opacity        1.0
+yabai -m config normal_window_opacity        0.9
 
 yabai -m config window_border                on
-yabai -m config window_border_width          6
+yabai -m config window_border_radius         0
+yabai -m config window_border_width          2
 yabai -m config active_window_border_color   0xff3e5ea3
 yabai -m config normal_window_border_color   0xff555555
 yabai -m config insert_feedback_color        0xffd75f5f
@@ -35,13 +35,6 @@ yabai -m config bottom_padding               0
 yabai -m config left_padding                 0
 yabai -m config right_padding                0
 yabai -m config window_gap                   2
-
-# alt - c : yabai -m space --focus 2 && /Users/_jacksanders/polybar-refresh.sh \
-#     || yabai -m space --create && \
-#     index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
-#     yabai -m space --focus "${index}"
-# you have to create the spaces. do it here
-
 
 # check how many spaces are active up to 9, if not then make it
 active_num=$(yabai -m query --spaces | jq -re '. | length')
@@ -73,18 +66,15 @@ yabai -m rule --add app="^Ableton Live 11 Standard$" manage=off space=ableton
 yabai -m config --space misc layout        float
 yabai -m config --space home layout        float
 
-# refresh my Übersicht bar when the space changes
-# yabai -m signal --add event=space_changed \
-#     action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"ubersicht-polybar-widget-left-bar-coffee\"'"
-
-## If I close the active window, focus on any other visible window.
-yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
-
 echo "yabai configuration loaded.."
 
 # IGNORE THESE APPS
 yabai -m rule --add label="Finder" app="^Finder$" manage=off layer=normal
-# yabai -m rule --add label="App Store" app="^App Store$" manage=off layer=normal
-# yabai -m rule --add label="Spotify" app="^Spotify$" manage=off layer=normal
+yabai -m rule --add label="App Store" app="^App Store$" manage=off layer=normal
+yabai -m rule --add label="Spotify" app="^Spotify$" manage=off layer=normal
+
+# refresh my Übersicht bar when the space changes
+yabai -m signal --add event=space_changed \
+    action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"ubersicht-polybar-widget-left-bar-coffee\"'"
 
 echo "yabai configuration loaded.."

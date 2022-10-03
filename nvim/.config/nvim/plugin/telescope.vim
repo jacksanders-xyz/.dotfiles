@@ -10,6 +10,8 @@ nnoremap <leader>fh <cmd>Telescope help_tags<CR>
 " CUSTOM LOOKIN AROUND
 nnoremap <leader>fn :lua require('jacksvimlua.telescope').search_notes()<CR>
 nnoremap <leader>fs :lua require('jacksvimlua.telescope').grep_notes()<CR>
+nnoremap <leader>FN :lua require('jacksvimlua.telescope').search_sc_tutorial()<CR>
+nnoremap <leader>FS :lua require('jacksvimlua.telescope').grep_sc_tutorial()<CR>
 nnoremap <leader>fdf :lua require('jacksvimlua.telescope').search_dotfiles()<CR>
 nnoremap <leader>fdg :lua require('jacksvimlua.telescope').grep_dotfiles({ hidden = true })<CR>
 
