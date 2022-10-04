@@ -11,3 +11,7 @@ popd
 
 
 # if you want the tmux executable global you could run $ stow scripts --target=/usr/local/bin
+<<<<<<< HEAD
+=======
+# need to update
+>>>>>>> safe
