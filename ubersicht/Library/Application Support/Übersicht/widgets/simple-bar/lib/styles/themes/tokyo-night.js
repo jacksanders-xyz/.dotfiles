@@ -18,7 +18,7 @@ export const theme = {
     transparentDark: "rgba(0, 0, 0, 0.05)",
     defaultFont: "MesloLGL Nerd Font",
     barHeight: "34px",
-    compactBarHeight: "19x",
+    compactBarHeight: "10px",
     barRadius: "9px",
     barInnerMargin: "0px",
     itemRadius: "0px",
