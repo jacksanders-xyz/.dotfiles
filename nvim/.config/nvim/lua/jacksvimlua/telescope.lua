@@ -37,6 +37,7 @@ require("telescope").setup({
     },
 })
 
+require("telescope").load_extension('harpoon')
 require("telescope").load_extension("fzy_native")
 require("telescope").load_extension("git_worktree")
 require('telescope').load_extension('bookmarks')
@@ -53,6 +54,17 @@ require'neoclip'.setup({
             }
         }
     }
+})
+
+-- URLS
+require("urlview").setup({
+    default_title = "Links",
+    default_picker = "telescope",
+    log_level_min = vim.log.levels.TRACE,
+    jump = {
+        prev = "[U",
+        next = "]U",
+    },
 })
 
 local M = {}

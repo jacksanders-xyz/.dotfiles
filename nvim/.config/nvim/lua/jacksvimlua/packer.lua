@@ -115,6 +115,8 @@ return require('packer').startup(function(use)
     -- COFFEE SCRIPT UNTIL TREE SITTER SUPPORTS
     use 'kchmck/vim-coffee-script'
 
+    use 'axieax/urlview.nvim'
+
     -- DOCKER CONTAINERS
 
     -- ORGMODE

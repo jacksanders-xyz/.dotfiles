@@ -58,6 +58,11 @@ nnoremap("<leader>fl", function()
     require'telescope'.extensions.file_browser.file_browser()
 end)
 
+-- FIND URLS
+nnoremap("<leader>fu", function()
+    vim.api.nvim_command("UrlView")
+end)
+
 -- BOOKMARKS
 nnoremap("<leader>fB", function()
     require('telescope').extensions.bookmarks.bookmarks()
