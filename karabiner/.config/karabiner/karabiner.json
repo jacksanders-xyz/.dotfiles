@@ -206,7 +206,8 @@
                                     "key_code": "f",
                                     "modifiers": {
                                         "mandatory": [
-                                            "left_control"
+                                            "left_control",
+                                            "left_shift"
                                         ],
                                         "optional": [
                                             "any"
