@@ -44,4 +44,4 @@ nnoremap('<leader>ot', '<Cmd>lua require("orgmode").action("agenda.prompt")<CR>a
 nnoremap('<leader>OT', '<Cmd>lua require("orgmode").action("agenda.prompt")<CR>t')
 
 -- NEW TODO
-nnoremap('<leader>oc', '<Cmd>lua require("orgmode").action("capture.prompt")<CR>t')
+nnoremap('<leader>oc', '<Cmd>lua require("orgmode").action("capture.prompt")<CR>w')

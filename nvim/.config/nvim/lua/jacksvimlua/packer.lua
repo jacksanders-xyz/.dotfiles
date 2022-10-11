@@ -44,15 +44,7 @@ return require('packer').startup(function(use)
     }
 
     -- COLORS
-    -- use 'altercation/vim-colors-solarized'
-    -- use 'vim-airline/vim-airline'
-    -- use 'vim-airline/vim-airline-themes'
-    -- use("gruvbox-community/gruvbox")
-
     use 'folke/tokyonight.nvim'
-    -- use 'jacksanders-xyz/tokyonight.nvim'
-    -- use 'tjdevries/colorbuddy.vim'
-    -- use 'tjdevries/gruvbuddy.nvim'
 
     -- COMPLETION
     use('hrsh7th/nvim-cmp')
@@ -87,18 +79,18 @@ return require('packer').startup(function(use)
     use 'sirVer/ultisnips'
     use 'szw/vim-maximizer'
     use 'reedes/vim-pencil'
-    use 'junegunn/goyo.vim'
     use 'airblade/vim-gitgutter'
+    use {
+        'loqusion/true-zen.nvim',
+    }
 
     -- VIM WIKI
     use 'vimwiki/vimwiki'
 
+    -- SLIDESHOW
+    use'Olical/kkslider'
+
     -- MARKDOWNPREVIEW
-    -- install without yarn or npm
-    use({
-        "iamcco/markdown-preview.nvim",
-        run = function() vim.fn["mkdp#util#install"]() end,
-    })
     use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
 
     -- LANGS
@@ -114,10 +106,7 @@ return require('packer').startup(function(use)
 
     -- COFFEE SCRIPT UNTIL TREE SITTER SUPPORTS
     use 'kchmck/vim-coffee-script'
-
     use 'axieax/urlview.nvim'
-
-    -- DOCKER CONTAINERS
 
     -- ORGMODE
     use {'nvim-orgmode/orgmode' }

@@ -16,9 +16,8 @@ nnoremap("<C-Y>", 'kzz')
 nnoremap("<leader>fr", ":%s/")
 xnoremap("<leader>fr", ":s/")
 
-
--- GOYO
-nnoremap("<leader>m", ":Goyo<cr>")
+-- ZEN
+nnoremap("<leader>m", ":TZAtaraxis<CR>")
 
 -- MAXIMIZER FOR VIMSPECTOR
 nnoremap("<leader>,", "<cmd>MaximizerToggle!<CR>")
