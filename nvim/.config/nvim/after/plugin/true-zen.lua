@@ -2,7 +2,7 @@ require'true-zen'.setup {
     modes = { -- configurations per mode
         ataraxis = {
             ideal_writing_area_width = 0,
-            just_do_it_for_me = false,
+            just_do_it_for_me = true,
             shade = "dark", -- if `dark` then dim the padding windows, otherwise if it's `light` it'll brighten said windows
             backdrop = 0, -- percentage by which padding windows should be dimmed/brightened. Must be a number between 0 and 1. Set to 0 to keep the same background color
             minimum_writing_area = { -- minimum size of main window
@@ -11,8 +11,8 @@ require'true-zen'.setup {
             },
             quit_untoggles = true, -- type :q or :qa to quit Ataraxis mode
             padding = { -- padding windows
-                left = 30,
-                right = 30,
+                left = 52,
+                right = 52,
                 top = 3,
                 bottom = 3,
             },
@@ -26,7 +26,6 @@ require'true-zen'.setup {
         minimalist = {
             ignored_buf_types = { "nofile" }, -- save current options from any window except ones displaying these kinds of buffers
             options = { -- options to be disabled when entering Minimalist mode
-                statusline = "%#Normal#",
                 number = false,
                 relativenumber = false,
                 showtabline = 0,
@@ -36,7 +35,8 @@ require'true-zen'.setup {
                 showcmd = false,
                 showmode = false,
                 ruler = false,
-                numberwidth = 1
+                numberwidth = 1,
+                statusline = "%#Normal#"
             },
             callbacks = { -- run functions when opening/closing Minimalist mode
                 open_pre = nil,
