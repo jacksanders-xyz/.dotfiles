@@ -8,6 +8,9 @@ local nmap = Remap.nmap
 
 -- GENERAL VIM REMAPS
 
+-- WHY NOT
+inoremap("<C-c>", "<Esc>")
+
 -- SCROLL
 nnoremap("<C-E>", 'jzz')
 nnoremap("<C-Y>", 'kzz')
