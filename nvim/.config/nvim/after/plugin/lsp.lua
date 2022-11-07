@@ -132,6 +132,7 @@ require("lspconfig").gopls.setup(config({
 require'lspconfig'.lemminx.setup(config({
     filetypes = {"xml", "xsd", "xsl", "xslt", "svg"}
 }))
+require'lspconfig'.dockerls.setup(config())
 require'lspconfig'.yamlls.setup(config())
 require'lspconfig'.vimls.setup(config())
 require'lspconfig'.vuels.setup(config())

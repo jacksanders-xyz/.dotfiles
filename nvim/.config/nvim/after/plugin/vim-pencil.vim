@@ -1,6 +1,7 @@
 " PENCIL
 let g:pencil#wrapModeDefault = 'soft'
-let g:pencil#textwidth = 84
+" let g:pencil#textwidth = 84
+let g:pencil#textwidth = 68
 augroup pencil
     autocmd!
     autocmd FileType markdown,mkd,md call pencil#init()

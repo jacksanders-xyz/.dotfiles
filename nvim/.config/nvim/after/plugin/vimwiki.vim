@@ -77,5 +77,7 @@ vnoremap <leader>wn :<C-u>call MakeNotes()<CR>
 nmap <leader>wf :<C-u>call MakeFlash()<CR>
 nmap <C-f> :<C-u>call WikiFlash()<CR>
 
+nmap  <leader>T :<C-u>VimwikiToggleListItem<CR>
+
 " PRETTY UP ANY REDHAT LESSON IN VIMWIKI
 nnoremap <leader>wpr :call PrettyMyRH()<CR>

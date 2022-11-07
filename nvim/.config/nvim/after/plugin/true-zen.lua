@@ -11,8 +11,8 @@ require'true-zen'.setup {
             },
             quit_untoggles = true, -- type :q or :qa to quit Ataraxis mode
             padding = { -- padding windows
-                left = 52,
-                right = 52,
+                left = 42,
+                right = 32,
                 top = 3,
                 bottom = 3,
             },
