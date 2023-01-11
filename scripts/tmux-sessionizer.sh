@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/code ~/personal ~/code/maximo ~/code/nbcu-maximo/WILSON-67.228.221.82 ~/code/Verizon/ ~/ ~/VimWiki ~/VimWiki/jacks_brain/ ~/VimWiki/work_content/ -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find ~/code ~/personal ~/code/maximo ~/code/nbcu-maximo/WILSON-67.228.221.82 ~/code/Verizon/ ~/code/MWC-AVATAR/ ~/ ~/VimWiki ~/VimWiki/jacks_brain/ ~/VimWiki/work_content/ -mindepth 1 -maxdepth 1 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then

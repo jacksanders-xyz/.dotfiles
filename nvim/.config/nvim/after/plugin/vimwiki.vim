@@ -1,33 +1,30 @@
 " VIM WIKI
 fun! ColorMarkdown()
-  let g:vimwiki_ext2syntax= {'.md':'markdown','.markdown':'markdown','.mdown':'markdown' }
-  let g:vimwiki_list = [
-        \{'path': '~/VimWiki', 'syntax':'markdown', 'ext':'.md' },
-        \{'path':'~/VimWiki/jacks_brain', 'syntax':'markdown','ext':'.md' },
-        \{'path':'~/VimWiki/jacks_brain/RedHat', 'syntax':'markdown','ext':'.md' },
-        \{'path':'~/VimWiki/jacks_brain/RedHat/DO180', 'syntax':'markdown','ext':'.md' },
-        \{'path':'~/VimWiki/jacks_brain/PIPELINE', 'syntax':'markdown','ext':'.md' },
-        \{'path':'~/VimWiki/jacks_brain/CLUSTER', 'syntax':'markdown','ext':'.md' },
-        \{'path':'~/VimWiki/jacks_brain/AIandML', 'syntax':'markdown','ext':'.md' },
-        \{'path':'~/VimWiki/jacks_brain/LANGS', 'syntax':'markdown','ext':'.md' },
-        \{'path':'~/VimWiki/jacks_brain/WORKFLOW', 'syntax':'markdown','ext':'.md' },
-        \{'path':'~/VimWiki/jacks_brain/RANDOM', 'syntax':'markdown','ext':'.md' },
-        \{'path':'~/VimWiki/work_content', 'syntax':'markdown','ext':'.md' }]
-  let g:vimwiki_table_mappings=0
-  let g:vimwiki_markdown_link_ext = 1
-  let g:taskwiki_markup_syntax = 'markdown'
-  let g:markdown_folding = 1
+    let g:vimwiki_ext2syntax= {'.md':'markdown','.markdown':'markdown','.mdown':'markdown' }
+    let g:vimwiki_list = [
+                \{'path': '~/VimWiki', 'syntax':'markdown', 'ext':'.md' },
+                \{'path':'~/VimWiki/jacks_brain', 'syntax':'markdown','ext':'.md' },
+                \{'path':'~/VimWiki/jacks_brain/RedHat', 'syntax':'markdown','ext':'.md' },
+                \{'path':'~/VimWiki/jacks_brain/RedHat/DO180', 'syntax':'markdown','ext':'.md' },
+                \{'path':'~/VimWiki/jacks_brain/PIPELINE', 'syntax':'markdown','ext':'.md' },
+                \{'path':'~/VimWiki/jacks_brain/CLUSTER', 'syntax':'markdown','ext':'.md' },
+                \{'path':'~/VimWiki/jacks_brain/AIandML', 'syntax':'markdown','ext':'.md' },
+                \{'path':'~/VimWiki/jacks_brain/LANGS', 'syntax':'markdown','ext':'.md' },
+                \{'path':'~/VimWiki/jacks_brain/WORKFLOW', 'syntax':'markdown','ext':'.md' },
+                \{'path':'~/VimWiki/jacks_brain/RANDOM', 'syntax':'markdown','ext':'.md' },
+                \{'path':'~/VimWiki/work_content', 'syntax':'markdown','ext':'.md' }]
+    let g:vimwiki_table_mappings=0
+    let g:vimwiki_markdown_link_ext = 1
+    let g:taskwiki_markup_syntax = 'markdown'
+    let g:markdown_folding = 1
 
-  " :hi VimwikiBold            guifg=red
-  " :hi VimwikiBoldChar guifg=red
-  " :hi VimwikiBoldCharT guifg=red
-  " :hi VimwikiBoldT           guifg=red
+    " IF YOU TOGGLE TREE SITTER, THESE OPTIONS WON'T WORK
+    :hi VimwikiHeader2 guifg=yellow
+    :hi VimwikiHeader3 guifg=green
+    :hi VimwikiHeader4 guifg=blue
+    :hi VimwikiHeader5 guifg=violet
+    :hi VimwikiHeader6 guifg=orange
 
-  :hi VimwikiHeader2 guifg=yellow
-  :hi VimwikiHeader3 guifg=green
-  :hi VimwikiHeader4 guifg=blue
-  :hi VimwikiHeader5 guifg=violet
-  :hi VimwikiHeader6 guifg=orange
 endfun
 call ColorMarkdown()
 
