@@ -3,8 +3,9 @@ local nnoremap = Remap.nnoremap
 
 -- TELESCOPE GENERAL
 nnoremap("<leader>ff", function()
-	require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }})
+	require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }, cwd = './'})
 end)
+
 nnoremap("<leader>fg", function()
 	require('telescope.builtin').live_grep()
 end)
@@ -19,8 +20,7 @@ nnoremap("<C-p>", function()
 end)
 
 -- CUSTOM LOOKIN AROUND
-nnoremap("<leader>fn", function()
-	require('jacksvimlua.telescope').search_notes()
+nnoremap("<leader>fn", function() require('jacksvimlua.telescope').search_notes()
 end)
 nnoremap("<leader>fs", function()
 	require('jacksvimlua.telescope').grep_notes()

@@ -14,7 +14,10 @@ endfun
 " FIRE UP
 nnoremap <leader>dd :call StartWithMultiStatusLine()<CR>
 
-" SHUT DOWN
+" SHUT DOWN not gracefully
+nnoremap <leader>dE :call vimspector#Reset()<CR>
+
+" SHUT DOWN gracefull
 nnoremap <leader>de :call StopWithMultiStatusLine()<CR>
 
 " PICK A WINDOW (ONCE MAXIMIZED, TO TURN IT OFF JUST UNMAXIMIZE: <leader>,

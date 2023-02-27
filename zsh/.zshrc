@@ -169,3 +169,6 @@ export PATH="${HOME}/.npm/bin:${PATH}"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 source $HOME/.zsh_profile
+
+# added by travis gem
+[ ! -s /Users/jsanders/.travis/travis.sh ] || source /Users/jsanders/.travis/travis.sh

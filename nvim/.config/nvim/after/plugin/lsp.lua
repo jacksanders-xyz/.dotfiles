@@ -1,8 +1,8 @@
 local Remap = require("jacksvimlua.remap-binder-helper")
 local nnoremap = Remap.nnoremap
 local inoremap = Remap.inoremap
-local sumneko_root_path = "~/.local/share/nvim/lsp_servers/sumneko_lua/extension/server"
-local sumneko_binary = sumneko_root_path .. "/bin/lua-language-server"
+local lua_ls_root_path = "/Users/jsanders/.local/share/nvim/lsp_servers/lua-language-server/"
+local lua_ls_binary = lua_ls_root_path .. "script"
 
 -- LSP INSTALLER
 local lsp_installer = require("nvim-lsp-installer")
@@ -92,8 +92,8 @@ end
 -- LSP CONFIG
 -- LSP LANGUAGE SERVERS
 require'lspconfig'.tsserver.setup(config())
-require'lspconfig'.sumneko_lua.setup(config({
--- cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
+require'lspconfig'.lua_ls_lua.setup(config({
+-- cmd = { lua_ls_binary, "-E", lua_ls_root_path .. "/main.lua" },
   settings = {
     Lua = {
       runtime = {
@@ -132,6 +132,8 @@ require("lspconfig").gopls.setup(config({
 require'lspconfig'.lemminx.setup(config({
     filetypes = {"xml", "xsd", "xsl", "xslt", "svg"}
 }))
+require'lspconfig'.jedi_language_server.setup{}
+require'lspconfig'.cssls.setup{}
 require'lspconfig'.dockerls.setup(config())
 require'lspconfig'.yamlls.setup(config())
 require'lspconfig'.vimls.setup(config())
