@@ -3,20 +3,33 @@ local nnoremap = Remap.nnoremap
 
 -- TELESCOPE GENERAL
 nnoremap("<leader>ff", function()
-	require('telescope.builtin').find_files({ find_command = {'rg', '--files', '--hidden', '-g', '!.git' }, cwd = './'})
+    require('telescope.builtin').find_files({ find_command = {'rg', '--hidden', '--files', '-g', '!node_modules/**', '-g', '!.git/**' }})
 end)
 
 nnoremap("<leader>fg", function()
-	require('telescope.builtin').live_grep()
+    require('telescope.builtin').live_grep({
+        vimgrep_arguments = {
+            'rg',
+            '--hidden',
+            '--color=never',
+            '--no-heading',
+            '--with-filename',
+            '--line-number',
+            '--column',
+            '--smart-case',
+            '-u',
+        },
+        file_ignore_patterns = { 'node_modules', '.git' }
+    })
 end)
 nnoremap("<leader>fb", function()
-	require('telescope.builtin').buffers()
+    require('telescope.builtin').buffers()
 end)
 nnoremap("<leader>fh", function()
-	require('telescope.builtin').help_tags()
+    require('telescope.builtin').help_tags()
 end)
 nnoremap("<C-p>", function()
-	require('telescope.builtin').git_files()
+    require('telescope.builtin').git_files()
 end)
 
 -- CUSTOM LOOKIN AROUND

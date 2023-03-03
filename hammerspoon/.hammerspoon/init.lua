@@ -5,7 +5,7 @@ appMappings = {
 	{'r', 'Slack.app'},
 	{'&', 'Microsoft Outlook.app'},
 	{'=', 'Spotify.app'},
-	{'*', 'Cisco Webex Meetings.app'},
+	-- {'*', 'Cisco Webex Meetings.app'},
 }
 
 local log = hs.logger.new("hammerspoon", "debug")

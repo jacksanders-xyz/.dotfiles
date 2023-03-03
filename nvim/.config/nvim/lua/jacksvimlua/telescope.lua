@@ -6,11 +6,9 @@ require("telescope").setup({
         file_sorter = require("telescope.sorters").get_fzy_sorter,
         prompt_prefix = " > ",
         color_devicons = true,
-
         file_previewer = require("telescope.previewers").vim_buffer_cat.new,
-        grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+        Grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
         qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-
         mappings = {
             i = {
                 -- ["<C-x>"] = false,
@@ -28,11 +26,11 @@ require("telescope").setup({
             dir_icon = ''
         },
         bookmarks = {
-          selected_browser = 'chrome',
-          -- Either provide a shell command to open the URL
-          url_open_command = 'open',
-          url_open_plugin = nil,
-          -- full_path = true,
+            selected_browser = 'chrome',
+            -- Either provide a shell command to open the URL
+            url_open_command = 'open',
+            url_open_plugin = nil,
+            -- full_path = true,
         },
     },
 })
@@ -167,75 +165,6 @@ M.ImagePathFinder = function()
     })
 end
 
--- local function set_background(content)
---     vim.fn.system(
---         "dconf write /org/mate/desktop/background/picture-filename \"'"
---             .. content
---             .. "'\""
---     )
--- end
-
--- local function select_background(prompt_bufnr, map)
---     local function set_the_background(close)
---         local content = require("telescope.actions.state").get_selected_entry(
---             prompt_bufnr
---         )
---         set_background(content.cwd .. "/" .. content.value)
---         if close then
---             require("telescope.actions").close(prompt_bufnr)
---         end
---     end
-
---     map("i", "<C-p>", function()
---         set_the_background()
---     end)
-
---     map("i", "<CR>", function()
---         set_the_background(true)
---     end)
-
--- end
--- local function image_selector(prompt, cwd)
---     return function()
---         require("telescope.builtin").find_files({
---             prompt_title = prompt,
---             cwd = cwd,
-
---             attach_mappings = function(prompt_bufnr, map)
---                 select_background(prompt_bufnr, map)
---                 -- Please continue mapping (attaching additional key maps):
---                 -- Ctrl+n/p to move up and down the list.
---                 return true
---             end,
---         })
---     end
--- end
-
--- M.anime_selector = image_selector("< Anime Bobs > ", "~/dotfiles/backgrounds")
--- M.chat_selector = image_selector("< Chat Sucks > ", "~/dotfiles/chat")
-
--- local function refactor(prompt_bufnr)
---     local content = require("telescope.actions.state").get_selected_entry(
---         prompt_bufnr
---     )
---     require("telescope.actions").close(prompt_bufnr)
---     require("refactoring").refactor(content.value)
--- end
-
--- M.refactors = function()
---     require("telescope.pickers").new({}, {
---         prompt_title = "refactors",
---         finder = require("telescope.finders").new_table({
---             results = require("refactoring").get_refactors(),
---         }),
---         sorter = require("telescope.config").values.generic_sorter({}),
---         attach_mappings = function(_, map)
---             map("i", "<CR>", refactor)
---             map("n", "<CR>", refactor)
---             return true
---         end
---     }):find()
--- end
 M.git_branches = function()
     require("telescope.builtin").git_branches({
         attach_mappings = function(_, map)
