@@ -73,3 +73,6 @@ nnoremap("<leader>u", ":UndotreeToggle<CR>")
 
 -- REMAP W to :w
 vim.api.nvim_create_user_command('W', 'write', {})
+
+-- Format yerself some json
+nnoremap('<leader>FJ', ":%!jq '.'<CR>")

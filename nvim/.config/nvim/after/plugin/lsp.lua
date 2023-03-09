@@ -92,7 +92,7 @@ end
 -- LSP CONFIG
 -- LSP LANGUAGE SERVERS
 require'lspconfig'.tsserver.setup(config())
-require'lspconfig'.lua_ls_lua.setup(config({
+require'lspconfig'.lua_ls.setup(config({
 -- cmd = { lua_ls_binary, "-E", lua_ls_root_path .. "/main.lua" },
   settings = {
     Lua = {
