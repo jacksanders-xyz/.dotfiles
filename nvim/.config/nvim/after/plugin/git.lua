@@ -16,7 +16,7 @@ nnoremap("<leader>gm", ":Git merge mybranch")
 nmap("<leader>gh", ":diffget //3<CR>")
 nmap("<leader>gu", ":diffget //2<CR>")
 
-nnoremap("<leader>gdrb", ":Git push -- delete origin mybranch")
+nnoremap("<leader>gdrb", ":Git push -d origin mybranch")
 nnoremap("<leader>gd", ":Git diff<CR>")
 nnoremap("<leader>gc", ":Git commit -v -q<CR>")
 

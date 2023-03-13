@@ -17,6 +17,15 @@ nnoremap("<C-Y>", 'kzz')
 
 -- EASIER SEARCH AND REPLACE
 nnoremap("<leader>fr", ":%s/")
+
+-- replace word under cursor everywhere
+nnoremap("<leader>fw", function()
+    local word = vim.fn.expand("<cword>")
+    local string_prep = "lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(':%s/"..word
+    string_prep = string_prep.."/',true,false,true),'m',true)"
+    vim.api.nvim_command(string_prep)
+end)
+
 xnoremap("<leader>fr", ":s/")
 
 -- ZEN
