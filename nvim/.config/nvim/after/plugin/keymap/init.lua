@@ -85,3 +85,13 @@ vim.api.nvim_create_user_command('W', 'write', {})
 
 -- Format yerself some json
 nnoremap('<leader>FJ', ":%!jq '.'<CR>")
+
+
+-- CONSOLE.log word
+nnoremap("<leader>C", function()
+    local word = vim.fn.expand("<cword>")
+    local string_prep = "lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('oconsole.log("
+    string_prep = string_prep..word..")<esc>',true,false,true),'m',true)"
+    vim.api.nvim_command(string_prep)
+end)
+
