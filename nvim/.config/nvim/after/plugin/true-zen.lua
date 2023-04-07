@@ -11,7 +11,7 @@ require'true-zen'.setup {
             },
             quit_untoggles = true, -- type :q or :qa to quit Ataraxis mode
             padding = { -- padding windows
-                left = 42,
+                left = 62,
                 right = 32,
                 top = 3,
                 bottom = 3,
@@ -26,17 +26,17 @@ require'true-zen'.setup {
         minimalist = {
             ignored_buf_types = { "nofile" }, -- save current options from any window except ones displaying these kinds of buffers
             options = { -- options to be disabled when entering Minimalist mode
-                number = false,
-                relativenumber = false,
-                showtabline = 0,
-                signcolumn = "no",
+                number = true,
+                relativenumber = true,
+                showtabline = 1,
+                signcolumn = "yes",
                 cmdheight = 1,
-                laststatus = 0,
-                showcmd = false,
-                showmode = false,
+                laststatus = 1,
+                showcmd = true,
+                showmode = true,
                 ruler = false,
                 numberwidth = 1,
-                statusline = "%#Normal#"
+                statusline = "%#Normal#",
             },
             callbacks = { -- run functions when opening/closing Minimalist mode
                 open_pre = nil,

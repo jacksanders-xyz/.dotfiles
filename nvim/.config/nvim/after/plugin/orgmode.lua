@@ -31,6 +31,12 @@ require('orgmode').setup({
             target = '~/orgfiles/work.org',
             headline = 'Meetings',
         },
+        r = {
+            description = 'recurring',
+            template = '** %?\n %T',
+            target = '~/orgfiles/recurring.org',
+            headline = 'recurring'
+        }
     },
     mappings = {
         global = {
@@ -40,7 +46,11 @@ require('orgmode').setup({
 })
 
 -- SEE ALL THE TODO's
+
+-- See your weekly tasks arranged with dates
 nnoremap('<leader>ot', '<Cmd>lua require("orgmode").action("agenda.prompt")<CR>a')
+
+-- see all your tasks
 nnoremap('<leader>OT', '<Cmd>lua require("orgmode").action("agenda.prompt")<CR>t')
 
 -- NEW TODO

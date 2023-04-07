@@ -3,7 +3,7 @@ appMappings = {
 	-- {'g', 'qutebrowser.app'},
 	{'c', 'iTerm.app'},
 	{'r', 'Slack.app'},
-	{'&', 'Microsoft Outlook.app'},
+	-- {'&', 'Microsoft Outlook.app'},
 	{'=', 'Spotify.app'},
 	-- {'*', 'Cisco Webex Meetings.app'},
 }
