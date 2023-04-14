@@ -109,6 +109,7 @@ export const command = `
 `
 export const render = (props) => {
     props.output = props.output.split('\n_re-occurring_\n')
+
     let WorkToDos = props.output[0]
     let TimeCardToDos = props.output[1]
 

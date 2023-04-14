@@ -32,12 +32,13 @@ local org_group = vim.api.nvim_create_augroup("orgfile_group", {clear = true})
 
 autocmd("BufWritePost" , {
     pattern = "/Users/jsanders/orgfiles/*.org",
-    command = "!osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"task_lister-index-jsx\"'",
+    command = "silent! !osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"task_lister-index-jsx\"'",
     group = org_group,
 })
+
 -- autocmd("BufWritePost" , {
 --     pattern = "/Users/jsanders/orgfiles/*.org",
---     command = "!osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh'",
+--     command = "silent! !osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh'",
 --     group = org_group,
 -- })
-
+-- silent! !osascript -e 'tell application id "tracesOf.Uebersicht" to refresh'
