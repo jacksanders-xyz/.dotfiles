@@ -1,0 +1,25 @@
+* TODO Submit Time cards
+ DEADLINE: <2023-04-13 Thu ++1w>
+   :PROPERTIES:
+   :LAST_REPEAT: [2023-04-07 Fri 12:18]
+   :END:
+  - State "DONE" from "TODO" [2023-04-07 Fri 12:18]
+   - State "DONE" from "TODO" [2023-04-06 Thu 20:40]
+
+
+
+DeadlineWeekNum is what the current week num is
+LastNumEntry is the week num of the last time you hit done
+
+if DeadlineWeekNum == LastNumEntry then it is this week and you have submitted >> push nothing
+
+if DeadlineWeekNum > LastNumEntry by 1, then it is the current week and have not yet submitted >> push the TODO
+
+if DeadlineWeekNum > LastNumEntry by 2, then it is the monday of the next week and you have not submitted
+
+
+week num     14 14 14 14 14 14 14 15 15 15 15 15 15 15                 *
+                      D                                     ]
+             0  1  2  3  4  5  6  0  1  2  3  4  5  6
+             m  t  w  T  f  s  S  m  t  w  T  f  s  S
+

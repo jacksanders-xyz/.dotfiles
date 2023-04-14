@@ -21,8 +21,9 @@ if pcall(require, 'plenary') then
 end
 
 local augroup = vim.api.nvim_create_augroup
-JacksGroup = augroup('JacksGroup', {})
+local JacksGroup = augroup('JacksGroup', { clear = true })
 local autocmd = vim.api.nvim_create_autocmd
+
 -- CLEANLINESS IS CLOSE TO GODLINESS
 autocmd({"BufWritePre"}, {
     group = JacksGroup,
