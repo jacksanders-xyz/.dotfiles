@@ -41,6 +41,11 @@ const taskStyle = css`
     color: white;
 `
 
+const deadlineStyle = css`
+    font-family: IosevkaTerm Nerd Font;
+    color: tan;
+`
+
 const taskStyleTodo = css`
     font-family: IosevkaTerm Nerd Font;
     font-size: l8px;
@@ -108,10 +113,11 @@ export const command = `
     sed -n '/:.*:/d;1,6p' ${orgTimeCardPath}
 `
 export const render = (props) => {
-    props.output = props.output.split('\n_re-occurring_\n')
+    let commandOutput = props.output
+    commandOutput = commandOutput.split('\n_re-occurring_\n')
 
-    let WorkToDos = props.output[0]
-    let TimeCardToDos = props.output[1]
+    let WorkToDos = commandOutput[0]
+    let TimeCardToDos = commandOutput[1]
 
     let taskArrayWork = [];
     let taskArrayTime = [];
@@ -212,7 +218,7 @@ export const render = (props) => {
     const listWorkItems = taskArrayWork.map((task, idx) => (
         <ul className={taskStyleTodo}>* TODO
             <ul className={taskStyle}>{task.taskVal}</ul>
-            <ul className={taskStyle}>{task.taskDeadline}</ul>
+            <ul className={deadlineStyle}>{task.taskDeadline}</ul>
         </ul>
     ));
 
@@ -221,7 +227,7 @@ export const render = (props) => {
             return (
                 <ul className={taskStyleTodo}>* TODO
                 <ul className={taskStyle}>{task.taskVal}</ul>
-                <ul className={taskStyle}>{task.taskDeadline}</ul>
+                <ul className={deadlineStyle}>{task.taskDeadline}</ul>
                 </ul>
             )
         }
@@ -229,7 +235,7 @@ export const render = (props) => {
             return (
                 <ul className={taskStyleTodo_thurs}> >>>>>TODO
                 <ul className={taskStyle}>{task.taskVal}</ul>
-                <ul className={taskStyle}>{task.taskDeadline}</ul>
+                <ul className={deadlineStyle}>{task.taskDeadline}</ul>
                 </ul>
             )
         }
@@ -237,7 +243,7 @@ export const render = (props) => {
             return (
                 <ul className={taskStyleTodo_urg_fri}> >>>>>>>TODO>>TODAY>>>>>>>>>>>
                 <ul className={taskStyle}>{task.taskVal}</ul>
-                <ul className={taskStyle}>{task.taskDeadline}</ul>
+                <ul className={deadlineStyle}>{task.taskDeadline}</ul>
                 </ul>
             )
         }
@@ -245,7 +251,7 @@ export const render = (props) => {
             return (
                 <ul className={taskStyleTodo_urg_sat_sun}> >>>>>>>TODO>>TODAY>>>>>>>>>>>
                 <ul className={taskStyle}>{task.taskVal}</ul>
-                <ul className={taskStyle}>{task.taskDeadline}</ul>
+                <ul className={deadlineStyle}>{task.taskDeadline}</ul>
                 </ul>
             )
         }

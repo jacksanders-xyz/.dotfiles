@@ -114,4 +114,10 @@ return require('packer').startup(function(use)
     -- MARKS
     use 'chentoast/marks.nvim'
 
+    -- JUPYTER
+    use { "kiyoon/jupynium.nvim", run = "pip3 install --user ." }
+    -- use { "kiyoon/jupynium.nvim", run = "conda run --no-capture-output -n jupynium pip install ." }
+    use { "rcarriga/nvim-notify" }   -- optional
+    use { "stevearc/dressing.nvim" } -- optional, UI for :JupyniumKernelSelect
+
 end)

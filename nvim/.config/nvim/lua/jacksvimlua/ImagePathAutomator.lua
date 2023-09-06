@@ -191,7 +191,8 @@ local function MakeImageDirectory()
     local CopyToClipboard = "let @*='"..ImageDirPath.."'"
     -- print(ImageDirPath, "has been made and is copied to clipboard")
     api.nvim_command(CopyToClipboard)
-    os.execute("mkdir "..ImageDirPath)
+    -- -- print(ImageDirPath, "has been made and is copied to clipboard")
+    -- os.execute("mkdir " .. ImageDirPath)
 end
 return {
     MakeImageDirectory = MakeImageDirectory,

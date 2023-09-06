@@ -13,6 +13,8 @@ capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- NVIM CMP
 local cmp = require("cmp")
+local compare = cmp.config.compare
+
 local source_mapping = {
 	buffer = "[Buffer]",
 	nvim_lsp = "[LSP]",
@@ -56,7 +58,16 @@ cmp.setup({
         { name = "path" },
         { name = 'orgmode' },
         { name = 'ultisnips' },
+        { name = 'jupynium', priority=1000 },
     },
+    sorting = {
+        priority_weight = 1.0,
+        comparators = {
+            compare.score,            -- Jupyter kernel completion shows prior to LSP
+            compare.recently_used,
+            compare.locality,
+        }
+    }
 })
 
 -- TAB NINE
@@ -75,6 +86,7 @@ local function config(_config)
 		capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities()),
 		on_attach = function()
 			nnoremap("gd", function() vim.lsp.buf.definition() end)
+			nnoremap("gD", function() vim.lsp.buf.declaration() end)
 			nnoremap("gi", function() vim.lsp.buf.implementation() end)
 			nnoremap("gK", function() vim.lsp.buf.hover() end)
 			nnoremap("<leader>vws", function() vim.lsp.buf.workspace_symbol() end)
@@ -140,3 +152,4 @@ require'lspconfig'.vimls.setup(config())
 require'lspconfig'.vuels.setup(config())
 require'lspconfig'.jsonls.setup(config())
 require'lspconfig'.bashls.setup(config())
+require'lspconfig'.tailwindcss.setup(config())

@@ -41,6 +41,7 @@ yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m q
 yabai -m config --space " " layout         float
 yabai -m config --space utils layout        float
 yabai -m config --space "outlook" layout    stack
+# yabai -m config --space "outlook" layout    float
 yabai -m config --space "webex" layout      float
 
 # REFRESH MY ÜBERSICHT BAR WHEN THE SPACE CHANGES

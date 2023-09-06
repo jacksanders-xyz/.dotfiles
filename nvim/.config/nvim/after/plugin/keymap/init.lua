@@ -59,7 +59,7 @@ nnoremap("<C-d>", "<C-d>zz")
 nnoremap("<C-u>", "<C-u>zz")
 
 -- SPELLCHECK TOGGLE IS <F4>
-nnoremap('<leader>s', ':setlocal spell! spelllang=en_us<CR>"')
+nnoremap('<leader>S', ':setlocal spell! spelllang=en_us<CR>"')
 
 -- MOVING TEXT AROUND
 vnoremap("J", ":m '>+1<CR>gv=gv")
@@ -71,8 +71,8 @@ nnoremap("<leader>k", ":m .-2<CR>==")
 nnoremap("]e", "I<CR><ESC>==")
 
 -- NETRW
-nnoremap("<leader>iv", ":Ex<CR>")
 nnoremap("<leader>is", "<C-w><C-v>:Ex<CR>")
+nnoremap("<leader>iv", ":Ex<CR>")
 
 -- UNDOTREE
 nnoremap("<leader>u", ":UndotreeToggle<CR>")
@@ -82,7 +82,7 @@ nnoremap("<leader>u", ":UndotreeToggle<CR>")
 -- REMAP W to :w
 vim.api.nvim_create_user_command('W', 'write', {})
 
--- Format yerself some json
+-- FORMAT YERSELF SOME JSON
 nnoremap('<leader>FJ', ":%!jq '.'<CR>")
 
 
@@ -94,3 +94,8 @@ nnoremap("<leader>C", function()
     vim.api.nvim_command(string_prep)
 end)
 
+-- CHECKBOXES FOR VIMWIKI
+nnoremap("<leader>WC", ":VimwikiToggleListItem<CR>")
+
+-- SURROUND
+nnoremap("<leader>s", "<Plug>Ysurroundiw")

@@ -9,7 +9,7 @@ augroup pencil
 augroup END
 
 " PENCIL HARD EVERYONE
-nnoremap <leader>PH :PencilHard<CR>
-nnoremap <leader>PS :PencilSoft<CR>
-nnoremap <leader>PO :PencilOff<CR>
+" nnoremap <leader>PH :PencilHard<CR>
+" nnoremap <leader>PS :PencilSoft<CR>
+" nnoremap <leader>PO :PencilOff<CR>
 

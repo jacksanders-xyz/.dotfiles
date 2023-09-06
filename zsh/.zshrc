@@ -116,7 +116,6 @@ alias tma="tmux attach -t"
 alias tmn="tmux new -t"
 export EDITOR="nvim"
 
-
 source ~/.nvm/nvm.sh
 
 export CGB_USER="10"
