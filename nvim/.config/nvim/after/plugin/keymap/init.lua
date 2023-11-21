@@ -15,6 +15,10 @@ inoremap("<C-c>", "<Esc>")
 nnoremap("<C-E>", 'jzz')
 nnoremap("<C-Y>", 'kzz')
 
+--JUMP CENTER
+nmap("<C-o>", '<C-o>zz')
+nmap("<C-i>", '<C-i>zz')
+
 -- EASIER SEARCH AND REPLACE
 nnoremap("<leader>fr", ":%s/")
 

@@ -1,8 +1,8 @@
 export const theme = {
     name: "Tokyo Night",
     kind: "dark",
-    // main: "#15161E", <= the original darkness
-    main: "rgba(21, 22, 30, 0.88)",
+    main: "#15161E",
+    // main: "rgba(21, 22, 30, 0.88)",
     mainAlt: "#302D41",
     minor: "#15161E",
     red: "#F7768E",
@@ -18,6 +18,7 @@ export const theme = {
     transparentDark: "rgba(0, 0, 0, 0.05)",
     defaultFont: "MesloLGL Nerd Font",
     barHeight: "34px",
+    padding: "34px",
     compactBarHeight: "10px",
     barRadius: "9px",
     barInnerMargin: "0px",

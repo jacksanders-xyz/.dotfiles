@@ -25,6 +25,9 @@ nnoremap("<leader>gc", ":Git commit -v -q<CR>")
 -- Commits current file
 nnoremap("<leader>gg", ":Git commit -v -q %:p<CR> ")
 
+
+vim.g.github_enterprise_urls={'https://github.ibm.com'}
+
 -- local neogit = require('neogit')
 -- local nnoremap = require('jacksvimlua.remap-binder-helper').nnoremap
 

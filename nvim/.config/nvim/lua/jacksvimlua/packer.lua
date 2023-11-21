@@ -13,7 +13,8 @@ return require('packer').startup(function(use)
 
     -- GIT
     use 'tpope/vim-fugitive'
-	-- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+    use 'tpope/vim-rhubarb'
+    -- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
     -- use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
     -- STARTIFY
@@ -74,6 +75,7 @@ return require('packer').startup(function(use)
     -- TREESITTER
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'nvim-treesitter/playground'
+    use("nvim-treesitter/nvim-treesitter-context");
 
     -- PRODUCTIVITY/VISUAL
     use 'sirVer/ultisnips'
