@@ -103,5 +103,5 @@ end)
 
 -- Find all the functions in the buffer
 nnoremap('<C-f>', function()
-    require('telescope.builtin').lsp_document_symbols({ignore_symbols={'constant','string','object','variable','array','boolean'}})
+    require('telescope.builtin').lsp_document_symbols({ignore_symbols={'constant','string','object','variable','array','boolean','property','interface'}})
 end)
