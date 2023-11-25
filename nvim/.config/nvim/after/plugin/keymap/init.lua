@@ -103,3 +103,10 @@ nnoremap("<leader>WC", ":VimwikiToggleListItem<CR>")
 
 -- SURROUND
 nnoremap("<leader>s", "<Plug>Ysurroundiw")
+
+
+--Tree
+nnoremap('<C-f>', function()
+require'symbols-outline'.toggle_outline()
+end)
+

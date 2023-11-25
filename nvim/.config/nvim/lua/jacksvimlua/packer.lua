@@ -57,7 +57,7 @@ return require('packer').startup(function(use)
     use('quangnguyen30192/cmp-nvim-ultisnips')
     use('onsails/lspkind-nvim')
     use('glepnir/lspsaga.nvim')
-    -- use('simrat39/symbols-outline.nvim')
+    use('simrat39/symbols-outline.nvim')
 
     -- ICONS
     use 'kyazdani42/nvim-web-devicons'

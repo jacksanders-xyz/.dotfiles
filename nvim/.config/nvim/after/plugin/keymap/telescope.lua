@@ -102,6 +102,6 @@ nnoremap("<leader>gM", function()
 end)
 
 -- Find all the functions in the buffer
-nnoremap('<C-f>', function()
-    require('telescope.builtin').lsp_document_symbols({ignore_symbols={'constant','string','object','variable','array','boolean','property','interface'}})
-end)
+-- nnoremap('<C-f>', function()
+--     require('telescope.builtin').lsp_document_symbols({})
+-- end)
