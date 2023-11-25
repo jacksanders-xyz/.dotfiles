@@ -100,3 +100,8 @@ end)
 nnoremap("<leader>gM", function()
 	require('telescope').extensions.git_worktree.create_git_worktree()
 end)
+
+-- Find all the functions in the buffer
+nnoremap('<C-f>', function()
+    require('telescope.builtin').lsp_document_symbols({ignore_symbols={'constant','string','object','variable','array','boolean'}})
+end)

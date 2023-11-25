@@ -71,8 +71,8 @@ map <leader>wT :VimwikiTable col rows-1
 
 vnoremap <leader>wo :<C-u>call MakeOutputBox()<CR>
 vnoremap <leader>wn :<C-u>call MakeNotes()<CR>
-nmap <leader>wf :<C-u>call MakeFlash()<CR>
-nmap <C-f> :<C-u>call WikiFlash()<CR>
+" nmap <leader>wf :<C-u>call MakeFlash()<CR>
+" nmap <C-f> :<C-u>call WikiFlash()<CR>
 
 nmap  <leader>T :<C-u>VimwikiToggleListItem<CR>
 
