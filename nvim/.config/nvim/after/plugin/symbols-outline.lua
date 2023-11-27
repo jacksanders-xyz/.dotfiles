@@ -1,5 +1,6 @@
 require("symbols-outline").setup({
     show_relative_numbers = true,
+    position = 'left',
     symbol_blacklist  = {
         'File',
         'Module',
@@ -58,6 +59,24 @@ require("symbols-outline").setup({
         Component = { icon = "", hl = "@function" },
         Fragment = { icon = "", hl = "@constant" },
     },
+})
+
+vim.api.nvim_create_autocmd("BufEnter", {
+    pattern = "*",
+    callback = function()
+        if vim.bo.filetype == "OUTLINE [-]" then
+            vim.o.incsearch = true
+        end
+    end
+})
+
+vim.api.nvim_create_autocmd("BufLeave", {
+    pattern = "*",
+    callback = function()
+        if vim.bo.filetype == "OUTLINE [-]" then
+            vim.o.incsearch = false
+        end
+    end
 })
 
 -- symbol_blacklist  = {
