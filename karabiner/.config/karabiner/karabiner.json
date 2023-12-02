@@ -226,6 +226,40 @@
                         ]
                     },
                     {
+                        "description": "Remap CTRL + + to CMD + 1",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "type": "frontmost_application_if",
+                                        "bundle_identifiers": [
+                                            "com.microsoft.Outlook"
+                                        ]
+                                    }
+                                ],
+                                "from": {
+                                    "key_code": "+",
+                                    "modifiers": {
+                                        "mandatory": [
+                                            "left_control"
+                                        ],
+                                        "optional": [
+                                            "any"
+                                        ]
+                                    }
+                                },
+                                "to": [
+                                    {
+                                        "key_code": "h",
+                                        "modifiers": [
+                                        ]
+                                    }
+                                ],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Remap CTRL + [ to CTRL + P when outlook open",
                         "manipulators": [
                             {

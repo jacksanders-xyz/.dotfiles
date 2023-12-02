@@ -19,7 +19,7 @@ fun! ColorMarkdown()
     let g:markdown_folding = 1
 
     " IF YOU TOGGLE TREE SITTER, THESE OPTIONS WON'T WORK
-    :hi VimwikiHeader2 guifg=yellow
+    " :hi VimwikiHeader2 guifg=yellow
     :hi VimwikiHeader3 guifg=green
     :hi VimwikiHeader4 guifg=blue
     :hi VimwikiHeader5 guifg=violet

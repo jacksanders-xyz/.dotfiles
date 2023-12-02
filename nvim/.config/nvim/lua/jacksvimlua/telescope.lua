@@ -40,6 +40,7 @@ require("telescope").load_extension("git_worktree")
 require('telescope').load_extension('bookmarks')
 require('telescope').load_extension('neoclip')
 require'telescope'.load_extension('zoxide')
+require("telescope").load_extension("docker")
 
 require("telescope").load_extension("file_browser")
 require'neoclip'.setup({

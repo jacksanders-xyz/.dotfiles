@@ -33,8 +33,6 @@ require("tokyonight").setup({
         }
     end,
     on_colors = function(colors)
-        colors.bg = "#1b1f30"
-        -- colors.green1 = "#1b1f30"
     end,
 })
 

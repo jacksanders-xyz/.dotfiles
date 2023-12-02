@@ -33,6 +33,7 @@ return require('packer').startup(function(use)
     use 'AckslD/nvim-neoclip.lua'
     use 'jvgrootveld/telescope-zoxide'
     use 'nvim-telescope/telescope-file-browser.nvim'
+    use 'lpoto/telescope-docker.nvim'
 
     -- STATUSLINE AND BAR
     use({
