@@ -5,7 +5,7 @@ local util = require("tokyonight.util")
 -- util.lighten(colors.red1, 0.3)
 
 vim.api.nvim_set_hl(0, 'VimwikiHeader2', {fg=colors.yellow})
-vim.api.nvim_set_hl(0, 'VimwikiHeader4', {fg=util.darken(colors.purple, 0.2), bg=util.darken(colors.teal, 0.8)})
+vim.api.nvim_set_hl(0, 'VimwikiHeader4', {fg='#0000ff',bg=util.darken(colors.fg, 0.1)})
 
 -- vim.api.nvim_set_hl(0, 'VimwikiHeader4', {fg=util.lighten(colors.blue2, 0.8)})
 vim.api.nvim_set_hl(0, 'VimwikiHeader5', {fg=colors.red1,bg=colors.cyan})

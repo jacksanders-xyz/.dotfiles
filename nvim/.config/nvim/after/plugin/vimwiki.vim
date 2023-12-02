@@ -21,9 +21,9 @@ fun! ColorMarkdown()
     " IF YOU TOGGLE TREE SITTER, THESE OPTIONS WON'T WORK
     " :hi VimwikiHeader2 guifg=yellow
     :hi VimwikiHeader3 guifg=green
-    :hi VimwikiHeader4 guifg=blue
-    :hi VimwikiHeader5 guifg=violet
-    :hi VimwikiHeader6 guifg=orange
+    " :hi VimwikiHeader4 guifg=blue
+    " :hi VimwikiHeader5 guifg=violet
+    " :hi VimwikiHeader6 guifg=orange
 
 endfun
 call ColorMarkdown()
@@ -73,6 +73,7 @@ vnoremap <leader>wo :<C-u>call MakeOutputBox()<CR>
 vnoremap <leader>wn :<C-u>call MakeNotes()<CR>
 " nmap <leader>wf :<C-u>call MakeFlash()<CR>
 " nmap <C-f> :<C-u>call WikiFlash()<CR>
+
 
 nmap  <leader>T :<C-u>VimwikiToggleListItem<CR>
 
