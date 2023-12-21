@@ -1,3 +1,5 @@
+local Remap = require("jacksvimlua.remap-binder-helper")
+local nnoremap = Remap.nnoremap
 require("symbols-outline").setup({
     show_relative_numbers = true,
     position = 'left',
@@ -13,7 +15,6 @@ require("symbols-outline").setup({
         'Constructor',
         'Enum',
         'Interface',
-        'Variable',
         'String',
         'Number',
         'Boolean',

@@ -97,7 +97,7 @@ local function config(_config)
 			nnoremap("<leader>vrr", function() vim.lsp.buf.references() end)
 			nnoremap("<leader>vrn", function() vim.lsp.buf.rename() end)
 			nnoremap("<leader>ve", function() vim.diagnostic.open_float(0, {scope="line"}) end)
-			-- inoremap("<leader>vrh", function() vim.lsp.buf.signature_help() end)
+			-- inoremap("<leader>vs", function() vim.lsp.buf.signature_help() end)
 		end,
 	}, _config or {})
 end

@@ -17,6 +17,9 @@ return require('packer').startup(function(use)
     -- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
     -- use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
+    -- NETRW STUFF
+    -- use 'stevearc/oil.nvim'
+
     -- STARTIFY
     use 'mhinz/vim-startify'
 

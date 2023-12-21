@@ -19,6 +19,11 @@ nnoremap("<C-Y>", 'kzz')
 nmap("<C-o>", '<C-o>zz')
 nmap("<C-i>", '<C-i>zz')
 
+nmap("'h", "'hzz")
+nmap("'t", "'tzz")
+nmap("'n", "'nzz")
+nmap("'s", "'szz")
+
 -- EASIER SEARCH AND REPLACE
 nnoremap("<leader>fr", ":%s/")
 
@@ -77,6 +82,8 @@ nnoremap("]e", "I<CR><ESC>==")
 -- NETRW
 nnoremap("<leader>is", "<C-w><C-v>:Ex<CR>")
 nnoremap("<leader>iv", ":Ex<CR>")
+-- nnoremap("<leader>is", "<C-w><C-v>:Oil<CR>")
+-- nnoremap("<leader>iv", ":Oil<CR>")
 
 -- UNDOTREE
 nnoremap("<leader>u", ":UndotreeToggle<CR>")
@@ -85,6 +92,8 @@ nnoremap("<leader>u", ":UndotreeToggle<CR>")
 
 -- REMAP W to :w
 vim.api.nvim_create_user_command('W', 'write', {})
+vim.api.nvim_create_user_command('W3',"!open https://w3.ibm.com",{})
+vim.api.nvim_create_user_command('TC',"!open https://ibmsc.lightning.force.com/lightning/page/home",{})
 
 -- FORMAT YERSELF SOME JSON
 nnoremap('<leader>FJ', ":%!jq '.'<CR>")

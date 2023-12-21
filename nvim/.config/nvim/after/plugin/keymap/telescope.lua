@@ -103,11 +103,19 @@ end)
 
 -- DOCKER
 nnoremap("<leader>FD", function()
-    require("telescope").extensions.docker.docker()
+    require("telescope").extensions.docker.containers()
 end)
+
+nnoremap("<leader>FI", function()
+    require("telescope").extensions.docker.images()
+end)
+
+-- nnoremap("<c-g>", function()
+--     require("telescope.builtin").live_grep({search_dirs={vim.fn.expand("%:p")}})
+-- end)
 
 
 -- Find all the functions in the buffer
--- nnoremap('<C-f>', function()
---     require('telescope.builtin').lsp_document_symbols({})
--- end)
+nnoremap('<C-g>', function()
+    require('telescope.builtin').lsp_document_symbols({})
+end)

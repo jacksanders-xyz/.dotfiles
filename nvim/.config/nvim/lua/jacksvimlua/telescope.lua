@@ -32,6 +32,9 @@ require("telescope").setup({
             url_open_plugin = nil,
             -- full_path = true,
         },
+        docker = {
+            binary = "docker",
+        }
     },
 })
 require("telescope").load_extension('harpoon')

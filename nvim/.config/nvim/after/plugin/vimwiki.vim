@@ -20,7 +20,7 @@ fun! ColorMarkdown()
 
     " IF YOU TOGGLE TREE SITTER, THESE OPTIONS WON'T WORK
     " :hi VimwikiHeader2 guifg=yellow
-    :hi VimwikiHeader3 guifg=green
+    " :hi VimwikiHeader3 guifg=green
     " :hi VimwikiHeader4 guifg=blue
     " :hi VimwikiHeader5 guifg=violet
     " :hi VimwikiHeader6 guifg=orange
