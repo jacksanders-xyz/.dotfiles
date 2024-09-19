@@ -1,19 +1,9 @@
 require'nvim-treesitter.configs'.setup {
     highlight = {
         enable = true,
-        -- custom_captures = {
-        -- Highlight the @foo.bar capture group with the "Identifier" highlight group.
-        -- ["foo.bar"] = "Identifier",
-        -- },
-
-        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-        -- Using this option may slow down your editor, and you may see some duplicate highlights.
-        -- Instead of true it can also be a list of languages
-
-        additional_vim_regex_highlighting = {'org'}, -- Required for spellcheck, some LaTex highlights and code block highlights that do not have ts grammar
+        additional_vim_regex_highlighting = {'org'}, -- Keeps regex highlighting for org files if needed
     },
-    ensure_installed = {'org'}, -- Or run :TSUpdate org
+    ensure_installed = {'org', 'go'}, -- Add 'go' for Go language support and other languages as needed
     incremental_selection = {
         enable = true,
         keymaps = {
@@ -24,8 +14,8 @@ require'nvim-treesitter.configs'.setup {
         },
     },
     indent = {
-        enable = true
-    }
+        enable = true,
+    },
 }
 
 local function setup()

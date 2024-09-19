@@ -1,11 +1,12 @@
+    -- {'g', 'Google Chrome.app'},
+    -- {'g', 'qutebrowser.app'},
 appMappings = {
     {'g', 'Google Chrome.app'},
-	-- {'g', 'qutebrowser.app'},
 	{'c', 'iTerm.app'},
 	{'r', 'Slack.app'},
-	-- {'&', 'Microsoft Outlook.app'},
+	{'&', 'Microsoft Outlook.app'},
 	{'=', 'Spotify.app'},
-	-- {'*', 'Cisco Webex Meetings.app'},
+    -- {'*', 'Cisco Webex Meetings.app'},
 }
 
 local log = hs.logger.new("hammerspoon", "debug")

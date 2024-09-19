@@ -18,7 +18,7 @@ return require('packer').startup(function(use)
     -- use { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' }
 
     -- NETRW STUFF
-    -- use 'stevearc/oil.nvim'
+    use 'stevearc/oil.nvim'
 
     -- STARTIFY
     use 'mhinz/vim-startify'
@@ -31,7 +31,7 @@ return require('packer').startup(function(use)
     use 'nvim-lua/popup.nvim'
 
     -- TELESCOPE EXTENSIONS
-    use 'dhruvmanila/telescope-bookmarks.nvim'
+    use 'dhruvmanila/browser-bookmarks.nvim'
     use 'ThePrimeagen/git-worktree.nvim'
     use 'AckslD/nvim-neoclip.lua'
     use 'jvgrootveld/telescope-zoxide'
@@ -49,7 +49,8 @@ return require('packer').startup(function(use)
     }
 
     -- COLORS
-    use 'folke/tokyonight.nvim'
+    -- use 'folke/tokyonight.nvim'
+    use "rebelot/kanagawa.nvim"
 
     -- COMPLETION
     use('hrsh7th/nvim-cmp')
@@ -61,25 +62,39 @@ return require('packer').startup(function(use)
     use('quangnguyen30192/cmp-nvim-ultisnips')
     use('onsails/lspkind-nvim')
     use('glepnir/lspsaga.nvim')
-    use('simrat39/symbols-outline.nvim')
+    -- use('simrat39/symbols-outline.nvim')
 
     -- ICONS
     use 'kyazdani42/nvim-web-devicons'
 
     -- LSP
     use 'neovim/nvim-lspconfig'
-    use 'williamboman/nvim-lsp-installer'
+    use 'williamboman/mason.nvim'
+    use 'williamboman/mason-lspconfig.nvim'
 
     -- UNDOTREE
     use 'mbbill/undotree'
 
-    -- VIMSPECTOR
-    use 'puremourning/vimspector'
+    -- DAP
+    use 'mfussenegger/nvim-dap'
+    use 'leoluz/nvim-dap-go'
+    use 'rcarriga/nvim-dap-ui'
+    use 'theHamsta/nvim-dap-virtual-text'
+    use 'nvim-neotest/nvim-nio'
 
     -- TREESITTER
     use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
     use 'nvim-treesitter/playground'
-    use("nvim-treesitter/nvim-treesitter-context");
+    use 'nvim-treesitter/nvim-treesitter-context';
+
+    -- USES TREESITTER
+    use 'Wansmer/treesj';
+
+    -- COPILOT
+    use 'github/copilot.vim';
+
+    -- TROUBLE
+    use 'folke/trouble.nvim';
 
     -- PRODUCTIVITY/VISUAL
     use 'sirVer/ultisnips'
@@ -94,10 +109,15 @@ return require('packer').startup(function(use)
     use 'vimwiki/vimwiki'
 
     -- SLIDESHOW
-    use'Olical/kkslider'
+    -- use'Olical/kkslider'
 
     -- MARKDOWNPREVIEW
-    use({ "iamcco/markdown-preview.nvim", run = "cd app && npm install", setup = function() vim.g.mkdp_filetypes = { "markdown" } end, ft = { "markdown" }, })
+    use({
+        "iamcco/markdown-preview.nvim",
+        run = "cd app && npm install",
+        setup = function() vim.g.mkdp_filetypes = { "markdown" } end,
+        ft = { "markdown" },
+    })
 
     -- LANGS
     use 'mrk21/yaml-vim'

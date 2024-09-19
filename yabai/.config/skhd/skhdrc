@@ -54,3 +54,8 @@ cmd + ctrl - c : yabai -m window --toggle float;\
 
 ## Close active application
 alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)
+
+# cmd + ctrl - g : osascript /Users/jsanders/rand/paste_and_enter.scpt
+
+# copy(document.getElementsByClassName("Paragraph_paragraph__EBC23 QuestionSection_questionTitle__cgJgo")[0].innerHTML)
+# class="Paragraph_paragraph__EBC23 QuestionSection_questionTitle__cgJgo"

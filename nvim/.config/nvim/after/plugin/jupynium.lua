@@ -118,8 +118,6 @@ hi! link JupyniumMagicCommand Keyword
 ]]
 
 -- Please share your favourite settings on other colour schemes, so I can add defaults.
--- Currently, tokyonight is supported.
-
 nnoremap("<leader>PA", ':JupyniumStartAndAttachToServer<CR>')
 nnoremap("<leader>PS", ':JupyniumStartSync<CR>')
 nnoremap("<leader>PK", ':JupyniumStopSync')

@@ -102,7 +102,7 @@ fun! ToggleVE()
     :endif
 endfun
 
-nnoremap <silent>]ov :call ToggleVE()<CR>
-vnoremap <leader>bp :<C-u>call BoxDrawParagraph()<CR>
-vnoremap <leader>bt :<C-u>call BoxDrawParagraphTwin()<CR>
-nnoremap <leader>bd :<C-u>call DeleteBox()<CR>
+" nnoremap <silent>]ov :call ToggleVE()<CR>
+" vnoremap <leader>bp :<C-u>call BoxDrawParagraph()<CR>
+" vnoremap <leader>bt :<C-u>call BoxDrawParagraphTwin()<CR>
+" nnoremap <leader>bd :<C-u>call DeleteBox()<CR>

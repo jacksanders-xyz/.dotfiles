@@ -119,3 +119,8 @@ end)
 nnoremap('<C-g>', function()
     require('telescope.builtin').lsp_document_symbols({})
 end)
+
+
+nnoremap('<leader>fm', function()
+    require('telescope.builtin').marks({'local'})
+end)

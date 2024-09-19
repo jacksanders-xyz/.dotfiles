@@ -25,13 +25,6 @@ require("telescope").setup({
             path = "%:p:h",
             dir_icon = ''
         },
-        bookmarks = {
-            selected_browser = 'chrome',
-            -- Either provide a shell command to open the URL
-            url_open_command = 'open',
-            url_open_plugin = nil,
-            -- full_path = true,
-        },
         docker = {
             binary = "docker",
         }
@@ -44,8 +37,11 @@ require('telescope').load_extension('bookmarks')
 require('telescope').load_extension('neoclip')
 require'telescope'.load_extension('zoxide')
 require("telescope").load_extension("docker")
+require('browser_bookmarks').setup({
+  selected_browser = "chrome",
+  url_open_command = "open"
+})
 
-require("telescope").load_extension("file_browser")
 require'neoclip'.setup({
      keys = {
         telescope = {

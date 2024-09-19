@@ -10,6 +10,17 @@ yabai -m config normal_window_opacity        0.90
 yabai -m config window_border_blur           off
 
 # MISSION-CONTROL DESKTOP LABELS
+# yabai -m space 1 --label " "
+# yabai -m space 2 --label web
+# yabai -m space 3 --label term
+# yabai -m space 4 --label slack
+# yabai -m space 5 --label outlook
+# yabai -m space 6 --label spotify
+# yabai -m space 7 --label quip
+# yabai -m space 8 --label utils
+# yabai -m space 9 --label random
+# yabai -m space 10 --label webex
+
 yabai -m space 1 --label " "
 yabai -m space 2 --label web
 yabai -m space 3 --label term

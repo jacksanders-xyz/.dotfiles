@@ -37,6 +37,12 @@ end)
 
 xnoremap("<leader>fr", ":s/")
 
+
+-- TREESJ
+nnoremap("<leader>t", function()
+    require('treesj').toggle()
+end)
+
 -- ZEN
 nnoremap("<leader>m", ":TZAtaraxis<CR>")
 
@@ -80,20 +86,29 @@ nnoremap("<leader>k", ":m .-2<CR>==")
 nnoremap("]e", "I<CR><ESC>==")
 
 -- NETRW
-nnoremap("<leader>is", "<C-w><C-v>:Ex<CR>")
-nnoremap("<leader>iv", ":Ex<CR>")
--- nnoremap("<leader>is", "<C-w><C-v>:Oil<CR>")
--- nnoremap("<leader>iv", ":Oil<CR>")
+-- nnoremap("<leader>is", "<C-w><C-v>:Ex<CR>")
+-- nnoremap("<leader>iv", ":Ex<CR>")
+nnoremap("<leader>is", "<C-w><C-v>:Oil<CR>")
+nnoremap("<leader>iv", ":Oil<CR>")
 
 -- UNDOTREE
 nnoremap("<leader>u", ":UndotreeToggle<CR>")
+
+
 
 -- COMMANDS
 
 -- REMAP W to :w
 vim.api.nvim_create_user_command('W', 'write', {})
+
+-- W3 and TIMECARDS
 vim.api.nvim_create_user_command('W3',"!open https://w3.ibm.com",{})
 vim.api.nvim_create_user_command('TC',"!open https://ibmsc.lightning.force.com/lightning/page/home",{})
+
+-- GOOGLE SEARCH UNDER CURSOR
+-- nnoremap('<leader>G', function()
+--     search_string = "!open https://www.google.com/search?q="
+-- end)
 
 -- FORMAT YERSELF SOME JSON
 nnoremap('<leader>FJ', ":%!jq '.'<CR>")
@@ -103,7 +118,7 @@ nnoremap('<leader>FJ', ":%!jq '.'<CR>")
 nnoremap("<leader>C", function()
     local word = vim.fn.expand("<cword>")
     local string_prep = "lua vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('oconsole.log("
-    string_prep = string_prep..word..")<esc>',true,false,true),'m',true)"
+    string_prep = string_prep..'"the '..word..': ",'..word..")<esc>',true,false,true),'m',true)"
     vim.api.nvim_command(string_prep)
 end)
 
@@ -115,7 +130,7 @@ nnoremap("<leader>s", "<Plug>Ysurroundiw")
 
 
 --Tree
-nnoremap('<C-f>', function()
-require'symbols-outline'.toggle_outline()
-end)
+-- nnoremap('<C-f>', function()
+--     require'symbols-outline'.toggle_outline()
+-- end)
 

@@ -3,10 +3,24 @@ local nnoremap = Remap.nnoremap
 local inoremap = Remap.inoremap
 local lua_ls_root_path = "/Users/jsanders/.local/share/nvim/lsp_servers/lua-language-server/"
 local lua_ls_binary = lua_ls_root_path .. "script"
+local lspconfig = require('lspconfig')
 
 -- LSP INSTALLER
-local lsp_installer = require("nvim-lsp-installer")
-require("nvim-lsp-installer").setup {}
+require("mason").setup()
+
+require('mason-lspconfig').setup({
+  ensure_installed = {
+    'ts_ls',
+    -- others
+  },
+  handlers = {
+    function(server_name)
+      lspconfig[server_name].setup({})
+    end
+  }
+})
+
+
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -104,7 +118,8 @@ end
 
 -- LSP CONFIG
 -- LSP LANGUAGE SERVERS
-require'lspconfig'.tsserver.setup(config())
+require'lspconfig'.ts_ls.setup(config())
+
 require'lspconfig'.lua_ls.setup(config({
 -- cmd = { lua_ls_binary, "-E", lua_ls_root_path .. "/main.lua" },
   settings = {
@@ -151,6 +166,9 @@ require'lspconfig'.dockerls.setup(config())
 require'lspconfig'.yamlls.setup(config())
 require'lspconfig'.vimls.setup(config())
 require'lspconfig'.vuels.setup(config())
-require'lspconfig'.jsonls.setup(config())
+require'lspconfig'.jsonls.setup(config({
+    filetypes = {"jsonl"}
+}))
 require'lspconfig'.bashls.setup(config())
 require'lspconfig'.tailwindcss.setup(config())
+require'lspconfig'.ansiblels.setup{}
