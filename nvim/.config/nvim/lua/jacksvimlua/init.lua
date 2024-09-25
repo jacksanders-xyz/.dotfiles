@@ -1,27 +1,11 @@
-require("jacksvimlua.sets")
-require("jacksvimlua.packer")
-require("jacksvimlua.remap-binder-helper")
-require("jacksvimlua.telescope")
-require("jacksvimlua.harpoon")
-require('jacksvimlua.treesitter')
-require('jacksvimlua.ImagePathAutomator')
+require("jacksvimlua.set")
+require("jacksvimlua.remap")
+require("jacksvimlua.lazy_init")
 
-P = function(v)
-  print(vim.inspect(v))
-  return v
-end
-
-if pcall(require, 'plenary') then
-  RELOAD = require('plenary.reload').reload_module
-
-  R = function(name)
-    RELOAD(name)
-    return require(name)
-  end
-end
-
+-- AUTO COMMANDS
 local augroup = vim.api.nvim_create_augroup
 local JacksGroup = augroup('JacksGroup', { clear = true })
+
 local autocmd = vim.api.nvim_create_autocmd
 
 -- CLEANLINESS IS CLOSE TO GODLINESS
@@ -31,7 +15,21 @@ autocmd({"BufWritePre"}, {
     command = "%s/\\s\\+$//e",
 })
 
+autocmd('LspAttach', {
+    group = JacksGroup,
+    callback = function(e)
+        local opts = { buffer = e.buf }
+        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
+        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
+        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
+        vim.keymap.set("n", "<leader>ve", function() vim.diagnostic.open_float(0, {scope="line"}) end, opts)
+        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
+        vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
+        vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
+        vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
+    end
+})
+
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
-

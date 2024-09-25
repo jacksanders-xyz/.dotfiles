@@ -9,4 +9,3 @@ autocmd("BufLeave", {
     pattern = "*",
     command = "setlocal noincsearch nohlsearch",
 })
-
