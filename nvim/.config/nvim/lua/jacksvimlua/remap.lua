@@ -118,7 +118,7 @@ local function ToggleQFList(global)
         end
     end
 end
-vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
+vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz")
+vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
 vim.keymap.set('n', '<C-q>', function() ToggleQFList(1) end)
 vim.keymap.set('n', '<leader>q', function() ToggleQFList(0) end)
