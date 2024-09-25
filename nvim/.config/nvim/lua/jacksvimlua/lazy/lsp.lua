@@ -21,6 +21,7 @@ return {
             vim.lsp.protocol.make_client_capabilities(),
             cmp_lsp.default_capabilities())
         capabilities.textDocument.completion.completionItem.snippetSupport = true
+
         require("fidget").setup({})
         require("mason").setup()
 
@@ -36,34 +37,30 @@ return {
                         capabilities = capabilities
                     }
                 end,
--- YOUR LANGUAGE SERVERS:
+                -- Language server specific setups
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
-                      settings = {
-                        Lua = {
-                          runtime = {
-                            version = 'LuaJIT',
-                            -- Setup your lua path
-                            path = vim.split(package.path, ';'),
-                          },
-                          diagnostics = {
-                            -- Get the language server to recognize the `vim` global
-                            globals = {'vim'},
-                          },
-                          workspace = {
-                            -- Make the server aware of Neovim runtime files
-                            library = vim.api.nvim_get_runtime_file("", true),
-                          },
-                          -- Do not send telemetry data containing a randomized but unique identifier
-                          telemetry = {
-                            enable = false,
-                          },
+                        settings = {
+                            Lua = {
+                                runtime = {
+                                    version = 'LuaJIT',
+                                    path = vim.split(package.path, ';'),
+                                },
+                                diagnostics = {
+                                    globals = {'vim'},
+                                },
+                                workspace = {
+                                    library = vim.api.nvim_get_runtime_file("", true),
+                                },
+                                telemetry = {
+                                    enable = false,
+                                },
+                            },
                         },
-                      },
-}
+                    }
                 end,
-            ["gopls"] = function()
+                ["gopls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.gopls.setup {
                         cmd = { "gopls", "serve" },
@@ -77,64 +74,66 @@ return {
                         },
                     }
                 end,
-            ["jedi_language_server"] = function()
-                local lspconfig = require("lspconfig")
-                lspconfig.jedi_language_server.setup{}
-            end,
-            ["cssls"] = function()
-                local lspconfig = require("lspconfig")
-                lspconfig.cssls.setup{}
-            end,
-            ["dockerls"] = function()
-                local lspconfig = require("lspconfig")
-                lspconfig.dockerls.setup{}
-            end,
-            ["vimls"] = function()
-                local lspconfig = require("lspconfig")
-                lspconfig.vimls.setup{}
-            end,
-            ["yamlls"] = function()
-                local lspconfig = require("lspconfig")
-                lspconfig.yamlls.setup{}
-            end,
-            ["jsonls"] = function()
-                local lspconfig = require("lspconfig")
-                lspconfig.jsonls.setup{}
-            end,
-            ["bashls"] = function()
-                local lspconfig = require("lspconfig")
-                lspconfig.bashls.setup{}
-            end,
-            ["tailwindcss"] = function()
-                local lspconfig = require("lspconfig")
-                lspconfig.tailwindcss.setup{}
-            end,
-            ["ansiblels"] = function()
-                local lspconfig = require("lspconfig")
-                lspconfig.ansiblels.setup{}
-            end,
+                -- Other servers
+                ["jedi_language_server"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.jedi_language_server.setup{}
+                end,
+                ["cssls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.cssls.setup{}
+                end,
+                ["dockerls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.dockerls.setup{}
+                end,
+                ["vimls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.vimls.setup{}
+                end,
+                ["yamlls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.yamlls.setup{}
+                end,
+                ["jsonls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.jsonls.setup{}
+                end,
+                ["bashls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.bashls.setup{}
+                end,
+                ["tailwindcss"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.tailwindcss.setup{}
+                end,
+                ["ansiblels"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.ansiblels.setup{}
+                end,
             }
         })
 
-        local cmp_select = { behavior = cmp.SelectBehavior.Select }
-            cmp.setup({
-                    snippet = {
-                        expand = function(args)
-                            require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-                        end,
-                    },
-                    mapping = cmp.mapping.preset.insert({
-                        ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-                        ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-                        ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-                        ["<C-Space>"] = cmp.mapping.complete(),
-                    }),
-                    sources = cmp.config.sources({
-                        { name = 'nvim_lsp' },
-                        { name = 'luasnip' }, -- For luasnip users.
-                    }, {
-                        { name = 'buffer' },
-                    })
-                })
-        end
+        -- CMP
+        local cmp_select = { behavior = cmp.SelectBehavior.Insert }
+        cmp.setup({
+            snippet = {
+                expand = function(args)
+                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                end,
+            },
+            mapping = cmp.mapping.preset.insert({
+                -- Navigate through the items and insert them without confirming
+                ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+                ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+
+            }),
+            sources = {
+                { name = "nvim_lsp" },
+                { name = "path" },
+                { name = "buffer" },
+            },
+        })
+    end
 }

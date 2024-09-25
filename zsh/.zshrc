@@ -6,6 +6,7 @@ fi
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/jsanders/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
+
 ZSH_DISABLE_COMPFIX=true
 
 # Plugins
@@ -98,3 +99,6 @@ export PATH="$PATH:/Users/jsanders/.local/bin"
 
 # lazy rocks
 export PATH="$HOME/.local/share/nvim/lazy-rocks/bin:$PATH"
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

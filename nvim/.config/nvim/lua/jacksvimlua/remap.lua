@@ -66,8 +66,8 @@ vim.keymap.set('n' ,"]e", "I<CR><ESC>==")
 -- NETRW
 -- vim.keymap.set('n' ,"<leader>is", "<C-w><C-v>:Ex<CR>")
 -- vim.keymap.set('n' ,"<leader>iv", ":Ex<CR>")
-vim.keymap.set('n' ,"<leader>is", "<C-w><C-v>:Oil<CR>")
-vim.keymap.set('n' ,"<leader>iv", ":Oil<CR>")
+vim.keymap.set('n' ,"<leader>is", "<C-w><C-v>:Oil<CR>",{silent = true})
+vim.keymap.set('n' ,"<leader>iv", ":Oil<CR>",{silent = true})
 
 -- UNDOTREE
 vim.keymap.set('n' ,"<leader>u", ":UndotreeToggle<CR>")

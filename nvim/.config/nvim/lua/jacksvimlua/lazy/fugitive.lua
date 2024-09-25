@@ -49,7 +49,6 @@ return {
 
         vim.keymap.set("n","<leader>gdrb", ":Git push -d origin mybranch")
         vim.keymap.set("n","<leader>gd", ":Git diff<CR>")
-        vim.keymap.set("n","<leader>gc", ":Git commit -v -q<CR>")
 
         -- Commits current file
         vim.keymap.set("n","<leader>gg", ":Git commit -v -q %:p<CR> ")
