@@ -11,6 +11,7 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
+        "onsails/lspkind.nvim"
     },
     config = function()
         local cmp = require("cmp")
@@ -115,6 +116,7 @@ return {
         })
 
         -- CMP
+        local lspkind = require('lspkind')
         local cmp_select = { behavior = cmp.SelectBehavior.Insert }
         cmp.setup({
             snippet = {
@@ -134,6 +136,20 @@ return {
                 { name = "path" },
                 { name = "buffer" },
             },
+            formatting = {
+                format = lspkind.cmp_format({
+                    mode = 'text',
+                    maxwidth = 50,
+                    ellipsis_char = '...',
+                    show_labelDetails = true,
+                    menu = ({             -- showing type in menu
+                        nvim_lsp = "[LSP]",
+                        path = "[Path]",
+                        buffer = "[Buffer]",
+                        luasnip = "[LuaSnip]",
+                    }),
+                })
+            }
         })
     end
 }
