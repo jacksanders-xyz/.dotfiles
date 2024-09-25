@@ -3,30 +3,27 @@ return {
     build = ":TSUpdate",
     config = function()
         require("nvim-treesitter.configs").setup({
-            ensure_installed = {"vimdoc","org","javascript","go", "bash", "typescript", "lua","jsdoc"},
-
-        -- Install parsers synchronously (only applied to `ensure_installed`)
-            sync_install = false,
-            -- auto_install = true,
-
-            indent = {
-                enable = true
-            },
-
+            ensure_installed = { "vimdoc", "org", "javascript", "go", "bash", "typescript", "lua", "jsdoc" },  -- Languages to install
+            sync_install = false,  -- Install parsers synchronously
+            auto_install = true,  -- Automatically install missing parsers when entering buffer
+            ignore_install = {},  -- List of parsers to ignore installing
             highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = {'org'}, -- Keeps regex highlighting for org files if needed
+                enable = true,  -- Enable syntax highlighting
+                additional_vim_regex_highlighting = { "org" },
+            },
+            indent = {
+                enable = true,  -- Enable indentation
             },
             incremental_selection = {
-                enable = true,
+                enable = true,  -- Enable incremental selection
                 keymaps = {
-                    init_selection = "gnn",
-                    node_incremental = "grn",
-                    scope_incremental = "grc",
-                    node_decremental = "grm",
+                    init_selection = "gnn",  -- Start selection
+                    node_incremental = "grn",  -- Increment to next node
+                    scope_incremental = "grc",  -- Increment to next scope
+                    node_decremental = "grm",  -- Decrement to previous node
                 },
-            }
-    })
-end
+            },
+            modules = {},  -- Add this empty `modules` field to satisfy LSP
+        })
+    end
 }
-

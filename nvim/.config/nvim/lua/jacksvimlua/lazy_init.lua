@@ -27,8 +27,4 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
     spec = "jacksvimlua.lazy",
     change_detection = { notify = false },
-    -- remove me later:
-        rocks = {
-            enabled = false,
-        }
 })

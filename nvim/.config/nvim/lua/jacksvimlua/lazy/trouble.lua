@@ -7,8 +7,12 @@ return {
                 require("trouble").toggle('quickfix')
             end)
 
-            vim.keymap.set("n", "<leader>t", function()
+            vim.keymap.set("n", "<leader>tt", function()
                 require("trouble").toggle('diagnostics')
+            end)
+
+            vim.keymap.set("n", "<leader>tf", function()
+                require("trouble").toggle('symbols')
             end)
 
             vim.keymap.set("n", "[t", function()
