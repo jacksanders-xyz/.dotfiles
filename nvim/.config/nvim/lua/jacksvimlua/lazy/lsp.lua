@@ -142,9 +142,10 @@ return {
                     maxwidth = 50,
                     ellipsis_char = '...',
                     show_labelDetails = true,
-                    menu = ({             -- showing type in menu
+                    menu = ({
                         nvim_lsp = "[LSP]",
                         path = "[Path]",
+                       	nvim_lua = "[Lua]",
                         buffer = "[Buffer]",
                         luasnip = "[LuaSnip]",
                     }),

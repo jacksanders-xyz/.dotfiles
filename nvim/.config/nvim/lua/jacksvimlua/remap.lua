@@ -21,7 +21,7 @@ vim.keymap.set('v', '<leader>fr', ' :s/', { noremap = true, silent = false })
 
 
 -- ZEN
-vim.keymap.set('n' ,"<leader>m", ":Zenmode<CR>")
+vim.keymap.set('n' ,"<leader>m", ":ZenMode<CR>")
 
 -- MAXIMIZER FOR VIMSPECTOR
 vim.keymap.set('n' ,"<leader>,", "<cmd>MaximizerToggle!<CR>")
@@ -57,8 +57,6 @@ vim.keymap.set('n' ,'<leader>S', ':setlocal spell! spelllang=en_us<CR>"')
 vim.keymap.set('v',"J", ":m '>+1<CR>gv=gv")
 vim.keymap.set('v',"K", ":m '<-2<CR>gv=gv")
 
-vim.keymap.set('i',"<C-k>", "<esc>:m .-2<CR>==")
-vim.keymap.set('i',"<C-j>", "<esc>:m .+1<CR>==")
 vim.keymap.set('n' ,"<leader>j", ":m .+1<CR>==")
 vim.keymap.set('n' ,"<leader>k", ":m .-2<CR>==")
 vim.keymap.set('n' ,"]e", "I<CR><ESC>==")
@@ -91,6 +89,7 @@ vim.keymap.set('n' ,"<leader>C", function()
 end)
 
 -- CHECKBOXES FOR VIMWIKI
+vim.keymap.set('n', "<leader>wl", '"*PysiW)i[]<ESC>i', { remap = true })
 vim.keymap.set('n' ,"<leader>WC", ":VimwikiToggleListItem<CR>")
 
 -- SURROUND

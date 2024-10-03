@@ -7,6 +7,9 @@ return {
             "AckslD/nvim-neoclip.lua",
             "jvgrootveld/telescope-zoxide",
             "nvim-telescope/telescope-file-browser.nvim",
+            "axieax/urlview.nvim",
+            "sshelll/telescope-gott.nvim",
+            "benfowler/telescope-luasnip.nvim"
         },
         config = function()
             local actions = require("telescope.actions")
@@ -28,10 +31,10 @@ return {
                 },
                 extensions = {
                     fzf = {
-                      fuzzy = true,
-                      override_generic_sorter = true,
-                      override_file_sorter = true,
-                      case_mode = "smart_case",
+                        fuzzy = true,
+                        override_generic_sorter = true,
+                        override_file_sorter = true,
+                        case_mode = "smart_case",
                     },
                     file_browser = {
                         path = "%:p:h",
@@ -61,7 +64,16 @@ return {
                 })
             end, { noremap = true, silent = true })
 
-            vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
+            vim.keymap.set('n', '<c-g>', function()
+                builtin.buffers({
+                    attach_mappings = function(_, map)
+                        map("i", "<c-d>", actions.delete_buffer)
+                        map("n", "<c-d>", actions.delete_buffer)
+                        return true
+                    end
+                })
+            end)
+
             vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
             vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 
@@ -132,6 +144,8 @@ return {
             end)
 
             pcall(require("telescope").load_extension("fzf"))
+            pcall(require('telescope').load_extension('luasnip'))
+            require('telescope').load_extension('gott')
             pcall(require'telescope'.load_extension('zoxide'))
             pcall(require('telescope').load_extension('neoclip'))
 
@@ -178,4 +192,11 @@ return {
 
         end
     },
+    {
+        "axieax/urlview.nvim",
+        config = function()
+            require("urlview").setup({})
+            vim.keymap.set('n', '<leader>fu', '<cmd>UrlView<cr>', { noremap = true, silent = true })
+        end
+    }
 }
