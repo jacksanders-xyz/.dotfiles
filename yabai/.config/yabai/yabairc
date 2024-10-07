@@ -28,9 +28,9 @@ yabai -m space 4 --label slack
 yabai -m space 5 --label outlook
 yabai -m space 6 --label spotify
 yabai -m space 7 --label quip
-yabai -m space 8 --label utils
-yabai -m space 9 --label random
-yabai -m space 10 --label webex
+yabai -m space 3 --label utils
+# yabai -m space 9 --label random
+yabai -m space 5 --label teams
 
 # WINDOW RULES
 yabai -m rule --add app="^Google Chrome$"
@@ -39,7 +39,7 @@ yabai -m rule --add app="iTerm$" space=term
 yabai -m rule --add app="Microsoft Outlook^$" space=outlook
 yabai -m rule --add app="^Slack$" space=slack
 yabai -m rule --add app="^Spotify$" space=spotify
-yabai -m rule --add app="^Cisco Webex Meetings$" space=webex
+yabai -m rule --add app="^Microsoft Teams$" space=teams
 yabai -m rule --add app="^Quip$" space=quip
 yabai -m rule --add app="^System Preferences$" manage=off space=utils
 yabai -m rule --add app="^Cisco AnyConnect Secure Mobility Client$" manage=off space=utils

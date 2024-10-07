@@ -3,25 +3,14 @@ return {
     dependencies = {
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-cmdline",
-        "hrsh7th/nvim-cmp",
-        "L3MON4D3/LuaSnip",
-        "saadparwaiz1/cmp_luasnip",
-        "j-hui/fidget.nvim",
-        "onsails/lspkind.nvim"
+        { "j-hui/fidget.nvim", opts = {} },
     },
+
     config = function()
-        local cmp = require("cmp")
-        local cmp_lsp = require("cmp_nvim_lsp")
-        local capabilities = vim.tbl_deep_extend(
-            "force",
-            {},
-            vim.lsp.protocol.make_client_capabilities(),
-            cmp_lsp.default_capabilities())
-        capabilities.textDocument.completion.completionItem.snippetSupport = true
+        local capabilities = nil
+        if pcall(require, "cmp_nvim_lsp") then
+            capabilities = require("cmp_nvim_lsp").default_capabilities()
+        end
 
         require("fidget").setup({})
         require("mason").setup()
@@ -38,10 +27,12 @@ return {
                         capabilities = capabilities
                     }
                 end,
+
                 -- Language server specific setups
                 ["lua_ls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.lua_ls.setup {
+                        capabilities = capabilities,
                         settings = {
                             Lua = {
                                 runtime = {
@@ -65,6 +56,8 @@ return {
                     local lspconfig = require("lspconfig")
                     lspconfig.gopls.setup {
                         cmd = { "gopls", "serve" },
+                        root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
+                        capabilities = capabilities,
                         settings = {
                             gopls = {
                                 analyses = {
@@ -75,10 +68,13 @@ return {
                         },
                     }
                 end,
+
                 -- Other servers
                 ["jedi_language_server"] = function()
                     local lspconfig = require("lspconfig")
-                    lspconfig.jedi_language_server.setup{}
+                    lspconfig.jedi_language_server.setup{
+                        capabilities = capabilities,
+                    }
                 end,
                 ["cssls"] = function()
                     local lspconfig = require("lspconfig")
@@ -112,44 +108,6 @@ return {
                     local lspconfig = require("lspconfig")
                     lspconfig.ansiblels.setup{}
                 end,
-            }
-        })
-
-        -- CMP
-        local lspkind = require('lspkind')
-        local cmp_select = { behavior = cmp.SelectBehavior.Insert }
-        cmp.setup({
-            snippet = {
-                expand = function(args)
-                    require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
-                end,
-            },
-            mapping = cmp.mapping.preset.insert({
-                -- Navigate through the items and insert them without confirming
-                ['<C-n>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-                ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
-
-            }),
-            sources = {
-                { name = "nvim_lsp" },
-                { name = "path" },
-                { name = "buffer" },
-            },
-            formatting = {
-                format = lspkind.cmp_format({
-                    mode = 'text',
-                    maxwidth = 50,
-                    ellipsis_char = '...',
-                    show_labelDetails = true,
-                    menu = ({
-                        nvim_lsp = "[LSP]",
-                        path = "[Path]",
-                       	nvim_lua = "[Lua]",
-                        buffer = "[Buffer]",
-                        luasnip = "[LuaSnip]",
-                    }),
-                })
             }
         })
     end

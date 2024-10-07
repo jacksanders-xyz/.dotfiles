@@ -8,8 +8,7 @@ return {
             auto_install = true,  -- Automatically install missing parsers when entering buffer
             ignore_install = {},  -- List of parsers to ignore installing
             highlight = {
-                enable = true,  -- Enable syntax highlighting
-                additional_vim_regex_highlighting = { "org" },
+                enable = false,
             },
             indent = {
                 enable = true,  -- Enable indentation
@@ -23,7 +22,7 @@ return {
                     node_decremental = "grm",  -- Decrement to previous node
                 },
             },
-            modules = {},  -- Add this empty `modules` field to satisfy LSP
+            modules = {},
         })
     end
 }

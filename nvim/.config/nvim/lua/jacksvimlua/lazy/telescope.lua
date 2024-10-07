@@ -9,7 +9,9 @@ return {
             "nvim-telescope/telescope-file-browser.nvim",
             "axieax/urlview.nvim",
             "sshelll/telescope-gott.nvim",
-            "benfowler/telescope-luasnip.nvim"
+            "benfowler/telescope-luasnip.nvim",
+            "catgoose/telescope-helpgrep.nvim",
+            "smilovanovic/telescope-search-dir-picker.nvim"
         },
         config = function()
             local actions = require("telescope.actions")
@@ -75,6 +77,8 @@ return {
             end)
 
             vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
+            vim.keymap.set('n', '<leader>fH', '<cmd>Telescope helpgrep<cr>', { noremap = true, silent = true })
+
             vim.keymap.set('n', '<C-p>', builtin.git_files, {})
 
             -- QFIX STUFF
@@ -144,10 +148,13 @@ return {
             end)
 
             pcall(require("telescope").load_extension("fzf"))
+            pcall(require("telescope").load_extension("helpgrep"))
             pcall(require('telescope').load_extension('luasnip'))
-            require('telescope').load_extension('gott')
             pcall(require'telescope'.load_extension('zoxide'))
             pcall(require('telescope').load_extension('neoclip'))
+
+            -- gotest do this later
+            pcall(require('telescope').load_extension('gott'))
 
             -- NEOCLIP
             vim.keymap.set('n', '<leader>fc', function()
@@ -156,12 +163,12 @@ return {
 
             -- ZOXIDE
             vim.keymap.set('n', '<leader>fz', function()
-              telescope.extensions.zoxide.list{}
+                telescope.extensions.zoxide.list{}
             end, { noremap = true, silent = true })
 
             -- FILE BROWSER
             vim.keymap.set('n', '<leader>fl', function()
-              telescope.extensions.file_browser.file_browser{}
+                telescope.extensions.file_browser.file_browser{}
             end, { noremap = true, silent = true })
 
             -- GIT
