@@ -1,6 +1,6 @@
 return {
     {
-        "hrsh8th/nvim-cmp",
+        "hrsh7th/nvim-cmp",
         lazy = false,
         priority = 100,
         dependencies = {

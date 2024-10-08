@@ -4,7 +4,6 @@ return {
         dependencies = {
             "nvim-lua/plenary.nvim",
             { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-            "AckslD/nvim-neoclip.lua",
             "jvgrootveld/telescope-zoxide",
             "nvim-telescope/telescope-file-browser.nvim",
             "axieax/urlview.nvim",
@@ -23,6 +22,7 @@ return {
                     color_devicons = true,
                     file_previewer = require("telescope.previewers").vim_buffer_cat.new,
                     Grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
+                    qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
                     qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
                     mappings = {
                         i = {
@@ -151,15 +151,10 @@ return {
             pcall(require("telescope").load_extension("helpgrep"))
             pcall(require('telescope').load_extension('luasnip'))
             pcall(require'telescope'.load_extension('zoxide'))
-            pcall(require('telescope').load_extension('neoclip'))
+            pcall(require('telescope').load_extension('search_dir_picker'))
 
-            -- gotest do this later
+            -- GOTEST
             pcall(require('telescope').load_extension('gott'))
-
-            -- NEOCLIP
-            vim.keymap.set('n', '<leader>fc', function()
-                telescope.extensions.neoclip.default{}
-            end, { noremap = true, silent = true })
 
             -- ZOXIDE
             vim.keymap.set('n', '<leader>fz', function()
@@ -204,6 +199,23 @@ return {
         config = function()
             require("urlview").setup({})
             vim.keymap.set('n', '<leader>fu', '<cmd>UrlView<cr>', { noremap = true, silent = true })
+        end
+    },
+    {
+        "AckslD/nvim-neoclip.lua",
+        config = function()
+            require('neoclip').setup({
+                keys = {
+                    telescope = {
+                        i = {
+                            select = '<c-y>',
+                            paste = '<cr>',
+                        }
+                    }
+                }
+
+            })
+            vim.keymap.set('n', '<leader>fc', '<cmd>Telescope neoclip<cr>')
         end
     }
 }
