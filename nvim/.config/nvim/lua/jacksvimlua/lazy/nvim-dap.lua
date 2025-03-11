@@ -17,7 +17,8 @@ return {
 
             -- configure other stuff later, for golange you're gonna use nvim-dap-go
             -- this is command will fire it up
-            vim.keymap.set('n', '<F7>', dap.continue)
+
+            vim.keymap.set('n', '<F7>', dap.continue) -- remember, your keyboard is moved over 1 so it will be <F6>
             vim.keymap.set('n', '<F8>', dap.step_over)
             vim.keymap.set('n', '<F9>', dap.step_into)
             vim.keymap.set('n', '<F10>', dap.step_out)
@@ -27,6 +28,7 @@ return {
 
             vim.keymap.set('n', '<Leader>b', dap.toggle_breakpoint)
             vim.keymap.set('n', '<Leader>B', dap.set_breakpoint)
+
             vim.keymap.set('n', '<Leader>dl', function() require('dap').run_last() end)
 
             -- vim.keymap.set('n', '<Leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)

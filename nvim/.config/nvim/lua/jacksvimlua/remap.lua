@@ -7,8 +7,8 @@ vim.keymap.set('n' ,"<C-E>", 'jzz')
 vim.keymap.set('n' ,"<C-Y>", 'kzz')
 
 --JUMP CENTER
-vim.keymap.set('n',"<C-o>", '<C-o>zz')
-vim.keymap.set('n',"<C-i>", '<C-i>zz')
+-- vim.keymap.set('n',"<C-o>", '<C-o>zz')
+-- vim.keymap.set('n',"<C-i>", '<C-i>zz')
 
 vim.keymap.set('n',"'h", "'hzz")
 vim.keymap.set('n',"'t", "'tzz")
@@ -19,12 +19,13 @@ vim.keymap.set('n',"'s", "'szz")
 vim.keymap.set('n' ,"<leader>fr", ":%s/")
 vim.keymap.set('v', '<leader>fr', ' :s/', { noremap = true, silent = false })
 
-
 -- ZEN
-vim.keymap.set('n' ,"<leader>m", ":ZenMode<CR>")
+vim.keymap.set('n' ,"<leader>m", ":NoNeckPain<CR>")
+vim.keymap.set('n' ,"<leader>M", ":NoNeckPainToggleRightSide<CR>")
 
 -- MAXIMIZER FOR VIMSPECTOR
-vim.keymap.set('n' ,"<leader>,", "<cmd>MaximizerToggle!<CR>")
+-- vim.keymap.set('n' ,"<leader>,", "<cmd>MaximizerToggle!<CR>")
+vim.api.nvim_set_keymap("n", "<leader>,", ":lua require('jacksvimlua.maximizer').toggle()<CR>", { noremap = true, silent = true })
 
 -- BUFFER MANAGEMENT
 vim.keymap.set('n' ,"<leader>x", "<cmd>bd<CR>")
@@ -87,10 +88,6 @@ vim.keymap.set('n' ,"<leader>C", function()
     string_prep = string_prep..'"the '..word..': ",'..word..")<esc>',true,false,true),'m',true)"
     vim.api.nvim_command(string_prep)
 end)
-
--- CHECKBOXES FOR VIMWIKI
-vim.keymap.set('n', "<leader>wl", '"*PysiW)i[]<ESC>i', { remap = true })
-vim.keymap.set('n' ,"<leader>WC", ":VimwikiToggleListItem<CR>")
 
 -- SURROUND
 vim.keymap.set('n' ,"<leader>s", "<Plug>Ysurroundiw")

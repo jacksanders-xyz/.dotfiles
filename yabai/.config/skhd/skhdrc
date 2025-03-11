@@ -49,8 +49,8 @@ shift + cmd + ctrl - t : /Users/jsanders/yabScripts/moveWindowRightAndFollowFocu
 # toggle fullscreen
 cmd + ctrl - f : yabai -m window --toggle zoom-fullscreen
 
-cmd + ctrl - c : yabai -m window --toggle float;\
-          yabai -m window --grid 4:4:1:0:2:4
+# cmd + ctrl - c : yabai -m window --toggle float;\
+#           yabai -m window --grid 4:4:1:0:2:4
 
 ## Close active application
 alt - q : $(yabai -m window $(yabai -m query --windows --window | jq -re ".id") --close)

@@ -10,7 +10,7 @@ return {
             "sshelll/telescope-gott.nvim",
             "benfowler/telescope-luasnip.nvim",
             "catgoose/telescope-helpgrep.nvim",
-            "smilovanovic/telescope-search-dir-picker.nvim"
+            "blacktrub/telescope-godoc.nvim",
         },
         config = function()
             local actions = require("telescope.actions")
@@ -23,7 +23,17 @@ return {
                     file_previewer = require("telescope.previewers").vim_buffer_cat.new,
                     Grep_previewer = require("telescope.previewers").vim_buffer_vimgrep.new,
                     qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
-                    qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
+                    path_display = { "truncate" },
+                    layout_strategy = "vertical",
+                    layout_config = {
+                        vertical = {
+                            preview_cutoff = 0,
+                            prompt_position = "top",
+                            preview_height = 0.62,
+                            width = 0.6,
+                            height = 0.99,
+                        },
+                    },
                     mappings = {
                         i = {
                             -- ["<C-x>"] = false,
@@ -44,7 +54,7 @@ return {
                     },
                     docker = {
                         binary = "docker",
-                    }
+                    },
                 },
             })
             local builtin = require('telescope.builtin')
@@ -151,7 +161,7 @@ return {
             pcall(require("telescope").load_extension("helpgrep"))
             pcall(require('telescope').load_extension('luasnip'))
             pcall(require'telescope'.load_extension('zoxide'))
-            pcall(require('telescope').load_extension('search_dir_picker'))
+            pcall(require("telescope").load_extension("godoc"))
 
             -- GOTEST
             pcall(require('telescope').load_extension('gott'))
@@ -192,13 +202,14 @@ return {
                 builtin.marks({'local'})
             end)
 
+            vim.keymap.set('n', '<leader>FG',  '<cmd>Telescope godoc<cr>', { noremap = true, silent = true })
         end
     },
     {
         "axieax/urlview.nvim",
         config = function()
             require("urlview").setup({})
-            vim.keymap.set('n', '<leader>fu', '<cmd>UrlView<cr>', { noremap = true, silent = true })
+            vim.keymap.set('n', '<leader>fu', '<cmd>UrlView buffer picker=telescope<cr>', { noremap = true, silent = true })
         end
     },
     {

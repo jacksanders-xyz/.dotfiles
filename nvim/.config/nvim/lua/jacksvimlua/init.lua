@@ -1,12 +1,31 @@
 require("jacksvimlua.set")
 require("jacksvimlua.remap")
 require("jacksvimlua.lazy_init")
+require("jacksvimlua.maximizer")
 
 -- AUTO COMMANDS
 local augroup = vim.api.nvim_create_augroup
 local JacksGroup = augroup('JacksGroup', { clear = true })
 
 local autocmd = vim.api.nvim_create_autocmd
+
+-- NORMAL CENTER
+-- autocmd("VimEnter", { command = "NoNeckPain" })
+
+-- EVERYTHING CENTER
+autocmd("VimEnter", {
+    callback = function()
+        -- Trigger the NoNeckPain command
+        vim.cmd("NoNeckPain")
+
+        -- vim.o.showmode = false
+        -- Center the custom mode indicator on the statusline
+        vim.o.statusline = "%=%f %m %r %= %y"
+    end,
+})
+
+
+
 
 -- CLEANLINESS IS CLOSE TO GODLINESS
 autocmd({"BufWritePre"}, {

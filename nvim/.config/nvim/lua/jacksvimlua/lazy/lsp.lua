@@ -5,7 +5,6 @@ return {
         "williamboman/mason-lspconfig.nvim",
         { "j-hui/fidget.nvim", opts = {} },
     },
-
     config = function()
         local capabilities = nil
         if pcall(require, "cmp_nvim_lsp") then
