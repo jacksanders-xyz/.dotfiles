@@ -18,14 +18,11 @@ autocmd("VimEnter", {
         -- Trigger the NoNeckPain command
         vim.cmd("NoNeckPain")
 
-        -- vim.o.showmode = false
+        vim.o.showmode = false
         -- Center the custom mode indicator on the statusline
         vim.o.statusline = "%=%f %m %r %= %y"
     end,
 })
-
-
-
 
 -- CLEANLINESS IS CLOSE TO GODLINESS
 autocmd({"BufWritePre"}, {

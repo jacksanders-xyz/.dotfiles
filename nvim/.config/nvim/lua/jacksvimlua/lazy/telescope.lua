@@ -25,13 +25,14 @@ return {
                     qflist_previewer = require("telescope.previewers").vim_buffer_qflist.new,
                     path_display = { "truncate" },
                     layout_strategy = "vertical",
+                    sorting_strategy = "ascending",
                     layout_config = {
                         vertical = {
                             preview_cutoff = 0,
                             prompt_position = "top",
                             preview_height = 0.62,
-                            width = 0.6,
-                            height = 0.99,
+                            width = 0.58,
+                            height = 100,
                         },
                     },
                     mappings = {

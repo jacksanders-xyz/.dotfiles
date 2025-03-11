@@ -1,7 +1,18 @@
 return {
     "tpope/vim-fugitive",
     config = function()
-        vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
+
+        local function git_with_toggle()
+            vim.cmd("Git")
+            vim.cmd("NoNeckPain")
+            vim.defer_fn(function()
+                vim.cmd("NoNeckPain")
+            end, 1)
+        end
+        -- Map <leader>gs to our custom function
+        vim.keymap.set("n", "<leader>gs", git_with_toggle)
+
+        -- vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
         local Jacks_Fugitive = vim.api.nvim_create_augroup("ThePrimeagen_Fugitive", {})
 
@@ -28,6 +39,7 @@ return {
                 vim.keymap.set("n", "<leader>tp", ":Git push -u origin ", opts);
             end,
         })
+
 
         -- vim.keymap.set("n", "<leader>gv", "<cmd>Gvdiffsplit!<CR>")
 
