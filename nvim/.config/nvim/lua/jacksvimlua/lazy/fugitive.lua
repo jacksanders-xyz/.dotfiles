@@ -1,7 +1,6 @@
 return {
     "tpope/vim-fugitive",
     config = function()
-
         local function git_with_toggle()
             vim.cmd("Git")
             vim.cmd("NoNeckPain")

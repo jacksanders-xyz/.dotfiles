@@ -15,12 +15,13 @@ local autocmd = vim.api.nvim_create_autocmd
 -- EVERYTHING CENTER
 autocmd("VimEnter", {
     callback = function()
+
         -- Trigger the NoNeckPain command
         vim.cmd("NoNeckPain")
+        vim.o.showmode = true
 
-        vim.o.showmode = false
         -- Center the custom mode indicator on the statusline
-        vim.o.statusline = "%=%f %m %r %= %y"
+        vim.o.statusline = "%=%f %m %r %= %y %p%%"
     end,
 })
 

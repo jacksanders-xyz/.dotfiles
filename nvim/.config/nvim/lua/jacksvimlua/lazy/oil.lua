@@ -7,7 +7,7 @@ return {
                 default_file_explorer = true,
                 columns = {},
                 win_options = {
-                    cursorline = true
+                    cursorline = false
                 },
                 keymaps = {
                     ["<C-h>"] = false,

@@ -1,11 +1,12 @@
 return {
-    {
+{
         "folke/noice.nvim",
         event = "VeryLazy",
-        opts = {},
+        opts = {
+        },
         dependencies = {
             "MunifTanjim/nui.nvim",
-            -- "rcarriga/nvim-notify", -- optional
+            "rcarriga/nvim-notify", -- optional
         },
         config = function()
             require("noice").setup({
@@ -19,6 +20,7 @@ return {
                 presets = {
                     bottom_search = true,       -- use a classic bottom cmdline for search
                     long_message_to_split = true, -- long messages will be sent to a split
+                    command_palette = false,
                     -- inc_rename = false,         -- enables an input dialog for inc-rename.nvim
                     lsp_doc_border = false,     -- add a border to hover docs and signature help
                 },
@@ -34,6 +36,16 @@ return {
                         help       = { icon = "?" },
                     },
                 },
+                messages = {
+                    -- NOTE: If you enable messages, then the cmdline is enabled automatically.
+                    -- This is a current Neovim limitation.
+                    enabled = true, -- enables the Noice messages UI
+                    view = "split", -- default view for messages
+                    falseview_error = "notify", -- view for errors
+                    view_warn = "notify", -- view for warnings
+                    view_history = "messages", -- view for :messages
+                    view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
+                },
                 views = {
                     cmdline_popup = {
                         border = {
@@ -41,7 +53,7 @@ return {
                             -- padding = { 1,1 },
                         },
                         win_options = {
-                            winhighlight = "Normal:Normal",  -- ensure the background remains unchanged
+                            winhighlight = "NormalFloat:NormalFloat,FloatBorder:FloatBorder",
                         },
                     },
                 },

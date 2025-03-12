@@ -118,3 +118,8 @@ vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
 vim.keymap.set('n', '<C-q>', function() ToggleQFList(1) end)
 vim.keymap.set('n', '<leader>q', function() ToggleQFList(0) end)
+
+
+
+vim.api.nvim_set_keymap('n', '<C-w><C-b>', '<C-W><C-q><C-w><C-p>', { noremap = true, silent = true })
+
