@@ -27,3 +27,4 @@ ansible-inventory
 ansible-playbook
 ansible-pull
 ansible-vault
+terraform

@@ -21,7 +21,7 @@ yabai -m config window_border_blur           off
 # yabai -m space 9 --label random
 # yabai -m space 10 --label webex
 
-yabai -m space 1 --label " "
+yabai -m space 1 --label home
 yabai -m space 2 --label web
 yabai -m space 3 --label term
 yabai -m space 4 --label slack
@@ -30,11 +30,11 @@ yabai -m space 6 --label spotify
 yabai -m space 7 --label quip
 yabai -m space 3 --label utils
 # yabai -m space 9 --label random
-yabai -m space 5 --label teams
+# yabai -m space 5 --label teams
 
 # WINDOW RULES
 yabai -m rule --add app="^Google Chrome$"
-yabai -m rule --add app="^qutebrowser$" space=web
+# yabai -m rule --add app="^qutebrowser$" space=web
 yabai -m rule --add app="iTerm$" space=term
 yabai -m rule --add app="Microsoft Outlook^$" space=outlook
 yabai -m rule --add app="^Slack$" space=slack
@@ -49,7 +49,7 @@ yabai -m signal --add event=window_destroyed active=yes action="yabai -m query -
 yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m query --windows --window \$YABAI_WINDOW_ID | jq -r '.\"is-floating\"'); then yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null; fi"
 
 # SPECIFIC SPACE LAYOUTS
-yabai -m config --space " " layout         float
+yabai -m config --space "home" layout         stack
 yabai -m config --space utils layout        float
 yabai -m config --space "outlook" layout    stack
 # yabai -m config --space "outlook" layout    float
@@ -89,3 +89,4 @@ yabai -m config                                     \
 
     # top_padding                  9		            \
 echo "yabai configuration loaded.."
+

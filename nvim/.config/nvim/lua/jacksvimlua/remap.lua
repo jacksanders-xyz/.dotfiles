@@ -77,6 +77,7 @@ vim.api.nvim_create_user_command('W', 'write', {})
 -- W3 & TIMECARDS
 vim.api.nvim_create_user_command('W3',"!open https://w3.ibm.com",{})
 vim.api.nvim_create_user_command('TC',"!open https://ibmsc.lightning.force.com/lightning/page/home",{})
+vim.api.nvim_create_user_command('TZ',"!open https://techzone.ibm.com/home",{})
 
 -- FORMAT YERSELF SOME JSON
 vim.keymap.set('n' ,'<leader>FJ', ":%!jq '.'<CR>")
