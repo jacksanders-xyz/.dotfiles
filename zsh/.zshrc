@@ -1,3 +1,6 @@
+# At the very top of ~/.zshrc
+# zmodload zsh/zprof
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -7,7 +10,6 @@ fi
 export ZSH="/Users/jsanders/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-ZSH_DISABLE_COMPFIX=true
 
 # Plugins
 plugins=(
@@ -15,7 +17,11 @@ plugins=(
   vi-mode
 )
 
-source $ZSH/oh-my-zsh.sh
+# you can manualy update with $ omz update
+ZSH_DISABLE_COMPFIX=true
+DISABLE_AUTO_UPDATE="true"
+DISABLE_UPDATE_PROMPT="true"
+source "$ZSH/oh-my-zsh.sh"
 
 # Aliases
 alias c="clear"
@@ -32,7 +38,7 @@ alias tmn="tmux new -t"
 export EDITOR="nvim"
 
 # Load NVM
-source ~/.nvm/nvm.sh
+# source ~/.nvm/nvm.sh
 
 # Set user variable
 export CGB_USER="10"
@@ -57,33 +63,35 @@ export PATH="$PATH:$GOPATH/bin:$GOROOT/bin"
 # Zoxide
 eval "$(zoxide init zsh)"
 
-# Kube PS1 prompt settings
-KUBE_PS1_SYMBOL_ENABLE=false
-KUBE_PS1_NS_ENABLE=true
+# IBM cluster script
 
-# Cluster name function for kube_ps1
-function get_cluster_short() {
-  CLUSTER_NAME=$(echo $1 | awk -F / '{print $2}')
-  SERVER=$(grep -A 1 -B 1 "${CLUSTER_NAME}" ~/.kube/config | grep server | sed -E "s/ *server: (.*)/\1/g")
-  NEW_CLUSTER_NAMES=$(grep -A 1 -B 1 "${SERVER}" ~/.kube/config | grep name | grep -v ${CLUSTER_NAME} | sed -E "s/ *name: (.*)/\1/g")
-  NEW_CLUSTER_NAME=${NEW_CLUSTER_NAMES%$'\n'*}
-  if [[ -n "${NEW_CLUSTER_NAME}" ]]; then
-    echo "${NEW_CLUSTER_NAME}"
-  else
-    echo ${CLUSTER_NAME}
-  fi
-}
-
-KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
-source "${HOME}/bin/kube-ps1.sh"
-PROMPT='$(kube_ps1)'$PROMPT
+# # Kube PS1 prompt settings
+# KUBE_PS1_SYMBOL_ENABLE=false
+# KUBE_PS1_NS_ENABLE=true
+#
+# # Cluster name function for kube_ps1
+# function get_cluster_short() {
+#   CLUSTER_NAME=$(echo $1 | awk -F / '{print $2}')
+#   SERVER=$(grep -A 1 -B 1 "${CLUSTER_NAME}" ~/.kube/config | grep server | sed -E "s/ *server: (.*)/\1/g")
+#   NEW_CLUSTER_NAMES=$(grep -A 1 -B 1 "${SERVER}" ~/.kube/config | grep name | grep -v ${CLUSTER_NAME} | sed -E "s/ *name: (.*)/\1/g")
+#   NEW_CLUSTER_NAME=${NEW_CLUSTER_NAMES%$'\n'*}
+#   if [[ -n "${NEW_CLUSTER_NAME}" ]]; then
+#     echo "${NEW_CLUSTER_NAME}"
+#   else
+#     echo ${CLUSTER_NAME}
+#   fi
+# }
+#
+# KUBE_PS1_CLUSTER_FUNCTION=get_cluster_short
+# source "${HOME}/bin/kube-ps1.sh"
+# PROMPT='$(kube_ps1)'$PROMPT
 
 # iTerm2 shell integration
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 source $HOME/.zsh_profile
 
 # Travis gem
-[ ! -s /Users/jsanders/.travis/travis.sh ] || source /Users/jsanders/.travis/travis.sh
+# [ ! -s /Users/jsanders/.travis/travis.sh ] || source /Users/jsanders/.travis/travis.sh
 
 # IBM db2profile
 export PATH="/Applications/dsdriver/bin:/Applications/dsdriver/adm:$PATH"
@@ -92,7 +100,7 @@ export CLASSPATH="/Applications/dsdriver/java/db2jcc4.jar:/Applications/dsdriver
 export CLASSPATH="/Applications/dsdriver/tools/clpplus.jar:/Applications/dsdriver/tools/jline-0.9.93.jar:/Applications/dsdriver/tools/antlr-3.3-java.jar:$CLASSPATH"
 
 # Powerlevel9k Configuration
-POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
+# POWERLEVEL9K_DISABLE_CONFIGURATION_WIZARD=true
 
 # Pipx path
 export PATH="$PATH:/Users/jsanders/.local/bin"
@@ -102,3 +110,7 @@ export PATH="$HOME/.local/share/nvim/lazy-rocks/bin:$PATH"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# At the very bottom of ~/.zshrc
+# zprof
+
