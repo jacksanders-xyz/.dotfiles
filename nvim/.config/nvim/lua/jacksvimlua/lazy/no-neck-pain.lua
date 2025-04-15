@@ -22,7 +22,7 @@ return {
                         filetype = "md",
                     },
                     right = {
-                        enabled = true,
+                        enabled = false,
                     },
                 }
             })

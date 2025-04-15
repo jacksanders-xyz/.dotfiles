@@ -74,18 +74,6 @@ alt - t : yabai -m window --focus recent
 
 # ~/.skhdrc
 
-# Focus window on the left (west) or jump to the display on the left if no window exists.
-alt - h : yabai -m window --focus west || yabai -m display --focus west
-
-# Focus window below (south) or jump to the display below if no window exists.
-alt - j : yabai -m window --focus south || yabai -m display --focus south
-
-# Focus window above (north) or jump to the display above if no window exists.
-alt - k : yabai -m window --focus north || yabai -m display --focus north
-
-# Focus window on the right (east) or jump to the display on the right if no window exists.
-alt - l : yabai -m window --focus east || yabai -m display --focus east
-
 # manipulate a youtube vid from anywhere
 # alt - n : osascript /Users/jsanders/PLAYPAUSE2.scpt
 # alt - n : skhd -k "alt - l" && skhd -k "space" ; sleep 0.18; skhd -k "alt - h"

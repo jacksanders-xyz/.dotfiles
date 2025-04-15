@@ -9,8 +9,7 @@ yabai -m config window_border_width          1
 yabai -m config normal_window_opacity        0.90
 yabai -m config window_border_blur           off
 
-# MISSION-CONTROL DESKTOP LABELS
-# yabai -m space 1 --label " "
+# yabai -m space 1 --label home
 # yabai -m space 2 --label web
 # yabai -m space 3 --label term
 # yabai -m space 4 --label slack
@@ -19,30 +18,19 @@ yabai -m config window_border_blur           off
 # yabai -m space 7 --label quip
 # yabai -m space 8 --label utils
 # yabai -m space 9 --label random
-# yabai -m space 10 --label webex
-
-yabai -m space 1 --label home
-yabai -m space 2 --label web
-yabai -m space 3 --label term
-yabai -m space 4 --label slack
-yabai -m space 5 --label outlook
-yabai -m space 6 --label spotify
-yabai -m space 7 --label quip
-yabai -m space 3 --label utils
-# yabai -m space 9 --label random
-# yabai -m space 5 --label teams
+# yabai -m space 10 --label teams
 
 # WINDOW RULES
-yabai -m rule --add app="^Google Chrome$"
+# yabai -m rule --add app="^Google Chrome$" space=web
 # yabai -m rule --add app="^qutebrowser$" space=web
-yabai -m rule --add app="iTerm$" space=term
-yabai -m rule --add app="Microsoft Outlook^$" space=outlook
-yabai -m rule --add app="^Slack$" space=slack
-yabai -m rule --add app="^Spotify$" space=spotify
-yabai -m rule --add app="^Microsoft Teams$" space=teams
-yabai -m rule --add app="^Quip$" space=quip
-yabai -m rule --add app="^System Preferences$" manage=off space=utils
-yabai -m rule --add app="^Cisco AnyConnect Secure Mobility Client$" manage=off space=utils
+# yabai -m rule --add app="iTerm$" space=term
+# yabai -m rule --add app="Microsoft Outlook^$" space=outlook
+# yabai -m rule --add app="^Slack$" space=slack
+# yabai -m rule --add app="^Spotify$" space=spotify
+# yabai -m rule --add app="^Microsoft Teams$" space=teams
+# yabai -m rule --add app="^Quip$" space=quip
+# yabai -m rule --add app="^System Preferences$" manage=off space=utils
+# yabai -m rule --add app="^Cisco AnyConnect Secure Mobility Client$" manage=off space=utils
 
 # SIGNALS
 yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
@@ -54,13 +42,6 @@ yabai -m config --space utils layout        float
 yabai -m config --space "outlook" layout    stack
 # yabai -m config --space "outlook" layout    float
 yabai -m config --space "webex" layout      float
-
-# REFRESH MY ÜBERSICHT BAR WHEN THE SPACE CHANGES
-# yabai -m signal --add event=space_changed \
-#     action="osascript -e 'tell application \"Übersicht\" to refresh widget id \"\"'"
-
-# General settings
-# focus_follows_mouse         autoraise           \
 
 yabai -m config                                     \
     external_bar                off:41:0            \
@@ -89,4 +70,3 @@ yabai -m config                                     \
 
     # top_padding                  9		            \
 echo "yabai configuration loaded.."
-

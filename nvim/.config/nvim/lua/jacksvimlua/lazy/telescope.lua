@@ -153,7 +153,7 @@ return {
                             "%.git",
                             "%.DS_Store",
                         },
-                        cwd = '~/.config/nvim',
+                        cwd = '~/.dotfiles',
                         hidden = true,
                     })
             end)
