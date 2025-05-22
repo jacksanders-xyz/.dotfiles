@@ -5,6 +5,7 @@ return {
         "williamboman/mason-lspconfig.nvim",
         { "j-hui/fidget.nvim", opts = {} },
     },
+
     config = function()
         local capabilities = nil
         if pcall(require, "cmp_nvim_lsp") then
@@ -52,22 +53,17 @@ return {
                     }
                 end,
                 ["gopls"] = function()
-                    local lspconfig = require("lspconfig")
-                    lspconfig.gopls.setup {
-                        cmd = { "gopls", "serve" },
-                        root_dir = lspconfig.util.root_pattern("go.mod", ".git"),
+                    require("lspconfig").gopls.setup({
                         capabilities = capabilities,
                         settings = {
                             gopls = {
-                                analyses = {
-                                    unusedparams = true,
-                                },
+                                analyses    = { unusedparams = true },
                                 staticcheck = true,
+                                --  ⚠  remove the “local = true” line
                             },
                         },
-                    }
+                    })
                 end,
-
                 -- Other servers
                 ["jedi_language_server"] = function()
                     local lspconfig = require("lspconfig")
@@ -75,6 +71,41 @@ return {
                         capabilities = capabilities,
                     }
                 end,
+
+-- here
+                ["ts_ls"] = function()
+                    local lspconfig = require("lspconfig")
+                    lspconfig.ts_ls.setup {
+                        capabilities = capabilities,
+
+                        -- 1. root dir = first folder with a ts/js config (so the
+                        --    workspace spans the whole monorepo, not each package).
+                        root_dir = lspconfig.util.root_pattern(
+                            "package.json",
+                            "tsconfig.json",
+                            "jsconfig.json",
+                            ".git"
+                        ),
+
+                        -- 2. Don’t fall back to CWD for orphan files; prevents
+                        --    “workspace = /” on scratch buffers.
+                        single_file_support = false,
+
+                        -- 3. Extra preferences (inlay hints, etc.)
+                        settings = {
+                            typescript = {
+                                inlayHints = {
+                                    includeInlayParameterNameHints = "all",
+                                    includeInlayVariableTypeHints  = true,
+                                },
+                            },
+                            javascript = {
+                                inlayHints = { includeInlayParameterNameHints = "all" },
+                            },
+                        },
+                    }
+                end,
+-- here
                 ["cssls"] = function()
                     local lspconfig = require("lspconfig")
                     lspconfig.cssls.setup{}

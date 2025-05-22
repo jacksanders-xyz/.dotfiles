@@ -24,5 +24,7 @@ return {
             },
             modules = {},
         })
+        -- vim.keymap.set('n', "<leader>ts", '<cmd>InspectTree<cr>')
+        -- vim.keymap.set('n', "<leader>tq", '<cmd>EditQuery<cr>')
     end
 }

@@ -17,6 +17,7 @@ return {
                     },
                     wo = {
                         fillchars = "eob: ",
+                        winfixwidth = false
                     },
                     bo = {
                         filetype = "md",

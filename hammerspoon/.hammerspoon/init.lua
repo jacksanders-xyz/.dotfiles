@@ -44,7 +44,7 @@ hs.hotkey.bind({"alt"}, "@", function()
     hs.eventtap.leftClick(pos)
 end)
 
-hs.hotkey.bind({"alt"}, "|", function()
+hs.hotkey.bind({"alt"}, "e", function()
     local currentScreen = hs.mouse.getCurrentScreen()
     local screenFrame = currentScreen:frame()
     -- Calculate the exact bottom-right pixel that's visible
