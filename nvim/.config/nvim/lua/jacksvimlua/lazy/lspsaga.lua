@@ -11,9 +11,9 @@ return {
       lightbulb        = { enable = false },
     })
 
-    vim.keymap.set("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>",
-      { desc = "Incoming Calls" })
-    vim.keymap.set("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>",
-      { desc = "Outgoing Calls" })
+    -- vim.keymap.set("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>",
+    --   { desc = "Incoming Calls" })
+    -- vim.keymap.set("n", "<leader>co", "<cmd>Lspsaga outgoing_calls<CR>",
+    --   { desc = "Outgoing Calls" })
   end,
 }

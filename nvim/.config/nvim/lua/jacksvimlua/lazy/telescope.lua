@@ -5,7 +5,7 @@ return {
             "nvim-lua/plenary.nvim",
             { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
             "jvgrootveld/telescope-zoxide",
-            "nvim-telescope/telescope-file-browser.nvim",
+        "nvim-telescope/telescope-file-browser.nvim",
             "axieax/urlview.nvim",
             "sshelll/telescope-gott.nvim",
             "benfowler/telescope-luasnip.nvim",
@@ -155,11 +155,13 @@ return {
             end
 
             -- helper that spawns a symbol picker with <C-e> bound to peek --------------
-            local function symbols_picker(kind)               -- "buf" | "ws"
-                local code_win_id = api.nvim_get_current_win()  -- save *before* opening
+            local function symbols_picker(kind) -- "buf" | "ws"
+                local code_win_id = vim.api.nvim_get_current_win()
                 local picker_fn   = (kind == "ws")
-                and builtin.lsp_dynamic_workspace_symbols
-                or  builtin.lsp_document_symbols
+                and function(opts)
+                    builtin.lsp_dynamic_workspace_symbols(vim.tbl_extend("force", { default_text = "." }, opts))
+                end
+                or builtin.lsp_document_symbols
 
                 picker_fn(vim.tbl_extend("force", split_opts(), {
                     attach_mappings = function(_, map)
