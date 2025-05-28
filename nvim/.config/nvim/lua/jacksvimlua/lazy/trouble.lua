@@ -10,15 +10,7 @@ return {
                     symbols = {
                         filter = {
                             -- OR-logic across all these kinds
-                            any = { kind = {
-                                -- ⬇ original kinds
-                                "Class", "Constructor", "Enum", "Field", "Function",
-                                "Interface", "Method", "Module", "Namespace", "Package",
-                                "Property", "Struct", "Trait",
-                                -- ⬇ additions
-                                "Variable", "Constant", "String", "Number", "Boolean",
-                                "EnumMember", "TypeParameter",
-                            } },
+                            any = {},
                         },
                     },
                 },
@@ -81,9 +73,10 @@ return {
             -- this will throw trouble toggle diagnostics for the whole workspace
 
             vim.keymap.set("n", "<leader>tb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>")
-            -- this will throw trouble toggle diagnostics for buffer
+            -- this will throw trouble toggle diagnostics for buffer you're in
 
 
+            -- this will throw trouble toggle diagnostics for buffer you're
             vim.keymap.set("n", "<leader>tf", function()
                 trouble.toggle({ mode = "symbols", focus = false, win = { position = "left", size = 56 }})
             end, { desc = "Symbols (Trouble) left" })

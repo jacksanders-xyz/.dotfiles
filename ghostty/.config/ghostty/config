@@ -1,0 +1,33 @@
+# Set the default shell
+command = "/bin/zsh"
+
+# Appearance settings
+font-family             = "Iosevka Nerd Font Mono Medium"
+font-family-bold        = "Iosevka Nerd Font Mono Bold"
+font-size               = 14
+theme                   = "catppuccin-mocha"
+# theme                   = "kanagawabones"
+background-opacity      = 0.93
+
+# Font thickening (macOS only)
+font-thicken            = true
+font-thicken-strength   = 128
+
+# Disable Ghostty’s auto shell integration (we’ll source our own with 12 h timestamps)
+shell-integration       = "none"
+
+# Cursor settings
+cursor-style            = "block"
+cursor-style-blink      = false
+
+# macOS‑specific settings
+macos-titlebar-style    = "hidden"
+macos-window-shadow     = false
+
+# Window padding
+window-padding-x        = 10
+window-padding-y        = 10
+
+
+# in your ghostty.toml
+window-colorspace = "display-p3"
