@@ -39,20 +39,23 @@ return {
 					-- NOTE: If you enable messages, then the cmdline is enabled automatically.
 					-- This is a current Neovim limitation.
 					enabled = true, -- enables the Noice messages UI
-					view = "cmdline", -- default view for messages
-					-- falseview_error = "notify", -- view for errors
-					-- view_warn = "notify", -- view for warnings
+					view = "notify", -- default view for messages
+					falseview_error = "notify", -- view for errors
+					view_warn = "notify", -- view for warnings
 					view_history = "messages", -- view for :messages
 					view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
 				},
 				views = {
 					cmdline_popup = {
 						border = {
-							style = "none", -- remove the border lines
-							padding = { 0, 0 },
+							style = "none",
+							-- style = "single",
+							-- padding = { 0, 1 },
 						},
 						win_options = {
-							winhighlight = "NormalFloat:NoiceCmdlinePopup,FloatBorder:NoiceCmdlinePopupBorder",
+							winhighlight = {
+								Normal = "NoiceCmdlinePopup",
+							},
 						},
 					},
 				},

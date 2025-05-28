@@ -1,7 +1,7 @@
 -- ~/.config/nvim/lua/plugins/catppuccin.lua
 local function ColorMyPencils()
 	vim.cmd.colorscheme("catppuccin")
-	vim.opt.laststatus = 3
+	-- vim.opt.laststatus = 3
 	vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
 end
 
@@ -12,8 +12,8 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				flavour = "mocha",
-				transparent_background = true,
-				show_end_of_buffer = false,
+				-- transparent_background = false,
+				-- show_end_of_buffer = false,
 				styles = {
 					comments = { "italic" },
 					keywords = { "italic" },
@@ -27,6 +27,14 @@ return {
 					which_key = true,
 				},
 			})
+
+			-- set your NoiceCmdlinePopup to use the same bg
+			-- vim.cmd("highlight! link NoiceCmdlinePopup ColorColumn")
+
+			-- manual highlights for Telescope + Pmenu:
+			local hl = vim.api.nvim_set_hl
+			local c = require("catppuccin.palettes").get_palette()
+			hl(0, "NoiceCmdlinePopup", { fg = c.surface2, bg = c.mantle })
 
 			-- manual “boxed dark” Telescope highlights
 			-- local c = require("catppuccin.palettes").get_palette()

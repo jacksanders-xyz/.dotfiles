@@ -18,7 +18,6 @@ end, { noremap = true, silent = true })
 -- CHECKBOXES FOR VIMWIKI
 vim.keymap.set('n', "<leader>wl", '"*PysiW)i[]<ESC>i', { remap = true })
 vim.keymap.set('n' ,"<leader>WC", ":VimwikiToggleListItem<CR>")
-
 -- TITLE NEW PAGES
 -- "VIM WIKI INSERT TITLE"
 vim.api.nvim_create_user_command("VWIT", function()

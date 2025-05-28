@@ -5,7 +5,7 @@ require("jacksvimlua.maximizer")
 
 -- AUTO COMMANDS
 local augroup = vim.api.nvim_create_augroup
-local JacksGroup = augroup('JacksGroup', { clear = true })
+local JacksGroup = augroup("JacksGroup", { clear = true })
 
 local autocmd = vim.api.nvim_create_autocmd
 
@@ -14,34 +14,51 @@ local autocmd = vim.api.nvim_create_autocmd
 
 -- EVERYTHING CENTER
 autocmd("VimEnter", {
-    callback = function()
-        -- Trigger the NoNeckPain command
-        vim.cmd("NoNeckPain")
-        vim.o.showmode = true
-        -- Center the custom mode indicator on the statusline
-        vim.o.statusline = "%=%f %m %r %= %y %p%%"
-    end,
+	callback = function()
+		-- Trigger the NoNeckPain command
+		vim.cmd("NoNeckPain")
+		-- vim.o.showmode = true
+		-- Center the custom mode indicator on the statusline
+		-- vim.o.statusline = "%=%f %m %r %= %y %p%%"
+	end,
 })
 
 -- CLEANLINESS IS CLOSE TO GODLINESS
-autocmd({"BufWritePre"}, {
-    group = JacksGroup,
-    pattern = "*",
-    command = "%s/\\s\\+$//e",
+autocmd({ "BufWritePre" }, {
+	group = JacksGroup,
+	pattern = "*",
+	command = "%s/\\s\\+$//e",
 })
-autocmd('LspAttach', {
-    group = JacksGroup,
-    callback = function(e)
-        local opts = { buffer = e.buf }
-        vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
-        vim.keymap.set("n", "K", function() vim.lsp.buf.hover() end, opts)
-        vim.keymap.set("n", "<leader>vws", function() vim.lsp.buf.workspace_symbol() end, opts)
-        vim.keymap.set("n", "<leader>ve", function() vim.diagnostic.open_float(0, {scope="line"}) end, opts)
-        vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
-        vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
-        vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
-        vim.keymap.set("n", "<leader>vrh", function() vim.lsp.buf.signature_help() end, opts)
-    end
+
+autocmd("LspAttach", {
+	group = JacksGroup,
+	callback = function(e)
+		local opts = { buffer = e.buf }
+		vim.keymap.set("n", "gd", function()
+			vim.lsp.buf.definition()
+		end, opts)
+		vim.keymap.set("n", "K", function()
+			vim.lsp.buf.hover()
+		end, opts)
+		vim.keymap.set("n", "<leader>vws", function()
+			vim.lsp.buf.workspace_symbol()
+		end, opts)
+		vim.keymap.set("n", "<leader>ve", function()
+			vim.diagnostic.open_float(0, { scope = "line" })
+		end, opts)
+		vim.keymap.set("n", "<leader>vca", function()
+			vim.lsp.buf.code_action()
+		end, opts)
+		vim.keymap.set("n", "<leader>vrr", function()
+			vim.lsp.buf.references()
+		end, opts)
+		vim.keymap.set("n", "<leader>vrn", function()
+			vim.lsp.buf.rename()
+		end, opts)
+		vim.keymap.set("n", "<leader>vrh", function()
+			vim.lsp.buf.signature_help()
+		end, opts)
+	end,
 })
 
 -- K           hover()                  Show docs on symbol under cursor
@@ -58,19 +75,19 @@ autocmd('LspAttach', {
 
 -- Output stuff
 vim.api.nvim_create_user_command("LuaPut", function(opts)
-  local ok, result = pcall(load("return " .. opts.args))
-  if not ok then
-    result = "Error: " .. result
-  else
-    result = vim.inspect(result)
-  end
+	local ok, result = pcall(load("return " .. opts.args))
+	if not ok then
+		result = "Error: " .. result
+	else
+		result = vim.inspect(result)
+	end
 
-  -- Create a new scratch buffer
-  vim.cmd("new")
-  vim.bo.buftype = "nofile"
-  vim.bo.bufhidden = "wipe"
-  vim.bo.swapfile = false
-  vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(result, "\n"))
+	-- Create a new scratch buffer
+	vim.cmd("new")
+	vim.bo.buftype = "nofile"
+	vim.bo.bufhidden = "wipe"
+	vim.bo.swapfile = false
+	vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(result, "\n"))
 end, { nargs = 1 })
 
 vim.g.netrw_browse_split = 0

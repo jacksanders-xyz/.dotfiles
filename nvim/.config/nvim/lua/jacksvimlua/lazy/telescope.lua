@@ -11,6 +11,7 @@ return {
 			"benfowler/telescope-luasnip.nvim",
 			"catgoose/telescope-helpgrep.nvim",
 			"blacktrub/telescope-godoc.nvim",
+			"nvim-telescope/telescope-ui-select.nvim",
 		},
 		config = function()
 			local actions = require("telescope.actions")
@@ -179,7 +180,7 @@ return {
 				local code_win_id = vim.api.nvim_get_current_win()
 				local picker_fn = (kind == "ws")
 						and function(opts)
-							builtin.lsp_dynamic_workspace_symbols(vim.tbl_extend("force", { default_text = "." }, opts))
+							builtin.lsp_dynamic_workspace_symbols(vim.tbl_extend("force", { default_text = "" }, opts))
 						end
 					or builtin.lsp_document_symbols
 
@@ -273,6 +274,7 @@ return {
 			pcall(require("telescope").load_extension("luasnip"))
 			pcall(require("telescope").load_extension("zoxide"))
 			pcall(require("telescope").load_extension("godoc"))
+			pcall(require("telescope").load_extension("ui-select"))
 
 			-- GOTEST
 			pcall(require("telescope").load_extension("gott"))
