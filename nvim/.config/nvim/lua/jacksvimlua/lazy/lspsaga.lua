@@ -7,9 +7,9 @@ return {
 	},
 	config = function()
 		require("lspsaga").setup({
-			-- symbol_in_winbar = { enable = false },
 			lightbulb = { enable = false },
 		})
+		-- symbol_in_winbar = { enable = false },
 
 		-- vim.keymap.set("n", "<leader>ci", "<cmd>Lspsaga incoming_calls<CR>",
 		--   { desc = "Incoming Calls" })
