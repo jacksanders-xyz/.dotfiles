@@ -17,9 +17,8 @@ return {
 		config = function()
 			local actions = require("telescope.actions")
 			local telescope = require("telescope")
-			-- local ts = require("telescope")
+			local themes = require("telescope.themes")
 			local builtin = require("telescope.builtin")
-			-- local themes = require("telescope.themes")
 			-- local ts_trbl = require("trouble.sources.telescope")
 
 			require("telescope").setup({
@@ -37,7 +36,7 @@ return {
 						vertical = {
 							preview_cutoff = 0,
 							prompt_position = "top",
-							preview_height = 0.62,
+							preview_height = 0.50,
 							width = 0.58,
 							height = 100,
 						},
@@ -220,22 +219,31 @@ return {
 			-- CUSTOM PICKERS -----------------------------------------------------------------
 			-- Telescope “better /” with live highlights,
 			--------------------------------------------------------------------
-			local actions = require("telescope.actions")
-			local action_state = require("telescope.actions.state")
-			local themes = require("telescope.themes")
 
 			local function telescope_buffer_search()
 				local origin_win = vim.api.nvim_get_current_win()
 
 				require("telescope.builtin").current_buffer_fuzzy_find(themes.get_dropdown({
-					previewer = true,
 					prompt_title = "  Buffer Search",
-					-- prompt_position = "top",
 					layout_strategy = "vertical",
+					sorting_strategy = "ascending",
 					layout_config = {
-						height = 0.68, -- total picker height = 60% of your screen
-						preview_height = 0.40, -- preview-pane = 50% of that 60%
+						vertical = {
+							preview_cutoff = 0,
+							prompt_position = "top",
+							preview_height = 0.50,
+							width = 0.58,
+							height = 100,
+						},
 					},
+
+					-- previewer = true,
+					-- prompt_position = "top",
+					-- layout_strategy = "vertical",
+					-- layout_config = {
+					-- 	height = 0.68, -- total picker height = 60% of your screen
+					-- 	preview_height = 0.40, -- preview-pane = 50% of that 60%
+					-- },
 
 					-- live-highlight while typing
 					on_input_filter_cb = function(prompt)
@@ -262,7 +270,6 @@ return {
 									vim.api.nvim_set_current_win(origin_win)
 									vim.api.nvim_win_set_cursor(origin_win, { entry.lnum, 0 })
 								end
-
 								-- then clear *all* search highlights
 								vim.cmd("silent! nohlsearch") -- core search glow
 								vim.opt.hlsearch = false
@@ -283,7 +290,7 @@ return {
 
 						map({ "i", "n" }, "<CR>", select_and_jump)
 						map({ "i", "n" }, "<C-C>", leave_cleanly)
-						map({ "i", "n" }, "<esc>", leave_cleanly)
+						map({ "i", "n" }, "<C-[>>", leave_cleanly)
 						return true
 					end,
 				}))
