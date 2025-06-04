@@ -8,11 +8,42 @@ return {
 			require("trouble").setup({
 				-- auto_close = false,
 				modes = {
-					symbols = {
-						filter = {
-							-- OR-logic across all these kinds
-							any = {},
+					traverser_lsp = {
+						mode = "lsp",
+						title = "󰌹  Refs / Defs",
+						follow = true,
+						params = { include_declaration = true },
+						auto_preview = false,
+						open_no_results = true,
+						win = {
+							type = "split",
+							position = "bottom",
+							size = 30,
 						},
+					},
+					traverser_symbols = {
+						mode = "symbols",
+						title = "󰳽  Symbols",
+						follow = true,
+						open_no_results = true,
+						auto_preview = false,
+						win = { type = "split", position = "left", size = 40 },
+					},
+					traverser_incoming = {
+						mode = "lsp_incoming_calls",
+						title = "  Incoming",
+						open_no_results = true,
+						follow = true,
+						win = { type = "split", position = "right", height = 6 },
+						-- win = { type = "split", position = "right", height = 6 },
+					},
+					traverser_outgoing = {
+						mode = "lsp_outgoing_calls",
+						title = "  Outgoing",
+						open_no_results = true,
+						follow = true,
+						win = { type = "split", position = "right", height = 6 },
+						-- win = { type = "split", position = "right", height = 6 },
 					},
 				},
 			})
@@ -252,27 +283,10 @@ return {
 				traverser_active = true
 				pcall(vim.cmd, "cclose") -- ✱ close any stray quick-fix list
 
-				-- RIGHT column ─ Refs / Defs
-				trouble.open({
-					mode = "lsp",
-					title = "󰌹  Refs / Defs",
-					follow = true,
-					params = { include_declaration = true },
-					open_no_results = true,
-					win = { type = "split", position = "bottom" },
-					-- win = { type = "split", position = "right", size = 32 },
-				})
-
+				----------------------------------------------------------------
 				-- LEFT column ─ Symbols
-				trouble.open({
-					mode = "symbols",
-					title = "󰳽  Symbols",
-					follow = true,
-					open_no_results = true,
-					win = { type = "split", position = "left", size = drawer_size },
-					-- win = { type = "split", position = "left", size = 28 },
-				})
-
+				----------------------------------------------------------------
+				trouble.open({ mode = "traverser_symbols" })
 				-- trouble.open({
 				-- 	mode = "diagnostics",
 				-- 	title = "  Diagnostics",
@@ -281,25 +295,15 @@ return {
 				-- })
 
 				----------------------------------------------------------------
-				-- bottom row – Diagnostics
+				-- bottom row – Refs / Defs
 				----------------------------------------------------------------
+				trouble.open({ mode = "traverser_lsp" })
 
-				-- trouble.open({
-				-- 	mode = "lsp_incoming_calls",
-				-- 	title = "  Incoming",
-				-- 	open_no_results = true,
-				-- 	follow = true,
-				-- 	win = { type = "split", position = "right", height = 6 },
-				-- 	-- win = { type = "split", position = "right", height = 6 },
-				-- })
-				-- trouble.open({
-				-- 	mode = "lsp_outgoing_calls",
-				-- 	title = "  Outgoing",
-				-- 	open_no_results = true,
-				-- 	follow = true,
-				-- 	win = { type = "split", position = "right", height = 6 },
-				-- 	-- win = { type = "split", position = "right", height = 6 },
-				-- })
+				----------------------------------------------------------------
+				-- RIGHT column - call heirarchy
+				----------------------------------------------------------------
+				trouble.open({ mode = "traverser_incoming" })
+				trouble.open({ mode = "traverser_outgoing" })
 
 				-- keep the three call/reference panes fresh
 				vim.api.nvim_create_autocmd({ "CursorHold", "BufEnter" }, {
