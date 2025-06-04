@@ -228,9 +228,14 @@ return {
 				local origin_win = vim.api.nvim_get_current_win()
 
 				require("telescope.builtin").current_buffer_fuzzy_find(themes.get_dropdown({
-					previewer = false,
+					previewer = true,
 					prompt_title = "  Buffer Search",
-					layout_config = { width = 0.60, height = 0.40 },
+					-- prompt_position = "top",
+					layout_strategy = "vertical",
+					layout_config = {
+						height = 0.68, -- total picker height = 60% of your screen
+						preview_height = 0.40, -- preview-pane = 50% of that 60%
+					},
 
 					-- live-highlight while typing
 					on_input_filter_cb = function(prompt)
@@ -260,18 +265,25 @@ return {
 
 								-- then clear *all* search highlights
 								vim.cmd("silent! nohlsearch") -- core search glow
-								vim.opt.hlsearch = false -- keep it off
-								vim.fn.setreg("/", "") -- empty / register
-								pcall(function()
-									require("hlslens").stop()
-								end)
-								pcall(function()
-									require("flash").off()
-								end)
+								vim.opt.hlsearch = false
+								-- pcall(function()
+								-- 	require("hlslens").stop()
+								-- end)
+								-- pcall(function()
+								-- 	require("flash").off()
+								-- end)
 							end)
 						end
 
+						local function leave_cleanly()
+							actions.close(prompt_bufnr)
+							vim.cmd("silent! nohlsearch") -- core search glow
+							vim.opt.hlsearch = false -- keep it off
+						end
+
 						map({ "i", "n" }, "<CR>", select_and_jump)
+						map({ "i", "n" }, "<C-C>", leave_cleanly)
+						map({ "i", "n" }, "<esc>", leave_cleanly)
 						return true
 					end,
 				}))

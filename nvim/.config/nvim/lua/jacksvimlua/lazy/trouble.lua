@@ -26,7 +26,7 @@ return {
 						title = "󰳽  Symbols",
 						follow = true,
 						open_no_results = true,
-						auto_preview = false,
+						-- auto_preview = false,
 						win = { type = "split", position = "left", size = 40 },
 					},
 					traverser_incoming = {
