@@ -11,6 +11,7 @@ return {
 			"benfowler/telescope-luasnip.nvim",
 			"catgoose/telescope-helpgrep.nvim",
 			"blacktrub/telescope-godoc.nvim",
+			"ANGkeith/telescope-terraform-doc.nvim",
 			"nvim-telescope/telescope-ui-select.nvim",
 		},
 		config = function()
@@ -342,6 +343,7 @@ return {
 			pcall(require("telescope").load_extension("zoxide"))
 			pcall(require("telescope").load_extension("godoc"))
 			pcall(require("telescope").load_extension("ui-select"))
+			pcall(require("telescope").load_extension("terraform_doc"))
 
 			-- GOTEST
 			pcall(require("telescope").load_extension("gott"))
@@ -370,6 +372,8 @@ return {
 			vim.keymap.set("n", "<leader>gC", function()
 				builtin.git_commits()
 			end)
+
+			vim.keymap.set("n", "<leader>fT", "<cmd>Telescope terraform_doc<cr>", { noremap = true, silent = true })
 
 			vim.keymap.set("n", "<leader>gBC", function()
 				builtin.git_bcommits()

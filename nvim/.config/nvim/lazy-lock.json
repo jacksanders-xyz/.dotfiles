@@ -47,6 +47,7 @@
   "telescope-gott.nvim": { "branch": "master", "commit": "44a1558f5709edbe8b0b8587ad0f06e26006589c" },
   "telescope-helpgrep.nvim": { "branch": "main", "commit": "f600baab96d36b91cdd4b0beb63414a01e1b9403" },
   "telescope-luasnip.nvim": { "branch": "master", "commit": "07a2a2936a7557404c782dba021ac0a03165b343" },
+  "telescope-terraform-doc.nvim": { "branch": "main", "commit": "28efe1f3cb2ed4c83fa69000ae8afd2f85d62826" },
   "telescope-ui-select.nvim": { "branch": "master", "commit": "6e51d7da30bd139a6950adf2a47fda6df9fa06d2" },
   "telescope-zoxide": { "branch": "main", "commit": "54bfe630bad08dc9891ec78c7cf8db38dd725c97" },
   "telescope.nvim": { "branch": "master", "commit": "b4da76be54691e854d3e0e02c36b0245f945c2c7" },
