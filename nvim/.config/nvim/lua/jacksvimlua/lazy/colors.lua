@@ -1,7 +1,7 @@
 -- ~/.config/nvim/lua/plugins/catppuccin.lua
 local function ColorMyPencils()
 	vim.cmd.colorscheme("catppuccin")
-	-- vim.opt.laststatus = 3
+	vim.opt.laststatus = 3
 	vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
 end
 

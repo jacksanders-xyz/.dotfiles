@@ -16,10 +16,10 @@ return {
 		config = function()
 			local actions = require("telescope.actions")
 			local telescope = require("telescope")
-			local ts = require("telescope")
+			-- local ts = require("telescope")
 			local builtin = require("telescope.builtin")
-			local themes = require("telescope.themes")
-			local ts_trbl = require("trouble.sources.telescope")
+			-- local themes = require("telescope.themes")
+			-- local ts_trbl = require("trouble.sources.telescope")
 
 			require("telescope").setup({
 				defaults = {
@@ -216,7 +216,74 @@ return {
 				builtin.grep_string({ search = word })
 			end)
 
-			-- CUSTOM PICKERS
+			-- CUSTOM PICKERS -----------------------------------------------------------------
+			-- Telescope “better /” with live highlights,
+			--------------------------------------------------------------------
+			local actions = require("telescope.actions")
+			local action_state = require("telescope.actions.state")
+			local themes = require("telescope.themes")
+
+			local function telescope_buffer_search()
+				local origin_win = vim.api.nvim_get_current_win()
+
+				require("telescope.builtin").current_buffer_fuzzy_find(themes.get_dropdown({
+					previewer = false,
+					prompt_title = "  Buffer Search",
+					layout_config = { width = 0.60, height = 0.40 },
+
+					-- live-highlight while typing
+					on_input_filter_cb = function(prompt)
+						if prompt == "" then
+							vim.cmd("nohlsearch")
+							return false
+						end
+						vim.fn.setreg("/", vim.pesc(prompt))
+						vim.opt.hlsearch = true
+						return false
+					end,
+
+					attach_mappings = function(prompt_bufnr, map)
+						local function select_and_jump()
+							local entry = action_state.get_selected_entry()
+							actions.close(prompt_bufnr)
+							if not entry then
+								return
+							end
+
+							vim.schedule(function()
+								-- jump first
+								if vim.api.nvim_win_is_valid(origin_win) then
+									vim.api.nvim_set_current_win(origin_win)
+									vim.api.nvim_win_set_cursor(origin_win, { entry.lnum, 0 })
+								end
+
+								-- then clear *all* search highlights
+								vim.cmd("silent! nohlsearch") -- core search glow
+								vim.opt.hlsearch = false -- keep it off
+								vim.fn.setreg("/", "") -- empty / register
+								pcall(function()
+									require("hlslens").stop()
+								end)
+								pcall(function()
+									require("flash").off()
+								end)
+							end)
+						end
+
+						map({ "i", "n" }, "<CR>", select_and_jump)
+						return true
+					end,
+				}))
+			end
+
+			-- Map  <C-/>  (aka <C-_>) in Normal & Visual mode
+			vim.keymap.set(
+				{ "n", "x" },
+				"<C-_>",
+				telescope_buffer_search,
+				{ desc = "Telescope: grep current buffer, feed @/ for n/N" }
+			)
+
 			vim.keymap.set("n", "<leader>fn", function()
 				builtin.find_files({
 					prompt_title = "< Jack's Brain >",
