@@ -9,7 +9,7 @@ return {
 				-- auto_close = false,
 				modes = {
 					traverser_lsp = {
-						mode = "lsp",
+						mode = "lsp_references",
 						title = "󰌹  Refs / Defs",
 						follow = true,
 						params = { include_declaration = true },

@@ -1,6 +1,7 @@
 local function traverser_focus(modes)
-	local t = vim.w[win].trouble
+	print(modes)
 	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		local t = vim.w[win].trouble
 		if t and t.type == "split" and t.relative == "editor" then
 			for _, candidate in ipairs(modes) do
 				if t.mode == candidate then
@@ -10,6 +11,7 @@ local function traverser_focus(modes)
 			end
 		end
 	end
+
 	vim.notify("No matching Traverser window found", vim.log.levels.WARN)
 	return nil
 end
@@ -27,11 +29,10 @@ local current_maxed_win = nil
 local function toggle_trav_max(mode_key)
 	local mode_lookup = {
 		s = { "symbols", "traverser_symbols" },
-		l = { "lsp", "traverser_lsp" },
 		i = { "lsp_incoming_calls", "traverser_incoming" },
 		o = { "lsp_outgoing_calls", "traverser_outgoing" },
 		d = { "diagnostics", "traverser_diagnostics" },
-		lr = { "lsp_references" },
+		lr = { "lsp", "traverser_lsp" },
 	}
 
 	local modes = mode_lookup[mode_key]
@@ -40,36 +41,55 @@ local function toggle_trav_max(mode_key)
 		return
 	end
 
-	-- 1) Focus the Traverser window (if any)
+	-- 1) Focus the requested window
 	local win = traverser_focus(modes)
 	if not win then
 		return
 	end
 
-	-- 2) If that same window is already maxed, schedule a <C-Left> to shrink
+	-- 2) Determine this window’s “position” (bottom, left, right, or top)
+	local t = vim.w[win].trouble
+	local pos = t and t.position or "left"
+
+	-- Choose grow/shrink keys based on `pos`
+	local grow_key, shrink_key
+	if pos == "bottom" then
+		grow_key = "<leader>TRU" -- grow vertically upward
+		shrink_key = "<leader>TRD" -- shrink vertically downward
+	else
+		-- covers “left”, “right”, or “top”
+		grow_key = "<leader>TRR" -- grow horizontally
+		shrink_key = "<leader>TRL" -- shrink horizontally
+	end
+
+	-- 3) If this same window is already maxed, schedule shrink + return cursor
 	if current_maxed_win == win and vim.api.nvim_win_is_valid(win) then
-		-- Schedule one tick later so that the mapping is in place
 		vim.schedule(function()
-			feedkey_mapped("<leader>TRL")
+			feedkey_mapped(shrink_key)
+			-- vim.cmd("wincmd p")
 			current_maxed_win = nil
 		end)
 		return
 	end
 
-	-- 3) If some other window is currently maxed, restore it first
+	-- 4) If some other window was currently maxed, restore it first
 	if current_maxed_win and vim.api.nvim_win_is_valid(current_maxed_win) then
-		-- Focus it, then shrink by one tick
 		vim.api.nvim_set_current_win(current_maxed_win)
 		vim.schedule(function()
-			feedkey_mapped("<leader>TRL")
+			local prev_t = vim.w[current_maxed_win].trouble
+			local prev_pos = (prev_t and prev_t.position) or "left"
+			if prev_pos == "bottom" then
+				feedkey_mapped("<leader>TRD")
+			else
+				feedkey_mapped("<leader>TRL")
+			end
 		end)
 	end
 
-	-- 4) Now focus the newly requested window again
+	-- 5) Focus the newly requested window again, then schedule grow
 	vim.api.nvim_set_current_win(win)
-	-- 5) Schedule a <C-Right> one tick later so that Edgy’s mapping takes effect
 	vim.schedule(function()
-		feedkey_mapped("<leader>TRR")
+		feedkey_mapped(grow_key)
 		current_maxed_win = win
 	end)
 end
@@ -156,7 +176,7 @@ return {
 						win:resize("width", -76)
 					end,
 					-- increase height
-					["<leade>TRU"] = function(win)
+					["<leader>TRU"] = function(win)
 						win:resize("height", 50)
 					end,
 					-- decrease height
