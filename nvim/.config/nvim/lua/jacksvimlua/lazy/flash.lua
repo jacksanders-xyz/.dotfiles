@@ -5,7 +5,7 @@ return {
     -- stylua: ignore
     keys = {
         { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
-        { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
+        { "S", mode = { "n", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
 
         -- remote is a command somewhere else THEN something. example
        -- Delete the word over there without leaving your current spot	d r

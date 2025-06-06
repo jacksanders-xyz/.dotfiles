@@ -27,7 +27,17 @@ return {
 						follow = true,
 						open_no_results = true,
 						-- auto_preview = false,
-						win = { type = "split", position = "left", size = 40 },
+						win = { type = "split", position = "left", size = 56 },
+					},
+					traverser_diagnostics = {
+						mode = "diagnostics",
+						title = "  Diagnostics",
+						open_no_results = true,
+						win = {
+							type = "split",
+							position = "left",
+							height = 6,
+						},
 					},
 					traverser_incoming = {
 						mode = "lsp_incoming_calls",
@@ -80,18 +90,22 @@ return {
 
 			-- Symbols sidebar
 			local function toggle_symbols()
-				sym_max = not sym_max
-				log("symbols → " .. (sym_max and "MAX" or "normal"))
-				trouble.close()
-				trouble.open({
-					mode = "symbols",
-					focus = true,
-					win = {
-						position = "left",
-						size = sym_max and math.floor(vim.o.columns * 0.7) or 56,
-						winfixwidth = false,
-					},
-				})
+				if sym_max == not sym_max then
+					log("symbols → " .. (sym_max and "MAX" or "normal"))
+					trouble.close()
+					trouble.open({
+						mode = "traverser_symbols",
+						focus = true,
+						win = {
+							position = "left",
+							size = sym_max and math.floor(vim.o.columns * 0.7) or 56,
+							winfixwidth = false,
+						},
+					})
+				else
+					trouble.close()
+					traverser_open()
+				end
 			end
 
 			local function toggle_incoming()
@@ -157,7 +171,7 @@ return {
 			--------------------------------------------------------------------------
 			-- "SYMBOLS" - a tree of symbols
 			--------------------------------------------------------------------------
-			vim.keymap.set("n", "<leader>tf", function()
+			vim.keymap.set("n", "<leader>ts", function()
 				trouble.toggle({
 					mode = "symbols",
 					focus = false,
@@ -175,7 +189,8 @@ return {
 			vim.keymap.set("n", "<leader>tr", function()
 				trouble.toggle({
 					mode = "lsp_references",
-					focus = true,
+					focus = false,
+					open_no_results = true,
 					params = {
 						include_declaration = true,
 					},
@@ -193,6 +208,7 @@ return {
 			vim.keymap.set("n", "<leader>ti", function()
 				trouble.toggle({
 					mode = "lsp_incoming_calls",
+					open_no_results = true,
 					win = {
 						position = "right",
 						size = drawer_size,
@@ -204,6 +220,7 @@ return {
 			vim.keymap.set("n", "<leader>to", function()
 				trouble.toggle({
 					mode = "lsp_outgoing_calls",
+					open_no_results = true,
 					win = {
 						position = "right",
 						size = drawer_size,
@@ -229,12 +246,12 @@ return {
 			--------------------------------------------------------------------------
 			-- "MAXIMIZING THE WINDOWS"
 			--------------------------------------------------------------------------
-			vim.keymap.set("n", "<leader>t,t", toggle_diagnostics, { desc = "Toggle maximise Trouble diagnostics" })
-			vim.keymap.set("n", "<leader>t,f", toggle_symbols, { desc = "Toggle maximise Trouble symbols" })
+			-- vim.keymap.set("n", "<leader>t,t", toggle_diagnostics, { desc = "Toggle maximise Trouble diagnostics" })
+			-- vim.keymap.set("n", "<leader>t,f", toggle_symbols, { desc = "Toggle maximise Trouble symbols" }) -- change to toggle_sym_max
 
-			vim.keymap.set("n", "<leader>t,r", toggle_references, { desc = "Toggle maximise Trouble references" })
-			vim.keymap.set("n", "<leader>t,i", toggle_incoming, { desc = "Toggle maximise Trouble incoming calls" })
-			vim.keymap.set("n", "<leader>t,o", toggle_outgoing, { desc = "Toggle maximise Trouble outgoing calls" })
+			-- vim.keymap.set("n", "<leader>t,r", toggle_references, { desc = "Toggle maximise Trouble references" })
+			-- vim.keymap.set("n", "<leader>t,i", toggle_incoming, { desc = "Toggle maximise Trouble incoming calls" })
+			-- vim.keymap.set("n", "<leader>t,o", toggle_outgoing, { desc = "Toggle maximise Trouble outgoing calls" })
 
 			--------------------------------------------------------------------------
 			-- "NAVIGATING THE TROUBLE WINDOWS"
@@ -280,19 +297,16 @@ return {
 			-- open the dashboard
 			-------------------------------------------------------
 			local function traverser_open()
-				traverser_active = true
-				pcall(vim.cmd, "cclose") -- ✱ close any stray quick-fix list
+				traverser_active = true -- set state for active
+
+				-- don't know if I need this...
+				-- pcall(vim.cmd, "cclose") -- ✱ close any stray quick-fix list
 
 				----------------------------------------------------------------
 				-- LEFT column ─ Symbols
 				----------------------------------------------------------------
 				trouble.open({ mode = "traverser_symbols" })
-				-- trouble.open({
-				-- 	mode = "diagnostics",
-				-- 	title = "  Diagnostics",
-				-- 	open_no_results = true,
-				-- 	win = { type = "split", position = "bottom", height = 6 },
-				-- })
+				-- trouble.open({ mode = "traverser_diagnostics" })
 
 				----------------------------------------------------------------
 				-- bottom row – Refs / Defs
@@ -333,7 +347,7 @@ return {
 				end
 			end
 
-			vim.keymap.set("n", "<leader>tm", traverser_toggle, { desc = "Toggle Traverser mode" })
+			vim.keymap.set("n", "<leader>tm", traverser_toggle, { desc = "Toggle Traverser mode" }) --
 		end,
 	},
 }

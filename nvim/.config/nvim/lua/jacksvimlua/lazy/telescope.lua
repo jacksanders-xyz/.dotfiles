@@ -273,6 +273,7 @@ return {
 								-- then clear *all* search highlights
 								vim.cmd("silent! nohlsearch") -- core search glow
 								vim.opt.hlsearch = false
+								vim.cmd("normal! nzz")
 								-- pcall(function()
 								-- 	require("hlslens").stop()
 								-- end)
