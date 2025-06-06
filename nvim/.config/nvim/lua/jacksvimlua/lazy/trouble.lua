@@ -13,7 +13,6 @@ return {
 						title = "󰌹  Refs / Defs",
 						follow = true,
 						params = { include_declaration = true },
-						auto_preview = false,
 						open_no_results = true,
 						win = {
 							type = "split",
@@ -26,13 +25,13 @@ return {
 						title = "󰳽  Symbols",
 						follow = true,
 						open_no_results = true,
-						-- auto_preview = false,
 						win = { type = "split", position = "left", size = 56 },
 					},
 					traverser_diagnostics = {
 						mode = "diagnostics",
 						title = "  Diagnostics",
 						open_no_results = true,
+						follow = true,
 						win = {
 							type = "split",
 							position = "left",
@@ -53,7 +52,6 @@ return {
 						open_no_results = true,
 						follow = true,
 						win = { type = "split", position = "right", height = 6 },
-						-- win = { type = "split", position = "right", height = 6 },
 					},
 				},
 			})
