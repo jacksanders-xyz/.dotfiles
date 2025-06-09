@@ -253,6 +253,10 @@ return {
 				trouble.toggle("quickfix")
 			end)
 
+			vim.keymap.set("n", "<leader>txt", function() --- IF you open tele results in a trouble window, toggle
+				trouble.toggle("telescope")
+			end)
+
 			-- you (or something) have to populate your loclist example (:lvimgrep /defer/ % )
 			-- the above searches for text 'defer' in current file
 			vim.keymap.set("n", "<leader>tl", function()

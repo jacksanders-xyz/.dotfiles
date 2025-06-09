@@ -19,6 +19,7 @@ return {
 			local telescope = require("telescope")
 			local themes = require("telescope.themes")
 			local builtin = require("telescope.builtin")
+			local open_with_trouble = require("trouble.sources.telescope").open
 			-- local ts_trbl = require("trouble.sources.telescope")
 
 			require("telescope").setup({
@@ -44,6 +45,7 @@ return {
 					mappings = {
 						i = {
 							["<C-q>"] = actions.send_to_qflist,
+							["<c-t>"] = open_with_trouble, -- send to trouble
 						},
 					},
 				},
