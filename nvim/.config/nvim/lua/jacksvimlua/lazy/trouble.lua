@@ -6,7 +6,25 @@ return {
 			-- local drawer_size = 32
 
 			require("trouble").setup({
-				-- auto_close = false,
+				keys = {
+					-- 1. Unmap `s` so Flash/Hop can use it
+					s = false,
+
+					-- 2. Re-add the same “toggle severity filter” logic on `S`
+					S = {
+						action = function(view)
+							-- identical to the default `s` action
+							local f = view:get_filter("severity")
+							local severity = ((f and f.filter.severity or 0) + 1) % 5
+							view:filter({ severity = severity }, {
+								id = "severity",
+								template = "{hl:Title}Filter:{hl} {severity}",
+								del = severity == 0,
+							})
+						end,
+						desc = "Toggle Severity Filter",
+					},
+				},
 				modes = {
 					traverser_lsp = {
 						mode = "lsp_references",
@@ -169,7 +187,7 @@ return {
 			--------------------------------------------------------------------------
 			-- "SYMBOLS" - a tree of symbols
 			--------------------------------------------------------------------------
-			vim.keymap.set("n", "<leader>ts", function()
+			vim.keymap.set("n", "<leader>TS", function()
 				trouble.toggle({
 					mode = "symbols",
 					focus = false,
@@ -184,7 +202,7 @@ return {
 			-- "LSP DEFINITIONS/REFERENCES"
 			--------------------------------------------------------------------------
 			-- on the cursor it will show everywhere something is REFERENCED or DEFINED
-			vim.keymap.set("n", "<leader>tr", function()
+			vim.keymap.set("n", "<leader>TR", function()
 				trouble.toggle({
 					mode = "lsp_references",
 					focus = false,
@@ -203,7 +221,7 @@ return {
 			-- "CALL HIERARCHY"
 			--------------------------------------------------------------------------
 			-- WHO CALLS THIS FUNCTION? / WHO CALLS "INTO" THIS? => "ci"
-			vim.keymap.set("n", "<leader>ti", function()
+			vim.keymap.set("n", "<leader>TI", function()
 				trouble.toggle({
 					mode = "lsp_incoming_calls",
 					open_no_results = true,
@@ -215,7 +233,7 @@ return {
 			end, { desc = "Incoming calls (Trouble)" })
 
 			-- WHAT FUNCTIONS DOES THIS CALL OUT TOO?
-			vim.keymap.set("n", "<leader>to", function()
+			vim.keymap.set("n", "<leader>TO", function()
 				trouble.toggle({
 					mode = "lsp_outgoing_calls",
 					open_no_results = true,
@@ -330,7 +348,11 @@ return {
 			local function traverser_close()
 				traverser_active = false
 				vim.api.nvim_clear_autocmds({ group = traverser_grp })
-				trouble.close()
+				trouble.close({ mode = "traverser_symbols" })
+				trouble.close({ mode = "traverser_lsp" })
+				trouble.close({ mode = "traverser_incoming" })
+				trouble.close({ mode = "traverser_outgoing" })
+
 				pcall(vim.cmd, "lclose") -- also hide any loclist that might be open
 			end
 

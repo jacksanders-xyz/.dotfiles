@@ -64,6 +64,9 @@ return {
 				},
 			})
 
+			-- Grab your multi-grep
+			local multi_rg = require("jacksvimlua.lazy.telescope.multi-ripgrep")
+
 			-- BASIC TELE
 			vim.keymap.set("n", "<leader>ff", function()
 				builtin.find_files({
@@ -72,7 +75,7 @@ return {
 			end, { noremap = true, silent = true })
 
 			vim.keymap.set("n", "<leader>fg", function()
-				builtin.live_grep({
+				multi_rg({
 					vimgrep_arguments = {
 						"rg",
 						"--hidden",

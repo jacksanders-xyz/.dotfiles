@@ -26,16 +26,30 @@ end
 -- ② Focus+toggle helper: find the window, focus it, then send <C-Right> or <C-Left>
 local current_maxed_win = nil
 
-local function toggle_trav_max(mode_key)
-	local mode_lookup = {
-		s = { "symbols", "traverser_symbols" },
-		i = { "lsp_incoming_calls", "traverser_incoming" },
-		o = { "lsp_outgoing_calls", "traverser_outgoing" },
-		d = { "diagnostics", "traverser_diagnostics" },
-		lr = { "lsp", "traverser_lsp" },
-	}
+Mode_lookup = {
+	s = { "symbols", "traverser_symbols" },
+	i = { "lsp_incoming_calls", "traverser_incoming" },
+	o = { "lsp_outgoing_calls", "traverser_outgoing" },
+	d = { "diagnostics", "traverser_diagnostics" },
+	lr = { "lsp", "traverser_lsp" },
+}
 
-	local modes = mode_lookup[mode_key]
+local function window_jump(mode_key)
+	local modes = Mode_lookup[mode_key]
+	if not modes then
+		vim.notify("no mode open" .. tostring(mode_key), vim.log.levels.ERROR)
+		return
+	end
+
+	-- 1) Focus the requested window
+	local win = traverser_focus(modes)
+	if not win then
+		return
+	end
+end
+
+local function toggle_trav_max(mode_key)
+	local modes = Mode_lookup[mode_key]
 	if not modes then
 		vim.notify("Invalid key for toggle_trav_max: " .. tostring(mode_key), vim.log.levels.ERROR)
 		return
@@ -116,6 +130,40 @@ return {
 				end,
 				desc = "Edgy Select Window",
 			},
+			------------
+			{
+				-- “t,s” toggles + maxes exactly one window at a time:
+				"<leader>ts",
+				function()
+					window_jump("s")
+				end,
+				desc = "Jump to Symbols",
+			},
+			{
+				-- “t,s” toggles + maxes exactly one window at a time:
+				"<leader>tr",
+				function()
+					window_jump("lr")
+				end,
+				desc = "Jump to References",
+			},
+			{
+				-- “t,s” toggles + maxes exactly one window at a time:
+				"<leader>ti",
+				function()
+					window_jump("i")
+				end,
+				desc = "Jump to Incoming Calls",
+			},
+			{
+				-- “t,s” toggles + maxes exactly one window at a time:
+				"<leader>to",
+				function()
+					window_jump("o")
+				end,
+				desc = "Jump to outgoing calls",
+			},
+			------------
 			{
 				-- “t,s” toggles + maxes exactly one window at a time:
 				"<leader>t,s",
@@ -177,11 +225,11 @@ return {
 					end,
 					-- increase height
 					["<leader>TRU"] = function(win)
-						win:resize("height", 50)
+						win:resize("height", 40)
 					end,
 					-- decrease height
 					["<leader>TRD"] = function(win)
-						win:resize("height", -50)
+						win:resize("height", -40)
 					end,
 					["<c-Right>"] = function(win)
 						win:resize("width", 2)
