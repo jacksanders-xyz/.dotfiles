@@ -31,12 +31,15 @@ return {
 							"lsp_declarations",
 							"lsp_definitions",
 							"lsp_implementations",
-                            "lsp_references",
+							"lsp_references",
 							"lsp_type_definitions",
 						},
 						title = "󰌹  Refs / Defs",
 						follow = true,
 						params = { include_declaration = true },
+						preview = {
+							type = "main",
+						},
 						open_no_results = true,
 						lsp_base = {
 							params = {

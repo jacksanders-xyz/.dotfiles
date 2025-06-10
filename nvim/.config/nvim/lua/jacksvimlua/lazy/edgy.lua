@@ -1,5 +1,5 @@
 local function traverser_focus(modes)
-	print(modes)
+	-- print(modes)
 	for _, win in ipairs(vim.api.nvim_list_wins()) do
 		local t = vim.w[win].trouble
 		if t and t.type == "split" and t.relative == "editor" then
@@ -141,6 +141,14 @@ return {
 			},
 			{
 				-- “t,s” toggles + maxes exactly one window at a time:
+				"<leader>td",
+				function()
+					window_jump("d")
+				end,
+				desc = "Jump to Diagnostics",
+			},
+			{
+				-- “t,s” toggles + maxes exactly one window at a time:
 				"<leader>tr",
 				function()
 					window_jump("lr")
@@ -225,11 +233,11 @@ return {
 					end,
 					-- increase height
 					["<leader>TRU"] = function(win)
-						win:resize("height", 40)
+						win:resize("height", 10)
 					end,
 					-- decrease height
 					["<leader>TRD"] = function(win)
-						win:resize("height", -40)
+						win:resize("height", -10)
 					end,
 					["<c-Right>"] = function(win)
 						win:resize("width", 2)
@@ -259,47 +267,64 @@ return {
 				table.insert(opts[pos], { -- insert into the table that table
 					ft = "trouble", -- filetype is trouble
 					title = "Traverser",
-					filter = function(_buf, win) -- give it a filter (edgy filter filters buffers and windows)
-						local mode_ok = vim.w[win].trouble.mode == "traverser_lsp" -- look for these only
-							or vim.w[win].trouble.mode == "traverser_symbols"
-							or vim.w[win].trouble.mode == "traverser_incoming"
-							or vim.w[win].trouble.mode == "traverser_outgoing"
-							or vim.w[win].trouble.mode == "traverser_diagnostics"
+					filter = function(_buf, win)
+						local t = vim.w[win].trouble -- may be nil for non-Trouble / preview windows
+						if not t or vim.w[win].trouble_preview then
+							return false -- let Edgy ignore this window
+						end
 
-						-- cause normally you filter add filters to the entries in opts, so it knows which
-						-- windows to manipulate
-						return vim.w[win].trouble -- the definiton of the match. run :echo w:trouble or lua print(vim.wo.trouble) it outputs:
-							-- {'mode': 'lsp', 'type': 'split', 'relative': 'editor', 'position': 'bottom'}
-							-- it will show you the window var table. here you can select or filter
-							-- you can make your own custom mode that is basically a lsp. then filter for it. thats how it will only grab
-							-- the traverser, they will be custom modes in the trouble setup func opts
-							and mode_ok
-							and vim.w[win].trouble.position == pos -- you seT THESE POSITIONS IN trouble.lua so they are grabbed
-							-- and put in here.
-							-- these are calls to the trouble api
-							and vim.w[win].trouble.type == "split"
-							and vim.w[win].trouble.relative == "editor"
-							and not vim.w[win].trouble_preview
-						-- when all these conditions are matched the filter puts the window into edgy config
+						-- everything below is now safe
+						local mode_ok = t.mode == "traverser_lsp"
+							or t.mode == "traverser_symbols"
+							or t.mode == "traverser_incoming"
+							or t.mode == "traverser_outgoing"
+							or t.mode == "traverser_diagnostics"
+
+						return mode_ok and t.position == pos and t.type == "split" and t.relative == "editor"
 					end,
 				})
+				-- OLD BUT HERE TO EXPLAIN:
+				-- filter = function(_buf, win) -- give it a filter (edgy filter filters buffers and windows)
+				--     local mode_ok = vim.w[win].trouble.mode == "traverser_lsp" -- look for these only
+				--     or vim.w[win].trouble.mode == "traverser_symbols"
+				--     or vim.w[win].trouble.mode == "traverser_incoming"
+				--     or vim.w[win].trouble.mode == "traverser_outgoing"
+				--     or vim.w[win].trouble.mode == "traverser_diagnostics"
+				--
+				--     -- cause normally you filter add filters to the entries in opts, so it knows which
+				--     -- windows to manipulate
+				--     return vim.w[win].trouble -- the definiton of the match. run :echo w:trouble or lua print(vim.wo.trouble) it outputs:
+				--         -- {'mode': 'lsp', 'type': 'split', 'relative': 'editor', 'position': 'bottom'}
+				--         -- it will show you the window var table. here you can select or filter
+				--         -- you can make your own custom mode that is basically a lsp. then filter for it. thats how it will only grab
+				--         -- the traverser, they will be custom modes in the trouble setup func opts
+				--         and mode_ok
+				--         and vim.w[win].trouble.position == pos -- you seT THESE POSITIONS IN trouble.lua so they are grabbed
+				--         -- and put in here.
+				--         -- these are calls to the trouble api
+				--         and vim.w[win].trouble.type == "split"
+				--         and vim.w[win].trouble.relative == "editor"
+				--         and not vim.w[win].trouble_preview
+				--     -- when all these conditions are matched the filter puts the window into edgy config
+				-- end,
 
 				table.insert(opts[pos], { -- if a normal
 					ft = "trouble",
 					title = "Trouble",
 					filter = function(_buf, win)
-						local mode_ok = vim.w[win].trouble.mode == "lsp"
-							or vim.w[win].trouble.mode == "symbols"
-							or vim.w[win].trouble.mode == "lsp_references"
-							or vim.w[win].trouble.mode == "lsp_incoming_calls"
-							or vim.w[win].trouble.mode == "lsp_outgoing_calls"
-							or vim.w[win].trouble.mode == "diagnostics"
-						return vim.w[win].trouble
-							and mode_ok
-							and vim.w[win].trouble.position == pos
-							and vim.w[win].trouble.type == "split"
-							and vim.w[win].trouble.relative == "editor"
-							and not vim.w[win].trouble_preview
+						local t = vim.w[win].trouble
+						if not t or vim.w[win].trouble_preview then
+							return false
+						end
+
+						local mode_ok = t.mode == "lsp"
+							or t.mode == "symbols"
+							or t.mode == "lsp_references"
+							or t.mode == "lsp_incoming_calls"
+							or t.mode == "lsp_outgoing_calls"
+							or t.mode == "diagnostics"
+
+						return mode_ok and t.position == pos and t.type == "split" and t.relative == "editor"
 					end,
 				})
 			end
