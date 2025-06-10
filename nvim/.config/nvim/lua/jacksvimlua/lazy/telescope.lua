@@ -113,14 +113,43 @@ return {
 			local api, fn = vim.api, vim.fn
 
 			local function split_opts()
-				local win = api.nvim_get_current_win()
-				local ww = api.nvim_win_get_width(win)
-				local wh = api.nvim_win_get_height(win)
-				local ui_w, ui_h = vim.o.columns, vim.o.lines
-				local gap_left, border_w = 0, 1
+				local win = vim.api.nvim_get_current_win()
 
+				-- size + absolute X-offset of the current window
+				local ww = vim.api.nvim_win_get_width(win)
+				local wh = vim.api.nvim_win_get_height(win)
+				local win_row, win_col = unpack(vim.api.nvim_win_get_position(win))
+
+				-- full-screen dimensions
+				local ui_w, ui_h = vim.o.columns, vim.o.lines
+
+				------------------------------------------------------------------
+				-- Decide where to “anchor” the picker
+				------------------------------------------------------------------
+				------------------------------------------------------------------
+				-- Decide where to “anchor” the picker
+				------------------------------------------------------------------
+				local center_x = win_col + ww / 2 -- window midpoint
+				local screen_mid = ui_w / 2 -- screen midpoint
+				local delta = math.abs(center_x - screen_mid)
+
+				-- ≤ 30-column band around centre  →  mount at the top (“N”)
+				local anchor
+				if delta <= 30 then
+					anchor = "N"
+				elseif center_x < screen_mid then
+					anchor = "NW"
+				else
+					anchor = "NE"
+				end
+
+				------------------------------------------------------------------
+				-- Ratios relative to the whole UI (because we’re using the stock
+				-- “vertical” strategy, which positions against the screen edges)
+				------------------------------------------------------------------
+				local gap_left, border_w = 0, 1
 				local w_ratio = (ww - gap_left - border_w) / ui_w
-				local h_ratio = wh / ui_h -- ← true fraction (< 1)
+				local h_ratio = wh / ui_h
 
 				return {
 					border = true,
@@ -128,7 +157,7 @@ return {
 					previewer = false,
 					layout_config = {
 						vertical = {
-							anchor = "NE",
+							anchor = anchor,
 							width = w_ratio,
 							height = h_ratio,
 							prompt_position = "bottom",
@@ -176,13 +205,16 @@ return {
 					local ok, trouble = pcall(require, "trouble")
 					if ok and trouble.refresh then
 						trouble.refresh({ mode = "symbols" })
+						trouble.refresh({ mode = "traverser_symbols" })
+						-- ...and all the others
 					end
 				end
 			end
 
 			-- helper that spawns a symbol picker with <C-e> bound to peek --------------
 			local function symbols_picker(kind) -- "buf" | "ws"
-				local code_win_id = vim.api.nvim_get_current_win()
+				local code_win_id = vim.api.nvim_get_current_win() -- get the windww
+
 				local picker_fn = (kind == "ws")
 						and function(opts)
 							builtin.lsp_dynamic_workspace_symbols(vim.tbl_extend("force", { default_text = "" }, opts))
