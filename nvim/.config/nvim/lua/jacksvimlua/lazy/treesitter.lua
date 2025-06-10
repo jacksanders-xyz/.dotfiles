@@ -1,30 +1,62 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
 	build = ":TSUpdate",
+	dependencies = {
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		"nvim-treesitter/nvim-treesitter-context",
+		{ "RRethy/nvim-treesitter-endwise", after = "nvim-treesitter" },
+	},
+
 	config = function()
 		require("nvim-treesitter.configs").setup({
-			ensure_installed = { "vimdoc", "javascript", "go", "bash", "typescript", "lua", "jsdoc" }, -- Languages to install
-			sync_install = false, -- Install parsers synchronously
-			auto_install = true, -- Automatically install missing parsers when entering buffer
-			ignore_install = {}, -- List of parsers to ignore installing
-			highlight = {
-				enable = false,
+			ensure_installed = {
+				"vimdoc",
+				"javascript",
+				"typescript",
+				"go",
+				"bash",
+				"lua",
+				"jsdoc",
 			},
-			indent = {
-				enable = true, -- Enable indentation
-			},
+
+			sync_install = false,
+			auto_install = true,
+			ignore_install = {},
+
+			highlight = { enable = false }, -- keep off if you rely on regex
+			indent = { enable = true },
+
 			incremental_selection = {
-				enable = true, -- Enable incremental selection
+				enable = true,
 				keymaps = {
-					init_selection = "gnn", -- Start selection
-					node_incremental = "grn", -- Increment to next node
-					scope_incremental = "grc", -- Increment to next scope
-					node_decremental = "grm", -- Decrement to previous node
+					init_selection = "gnn",
+					node_incremental = "gnu",
+					scope_incremental = "gnU",
+					node_decremental = "gnd",
 				},
 			},
-			modules = {},
+			textobjects = {
+				select = {
+					enable = true,
+					lookahead = true,
+					keymaps = {
+						["af"] = "@function.outer",
+						["if"] = "@function.inner",
+					},
+				},
+			},
 		})
-		vim.keymap.set("n", "<leader>tS", "<cmd>InspectTree<cr>")
-		vim.keymap.set("n", "<leader>teq", "<cmd>EditQuery<cr>")
+
+		--------------------------------------------------------------------------
+		-- treesitter-context (sticky function header)
+		--------------------------------------------------------------------------
+		require("treesitter-context").setup({
+			enable = true,
+			multiline_threshold = 8, -- show up to 8 lines of context
+			-- max_lines = 3,          -- uncomment to clamp height instead
+		})
+
+		vim.keymap.set("n", "<leader>tS", "<cmd>InspectTree<CR>")
+		vim.keymap.set("n", "<leader>teq", "<cmd>EditQuery<CR>")
 	end,
 }

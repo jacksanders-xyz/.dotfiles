@@ -182,7 +182,7 @@ return {
 			},
 			{
 				-- “t,s” toggles + maxes exactly one window at a time:
-				"<leader>t,t",
+				"<leader>t,d",
 				function()
 					toggle_trav_max("d")
 				end,
