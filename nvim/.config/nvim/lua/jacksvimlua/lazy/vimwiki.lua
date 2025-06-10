@@ -4,6 +4,7 @@ return {
 		config = function()
 			-- pull Catppuccin palette for header colors
 			local colors = require("catppuccin.palettes").get_palette()
+			-- local colors = require("midnight.palettes").get_palette()
 
 			vim.g.vimwiki_table_mappings = 0
 			vim.g.vimwiki_markdown_link_ext = 1

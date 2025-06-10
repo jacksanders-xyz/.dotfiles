@@ -2,13 +2,13 @@
 # zmodload zsh/zprof
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+# if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+# fi
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/jsanders/.oh-my-zsh"
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# export ZSH="/Users/jsanders/.oh-my-zsh"
+# ZSH_THEME="powerlevel10k/powerlevel10k"
 
 
 # Plugins

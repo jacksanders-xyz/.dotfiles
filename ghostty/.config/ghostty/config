@@ -6,8 +6,10 @@ font-family             = "Iosevka Nerd Font Mono Medium"
 font-family-bold        = "Iosevka Nerd Font Mono Bold"
 font-size               = 14
 theme                   = "catppuccin-mocha"
-# theme                   = "kanagawabones"
-background-opacity      = 0.93
+
+# theme                 = "kanagawabones"
+background-opacity      = 0.90
+background              = #080c10
 
 # Font thickening (macOS only)
 font-thicken            = true

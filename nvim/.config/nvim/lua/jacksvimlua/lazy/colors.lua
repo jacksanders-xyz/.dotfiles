@@ -12,8 +12,8 @@ return {
 		config = function()
 			require("catppuccin").setup({
 				flavour = "mocha",
-				-- transparent_background = false,
-				-- show_end_of_buffer = false,
+				transparent_background = false,
+				-- show_end_of_buffer = true,
 				styles = {
 					comments = { "italic" },
 					keywords = { "italic" },
@@ -25,6 +25,11 @@ return {
 					telescope = true,
 					nvimtree = true,
 					which_key = true,
+				},
+				color_overrides = {
+					mocha = {
+						base = "#080c10",
+					},
 				},
 			})
 
@@ -53,6 +58,7 @@ return {
 			-- hl(0, "PmenuSel", { fg = c.text, bg = c.mantle })
 			-- hl(0, "PmenuSbar", { bg = c.mantle })
 			-- hl(0, "PmenuThumb", { bg = c.mauve })
+
 			ColorMyPencils()
 		end,
 	},

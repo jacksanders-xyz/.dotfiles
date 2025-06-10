@@ -27,11 +27,24 @@ return {
 				},
 				modes = {
 					traverser_lsp = {
-						mode = "lsp_references",
+						sections = {
+							"lsp_declarations",
+							"lsp_definitions",
+							"lsp_implementations",
+                            "lsp_references",
+							"lsp_type_definitions",
+						},
 						title = "󰌹  Refs / Defs",
 						follow = true,
 						params = { include_declaration = true },
 						open_no_results = true,
+						lsp_base = {
+							params = {
+								-- don't include the current location in the results
+								include_current = true,
+							},
+						},
+
 						win = {
 							type = "split",
 							position = "bottom",
