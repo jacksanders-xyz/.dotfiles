@@ -183,7 +183,7 @@ return {
 					if not file then
 						return
 					end
-					local line = (loc.lnum or (loc.range and loc.range.start.line) or 0) + 1
+					local line = (loc.lnum or (loc.range and loc.range.start.line) or 0)
 					local col = loc.col or (loc.range and loc.range.start.character) or 0
 
 					-- validate the saved window; if it vanished, abort
@@ -206,6 +206,11 @@ return {
 					if ok and trouble.refresh then
 						trouble.refresh({ mode = "symbols" })
 						trouble.refresh({ mode = "traverser_symbols" })
+						trouble.refresh({ "traverser_lsp" })
+						trouble.refresh({ "traverser_references" })
+						trouble.refresh({ "traverser_diagnostics" })
+						trouble.refresh({ "traverser_incoming" })
+						trouble.refresh({ "traverser_outgoing" })
 						-- ...and all the others
 					end
 				end
