@@ -13,7 +13,7 @@ return {
 			require("catppuccin").setup({
 				flavour = "mocha",
 				transparent_background = false,
-				-- show_end_of_buffer = true,
+				show_end_of_buffer = true,
 				styles = {
 					comments = { "italic" },
 					keywords = { "italic" },

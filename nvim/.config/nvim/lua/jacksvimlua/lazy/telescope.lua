@@ -126,17 +126,14 @@ return {
 				------------------------------------------------------------------
 				-- Decide where to “anchor” the picker
 				------------------------------------------------------------------
-				------------------------------------------------------------------
-				-- Decide where to “anchor” the picker
-				------------------------------------------------------------------
-				local center_x = win_col + ww / 2 -- window midpoint
+				local center_x = win_col + ww / 2 -- window’s midpoint (cells)
 				local screen_mid = ui_w / 2 -- screen midpoint
 				local delta = math.abs(center_x - screen_mid)
 
-				-- ≤ 30-column band around centre  →  mount at the top (“N”)
+				-- 1-cell tolerance: treat  │ centered │  as “top”
 				local anchor
-				if delta <= 30 then
-					anchor = "N"
+				if delta <= 1 then
+					anchor = "N" -- even → mount to the top
 				elseif center_x < screen_mid then
 					anchor = "NW"
 				else
@@ -211,7 +208,6 @@ return {
 						trouble.refresh({ "traverser_diagnostics" })
 						trouble.refresh({ "traverser_incoming" })
 						trouble.refresh({ "traverser_outgoing" })
-						-- ...and all the others
 					end
 				end
 			end
