@@ -51,9 +51,9 @@ autocmd("LspAttach", {
 			vim.diagnostic.open_float(0, { scope = "line" })
 		end, opts)
 
-		vim.keymap.set("n", "<leader>ca", function()
-			vim.lsp.buf.code_action()
-		end, opts)
+		-- vim.keymap.set("n", "<leader>ca", function() handled by a plugin
+		-- 	vim.lsp.buf.code_action()
+		-- end, opts)
 
 		--       trouble
 		--       vim.keymap.set("n", "<leader>cr", function()
@@ -102,3 +102,29 @@ end, { nargs = 1 })
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25
+
+-- code action lightbulb
+-- somewhere after plugins are loaded (bottom of init.lua is fine) ------
+-- return "" when no action is available, or " 動" when it is
+function _G.LightbulbStatus()
+	local ok, bulb = pcall(require, "nvim-lightbulb")
+	if not ok then
+		return ""
+	end
+	local t = bulb.get_status_text()
+	return (t == "") and "" or (" " .. t)
+end
+
+-- minimal status-line that keeps the default bits ______________________
+-- %<%f        = trunc path
+-- %h%m%r      = flags   (%m prints [+] when modified)
+-- %{…}        = our kanji
+-- %=          = split left / right
+-- %-14.(…)%P  = line, col, percentage
+vim.o.statusline = table.concat({
+	"%<%f", -- file path (truncated)
+	" %h%m%r", -- flags: help, [+], readonly
+	"%{v:lua.LightbulbStatus()}",
+	"%=", -- ───────── right side ─────────
+	"%-14.(%l,%c%V%) %P",
+})

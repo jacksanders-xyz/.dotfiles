@@ -32,7 +32,7 @@ return {
 							"lsp_definitions", -- where the thing is defined
 							"lsp_implementations", -- where the interface is being implemented
 							"lsp_references", -- where the thing is reference
-							"lsp_type_definitions", -- where the type is defined (struct)
+							"lsp_type_definitions",
 						},
 						title = "󰌹  Refs / Defs",
 						follow = true,

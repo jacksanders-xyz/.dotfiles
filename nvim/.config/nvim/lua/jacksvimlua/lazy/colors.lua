@@ -59,6 +59,8 @@ return {
 			-- hl(0, "PmenuSbar", { bg = c.mantle })
 			-- hl(0, "PmenuThumb", { bg = c.mauve })
 
+			hl(0, "LightBulbDimmer", { fg = c.surface2 })
+
 			ColorMyPencils()
 		end,
 	},
