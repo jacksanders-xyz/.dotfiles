@@ -300,7 +300,7 @@ function M.setup()
 
 		-- ≤ 26 items  →  read one keystroke directly (non-blocking)
 		if #trace.items <= 26 then
-			vim.notify("Jump: press tag key (a-z)", vim.log.levels.INFO, { title = "Traverser" })
+			-- vim.notify("Jump: press tag key (a-z)", vim.log.levels.INFO, { title = "Traverser" })
 			local ch = vim.fn.getcharstr() -- waits for a single char
 			if ch and ch ~= "" then
 				jump_to_tag(ch)
