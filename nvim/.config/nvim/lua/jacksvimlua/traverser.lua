@@ -67,6 +67,11 @@ end
 -- 3. Toggle mark at cursor (no window action)
 ------------------------------------------------------------
 function M.toggle_here()
+	if not store.traces[store.active] then
+		vim.notify("Traverser: no active trace – create one with <leader>tN", vim.log.levels.WARN)
+		return
+	end
+
 	local bufnr = 0
 	local row = vim.api.nvim_win_get_cursor(0)[1] - 1
 	local mark = vim.api.nvim_buf_get_extmarks(bufnr, ns, { row, 0 }, { row, -1 }, {})
@@ -248,8 +253,6 @@ function M.setup()
 	-- map("n", "<leader>tN", "<Cmd>TraverserNewTrace<CR>", { desc = "Traverser: new trace" })
 	----------------------------------------------------------------------
 
-
-
 	local function jump_to_tag(tag)
 		tag = tag:lower()
 		for _, it in ipairs(store.traces[store.active].items) do
@@ -272,8 +275,7 @@ function M.setup()
 		vim.notify("Traverser: tag [" .. tag .. "] not found", vim.log.levels.WARN)
 	end
 
-
-    vim.api.nvim_create_user_command("TraverserJump", function(opts)
+	vim.api.nvim_create_user_command("TraverserJump", function(opts)
 		if opts.args == "" then
 			vim.notify("TraverserJump requires a tag (e.g. a, z, aa)", vim.log.levels.ERROR)
 		else
@@ -314,15 +316,25 @@ function M.setup()
 		end)
 	end
 
-    vim.api.nvim_create_user_command("TraverserAddNode", function()
+	vim.api.nvim_create_user_command("TraverserAddNode", function()
 		M.toggle_here()
 	end, {})
 
 	vim.api.nvim_create_user_command("TraverserTree", function()
-		rebuild_qf()
-		require("trouble").toggle("traverser_tree")
-	end, {})
+		if #store.traces == 0 then
+			vim.notify("Traverser: no trace yet – create one with <leader>tN", vim.log.levels.WARN)
+			return
+		end
 
+		local trace = store.traces[store.active]
+		if #trace.items == 0 then
+			vim.notify("Traverser: active trace is empty – add nodes with <leader>ta", vim.log.levels.WARN)
+			return
+		end
+
+		rebuild_qf()
+		require("trouble").toggle("quickfix")
+	end, {})
 	vim.api.nvim_create_user_command("TraverserEdit", function()
 		vim.notify("TODO: implement re-ordering UI")
 	end, {})
@@ -330,6 +342,19 @@ function M.setup()
 	vim.api.nvim_create_user_command("TraverserNewTrace", function(opts)
 		new_trace(opts.args)
 	end, { nargs = "?", complete = "file" })
+
+	-- add this to keys in the trouble window?
+	-- map("n", "<leader>tn", "<Cmd>TraverserNextTrace<CR>",
+	-- local function next_trace()
+	-- 	if #store.traces == 0 then
+	-- 		vim.notify("Traverser: no traces to cycle", vim.log.levels.WARN)
+	-- 		return
+	-- 	end
+	-- 	store.active = (store.active % #store.traces) + 1
+	-- 	rebuild_qf()
+	-- 	require("trouble").refresh("quickfix")
+	-- 	vim.notify("Traverser: now on " .. store.traces[store.active].name)
+	-- end
 
 	vim.api.nvim_create_user_command("TraverserEdit", open_editor, {})
 	local map = vim.keymap.set
