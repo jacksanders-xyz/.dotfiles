@@ -99,6 +99,8 @@ vim.api.nvim_create_user_command("LuaPut", function(opts)
 	vim.api.nvim_buf_set_lines(0, 0, -1, false, vim.split(result, "\n"))
 end, { nargs = 1 })
 
+vim.api.nvim_create_user_command("LT", "<cmd>Lazy reload traverser<cr>", {})
+
 vim.g.netrw_browse_split = 0
 vim.g.netrw_banner = 0
 vim.g.netrw_winsize = 25

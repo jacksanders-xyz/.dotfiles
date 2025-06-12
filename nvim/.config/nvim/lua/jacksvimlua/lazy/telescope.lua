@@ -6,12 +6,10 @@ return {
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			"jvgrootveld/telescope-zoxide",
 			"nvim-telescope/telescope-file-browser.nvim",
-			"axieax/urlview.nvim",
 			"sshelll/telescope-gott.nvim",
 			"benfowler/telescope-luasnip.nvim",
 			"catgoose/telescope-helpgrep.nvim",
 			"blacktrub/telescope-godoc.nvim",
-			"ANGkeith/telescope-terraform-doc.nvim",
 			"nvim-telescope/telescope-ui-select.nvim",
 		},
 		config = function()
@@ -401,7 +399,6 @@ return {
 			pcall(require("telescope").load_extension("zoxide"))
 			pcall(require("telescope").load_extension("godoc"))
 			pcall(require("telescope").load_extension("ui-select"))
-			pcall(require("telescope").load_extension("terraform_doc"))
 
 			-- GOTEST
 			pcall(require("telescope").load_extension("gott"))
@@ -450,6 +447,7 @@ return {
 	},
 	{
 		"axieax/urlview.nvim",
+		ft = { "markdown" },
 		config = function()
 			require("urlview").setup({})
 			vim.keymap.set(
@@ -458,6 +456,17 @@ return {
 				"<cmd>UrlView buffer picker=telescope<cr>",
 				{ noremap = true, silent = true }
 			)
+		end,
+	},
+	{
+		"ANGkeith/telescope-terraform-doc.nvim",
+		ft = { "terraform", "hcl" }, -- load only in .tf / .hcl buffers
+		lazy = true, -- optional; ft already makes it lazy
+		dependencies = { "nvim-telescope/telescope.nvim" },
+		config = function()
+			-- Telescope is already in the runtime at this point,
+			-- so it’s safe to register the extension.
+			require("telescope").load_extension("terraform_doc")
 		end,
 	},
 	{

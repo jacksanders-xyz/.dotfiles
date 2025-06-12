@@ -9,7 +9,6 @@ return {
 				keys = {
 					-- 1. Unmap `s` so Flash/Hop can use it
 					s = false,
-
 					-- 2. Re-add the same “toggle severity filter” logic on `S`
 					S = {
 						action = function(view)
@@ -87,116 +86,117 @@ return {
 						follow = true,
 						win = { type = "split", position = "right", height = 6 },
 					},
+					traverser_tree = {
+						mode = "quickfix",
+						title = "󰈞  Trace",
+						follow = true,
+						open_no_results = true,
+						win = { type = "split", position = "bottom", height = 8 },
+					},
 				},
 			})
 
 			local trouble = require("trouble")
-			local diag_max = false
-			local sym_max = false
 
-			local inc_max = false
-			local out_max = false
-
-			local ref_max = false
-
-			local function log(msg)
-				vim.notify(msg, vim.log.levels.INFO, { title = "Trouble-toggle" })
-				print("[Trouble-toggle] " .. msg)
-			end
-
-			-- Diagnostics bottom bar
-			local function toggle_diagnostics()
-				diag_max = not diag_max
-				log("diagnostics → " .. (diag_max and "MAX" or "normal"))
-				trouble.close()
-				trouble.open({
-					mode = "diagnostics",
-					focus = true,
-					win = {
-						position = "bottom",
-						size = diag_max and (vim.o.lines - 4) or 10,
-						winfixheight = false,
-					},
-				})
-			end
-
+			--          local diag_max = false
+			-- local sym_max = false
+			-- local inc_max = false
+			-- local out_max = false
+			-- local ref_max = false
+			-- local function log(msg)
+			-- 	vim.notify(msg, vim.log.levels.INFO, { title = "Trouble-toggle" })
+			-- 	print("[Trouble-toggle] " .. msg)
+			-- end
+			-- -- Diagnostics bottom bar
+			-- local function toggle_diagnostics()
+			-- 	diag_max = not diag_max
+			-- 	log("diagnostics → " .. (diag_max and "MAX" or "normal"))
+			-- 	trouble.close()
+			-- 	trouble.open({
+			-- 		mode = "diagnostics",
+			-- 		focus = true,
+			-- 		win = {
+			-- 			position = "bottom",
+			-- 			size = diag_max and (vim.o.lines - 4) or 10,
+			-- 			winfixheight = false,
+			-- 		},
+			-- 	})
+			-- end
+			--
 			-- Symbols sidebar
-			local function toggle_symbols()
-				if sym_max == not sym_max then
-					log("symbols → " .. (sym_max and "MAX" or "normal"))
-					trouble.close()
-					trouble.open({
-						mode = "traverser_symbols",
-						focus = true,
-						win = {
-							position = "left",
-							size = sym_max and math.floor(vim.o.columns * 0.7) or 56,
-							winfixwidth = false,
-						},
-					})
-				else
-					trouble.close()
-					traverser_open()
-				end
-			end
-
-			local function toggle_incoming()
-				inc_max = not inc_max
-				log("incoming calls → " .. (inc_max and "MAX" or "normal"))
-				trouble.close()
-				trouble.open({
-					mode = "lsp_incoming_calls",
-					focus = true,
-					win = {
-						position = "left",
-						size = inc_max and math.floor(vim.o.columns * 0.7) or 40,
-						winfixwidth = false,
-					},
-				})
-			end
-
-			local function toggle_outgoing()
-				out_max = not out_max
-				log("outgoing calls → " .. (out_max and "MAX" or "normal"))
-				trouble.close()
-				trouble.open({
-					mode = "lsp_outgoing_calls",
-					focus = true,
-					win = {
-						position = "right",
-						size = out_max and math.floor(vim.o.columns * 0.7) or 40,
-						winfixwidth = false,
-					},
-				})
-			end
-
-			local function toggle_references()
-				ref_max = not ref_max
-				log("refs → " .. (ref_max and "MAX" or "normal"))
-				trouble.close()
-				trouble.open({
-					mode = "lsp_references",
-					focus = true,
-					params = {
-						include_declarations = true,
-					},
-					win = {
-						position = "right",
-						size = ref_max and math.floor(vim.o.columns * 0.7) or 40,
-						winfixwidth = false,
-					},
-				})
-			end
-
-			--------------------------------------------------------------------------
-			-- "DIAGNOSTICS"
-			--------------------------------------------------------------------------
-			-- this will throw trouble toggle diagnostics for the whole workspace
-			-- (because your lsp has the plugin "artemave/workspace-diagnostics.nvim"
-			vim.keymap.set("n", "<leader>tt", function()
-				trouble.toggle("diagnostics")
-			end)
-
+			-- local function toggle_symbols()
+			-- 	if sym_max == not sym_max then
+			-- 		log("symbols → " .. (sym_max and "MAX" or "normal"))
+			-- 		trouble.close()
+			-- 		trouble.open({
+			-- 			mode = "traverser_symbols",
+			-- 			focus = true,
+			-- 			win = {
+			-- 				position = "left",
+			-- 				size = sym_max and math.floor(vim.o.columns * 0.7) or 56,
+			-- 				winfixwidth = false,
+			-- 			},
+			-- 		})
+			-- 	else
+			-- 		trouble.close()
+			-- 		traverser_open()
+			-- 	end
+			-- end
+			-- local function toggle_incoming()
+			-- 	inc_max = not inc_max
+			-- 	log("incoming calls → " .. (inc_max and "MAX" or "normal"))
+			-- 	trouble.close()
+			-- 	trouble.open({
+			-- 		mode = "lsp_incoming_calls",
+			-- 		focus = true,
+			-- 		win = {
+			-- 			position = "left",
+			-- 			size = inc_max and math.floor(vim.o.columns * 0.7) or 40,
+			-- 			winfixwidth = false,
+			-- 		},
+			-- 	})
+			-- end
+			-- -- local function toggle_outgoing()
+			-- -- 	out_max = not out_max
+			-- -- 	log("outgoing calls → " .. (out_max and "MAX" or "normal"))
+			-- -- 	trouble.close()
+			-- -- 	trouble.open({
+			-- -- 		mode = "lsp_outgoing_calls",
+			-- -- 		focus = true,
+			-- -- 		win = {
+			-- -- 			position = "right",
+			-- -- 			size = out_max and math.floor(vim.o.columns * 0.7) or 40,
+			-- -- 			winfixwidth = false,
+			-- -- 		},
+			-- -- 	})
+			-- -- end
+			-- -- local function toggle_references()
+			-- -- 	ref_max = not ref_max
+			-- -- 	log("refs → " .. (ref_max and "MAX" or "normal"))
+			-- -- 	trouble.close()
+			-- -- 	trouble.open({
+			-- -- 		mode = "lsp_references",
+			-- -- 		focus = true,
+			-- -- 		params = {
+			-- -- 			include_declarations = true,
+			-- -- 		},
+			-- -- 		win = {
+			-- -- 			position = "right",
+			-- -- 			size = ref_max and math.floor(vim.o.columns * 0.7) or 40,
+			-- -- 			winfixwidth = false,
+			-- -- 		},
+			-- -- 	})
+			-- -- end
+			-- --
+			-- --------------------------------------------------------------------------
+			-- -- "DIAGNOSTICS"
+			-- --------------------------------------------------------------------------
+			-- -- this will throw trouble toggle diagnostics for the whole workspace
+			-- -- (because your lsp has the plugin "artemave/workspace-diagnostics.nvim"
+			-- vim.keymap.set("n", "<leader>tt", function()
+			-- 	trouble.toggle("diagnostics")
+			-- end)
+			--
 			-- this will throw trouble toggle diagnostics ONLY for buffer you're in
 			vim.keymap.set("n", "<leader>tb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>")
 

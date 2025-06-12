@@ -5,8 +5,7 @@ vim.opt.hlsearch = false
 vim.opt.incsearch = false
 
 autocmd("BufLeave", {
-    group = outline_group,
-    pattern = "*",
-    command = "setlocal noincsearch nohlsearch",
+	group = outline_group,
+	pattern = "*",
+	command = "setlocal noincsearch nohlsearch",
 })
-
