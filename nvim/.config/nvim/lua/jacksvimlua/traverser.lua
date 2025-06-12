@@ -248,9 +248,8 @@ function M.setup()
 	-- map("n", "<leader>tN", "<Cmd>TraverserNewTrace<CR>", { desc = "Traverser: new trace" })
 	----------------------------------------------------------------------
 
-	----------------------------------------------------------------------
-	-- JUMP‐TO‐TAG  –  :TraverserJump {tag}  /  <leader>tc
-	----------------------------------------------------------------------
+
+
 	local function jump_to_tag(tag)
 		tag = tag:lower()
 		for _, it in ipairs(store.traces[store.active].items) do
@@ -273,7 +272,8 @@ function M.setup()
 		vim.notify("Traverser: tag [" .. tag .. "] not found", vim.log.levels.WARN)
 	end
 
-	vim.api.nvim_create_user_command("TraverserJump", function(opts)
+
+    vim.api.nvim_create_user_command("TraverserJump", function(opts)
 		if opts.args == "" then
 			vim.notify("TraverserJump requires a tag (e.g. a, z, aa)", vim.log.levels.ERROR)
 		else
@@ -293,7 +293,28 @@ function M.setup()
 			end, t)
 		end,
 	})
-	vim.api.nvim_create_user_command("TraverserAddNode", function()
+	local function prompt_and_jump()
+		local trace = store.traces[store.active]
+
+		-- ≤ 26 items  →  read one keystroke directly (non-blocking)
+		if #trace.items <= 26 then
+			vim.notify("Jump: press tag key (a-z)", vim.log.levels.INFO, { title = "Traverser" })
+			local ch = vim.fn.getcharstr() -- waits for a single char
+			if ch and ch ~= "" then
+				jump_to_tag(ch)
+			end
+			return
+		end
+
+		-- more than 26  →  fall back to full input box
+		vim.ui.input({ prompt = "Jump to tag: " }, function(input)
+			if input and input ~= "" then
+				jump_to_tag(input)
+			end
+		end)
+	end
+
+    vim.api.nvim_create_user_command("TraverserAddNode", function()
 		M.toggle_here()
 	end, {})
 
@@ -317,13 +338,7 @@ function M.setup()
 	map("n", "<leader>tN", "<Cmd>TraverserNewTrace<CR>", { desc = "Traverser: new trace" })
 	map("n", "<leader>tS", "<Cmd>TraverserSwitchTrace<CR>", { desc = "Traverser: switch trace" })
 	map("n", "<leader>tE", "<Cmd>TraverserEdit<CR>", { desc = "Traverser: edit trace list" })
-	map("n", "<leader>tc", function()
-		vim.ui.input({ prompt = "Jump to tag: " }, function(input)
-			if input and input ~= "" then
-				jump_to_tag(input)
-			end
-		end)
-	end, { desc = "Traverser: jump to tag" })
+	vim.keymap.set("n", "<leader>tc", prompt_and_jump, { desc = "Traverser: jump to tag" })
 	vim.api.nvim_create_autocmd("VimLeavePre", { callback = save_state })
 end
 
