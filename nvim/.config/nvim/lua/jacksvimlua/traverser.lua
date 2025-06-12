@@ -299,7 +299,7 @@ function M.setup()
 
 	vim.api.nvim_create_user_command("TraverserTree", function()
 		rebuild_qf()
-		require("trouble").toggle("quickfix")
+		require("trouble").toggle("traverser_tree")
 	end, {})
 
 	vim.api.nvim_create_user_command("TraverserEdit", function()

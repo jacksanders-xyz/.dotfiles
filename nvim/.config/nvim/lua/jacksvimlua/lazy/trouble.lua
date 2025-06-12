@@ -193,10 +193,10 @@ return {
 			-- --------------------------------------------------------------------------
 			-- -- this will throw trouble toggle diagnostics for the whole workspace
 			-- -- (because your lsp has the plugin "artemave/workspace-diagnostics.nvim"
-			-- vim.keymap.set("n", "<leader>tt", function()
-			-- 	trouble.toggle("diagnostics")
-			-- end)
-			--
+			vim.keymap.set("n", "<leader>tt", function()
+				trouble.toggle("diagnostics")
+			end)
+
 			-- this will throw trouble toggle diagnostics ONLY for buffer you're in
 			vim.keymap.set("n", "<leader>tb", "<cmd>Trouble diagnostics toggle filter.buf=0<cr>")
 

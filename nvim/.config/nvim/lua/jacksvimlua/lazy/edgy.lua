@@ -279,6 +279,7 @@ return {
 							or t.mode == "traverser_incoming"
 							or t.mode == "traverser_outgoing"
 							or t.mode == "traverser_diagnostics"
+							or t.mode == "traverser_tree"
 
 						return mode_ok and t.position == pos and t.type == "split" and t.relative == "editor"
 					end,
