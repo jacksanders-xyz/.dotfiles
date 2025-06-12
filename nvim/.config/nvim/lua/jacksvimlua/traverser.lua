@@ -90,20 +90,12 @@ function M.toggle_here()
 			text = vim.trim(vim.api.nvim_buf_get_lines(bufnr, row, row + 1, false)[1]),
 		})
 	end
+
 	save_state()
-end
-vim.api.nvim_create_user_command("TraverserAddNode", function()
-	M.toggle_here()
-end, {})
-
-vim.api.nvim_create_user_command("TraverserTree", function()
 	rebuild_qf()
-	require("trouble").toggle("quickfix")
-end, {})
+	require("trouble").refresh("quickfix")
+end
 
-vim.api.nvim_create_user_command("TraverserEdit", function()
-	vim.notify("TODO: implement re-ordering UI")
-end, {})
 ----------------------------------------------------------------------
 -- helper: base-26 tag  (1 → a, 27 → aa, 28 → ab ...)
 ----------------------------------------------------------------------
@@ -212,6 +204,8 @@ function M.setup()
 							if new and new ~= "" then
 								store.traces[sel.index].name = new
 								save_state()
+								rebuild_qf()
+								require("trouble").refresh("quickfix")
 							end
 						end)
 					end)
@@ -227,6 +221,94 @@ function M.setup()
 			})
 			:find()
 	end, {})
+	----------------------------------------------------------------------
+	-- New trace helper  (called by the user-command)
+	----------------------------------------------------------------------
+	local function new_trace(name)
+		name = (name and name ~= "") and name or ("Trace " .. (#store.traces + 1))
+
+		table.insert(store.traces, { name = name, items = {} })
+		store.active = #store.traces
+		save_state()
+
+		rebuild_qf() -- update list right away
+		require("trouble").refresh("quickfix") -- live refresh if pane is open
+		vim.notify("Traverser: created " .. name)
+	end
+
+	----------------------------------------------------------------------
+	-- :TraverserNewTrace  {optional-name}
+	----------------------------------------------------------------------
+	vim.api.nvim_create_user_command("TraverserNewTrace", function(opts)
+		new_trace(opts.args)
+	end, { nargs = "?", complete = "file" })
+
+	----------------------------------------------------------------------
+	-- (the <leader>tN mapping you already added elsewhere stays unchanged)
+	-- map("n", "<leader>tN", "<Cmd>TraverserNewTrace<CR>", { desc = "Traverser: new trace" })
+	----------------------------------------------------------------------
+
+	----------------------------------------------------------------------
+	-- JUMP‐TO‐TAG  –  :TraverserJump {tag}  /  <leader>tc
+	----------------------------------------------------------------------
+	local function jump_to_tag(tag)
+		tag = tag:lower()
+		for _, it in ipairs(store.traces[store.active].items) do
+			if it.tag:sub(2, -2):lower() == tag then
+				----------------------------------------------------------
+				-- resolve buffer (might not be loaded)
+				----------------------------------------------------------
+				local bufnr = (it.bufnr and it.bufnr > 0) and it.bufnr or vim.fn.bufadd(it.filename)
+				vim.fn.bufload(bufnr)
+
+				----------------------------------------------------------
+				-- jump
+				----------------------------------------------------------
+				vim.api.nvim_set_current_buf(bufnr)
+				vim.api.nvim_win_set_cursor(0, { it.lnum, (it.col or 1) - 1 })
+				vim.cmd("normal! zv") -- open folds
+				return
+			end
+		end
+		vim.notify("Traverser: tag [" .. tag .. "] not found", vim.log.levels.WARN)
+	end
+
+	vim.api.nvim_create_user_command("TraverserJump", function(opts)
+		if opts.args == "" then
+			vim.notify("TraverserJump requires a tag (e.g. a, z, aa)", vim.log.levels.ERROR)
+		else
+			jump_to_tag(opts.args)
+		end
+	end, {
+		nargs = 1,
+		complete = function(_, line)
+			-- completion list = current trace tags (without brackets)
+			local lword = line:match("%S+$") or ""
+			local t = {}
+			for _, it in ipairs(store.traces[store.active].items) do
+				table.insert(t, it.tag:sub(2, -2))
+			end
+			return vim.tbl_filter(function(x)
+				return x:match("^" .. lword)
+			end, t)
+		end,
+	})
+	vim.api.nvim_create_user_command("TraverserAddNode", function()
+		M.toggle_here()
+	end, {})
+
+	vim.api.nvim_create_user_command("TraverserTree", function()
+		rebuild_qf()
+		require("trouble").toggle("quickfix")
+	end, {})
+
+	vim.api.nvim_create_user_command("TraverserEdit", function()
+		vim.notify("TODO: implement re-ordering UI")
+	end, {})
+
+	vim.api.nvim_create_user_command("TraverserNewTrace", function(opts)
+		new_trace(opts.args)
+	end, { nargs = "?", complete = "file" })
 
 	vim.api.nvim_create_user_command("TraverserEdit", open_editor, {})
 	local map = vim.keymap.set
@@ -235,7 +317,13 @@ function M.setup()
 	map("n", "<leader>tN", "<Cmd>TraverserNewTrace<CR>", { desc = "Traverser: new trace" })
 	map("n", "<leader>tS", "<Cmd>TraverserSwitchTrace<CR>", { desc = "Traverser: switch trace" })
 	map("n", "<leader>tE", "<Cmd>TraverserEdit<CR>", { desc = "Traverser: edit trace list" })
-
+	map("n", "<leader>tc", function()
+		vim.ui.input({ prompt = "Jump to tag: " }, function(input)
+			if input and input ~= "" then
+				jump_to_tag(input)
+			end
+		end)
+	end, { desc = "Traverser: jump to tag" })
 	vim.api.nvim_create_autocmd("VimLeavePre", { callback = save_state })
 end
 
