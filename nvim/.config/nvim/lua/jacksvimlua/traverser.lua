@@ -158,6 +158,7 @@ local function open_editor()
 	vim.keymap.set("n", "<C-j>", function()
 		move(1)
 	end, { buffer = buf })
+
 	vim.keymap.set("n", "q", function()
 		-- save ordering back to trace
 		local new = {}
@@ -333,7 +334,7 @@ function M.setup()
 		end
 
 		rebuild_qf()
-		require("trouble").toggle("quickfix")
+		require("trouble").toggle("traverser_tree")
 	end, {})
 	vim.api.nvim_create_user_command("TraverserEdit", function()
 		vim.notify("TODO: implement re-ordering UI")

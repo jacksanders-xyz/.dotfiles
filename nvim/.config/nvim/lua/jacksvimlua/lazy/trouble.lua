@@ -58,7 +58,7 @@ return {
 						title = "󰳽  Symbols",
 						follow = true,
 						open_no_results = true,
-						win = { type = "split", position = "left", size = 56 },
+						win = { type = "split", position = "left", size = drawer_size },
 					},
 					traverser_diagnostics = {
 						mode = "diagnostics",
@@ -90,7 +90,8 @@ return {
 						mode = "quickfix",
 						title = "󰈞  Trace",
 						follow = true,
-						open_no_results = true,
+					  sort   = { "text" },
+                        open_no_results = true,
 						win = { type = "split", position = "bottom", height = 8 },
 					},
 				},
