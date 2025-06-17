@@ -87,11 +87,11 @@ return {
 						win = { type = "split", position = "right", height = 6 },
 					},
 					traverser_tree = {
-						mode = "quickfix",
+						mode = "quickfix", -- leverage QF engine
 						title = "󰈞  Trace",
+						groups = false, -- flat tree, toggle to group by file
+						sort = { "text" }, -- sort by “[tag] …”
 						follow = true,
-					  sort   = { "text" },
-                        open_no_results = true,
 						win = { type = "split", position = "bottom", height = 8 },
 					},
 				},

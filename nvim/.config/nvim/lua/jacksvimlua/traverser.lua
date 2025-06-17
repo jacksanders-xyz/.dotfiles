@@ -98,7 +98,7 @@ function M.toggle_here()
 
 	save_state()
 	rebuild_qf()
-	require("trouble").refresh("quickfix")
+	require("trouble").refresh("traverser_tree")
 end
 
 ----------------------------------------------------------------------
@@ -211,7 +211,7 @@ function M.setup()
 								store.traces[sel.index].name = new
 								save_state()
 								rebuild_qf()
-								require("trouble").refresh("quickfix")
+								require("trouble").refresh("traverser_tree")
 							end
 						end)
 					end)
@@ -220,7 +220,7 @@ function M.setup()
 						store.active = sel.index
 						actions.close(prompt_bufnr)
 						rebuild_qf()
-						require("trouble").open("quickfix")
+						require("trouble").open("traverser_tree")
 					end)
 					return true
 				end,
@@ -238,7 +238,7 @@ function M.setup()
 		save_state()
 
 		rebuild_qf() -- update list right away
-		require("trouble").refresh("quickfix") -- live refresh if pane is open
+		require("trouble").refresh("traverser_tree") -- live refresh if pane is open
 		vim.notify("Traverser: created " .. name)
 	end
 
