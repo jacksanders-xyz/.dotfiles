@@ -128,15 +128,17 @@ return {
 				local screen_mid = ui_w / 2 -- screen midpoint
 				local delta = math.abs(center_x - screen_mid)
 
+				local anchor = "C"
+
 				-- 1-cell tolerance: treat  │ centered │  as “top”
 				local anchor
-				if delta <= 1 then
-					anchor = "N" -- even → mount to the top
-				elseif center_x < screen_mid then
-					anchor = "NW"
-				else
-					anchor = "NE"
-				end
+				-- if delta <= 1 then
+				-- 	anchor = "N" -- even → mount to the top
+				-- elseif center_x < screen_mid then
+				-- 	anchor = "NW"
+				-- else
+				-- 	anchor = "NE"
+				-- end
 
 				------------------------------------------------------------------
 				-- Ratios relative to the whole UI (because we’re using the stock

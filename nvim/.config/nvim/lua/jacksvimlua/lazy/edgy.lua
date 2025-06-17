@@ -215,12 +215,13 @@ return {
 		},
 		opts = function()
 			local opts = {
-				bottom = {
-					"Trouble", --m maybe you can name them in here for picker but meh?
-				},
-				left = {},
+				left = { size = { width = 56 } },
+				bottom = { size = 12 },
 				right = {},
-
+				top = {},
+				header = {
+					show_in_active = true, -- keep the header even when the edge is focused
+				},
 				-- maximizer keys might have to go in here...
 				keys = {
 					-- increase width
@@ -267,6 +268,7 @@ return {
 				table.insert(opts[pos], { -- insert into the table that table
 					ft = "trouble", -- filetype is trouble
 					title = "Traverser",
+					size = (pos == "left" and { width = 56 } or nil),
 					filter = function(_buf, win)
 						local t = vim.w[win].trouble -- may be nil for non-Trouble / preview windows
 						if not t or vim.w[win].trouble_preview then

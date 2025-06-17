@@ -50,7 +50,7 @@ return {
 						win = {
 							type = "split",
 							position = "bottom",
-							size = 30,
+							size = 80,
 						},
 					},
 					traverser_symbols = {
@@ -189,6 +189,36 @@ return {
 			-- -- 	})
 			-- -- end
 			-- --
+
+			-- ---------------------------------------------------------------------------
+			--  Helper funcs
+			-- ---------------------------------------------------------------------------
+			local last_trouble_mode = nil -- e.g. "traverser_lsp", "traverser_symbols", …
+
+			-- Whenever we enter a window, check if it’s a Trouble window and remember it
+			vim.api.nvim_create_autocmd("WinEnter", {
+				desc = "Remember the last Trouble view we stepped into",
+				callback = function()
+					-- In the window we just entered, Trouble (if present) leaves its metadata
+					local t = vim.w.trouble -- NO indexing by ID – vim.w is per-window
+					if t and t.mode then
+						last_trouble_mode = t.mode
+					end
+				end,
+			})
+
+			-- Helper that falls back gracefully if no Trouble view is open
+			local function jump(dir) -- dir = "next" | "prev"
+				local opts = { skip_groups = true, jump = true }
+
+				-- if we still have a live Trouble window with that mode, target it explicitly
+				if last_trouble_mode and trouble.is_open(last_trouble_mode) then
+					opts.mode = last_trouble_mode -- tell Trouble which view to use
+				end
+
+				trouble[dir](opts) -- call .next() or .prev()
+			end
+
 			-- --------------------------------------------------------------------------
 			-- -- "DIAGNOSTICS"
 			-- --------------------------------------------------------------------------
@@ -294,11 +324,12 @@ return {
 			-- "NAVIGATING THE TROUBLE WINDOWS"
 			--------------------------------------------------------------------------
 			vim.keymap.set("n", "<leader>J", function()
-				trouble.next({ skip_groups = true, jump = true })
-			end)
+				jump("next")
+			end, { desc = "Next item in last-used Trouble list" })
+
 			vim.keymap.set("n", "<leader>K", function()
-				trouble.prev({ skip_groups = true, jump = true })
-			end)
+				jump("prev")
+			end, { desc = "Prev item in last-used Trouble list" })
 
 			---------------------------------------------------------------------------
 			-- Traverser mode – workspace dashboard
