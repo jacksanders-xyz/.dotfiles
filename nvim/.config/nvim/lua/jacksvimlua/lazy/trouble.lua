@@ -4,6 +4,7 @@ return {
 		config = function()
 			local drawer_size = 56
 			-- local drawer_size = 32
+
 			local gp_state = { ns = nil, buf = nil, prev_hl = nil, word = nil }
 			---------------------------------------------------------------------------
 			--  ONE shared gp action (place this ABOVE `require("trouble").setup`)
@@ -73,7 +74,15 @@ return {
 				vim.cmd("redraw")
 			end
 
-			require("trouble").setup({
+			local function is_library(item)
+				local f = item.filename or ""
+				return f:match("^/usr") -- std-lib
+					or f:match("/pkg/mod/") -- Go module cache
+					or f:match("/vendor/") -- vendored deps
+					or f:match("node_modules") -- JS/TS deps
+			end
+
+            require("trouble").setup({
 				keys = {
 					-- 1. Unmap `s` so Flash/Hop can use it
 					s = false,
@@ -91,6 +100,34 @@ return {
 						end,
 						desc = "Toggle Severity Filter",
 					},
+		["L"] = {
+  desc = "Toggle library filter (Outgoing pane)",
+  action = function(view)
+    -- works in raw 'lsp_outgoing_calls' or traverser alias
+    local wm = vim.w.trouble and vim.w.trouble.mode
+    if wm ~= "traverser_outgoing" and view.mode ~= "lsp_outgoing_calls" then
+      vim.api.nvim_echo({ { "L only in Outgoing pane", "WarningMsg" } }, false, {})
+      return
+    end
+
+    if vim.w.lib_filter_on then
+      -- turn OFF
+      view:filter(nil, { id = "libtoggle", del = true })
+      vim.w.lib_filter_on = false
+      vim.api.nvim_echo({ { "Library filter OFF", "MoreMsg" } }, false, {})
+    else
+      -- turn ON: keep only non-library items
+      view:filter(function(item) return not is_library(item) end, {
+        id       = "libtoggle",
+        template = "{hl:Title}Filter:{hl} hide-libs",
+      })
+      vim.w.lib_filter_on = true
+      vim.api.nvim_echo({ { "Library filter ON", "MoreMsg" } }, false, {})
+    end
+
+    require("trouble").refresh({ mode = view.mode })  -- redraw list
+  end,
+},
 
 					-- toggle highlight
 					["gp"] = { desc = "Toggle persistent /<cword> highlight", action = gp_action },
@@ -173,6 +210,7 @@ return {
 						open_no_results = true,
 						auto_preview = false,
 						follow = true,
+						sort = { "pos" },
 						preview = {
 							type = "main",
 							highlight = {
