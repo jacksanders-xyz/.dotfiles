@@ -215,7 +215,7 @@ return {
 		},
 		opts = function()
 			local opts = {
-				left = { size = { width = 56 } },
+				left = { size = { width = 53 } },
 				bottom = { size = 12 },
 				right = {},
 				top = {},
@@ -268,7 +268,7 @@ return {
 				table.insert(opts[pos], { -- insert into the table that table
 					ft = "trouble", -- filetype is trouble
 					title = "Traverser",
-					size = (pos == "left" and { width = 56 } or nil),
+					size = (pos == "left" and { width = 50 } or nil),
 					filter = function(_buf, win)
 						local t = vim.w[win].trouble -- may be nil for non-Trouble / preview windows
 						if not t or vim.w[win].trouble_preview then
@@ -314,6 +314,7 @@ return {
 				table.insert(opts[pos], { -- if a normal
 					ft = "trouble",
 					title = "Trouble",
+					size = (pos == "left" and { width = 50 } or nil),
 					filter = function(_buf, win)
 						local t = vim.w[win].trouble
 						if not t or vim.w[win].trouble_preview then

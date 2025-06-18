@@ -8,18 +8,20 @@ return {
 			------------------------------------------------------------------
 			--    • Only when you press  z=
 			--    • Nothing else is triggered automatically
-			triggers = { "z=" },
+
+			-- triggers = { "z=" },
 
 			------------------------------------------------------------------
 			-- 2.  Disable the keys you *don’t* want which-key to watch
 			--     (this replaces the deprecated `triggers_blacklist` option)
 			------------------------------------------------------------------
-			disable = {
-				modes = {
-					i = { "<C-r>" }, -- Insert mode
-					c = { "<C-r>" }, -- Cmd-line (:) mode
-				},
-			},
+
+			--         disable = {
+			-- modes = {
+			-- 	i = { "<C-r>" }, -- Insert mode
+			-- 	c = { "<C-r>" }, -- Cmd-line (:) mode
+			-- },
+			-- },
 
 			------------------------------------------------------------------
 			-- 3.  Built-in helper plugins

@@ -128,10 +128,10 @@ return {
 				local screen_mid = ui_w / 2 -- screen midpoint
 				local delta = math.abs(center_x - screen_mid)
 
-				local anchor = "C"
+				-- local anchor = "C"
 
 				-- 1-cell tolerance: treat  │ centered │  as “top”
-				local anchor
+				-- local anchor
 				-- if delta <= 1 then
 				-- 	anchor = "N" -- even → mount to the top
 				-- elseif center_x < screen_mid then
@@ -139,7 +139,7 @@ return {
 				-- else
 				-- 	anchor = "NE"
 				-- end
-
+				--
 				------------------------------------------------------------------
 				-- Ratios relative to the whole UI (because we’re using the stock
 				-- “vertical” strategy, which positions against the screen edges)
@@ -154,7 +154,7 @@ return {
 					previewer = false,
 					layout_config = {
 						vertical = {
-							anchor = anchor,
+							-- anchor = anchor,
 							width = w_ratio,
 							height = h_ratio,
 							prompt_position = "bottom",

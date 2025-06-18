@@ -4,6 +4,74 @@ return {
 		config = function()
 			local drawer_size = 56
 			-- local drawer_size = 32
+			local gp_state = { ns = nil, buf = nil, prev_hl = nil, word = nil }
+			---------------------------------------------------------------------------
+			--  ONE shared gp action (place this ABOVE `require("trouble").setup`)
+			---------------------------------------------------------------------------
+			local function gp_action()
+				---------------------------------------------------------------- word
+				local word = vim.fn.expand("<cword>")
+				if word == "" then
+					vim.api.nvim_echo({ { "gp: no word under cursor", "WarningMsg" } }, false, {})
+					return
+				end
+
+				---------------------------------------------------------------- pick real-editor win/buf
+				local main_win, main_buf, best = nil, nil, -1
+				for _, win in ipairs(vim.api.nvim_list_wins()) do
+					local buf = vim.api.nvim_win_get_buf(win)
+					local ft = vim.api.nvim_get_option_value("filetype", { buf = buf })
+					local bt = vim.api.nvim_get_option_value("buftype", { buf = buf })
+					if ft ~= "Trouble" and bt == "" then
+						local a = vim.api.nvim_win_get_width(win) * vim.api.nvim_win_get_height(win)
+						if a > best then
+							main_win, main_buf, best = win, buf, a
+						end
+					end
+				end
+				if not main_buf then
+					vim.api.nvim_echo({ { "gp: no editor window found", "WarningMsg" } }, false, {})
+					return
+				end
+
+				---------------------------------------------------------------- toggle store
+				local st = vim.g.__gp_state or {}
+				if st.buf == main_buf and st.word == word and st.ns then
+					vim.api.nvim_buf_clear_namespace(st.buf, st.ns, 0, -1)
+					if st.prev_hl ~= nil then
+						vim.o.hlsearch = st.prev_hl
+					end
+					vim.g.__gp_state = nil
+					vim.api.nvim_echo({ { "gp: highlight cleared", "MoreMsg" } }, false, {})
+					return
+				end
+				if st.ns and vim.api.nvim_buf_is_valid(st.buf or -1) then
+					vim.api.nvim_buf_clear_namespace(st.buf, st.ns, 0, -1)
+				end
+
+				---------------------------------------------------------------- set new highlight
+				local ns = vim.api.nvim_create_namespace("TroubleGp")
+				local patt = "\\<" .. vim.fn.escape(word, "\\") .. "\\>"
+				local prev_hl = vim.o.hlsearch
+				vim.fn.setreg("/", patt)
+				vim.o.hlsearch, vim.o.incsearch = true, true
+
+				local lines = vim.api.nvim_buf_get_lines(main_buf, 0, -1, false)
+				for l, line in ipairs(lines) do
+					for s in line:gmatch("()(%f[%w_])" .. vim.pesc(word) .. "%f[%W]") do
+						vim.api.nvim_buf_add_highlight(main_buf, ns, "IncSearch", l - 1, s - 1, s - 1 + #word)
+					end
+				end
+
+				-- center first match without moving focus out of Trouble
+				vim.api.nvim_win_call(main_win, function()
+					vim.fn.search(patt, "cw")
+					-- vim.cmd("normal! zz")
+				end)
+
+				vim.g.__gp_state = { ns = ns, buf = main_buf, word = word, prev_hl = prev_hl }
+				vim.cmd("redraw")
+			end
 
 			require("trouble").setup({
 				keys = {
@@ -22,6 +90,27 @@ return {
 							})
 						end,
 						desc = "Toggle Severity Filter",
+					},
+
+					-- toggle highlight
+					["gp"] = { desc = "Toggle persistent /<cword> highlight", action = gp_action },
+
+					-- next Trouble item then highlight it
+					["}"] = {
+						desc = "Next item → gp",
+						action = function()
+							require("trouble").next({ skip_groups = true, jump = false })
+							vim.schedule(gp_action)
+						end,
+					},
+
+					-- previous Trouble item then highlight it
+					["{"] = {
+						desc = "Prev item → gp",
+						action = function()
+							require("trouble").prev({ skip_groups = true, jump = false })
+							vim.schedule(gp_action)
+						end,
 					},
 				},
 				modes = {
@@ -77,13 +166,20 @@ return {
 						open_no_results = true,
 						follow = true,
 						win = { type = "split", position = "right", height = 6 },
-						-- win = { type = "split", position = "right", height = 6 },
 					},
 					traverser_outgoing = {
 						mode = "lsp_outgoing_calls",
 						title = "  Outgoing",
 						open_no_results = true,
+						auto_preview = false,
 						follow = true,
+						preview = {
+							type = "main",
+							highlight = {
+								groups = { caller = "Search", callee = "IncSearch" }, -- use any hl-groups you like
+							},
+						},
+
 						win = { type = "split", position = "right", height = 6 },
 					},
 					traverser_tree = {
@@ -98,101 +194,10 @@ return {
 			})
 
 			local trouble = require("trouble")
-
-			--          local diag_max = false
-			-- local sym_max = false
-			-- local inc_max = false
-			-- local out_max = false
-			-- local ref_max = false
-			-- local function log(msg)
-			-- 	vim.notify(msg, vim.log.levels.INFO, { title = "Trouble-toggle" })
-			-- 	print("[Trouble-toggle] " .. msg)
-			-- end
-			-- -- Diagnostics bottom bar
-			-- local function toggle_diagnostics()
-			-- 	diag_max = not diag_max
-			-- 	log("diagnostics → " .. (diag_max and "MAX" or "normal"))
-			-- 	trouble.close()
-			-- 	trouble.open({
-			-- 		mode = "diagnostics",
-			-- 		focus = true,
-			-- 		win = {
-			-- 			position = "bottom",
-			-- 			size = diag_max and (vim.o.lines - 4) or 10,
-			-- 			winfixheight = false,
-			-- 		},
-			-- 	})
-			-- end
-			--
-			-- Symbols sidebar
-			-- local function toggle_symbols()
-			-- 	if sym_max == not sym_max then
-			-- 		log("symbols → " .. (sym_max and "MAX" or "normal"))
-			-- 		trouble.close()
-			-- 		trouble.open({
-			-- 			mode = "traverser_symbols",
-			-- 			focus = true,
-			-- 			win = {
-			-- 				position = "left",
-			-- 				size = sym_max and math.floor(vim.o.columns * 0.7) or 56,
-			-- 				winfixwidth = false,
-			-- 			},
-			-- 		})
-			-- 	else
-			-- 		trouble.close()
-			-- 		traverser_open()
-			-- 	end
-			-- end
-			-- local function toggle_incoming()
-			-- 	inc_max = not inc_max
-			-- 	log("incoming calls → " .. (inc_max and "MAX" or "normal"))
-			-- 	trouble.close()
-			-- 	trouble.open({
-			-- 		mode = "lsp_incoming_calls",
-			-- 		focus = true,
-			-- 		win = {
-			-- 			position = "left",
-			-- 			size = inc_max and math.floor(vim.o.columns * 0.7) or 40,
-			-- 			winfixwidth = false,
-			-- 		},
-			-- 	})
-			-- end
-			-- -- local function toggle_outgoing()
-			-- -- 	out_max = not out_max
-			-- -- 	log("outgoing calls → " .. (out_max and "MAX" or "normal"))
-			-- -- 	trouble.close()
-			-- -- 	trouble.open({
-			-- -- 		mode = "lsp_outgoing_calls",
-			-- -- 		focus = true,
-			-- -- 		win = {
-			-- -- 			position = "right",
-			-- -- 			size = out_max and math.floor(vim.o.columns * 0.7) or 40,
-			-- -- 			winfixwidth = false,
-			-- -- 		},
-			-- -- 	})
-			-- -- end
-			-- -- local function toggle_references()
-			-- -- 	ref_max = not ref_max
-			-- -- 	log("refs → " .. (ref_max and "MAX" or "normal"))
-			-- -- 	trouble.close()
-			-- -- 	trouble.open({
-			-- -- 		mode = "lsp_references",
-			-- -- 		focus = true,
-			-- -- 		params = {
-			-- -- 			include_declarations = true,
-			-- -- 		},
-			-- -- 		win = {
-			-- -- 			position = "right",
-			-- -- 			size = ref_max and math.floor(vim.o.columns * 0.7) or 40,
-			-- -- 			winfixwidth = false,
-			-- -- 		},
-			-- -- 	})
-			-- -- end
-			-- --
-
 			-- ---------------------------------------------------------------------------
 			--  Helper funcs
 			-- ---------------------------------------------------------------------------
+
 			local last_trouble_mode = nil -- e.g. "traverser_lsp", "traverser_symbols", …
 
 			-- Whenever we enter a window, check if it’s a Trouble window and remember it
@@ -311,16 +316,6 @@ return {
 			end)
 
 			--------------------------------------------------------------------------
-			-- "MAXIMIZING THE WINDOWS"
-			--------------------------------------------------------------------------
-			-- vim.keymap.set("n", "<leader>t,t", toggle_diagnostics, { desc = "Toggle maximise Trouble diagnostics" })
-			-- vim.keymap.set("n", "<leader>t,f", toggle_symbols, { desc = "Toggle maximise Trouble symbols" }) -- change to toggle_sym_max
-
-			-- vim.keymap.set("n", "<leader>t,r", toggle_references, { desc = "Toggle maximise Trouble references" })
-			-- vim.keymap.set("n", "<leader>t,i", toggle_incoming, { desc = "Toggle maximise Trouble incoming calls" })
-			-- vim.keymap.set("n", "<leader>t,o", toggle_outgoing, { desc = "Toggle maximise Trouble outgoing calls" })
-
-			--------------------------------------------------------------------------
 			-- "NAVIGATING THE TROUBLE WINDOWS"
 			--------------------------------------------------------------------------
 			vim.keymap.set("n", "<leader>J", function()
@@ -366,9 +361,6 @@ return {
 			-------------------------------------------------------
 			local function traverser_open()
 				traverser_active = true -- set state for active
-
-				-- don't know if I need this...
-				-- pcall(vim.cmd, "cclose") -- ✱ close any stray quick-fix list
 
 				----------------------------------------------------------------
 				-- LEFT column ─ Symbols

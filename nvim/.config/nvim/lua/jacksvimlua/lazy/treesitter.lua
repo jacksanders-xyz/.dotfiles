@@ -56,7 +56,7 @@ return {
 			-- max_lines = 3,          -- uncomment to clamp height instead
 		})
 
-		-- vim.keymap.set("n", "<leader>tS", "<cmd>InspectTree<CR>")
-		-- vim.keymap.set("n", "<leader>teq", "<cmd>EditQuery<CR>")
+		-- vim.keymap.set("n", "<leader>tS", "<cmd>InspectTree<CR>") -- show the tree
+		-- vim.keymap.set("n", "<leader>teq", "<cmd>EditQuery<CR>") -- make a query
 	end,
 }
