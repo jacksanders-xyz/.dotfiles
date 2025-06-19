@@ -129,7 +129,6 @@ return {
 				local delta = math.abs(center_x - screen_mid)
 
 				-- local anchor = "C"
-
 				-- 1-cell tolerance: treat  │ centered │  as “top”
 				-- local anchor
 				-- if delta <= 1 then

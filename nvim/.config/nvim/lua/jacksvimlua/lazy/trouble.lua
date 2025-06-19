@@ -3,76 +3,7 @@ return {
 		"folke/trouble.nvim",
 		config = function()
 			local drawer_size = 56
-			-- local drawer_size = 32
-
-			local gp_state = { ns = nil, buf = nil, prev_hl = nil, word = nil }
-			---------------------------------------------------------------------------
-			--  ONE shared gp action (place this ABOVE `require("trouble").setup`)
-			---------------------------------------------------------------------------
-			local function gp_action()
-				---------------------------------------------------------------- word
-				local word = vim.fn.expand("<cword>")
-				if word == "" then
-					vim.api.nvim_echo({ { "gp: no word under cursor", "WarningMsg" } }, false, {})
-					return
-				end
-
-				---------------------------------------------------------------- pick real-editor win/buf
-				local main_win, main_buf, best = nil, nil, -1
-				for _, win in ipairs(vim.api.nvim_list_wins()) do
-					local buf = vim.api.nvim_win_get_buf(win)
-					local ft = vim.api.nvim_get_option_value("filetype", { buf = buf })
-					local bt = vim.api.nvim_get_option_value("buftype", { buf = buf })
-					if ft ~= "Trouble" and bt == "" then
-						local a = vim.api.nvim_win_get_width(win) * vim.api.nvim_win_get_height(win)
-						if a > best then
-							main_win, main_buf, best = win, buf, a
-						end
-					end
-				end
-				if not main_buf then
-					vim.api.nvim_echo({ { "gp: no editor window found", "WarningMsg" } }, false, {})
-					return
-				end
-
-				---------------------------------------------------------------- toggle store
-				local st = vim.g.__gp_state or {}
-				if st.buf == main_buf and st.word == word and st.ns then
-					vim.api.nvim_buf_clear_namespace(st.buf, st.ns, 0, -1)
-					if st.prev_hl ~= nil then
-						vim.o.hlsearch = st.prev_hl
-					end
-					vim.g.__gp_state = nil
-					vim.api.nvim_echo({ { "gp: highlight cleared", "MoreMsg" } }, false, {})
-					return
-				end
-				if st.ns and vim.api.nvim_buf_is_valid(st.buf or -1) then
-					vim.api.nvim_buf_clear_namespace(st.buf, st.ns, 0, -1)
-				end
-
-				---------------------------------------------------------------- set new highlight
-				local ns = vim.api.nvim_create_namespace("TroubleGp")
-				local patt = "\\<" .. vim.fn.escape(word, "\\") .. "\\>"
-				local prev_hl = vim.o.hlsearch
-				vim.fn.setreg("/", patt)
-				vim.o.hlsearch, vim.o.incsearch = true, true
-
-				local lines = vim.api.nvim_buf_get_lines(main_buf, 0, -1, false)
-				for l, line in ipairs(lines) do
-					for s in line:gmatch("()(%f[%w_])" .. vim.pesc(word) .. "%f[%W]") do
-						vim.api.nvim_buf_add_highlight(main_buf, ns, "IncSearch", l - 1, s - 1, s - 1 + #word)
-					end
-				end
-
-				-- center first match without moving focus out of Trouble
-				vim.api.nvim_win_call(main_win, function()
-					vim.fn.search(patt, "cw")
-					-- vim.cmd("normal! zz")
-				end)
-
-				vim.g.__gp_state = { ns = ns, buf = main_buf, word = word, prev_hl = prev_hl }
-				vim.cmd("redraw")
-			end
+			local last_out_item = nil
 
 			local function is_library(item)
 				local f = item.filename or ""
@@ -82,7 +13,7 @@ return {
 					or f:match("node_modules") -- JS/TS deps
 			end
 
-            require("trouble").setup({
+			require("trouble").setup({
 				keys = {
 					-- 1. Unmap `s` so Flash/Hop can use it
 					s = false,
@@ -100,53 +31,44 @@ return {
 						end,
 						desc = "Toggle Severity Filter",
 					},
-		["L"] = {
-  desc = "Toggle library filter (Outgoing pane)",
-  action = function(view)
-    -- works in raw 'lsp_outgoing_calls' or traverser alias
-    local wm = vim.w.trouble and vim.w.trouble.mode
-    if wm ~= "traverser_outgoing" and view.mode ~= "lsp_outgoing_calls" then
-      vim.api.nvim_echo({ { "L only in Outgoing pane", "WarningMsg" } }, false, {})
-      return
-    end
+					["L"] = {
+						desc = "Toggle library filter (Outgoing pane)",
+						action = function(view)
+							-- works in raw 'lsp_outgoing_calls' or traverser alias
+							local wm = vim.w.trouble and vim.w.trouble.mode
+							if wm ~= "traverser_outgoing" and view.mode ~= "lsp_outgoing_calls" then
+								vim.api.nvim_echo({ { "L only in Outgoing pane", "WarningMsg" } }, false, {})
+								return
+							end
 
-    if vim.w.lib_filter_on then
-      -- turn OFF
-      view:filter(nil, { id = "libtoggle", del = true })
-      vim.w.lib_filter_on = false
-      vim.api.nvim_echo({ { "Library filter OFF", "MoreMsg" } }, false, {})
-    else
-      -- turn ON: keep only non-library items
-      view:filter(function(item) return not is_library(item) end, {
-        id       = "libtoggle",
-        template = "{hl:Title}Filter:{hl} hide-libs",
-      })
-      vim.w.lib_filter_on = true
-      vim.api.nvim_echo({ { "Library filter ON", "MoreMsg" } }, false, {})
-    end
+							if vim.w.lib_filter_on then
+								-- turn OFF
+								view:filter(nil, { id = "libtoggle", del = true })
+								vim.w.lib_filter_on = false
+							else
+								-- turn ON: keep only non-library items
+								view:filter(function(item)
+									return not is_library(item)
+								end, {
+									id = "libtoggle",
+									template = "{hl:Title}Filter:{hl} hide-libs",
+								})
+								vim.w.lib_filter_on = true
+							end
 
-    require("trouble").refresh({ mode = view.mode })  -- redraw list
-  end,
-},
-
-					-- toggle highlight
-					["gp"] = { desc = "Toggle persistent /<cword> highlight", action = gp_action },
-
-					-- next Trouble item then highlight it
-					["}"] = {
-						desc = "Next item → gp",
-						action = function()
-							require("trouble").next({ skip_groups = true, jump = false })
-							vim.schedule(gp_action)
+							require("trouble").refresh({ mode = view.mode })
 						end,
 					},
+					["<c-r>"] = {
+						desc = "Jump to symbol then it's first reference)",
+						action = function(view)
+							view:jump()
+							require("trouble").first({ mode = "traverser_lsp", preview = true })
+							require("trouble").focus({ mode = "traverser_lsp" })
 
-					-- previous Trouble item then highlight it
-					["{"] = {
-						desc = "Prev item → gp",
-						action = function()
-							require("trouble").prev({ skip_groups = true, jump = false })
-							vim.schedule(gp_action)
+							-- require("trouble").get_items({ mode = "traverser_outgoing" })
+							-- require("trouble").close({ mode = "traverser_lsp" })
+							-- require("trouble").open({ mode = "traverser_lsp" })
 						end,
 					},
 				},
@@ -154,17 +76,19 @@ return {
 					traverser_lsp = {
 						sections = {
 							"lsp_declarations",
-							"lsp_definitions", -- where the thing is defined
 							"lsp_implementations", -- where the interface is being implemented
 							"lsp_references", -- where the thing is reference
 							"lsp_type_definitions",
 						},
 						title = "󰌹  Refs / Defs",
 						follow = true,
-						params = { include_declaration = true },
+						auto_refresh = true,
+						params = { include_declaration = false },
+						pinned = false,
 						preview = {
 							type = "main",
 						},
+						include_current = true,
 						open_no_results = true,
 						lsp_base = {
 							params = {
@@ -213,9 +137,6 @@ return {
 						sort = { "pos" },
 						preview = {
 							type = "main",
-							highlight = {
-								groups = { caller = "Search", callee = "IncSearch" }, -- use any hl-groups you like
-							},
 						},
 
 						win = { type = "split", position = "right", height = 6 },
@@ -231,11 +152,10 @@ return {
 				},
 			})
 
-			local trouble = require("trouble")
 			-- ---------------------------------------------------------------------------
 			--  Helper funcs
 			-- ---------------------------------------------------------------------------
-
+			local trouble = require("trouble")
 			local last_trouble_mode = nil -- e.g. "traverser_lsp", "traverser_symbols", …
 
 			-- Whenever we enter a window, check if it’s a Trouble window and remember it
