@@ -59,16 +59,73 @@ return {
 							require("trouble").refresh({ mode = view.mode })
 						end,
 					},
-					["<c-r>"] = {
-						desc = "Jump to symbol then it's first reference)",
+					["<c-r>"] = { -- call on an outgoing func to see references in its scope
+						-- then q <c-o> to jump back (q<c-o><leader>to for back to outgoing)
+						desc = "Jump to symbol, then list refs inside this function",
 						action = function(view)
-							view:jump()
-							require("trouble").first({ mode = "traverser_lsp", preview = true })
-							require("trouble").focus({ mode = "traverser_lsp" })
+							require("trouble").cancel()
+							vim.schedule(function()
+								local function get_func_range_ts()
+									-- local ok, tsu = pcall(require, "vim.treesitter.ts_utils")
+									if not ok then
+										ok, tsu = pcall(require, "nvim-treesitter.ts_utils")
+									end
+									if not ok then
+										return
+									end
 
-							-- require("trouble").get_items({ mode = "traverser_outgoing" })
-							-- require("trouble").close({ mode = "traverser_lsp" })
-							-- require("trouble").open({ mode = "traverser_lsp" })
+									local node = tsu.get_node_at_cursor()
+									while
+										node
+										and not vim.tbl_contains({
+											"function_definition",
+											"function_declaration",
+											"method_declaration",
+											"function",
+											"method",
+										}, node:type())
+									do
+										node = node:parent()
+									end
+									if not node then
+										return
+									end
+									local sr, _, er, _ = node:range()
+									return sr + 1, er + 1 -- 1-indexed
+								end
+								local start_l, end_l = get_func_range_ts()
+								if not start_l then
+									vim.notify("Couldn’t detect function scope (Treesitter)", vim.log.levels.WARN)
+									return
+								end
+								local parent_file = vim.api.nvim_buf_get_name(0)
+								-- print(parent_file)
+								view:jump()
+								require("trouble").open({
+									mode = "lsp_references",
+									open_no_results = true,
+
+									filter = function(items)
+										return vim.tbl_filter(function(item)
+											local same_file = (
+												item.filename
+												and vim.fn.fnamemodify(item.filename, ":p")
+													== vim.fn.fnamemodify(parent_file, ":p")
+											)
+												or (item.bufnr and vim.api.nvim_buf_get_name(item.bufnr) == parent_file)
+
+											local l = item.pos[1]
+											local in_range = l and l >= start_l and l <= end_l
+
+											print(parent_file, same_file, start_l, end_l, l)
+											return same_file and in_range
+										end, items)
+									end,
+								})
+
+								require("trouble").first({ mode = "lsp_references" })
+								require("trouble").focus({ mode = "lsp_references" })
+							end)
 						end,
 					},
 				},
@@ -134,6 +191,7 @@ return {
 						open_no_results = true,
 						auto_preview = false,
 						follow = true,
+						-- groups = false,
 						sort = { "pos" },
 						preview = {
 							type = "main",
@@ -373,3 +431,5 @@ return {
 		end,
 	},
 }
+
+-- require("trouble").open({ mode = "lsp_references", filter = function(items) return vim.tbl_filter(function(item) local l = item.pos[1] local in_range = l and l >= 250 and l <= 400 return in_range end, items) end, })

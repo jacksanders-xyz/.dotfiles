@@ -7,7 +7,10 @@ font-family-bold        = "Iosevka Nerd Font Mono Bold"
 font-size               = 14
 theme                   = "catppuccin-mocha"
 
-# theme                 = "kanagawabones"
+# cursor-invert-fg-bg   = true
+cursor-text             = #080c10
+mouse-hide-while-typing = true
+
 background-opacity      = 0.90
 background              = #080c10
 
