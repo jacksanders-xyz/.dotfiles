@@ -2,7 +2,17 @@ return {
 	{
 		"folke/trouble.nvim",
 		config = function()
-			local drawer_size = 56
+			------- no stupid alert
+			local orig_notify = vim.notify
+			vim.notify = function(msg, level, opts)
+				if type(msg) == "string" and msg:match("vim%.validate is deprecated") then
+					return
+				end
+				orig_notify(msg, level, opts)
+			end
+			------- no stupid alert
+
+            local drawer_size = 56
 			local last_out_item = nil
 
 			local function is_library(item)

@@ -9,7 +9,6 @@ return {
 			"sshelll/telescope-gott.nvim",
 			"benfowler/telescope-luasnip.nvim",
 			"catgoose/telescope-helpgrep.nvim",
-			-- "blacktrub/telescope-godoc.nvim",
 			"nvim-telescope/telescope-ui-select.nvim",
 		},
 		config = function()
@@ -442,8 +441,52 @@ return {
 			vim.keymap.set("n", "<leader>fm", function()
 				builtin.marks({ "local" })
 			end)
+		end,
+	},
+	{
+		"fredrikaverpil/godoc.nvim",
+		ft = "go", -- Lazy load only for Go files
+		event = "VeryLazy",
+		build = "go install github.com/lotusirous/gostdsym/stdsym@latest",
+		dependencies = {
+			"nvim-telescope/telescope.nvim",
+			{
+				"nvim-treesitter/nvim-treesitter",
+				opts = { ensure_installed = { "go" } },
+			},
+		},
+		config = function()
+			local uv = vim.loop
+			local cache_file = vim.fn.stdpath("cache") .. "/godoc/symbols.json"
+			local cache_ttl = 86400 -- 1 day
 
-			-- vim.keymap.set("n", "<leader>FG", "<cmd>Telescope godoc<cr>", { noremap = true, silent = true })
+			local function get_cached_symbols()
+				vim.fn.mkdir(vim.fn.fnamemodify(cache_file, ":h"), "p")
+
+				local stat = uv.fs_stat(cache_file)
+				if stat and (os.time() - stat.mtime.sec) < cache_ttl then
+					local content = vim.fn.readfile(cache_file)
+					return vim.fn.json_decode(table.concat(content, "\n"))
+				end
+
+				local symbols = vim.fn.systemlist("stdsym json")
+				if vim.v.shell_error ~= 0 then
+					vim.notify("Failed to run stdsym", vim.log.levels.ERROR)
+					return {}
+				end
+
+				vim.fn.writefile(symbols, cache_file)
+				return vim.fn.json_decode(table.concat(symbols, "\n"))
+			end
+			require("godoc").setup({
+				source = get_cached_symbols,
+			})
+
+			vim.keymap.set("n", "<leader>FG", "<cmd>GoDoc<cr>", {
+				desc = "GoDoc Search",
+				noremap = true,
+				silent = true,
+			})
 		end,
 	},
 	{
