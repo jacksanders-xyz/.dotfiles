@@ -61,6 +61,7 @@ return {
 					},
 					["<c-r>"] = { -- call on an outgoing func to see references in its scope
 						-- then q <c-o> to jump back (q<c-o><leader>to for back to outgoing)
+						-- If only 1 call it will jump only to that, to go back <c-o><c-o>
 						desc = "Jump to symbol, then list refs inside this function",
 						action = function(view)
 							require("trouble").cancel()
@@ -122,7 +123,6 @@ return {
 										end, items)
 									end,
 								})
-
 								require("trouble").first({ mode = "lsp_references" })
 								require("trouble").focus({ mode = "lsp_references" })
 							end)
