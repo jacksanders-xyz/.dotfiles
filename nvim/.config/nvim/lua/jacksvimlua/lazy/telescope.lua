@@ -9,7 +9,7 @@ return {
 			"sshelll/telescope-gott.nvim",
 			"benfowler/telescope-luasnip.nvim",
 			"catgoose/telescope-helpgrep.nvim",
-			"blacktrub/telescope-godoc.nvim",
+			-- "blacktrub/telescope-godoc.nvim",
 			"nvim-telescope/telescope-ui-select.nvim",
 		},
 		config = function()
@@ -398,7 +398,7 @@ return {
 			pcall(require("telescope").load_extension("helpgrep"))
 			pcall(require("telescope").load_extension("luasnip"))
 			pcall(require("telescope").load_extension("zoxide"))
-			pcall(require("telescope").load_extension("godoc"))
+			-- pcall(require("telescope").load_extension("godoc"))
 			pcall(require("telescope").load_extension("ui-select"))
 
 			-- GOTEST
@@ -443,7 +443,7 @@ return {
 				builtin.marks({ "local" })
 			end)
 
-			vim.keymap.set("n", "<leader>FG", "<cmd>Telescope godoc<cr>", { noremap = true, silent = true })
+			-- vim.keymap.set("n", "<leader>FG", "<cmd>Telescope godoc<cr>", { noremap = true, silent = true })
 		end,
 	},
 	{

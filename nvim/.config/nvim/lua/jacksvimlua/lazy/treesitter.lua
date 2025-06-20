@@ -26,7 +26,7 @@ return {
 			auto_install = true,
 			ignore_install = {},
 
-			highlight = { enable = false }, -- keep off if you rely on regex
+			highlight = { enable = true }, -- keep off if you rely on regex
 			indent = { enable = true },
 
 			incremental_selection = {

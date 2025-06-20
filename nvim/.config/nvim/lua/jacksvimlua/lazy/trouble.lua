@@ -64,6 +64,7 @@ return {
 						-- If only 1 call it will jump only to that, to go back <c-o><c-o>
 						desc = "Jump to symbol, then list refs inside this function",
 						action = function(view)
+							local current_line = vim.fn.line(".")
 							require("trouble").cancel()
 							vim.schedule(function()
 								local function get_func_range_ts()
@@ -105,7 +106,42 @@ return {
 								require("trouble").open({
 									mode = "lsp_references",
 									open_no_results = true,
+									keys = {
+										["<C-e>"] = {
+											desc = "reset cursor to outgoing",
+											action = function(view)
+												view:close()
 
+												-- Step 1: run <C-o> first
+												vim.defer_fn(function()
+													vim.api.nvim_feedkeys(
+														vim.api.nvim_replace_termcodes("<C-o>", true, false, true),
+														"n",
+														false
+													)
+
+													-- Step 2: give <C-o> time to execute, then move to the outgoing Trouble window
+													vim.defer_fn(function()
+														for _, win in ipairs(vim.api.nvim_list_wins()) do
+															local t = vim.w[win].trouble
+															if t and t.type == "split" and t.relative == "editor" then
+																if
+																	t.mode == "lsp_outgoing_calls"
+																	or t.mode == "traverser_outgoing"
+																then
+																	vim.api.nvim_set_current_win(win)
+																	break
+																end
+															end
+														end
+														vim.defer_fn(function()
+															vim.api.nvim_win_set_cursor(0, { current_line, 0 })
+														end, 180)
+													end, 90)
+												end, 10)
+											end,
+										},
+									},
 									filter = function(items)
 										return vim.tbl_filter(function(item)
 											local same_file = (
@@ -118,7 +154,7 @@ return {
 											local l = item.pos[1]
 											local in_range = l and l >= start_l and l <= end_l
 
-											print(parent_file, same_file, start_l, end_l, l)
+											-- print(parent_file, same_file, start_l, end_l, l)
 											return same_file and in_range
 										end, items)
 									end,
@@ -153,7 +189,6 @@ return {
 								include_current = true,
 							},
 						},
-
 						win = {
 							type = "split",
 							position = "bottom",
