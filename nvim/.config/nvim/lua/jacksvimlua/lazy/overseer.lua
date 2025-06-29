@@ -4,16 +4,16 @@ return {
 		opts = {
 			task_list = {
 				direction = "left",
-				bindings = {
-					["<C-h>"] = false,
-					["<C-j>"] = false,
-					["<C-k>"] = false,
-					["<C-l>"] = false,
-					["L"] = "IncreaseDetail",
-					["H"] = "DecreaseDetail",
-					["<PageUp>"] = "ScrollOutputUp",
-					["<PageDown>"] = "ScrollOutputDown",
-				},
+				-- bindings = {
+				-- 	["<C-h>"] = false,
+				-- 	["<C-j>"] = false,
+				-- 	["<C-k>"] = false,
+				-- 	["<C-l>"] = false,
+				-- 	["L"] = "IncreaseDetail",
+				-- 	["H"] = "DecreaseDetail",
+				-- 	["<PageUp>"] = "ScrollOutputUp",
+				-- 	["<PageDown>"] = "ScrollOutputDown",
+				-- },
 			},
 		},
 		keys = {

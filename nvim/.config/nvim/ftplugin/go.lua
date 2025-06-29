@@ -8,7 +8,7 @@ vim.keymap.set("n", "<space>gt", function()
 	require("dap-go").debug_test()
 end, { buffer = 0 })
 
-vim.keymap.set("n", "<space>R", function()
+vim.keymap.set("n", "<space>R", function() -- run code
 	local edit_win = vim.api.nvim_get_current_win()
 	vim.cmd("botright 20split")
 	local term_win = vim.api.nvim_get_current_win()
@@ -18,8 +18,8 @@ vim.keymap.set("n", "<space>R", function()
 	vim.b.go_run_term = true
 	vim.fn.termopen({ "go", "run", "main.go" })
 
-	vim.api.nvim_create_autocmd("WinClosed", {
-		-- <afile> (args.match) for WinClosed is the *window ID* that just shut
+	vim.api.nvim_create_autocmd("WinClosed", { -- when you leave, don't go to the no neck
+		-- pain buffer
 		pattern = tostring(term_win),
 		callback = function(args)
 			-- defer to the next tick so the close finishes first
