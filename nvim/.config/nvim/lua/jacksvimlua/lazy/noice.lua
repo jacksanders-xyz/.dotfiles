@@ -10,6 +10,23 @@ return {
 		config = function()
 			-- clear
 			vim.keymap.set("n", "<leader>C", "<cmd>NoiceDismiss<cr>", { noremap = true, silent = false })
+
+			-- -- making ! commands great again
+			-- local function capture_command_output(command)
+			-- 	local output = vim.fn.systemlist(command)
+			-- 	local output_str = table.concat(output, "\n")
+			-- 	require("notify")(output_str, "info", {
+			-- 		title = "Command Output",
+			-- 		timeout = 5000,
+			-- 	})
+			-- end
+			-- vim.api.nvim_create_autocmd("CmdlineLeave", {
+			-- 	callback = function()
+			-- 		local cmd = vim.fn.getcmdline()
+			-- 		capture_command_output(cmd)
+			-- 	end,
+			-- })
+
 			require("noice").setup({
 				lsp = {
 					override = {
@@ -35,6 +52,8 @@ return {
 						filter = { icon = "$" },
 						lua = { icon = "☾" },
 						help = { icon = "?" },
+						-- OPTIONAL: give shell commands their own icon
+						-- shell = { pattern = "^!", icon = "!" },
 					},
 				},
 				messages = {
@@ -42,7 +61,7 @@ return {
 					-- This is a current Neovim limitation.
 					enabled = true, -- enables the Noice messages UI
 					view = "cmdline", -- default view for messages
-					falseview_error = "notify", -- view for errors
+					view_error = "notify", -- view for errors
 					view_warn = "notify", -- view for warnings
 					view_history = "messages", -- view for :messages
 					view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
@@ -52,7 +71,7 @@ return {
 						border = {
 							style = "none",
 							-- style = "single",
-							-- padding = { 0, 1 },
+							padding = { 0, 1 },
 						},
 						win_options = {
 							winhighlight = {

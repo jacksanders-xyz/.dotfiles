@@ -216,7 +216,9 @@ return {
 		opts = function()
 			local opts = {
 				left = { size = { width = 53 } },
-				bottom = { size = 12 },
+				bottom = {
+					size = 12,
+				},
 				right = {},
 				top = {},
 				header = {

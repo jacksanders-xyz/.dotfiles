@@ -12,7 +12,7 @@ return {
 			end
 			------- no stupid alert
 
-            local drawer_size = 56
+			local drawer_size = 56
 			local last_out_item = nil
 
 			local function is_library(item)
@@ -363,7 +363,10 @@ return {
 			-- whatever is in your quickfix is 'prettified' into a trouble list with tree stuff
 			-- TODO add a maximizer for this?
 			vim.keymap.set("n", "<leader>tq", function()
-				trouble.toggle("quickfix")
+				trouble.toggle({
+					mode = "quickfix",
+					sort = { "pos" },
+				})
 			end)
 
 			vim.keymap.set("n", "<leader>txt", function() --- IF you open tele results in a trouble window, toggle

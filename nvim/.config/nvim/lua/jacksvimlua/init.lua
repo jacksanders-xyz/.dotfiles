@@ -60,7 +60,7 @@ autocmd("LspAttach", {
 		-- 	vim.lsp.buf.references()
 		-- end, opts)
 
-		vim.keymap.set("n", "<leader>cR", function()
+		vim.keymap.set("n", "<leader>cr", function()
 			vim.lsp.buf.rename()
 		end, opts)
 

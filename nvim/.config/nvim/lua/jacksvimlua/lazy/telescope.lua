@@ -489,19 +489,16 @@ return {
 			})
 		end,
 	},
-	{
-		"axieax/urlview.nvim",
-		ft = { "markdown" },
-		config = function()
-			require("urlview").setup({})
-			vim.keymap.set(
-				"n",
-				"<leader>fu",
-				"<cmd>UrlView buffer picker=telescope<cr>",
-				{ noremap = true, silent = true }
-			)
-		end,
-	},
+	-- {
+	-- 	"axieax/urlview.nvim",
+	-- 	ft = { "markdown" },
+	-- 	config = function()
+	-- 		require("urlview").setup({})
+	-- 		local actions = require("urlview.actions")
+	-- 		actions["spectate"] = function(raw_url) end
+	-- 		vim.keymap.set("n", "<leader>fu", "<cmd>UrlView<cr>", { noremap = true, silent = true })
+	-- 	end,
+	-- },
 	{
 		"ANGkeith/telescope-terraform-doc.nvim",
 		ft = { "terraform", "hcl" }, -- load only in .tf / .hcl buffers
