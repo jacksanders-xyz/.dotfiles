@@ -1,5 +1,6 @@
 appMappings = {
-	{ "g", "Google Chrome.app" },
+	-- { "g", "Google Chrome.app" },
+	{ "g", "Zen.app" },
 	{ "c", "Ghostty.app" },
 	{ "r", "Slack.app" },
 	{ "&", "Microsoft Outlook.app" },

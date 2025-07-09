@@ -456,32 +456,7 @@ return {
 			},
 		},
 		config = function()
-			local uv = vim.loop
-			local cache_file = vim.fn.stdpath("cache") .. "/godoc/symbols.json"
-			local cache_ttl = 86400 -- 1 day
-
-			local function get_cached_symbols()
-				vim.fn.mkdir(vim.fn.fnamemodify(cache_file, ":h"), "p")
-
-				local stat = uv.fs_stat(cache_file)
-				if stat and (os.time() - stat.mtime.sec) < cache_ttl then
-					local content = vim.fn.readfile(cache_file)
-					return vim.fn.json_decode(table.concat(content, "\n"))
-				end
-
-				local symbols = vim.fn.systemlist("stdsym json")
-				if vim.v.shell_error ~= 0 then
-					vim.notify("Failed to run stdsym", vim.log.levels.ERROR)
-					return {}
-				end
-
-				vim.fn.writefile(symbols, cache_file)
-				return vim.fn.json_decode(table.concat(symbols, "\n"))
-			end
-			require("godoc").setup({
-				source = get_cached_symbols,
-			})
-
+			require("godoc").setup({})
 			vim.keymap.set("n", "<leader>FG", "<cmd>GoDoc<cr>", {
 				desc = "GoDoc Search",
 				noremap = true,
@@ -489,16 +464,6 @@ return {
 			})
 		end,
 	},
-	-- {
-	-- 	"axieax/urlview.nvim",
-	-- 	ft = { "markdown" },
-	-- 	config = function()
-	-- 		require("urlview").setup({})
-	-- 		local actions = require("urlview.actions")
-	-- 		actions["spectate"] = function(raw_url) end
-	-- 		vim.keymap.set("n", "<leader>fu", "<cmd>UrlView<cr>", { noremap = true, silent = true })
-	-- 	end,
-	-- },
 	{
 		"ANGkeith/telescope-terraform-doc.nvim",
 		ft = { "terraform", "hcl" }, -- load only in .tf / .hcl buffers

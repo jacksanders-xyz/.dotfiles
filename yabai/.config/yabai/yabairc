@@ -38,7 +38,7 @@ yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m q
 
 # SPECIFIC SPACE LAYOUTS
 yabai -m config --space "home" layout         stack
-yabai -m config --space utils layout        float
+# yabai -m config --space utils layout        float
 yabai -m config --space "outlook" layout    stack
 # yabai -m config --space "outlook" layout    float
 yabai -m config --space "webex" layout      float

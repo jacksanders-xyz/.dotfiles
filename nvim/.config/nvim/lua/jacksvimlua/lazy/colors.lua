@@ -39,7 +39,8 @@ return {
 			-- manual highlights for Telescope + Pmenu:
 			local hl = vim.api.nvim_set_hl
 			local c = require("catppuccin.palettes").get_palette()
-			hl(0, "NoiceCmdlinePopup", { fg = c.surface2, bg = c.mantle })
+			-- hl(0, "NoiceCmdlinePopup", { fg = c.surface2, bg = c.mantle })
+			hl(0, "NoiceCmdlinePopup", { fg = c.surface2, bg = "#080c10" })
 
 			-- manual “boxed dark” Telescope highlights
 			-- local c = require("catppuccin.palettes").get_palette()
