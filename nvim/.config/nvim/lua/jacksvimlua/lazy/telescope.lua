@@ -333,7 +333,6 @@ return {
 				}))
 			end
 
-			-- Map  <C-/>  (aka <C-_>) in Normal & Visual mode
 			vim.keymap.set(
 				{ "n", "x" },
 				"<C-_>",

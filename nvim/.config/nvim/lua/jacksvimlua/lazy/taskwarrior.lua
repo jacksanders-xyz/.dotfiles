@@ -1,10 +1,21 @@
 return {
-	"ribelo/taskwarrior.nvim",
-	opts = {
-		-- your configuration comes here
-		-- or leave it empty to use the default settings
-		-- refer to the configuration section below
+	-- Local “plugin” = your config dir itself
+	dir = vim.fn.stdpath("config"), -- ~/.config/nvim
+	name = "local-task-split",
+
+	lazy = false, -- load at startup so the map is ready
+
+	----------------------------------------------------------------------
+	-- One mapping: <leader>E  →  open the split
+	----------------------------------------------------------------------
+	keys = {
+		{
+			"<leader>E",
+			function()
+				require("jacksvimlua.taskwarrior").open()
+			end,
+			desc = "Task: list in split",
+			mode = "n",
+		},
 	},
-	-- or
-	config = true,
 }

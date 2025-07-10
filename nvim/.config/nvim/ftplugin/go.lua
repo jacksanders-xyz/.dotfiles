@@ -4,11 +4,11 @@ set.expandtab = false
 set.tabstop = 4
 set.shiftwidth = 4
 
-vim.keymap.set("n", "<space>gt", function()
+vim.keymap.set("n", "<leader>gt", function()
 	require("dap-go").debug_test()
 end, { buffer = 0 })
 
-vim.keymap.set("n", "<space>R", function() -- run code
+vim.keymap.set("n", "<leader>R", function() -- run code
 	local edit_win = vim.api.nvim_get_current_win()
 	vim.cmd("botright 20split")
 	local term_win = vim.api.nvim_get_current_win()

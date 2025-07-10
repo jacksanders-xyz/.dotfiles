@@ -367,5 +367,4 @@ function M.setup()
 	vim.keymap.set("n", "<leader>tc", prompt_and_jump, { desc = "Traverser: jump to tag" })
 	vim.api.nvim_create_autocmd("VimLeavePre", { callback = save_state })
 end
-
 return M
