@@ -1,20 +1,16 @@
 return {
-	-- Local “plugin” = your config dir itself
 	dir = vim.fn.stdpath("config"), -- ~/.config/nvim
 	name = "local-task-split",
+	lazy = false,
 
-	lazy = false, -- load at startup so the map is ready
-
-	----------------------------------------------------------------------
-	-- One mapping: <leader>E  →  open the split
-	----------------------------------------------------------------------
+	--- Toggle the Task‑warrior split with <leader>E ----------------------
 	keys = {
 		{
 			"<leader>E",
 			function()
-				require("jacksvimlua.taskwarrior").open()
+				require("jacksvimlua.taskwarrior").toggle()
 			end,
-			desc = "Task: list in split",
+			desc = "Task: list in split (toggle)",
 			mode = "n",
 		},
 	},

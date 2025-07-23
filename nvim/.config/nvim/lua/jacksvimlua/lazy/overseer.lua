@@ -4,11 +4,13 @@ return {
 		opts = {
 			task_list = {
 				direction = "left",
+				-- max_width = { 100, 0.20 }, -- ≤100 cols *or* 20 % of screen, whichever is smaller
+				min_width = { 46, 0.10 }, -- ≥40 cols *or* 10 % of screen, whichever is larger
 				bindings = {
-					["<C-h>"] = false,
-					["<C-j>"] = false,
-					["<C-k>"] = false,
-					["<C-l>"] = false,
+					-- ["<C-h>"] = false,
+					-- ["<C-j>"] = false,
+					-- ["<C-k>"] = false,
+					-- ["<C-l>"] = false,
 					["L"] = "IncreaseDetail",
 					["H"] = "DecreaseDetail",
 					["<PageUp>"] = "ScrollOutputUp",
@@ -22,7 +24,16 @@ return {
 				"<cmd>OverseerToggle<CR>",
 				desc = "Toggle Overseer Task List",
 			},
-			{ "<leader>or", "<cmd>OverseerRun<CR>", desc = "Run Overseer Task" },
+			{
+				"<leader>on", -- "overseer new"
+				"<cmd>OverseerBuild<CR>",
+				desc = "Open task builder",
+			},
+			{
+				"<leader>or",
+				"<cmd>OverseerRun<CR>",
+				desc = "Run Overseer Task",
+			},
 			{
 				"<leader>ol",
 				"<cmd>OverseerRunCmd<CR>",

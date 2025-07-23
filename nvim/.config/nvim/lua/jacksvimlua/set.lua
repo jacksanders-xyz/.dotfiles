@@ -1,6 +1,8 @@
 -- SETS FOR NVIM
 vim.opt.guicursor = ""
 
+vim.opt.laststatus = 3
+
 vim.opt.nu = true
 vim.opt.relativenumber = true
 

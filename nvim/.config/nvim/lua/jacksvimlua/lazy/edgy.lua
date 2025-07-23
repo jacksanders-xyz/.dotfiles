@@ -215,7 +215,13 @@ return {
 		},
 		opts = function()
 			local opts = {
-				left = { size = { width = 53 } },
+				left = {
+					-- {
+					-- 	title = "Tasks",
+					-- 	filetype = "OverseerList",
+					-- },
+					size = { width = 53 },
+				},
 				bottom = {
 					size = 12,
 				},

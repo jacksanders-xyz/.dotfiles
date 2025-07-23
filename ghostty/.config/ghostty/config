@@ -5,14 +5,25 @@ command = "/bin/zsh"
 font-family             = "Iosevka Nerd Font Mono Medium"
 font-family-bold        = "Iosevka Nerd Font Mono Bold"
 font-size               = 14
-theme                   = "catppuccin-mocha"
+
+# dark theme
+# theme                   = "catppuccin-mocha"
+# background              = #080c10
+
+# light theme
+theme                   = "dayfox"
+background              = #b3b3b3
+# background              = #b2b2b5
+
+# you can do it like this
+# theme = dark:catppuccin-mocha,light:dayfox
+# theme = dark:mocha-bg.conf,light:dayfox-bg.conf
 
 # cursor-invert-fg-bg   = true
 cursor-text             = #080c10
-mouse-hide-while-typing = true
 
-background-opacity      = 0.90
-background              = #080c10
+mouse-hide-while-typing = true
+background-opacity      = 0.9
 
 # Font thickening (macOS only)
 font-thicken            = true

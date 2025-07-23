@@ -10,23 +10,6 @@ return {
 		config = function()
 			-- clear
 			vim.keymap.set("n", "<leader>C", "<cmd>NoiceDismiss<cr>", { noremap = true, silent = false })
-
-			-- -- making ! commands great again
-			-- local function capture_command_output(command)
-			-- 	local output = vim.fn.systemlist(command)
-			-- 	local output_str = table.concat(output, "\n")
-			-- 	require("notify")(output_str, "info", {
-			-- 		title = "Command Output",
-			-- 		timeout = 5000,
-			-- 	})
-			-- end
-			-- vim.api.nvim_create_autocmd("CmdlineLeave", {
-			-- 	callback = function()
-			-- 		local cmd = vim.fn.getcmdline()
-			-- 		capture_command_output(cmd)
-			-- 	end,
-			-- })
-
 			require("noice").setup({
 				lsp = {
 					override = {
