@@ -43,7 +43,7 @@ return {
 
 				-- bg3 the yellow one
 				vim.api.nvim_set_hl(0, "ColorColumn", { bg = mellow, blend = 12 })
-
+				vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = p.fg1, bg = "NONE" })
 				-- vim.api.nvim_set_hl(0, "ColorColumn", { bg = mellow, blend = 12 })
 				vim.api.nvim_set_hl(0, "StatusLine", { bg = mellow, blend = 8 })
 				vim.api.nvim_set_hl(0, "StatusLineNC", { bg = mellow_nc, blend = 8 })
