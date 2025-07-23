@@ -7,6 +7,24 @@ return {
 		config = function()
 			require("nightfox").setup({
 				options = { transparent = true },
+				palettes = {
+					dayfox = {
+						-- Normal = "#9ea3a9",
+						-- NormalNC = "#9ea3a9",
+						-- NormalFloat = "#9ea3a9",
+						-- MsgArea = "#9ea3a9",
+						-- LineNr = "#9ea3a9",
+						-- CursorLineNr = "#9ea3a9",
+						-- StatusLine = "#9ea3a9",
+						-- StatusLineNC = "#9ea3a9",
+						-- EdgyNormal = "#9ea3a9",
+						-- EdgyNormalNC = "#9ea3a9",
+						-- TroubleNormal = "#9ea3a9",
+						-- TroubleNormalNC = "#9ea3a9",
+						bg1 = "#ced1d4",
+						bg2 = "#b9bcc0",
+					},
+				},
 			})
 
 			-- uncomment for day theme--
@@ -18,18 +36,20 @@ return {
 				local hl = vim.api.nvim_set_hl
 				local p = require("nightfox.palette").load("dayfox")
 
-				local grey = p.sel1 -- main bar / column
-				local grey2 = p.bg3 or grey -- inactive
-
 				local mellow = "#9ea3a9" -- main bar / column
 				local mellow_nc = "#b6bbc2" -- inactive
 
+				-- bg2 -- meh
+				-- bg1 --nope
+
+				-- bg3 the yellow one
 				vim.api.nvim_set_hl(0, "ColorColumn", { bg = mellow, blend = 12 })
 
+				-- vim.api.nvim_set_hl(0, "ColorColumn", { bg = mellow, blend = 12 })
 				vim.api.nvim_set_hl(0, "StatusLine", { bg = mellow, blend = 8 })
 				vim.api.nvim_set_hl(0, "StatusLineNC", { bg = mellow_nc, blend = 8 })
 
-				local border = (p.black and p.black.base) or p.black or p.bg3 or "#333333"
+				local border = (p.fg1 and p.black.base) or p.black or p.bg3 or "#333333"
 				-- Border + titles
 				for _, part in ipairs({ "Prompt", "Results", "Preview" }) do
 					hl(0, "Telescope" .. part .. "Border", { fg = border, bg = "NONE" })
