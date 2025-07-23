@@ -26,11 +26,9 @@ return {
 					},
 				},
 			})
-
 			-- uncomment for day theme--
 			vim.cmd.colorscheme("dayfox")
 			-----------------------------
-
 			vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
 			local function fix_telescope_borders()
 				local hl = vim.api.nvim_set_hl
@@ -57,6 +55,18 @@ return {
 				end
 				hl(0, "TelescopeBorder", { fg = border, bg = "NONE" })
 				hl(0, "FloatBorder", { fg = border, bg = "NONE" })
+				for _, g in ipairs({
+					"TelescopeResultsNormal",
+					"TelescopeResultsTitle",
+					"TelescopeResultsNumber",
+					"TelescopeResultsLine",
+					"TelescopeNormal",
+					"Number",
+					"NonText",
+					"LineNr",
+				}) do
+					hl(0, g, { fg = p.fg1, bg = "NONE" })
+				end
 			end
 			fix_telescope_borders()
 			vim.api.nvim_create_autocmd("ColorScheme", {
