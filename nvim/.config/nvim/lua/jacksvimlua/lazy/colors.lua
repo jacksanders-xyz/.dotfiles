@@ -23,16 +23,16 @@ return {
 						-- TroubleNormalNC = "#9ea3a9",
 						bg1 = "#ced1d4",
 						bg2 = "#b9bcc0",
-						sel0 ="#9ea3a9" ,
+						sel0 = "#9ea3a9",
 					},
 				},
 			})
-			-- uncomment for day theme--
-			vim.cmd.colorscheme("dayfox")
-			-----------------------------
+			-- uncomment for day theme --
+			-- vim.cmd.colorscheme("dayfox")
+			----------------------------
 
-						-- sel0 = "#2a2a38",
-            vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
+			-- -- sel0 = "#2a2a38",
+			vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
 			local function fix_telescope_borders()
 				local hl = vim.api.nvim_set_hl
 				local p = require("nightfox.palette").load("dayfox")
@@ -71,11 +71,14 @@ return {
 					hl(0, g, { fg = p.fg1, bg = "NONE" })
 				end
 			end
-			fix_telescope_borders()
-			vim.api.nvim_create_autocmd("ColorScheme", {
-				pattern = "dayfox",
-				callback = fix_telescope_borders,
-			})
+
+			-- uncomment for day theme --
+			-- fix_telescope_borders()
+			-- vim.api.nvim_create_autocmd("ColorScheme", {
+			-- 	pattern = "dayfox",
+			-- 	callback = fix_telescope_borders,
+			-- })
+			----------------------------
 		end,
 	},
 	{
@@ -105,14 +108,14 @@ return {
 				},
 			})
 
-			-- uncomment for light theme
-			-- local hl = vim.api.nvim_set_hl
-			-- local c = require("catppuccin.palettes").get_palette()
-			-- hl(0, "NoiceCmdlinePopup", { fg = c.surface2, bg = "#080c10" })
-			-- hl(0, "LightBulbDimmer", { fg = c.surface2 })
-			-- vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
-			-- vim.cmd.colorscheme("catppuccin")
-			-----------------------------------------------------------------
+			-- uncomment for dark theme -----------------------------------
+			local hl = vim.api.nvim_set_hl
+			local c = require("catppuccin.palettes").get_palette()
+			hl(0, "NoiceCmdlinePopup", { fg = c.surface2, bg = "#080c10" })
+			hl(0, "LightBulbDimmer", { fg = c.surface2 })
+			vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
+			vim.cmd.colorscheme("catppuccin")
+			---------------------------------------------------------------
 		end,
 	},
 }
