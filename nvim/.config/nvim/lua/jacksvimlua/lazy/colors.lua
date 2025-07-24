@@ -23,14 +23,16 @@ return {
 						-- TroubleNormalNC = "#9ea3a9",
 						bg1 = "#ced1d4",
 						bg2 = "#b9bcc0",
-						sel0 = "#2a2a38",
+						sel0 ="#9ea3a9" ,
 					},
 				},
 			})
 			-- uncomment for day theme--
 			vim.cmd.colorscheme("dayfox")
 			-----------------------------
-			vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
+
+						-- sel0 = "#2a2a38",
+            vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
 			local function fix_telescope_borders()
 				local hl = vim.api.nvim_set_hl
 				local p = require("nightfox.palette").load("dayfox")
@@ -44,7 +46,7 @@ return {
 				-- bg3 the yellow one
 				vim.api.nvim_set_hl(0, "ColorColumn", { bg = mellow, blend = 12 })
 				vim.api.nvim_set_hl(0, "EndOfBuffer", { fg = p.fg1, bg = "NONE" })
-				-- vim.api.nvim_set_hl(0, "ColorColumn", { bg = mellow, blend = 12 })
+
 				vim.api.nvim_set_hl(0, "StatusLine", { bg = mellow, blend = 8 })
 				vim.api.nvim_set_hl(0, "StatusLineNC", { bg = mellow_nc, blend = 8 })
 
