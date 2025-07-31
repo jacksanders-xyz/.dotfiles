@@ -28,7 +28,7 @@ return {
 				},
 			})
 			-- uncomment for day theme --
-			-- vim.cmd.colorscheme("dayfox")
+			vim.cmd.colorscheme("dayfox")
 			----------------------------
 
 			-- -- sel0 = "#2a2a38",
@@ -50,6 +50,8 @@ return {
 				vim.api.nvim_set_hl(0, "StatusLine", { bg = mellow, blend = 8 })
 				vim.api.nvim_set_hl(0, "StatusLineNC", { bg = mellow_nc, blend = 8 })
 
+				vim.api.nvim_set_hl(0, "LineNr", { fg = "#8f8fab" })
+
 				local border = (p.fg1 and p.black.base) or p.black or p.bg3 or "#333333"
 				-- Border + titles
 				for _, part in ipairs({ "Prompt", "Results", "Preview" }) do
@@ -66,18 +68,19 @@ return {
 					"TelescopeNormal",
 					"Number",
 					"NonText",
-					"LineNr",
 				}) do
 					hl(0, g, { fg = p.fg1, bg = "NONE" })
 				end
 			end
 
 			-- uncomment for day theme --
-			-- fix_telescope_borders()
-			-- vim.api.nvim_create_autocmd("ColorScheme", {
-			-- 	pattern = "dayfox",
-			-- 	callback = fix_telescope_borders,
-			-- })
+
+			fix_telescope_borders()
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				pattern = "dayfox",
+				callback = fix_telescope_borders,
+			})
+
 			----------------------------
 		end,
 	},
@@ -109,13 +112,18 @@ return {
 			})
 
 			-- uncomment for dark theme -----------------------------------
-			local hl = vim.api.nvim_set_hl
-			local c = require("catppuccin.palettes").get_palette()
-			hl(0, "NoiceCmdlinePopup", { fg = c.surface2, bg = "#080c10" })
-			hl(0, "LightBulbDimmer", { fg = c.surface2 })
-			vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
-			vim.cmd.colorscheme("catppuccin")
+
+			-- local hl = vim.api.nvim_set_hl
+			-- local c = require("catppuccin.palettes").get_palette()
+			-- hl(0, "NoiceCmdlinePopup", { fg = c.surface2, bg = "#080c10" })
+			-- hl(0, "LightBulbDimmer", { fg = c.surface2 })
+			-- vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
+			-- vim.cmd.colorscheme("catppuccin")
+
 			---------------------------------------------------------------
+
+			-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1e1e2e" }) -- Set background for LSP floats
+			-- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#8be9fd", bg = "none" })
 		end,
 	},
 }

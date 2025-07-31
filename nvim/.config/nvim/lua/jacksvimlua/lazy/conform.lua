@@ -7,6 +7,7 @@ return {
 			rust = { "rustfmt" },
 			javascript = { "prettierd", "prettier" }, -- fallback order
 			typescript = { "prettierd", "prettier" },
+			typescriptreact = { "prettierd", "prettier" },
 			go = { "goimports", "gofmt" }, -- gofmt is only used if goimports   isn't available
 		},
 

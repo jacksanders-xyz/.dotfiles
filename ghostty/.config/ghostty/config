@@ -7,14 +7,19 @@ font-family-bold        = "Iosevka Nerd Font Mono Bold"
 font-size               = 14
 
 # dark theme
-theme                   = "catppuccin-mocha"
-background              = #080c10
-cursor-text             = #080c10
+
+# theme                   = "catppuccin-mocha"
+# background              = #080c10
+# cursor-text             = #080c10
+
 
 # light theme
-# theme                   = "dayfox"
-# background              = #b3b3b3
-# cursor-text             = #b3b7bd
+
+theme                   = "dayfox"
+background              = #b3b3b3
+cursor-text             = #b3b7bd
+
+
 
 # you can do it like this
 # theme = dark:catppuccin-mocha,light:dayfox

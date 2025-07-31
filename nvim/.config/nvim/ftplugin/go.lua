@@ -17,7 +17,7 @@ vim.keymap.set("n", "<leader>R", function() -- run code
 	vim.api.nvim_win_set_buf(term_win, buf)
 
 	vim.b.go_run_term = true
-	vim.fn.termopen({ "go", "run", "main.go", "day1.go" }) -- go run files
+	vim.fn.termopen({ "go", "run", "main.go", "day2.go" }) -- go run files
 
 	vim.api.nvim_create_autocmd("WinClosed", { -- when you leave, don't go to the no neck
 		-- pain buffer

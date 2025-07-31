@@ -4,7 +4,7 @@ return {
 	opts = {
 		-- we don’t want a gutter icon ▼
 		sign = {
-			enabled = true,
+			enabled = false,
 			text = "動",
 			lens_text = "動",
 			hl = "LightBulbDimmer",
