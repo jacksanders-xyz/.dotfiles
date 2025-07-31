@@ -23,7 +23,8 @@ return {
 						-- TroubleNormalNC = "#9ea3a9",
 						bg1 = "#ced1d4",
 						bg2 = "#b9bcc0",
-						sel0 = "#9ea3a9",
+						bg0 = "#9ea3a9",
+						sel0 = "#a9a49e",
 					},
 				},
 			})
