@@ -7,7 +7,7 @@ font-family-bold        = "Iosevka Nerd Font Mono Bold"
 font-size               = 14
 
 # make this an env var
-config-file = ~/.config/ghostty/themes/mid-day.conf
+config-file = ~/.config/ghostty/themes/active.conf
 
 # cursor-invert-fg-bg   = true
 

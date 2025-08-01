@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# switch-theme ─ change Ghostty / tmux / Taskwarrior / Neovim colours in one go
+# Usage: switch-theme {morning|mid-day|night}
+set -euo pipefail
+
+case "${1:-}" in
+  morning|mid-day|night) THEME="$1" ;;
+  *) echo "Usage: $0 {morning|mid-day|night}" ; exit 1 ;;
+esac
+
+DOT="$HOME/.dotfiles"             # adjust if your repo lives elsewhere
+TMUX_DIR="$HOME/.tmux/themes"
+CONF_DIR="$HOME/.config"
+TASK_DIR="$DOT/task/themes"
+##############################################################################
+# 2 Ghostty
+##############################################################################
+ln -sf  "$CONF_DIR/ghostty/themes/$THEME.conf" \
+        "$CONF_DIR/ghostty/themes/active.conf"
+
+osascript >/dev/null 2>&1 <<'OSA'
+tell application "System Events"
+  if exists (process "Ghostty") then
+    keystroke "," using {command down, shift down}
+  end if
+end tell
+OSA
+
+##############################################################################
+# 3 tmux
+##############################################################################
+ln -sf  "$TMUX_DIR/$THEME.tmux"      "$TMUX_DIR/default.tmux"
+
+if tmux info >/dev/null 2>&1; then
+  tmux source-file "$HOME/.tmux.conf" || true   # hot-reload live sessions
+fi
+
+##############################################################################
+# 4 Taskwarrior
+##############################################################################
+ln -sf  "$TASK_DIR/$THEME.theme"     "$TASK_DIR/active.theme"
+
+##############################################################################
+# 5  Neovim + global environment variable
+##############################################################################
+mkdir -p "$HOME/.config/env"
+echo "export DAYPART=$THEME" > "$HOME/.config/env/daypart.zsh"

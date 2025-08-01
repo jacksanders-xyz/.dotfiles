@@ -108,8 +108,12 @@ export PATH="$PATH:/Users/jsanders/.local/bin"
 # lazy rocks
 export PATH="$HOME/.local/share/nvim/lazy-rocks/bin:$PATH"
 
+# Daypart env variable for your colors
+[ -f ~/.config/env/daypart.zsh ] && source ~/.config/env/daypart.zsh
+
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # At the very bottom of ~/.zshrc
 zprof
+

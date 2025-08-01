@@ -1,13 +1,17 @@
+local part = require("jacksvimlua.daypart")
+local colors -- declare in the outer scope so we can fill it later
+
+if part == "morning" then
+	colors = require("nightfox.palette").load("dayfox")
+elseif part == "mid-day" then
+	colors = require("catppuccin.palettes").get_palette("frappe")
+elseif part == "night" then
+	colors = require("catppuccin.palettes").get_palette("mocha")
+end
 return {
 	{
 		"vimwiki/vimwiki",
 		config = function()
-			-- dark theme
-			local colors = require("catppuccin.palettes").get_palette()
-
-			-- light theme
-			-- local colors = require("nightfox.palette").load("dayfox")
-
 			vim.g.vimwiki_table_mappings = 0
 			vim.g.vimwiki_markdown_link_ext = 1
 			vim.g.taskwiki_markup_syntax = "markdown"
@@ -34,6 +38,7 @@ return {
 			}
 
 			local current_colorscheme = vim.g.colors_name
+			print(current_colorscheme)
 			if current_colorscheme == "dayfox" then
 				-- Header highlights using Catppuccin colors
 				vim.api.nvim_set_hl(0, "VimwikiHeader2", { fg = colors.green.base })
