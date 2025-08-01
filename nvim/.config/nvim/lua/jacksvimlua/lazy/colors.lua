@@ -112,7 +112,7 @@ return {
 				},
 			})
 
-			-- uncomment for dark theme -----------------------------------
+			-- uncomment for night/mid day theme -----------------------------------
 
 			local hl = vim.api.nvim_set_hl
 			local c = require("catppuccin.palettes").get_palette()

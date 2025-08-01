@@ -30,7 +30,7 @@ data.location=~/.task
 # include /usr/local/Cellar/task/3.4.1/share/doc/task/rc/no-color.theme
 # include /usr/local/Cellar/task/3.4.1/share/doc/task/rc/dark-blue-256.theme
 
-# light-theme
+# morning
 # include /usr/local/Cellar/task/3.4.1/share/doc/task/rc/light-16.theme
 
     news.version=3.4.1
