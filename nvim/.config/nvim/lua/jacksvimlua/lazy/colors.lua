@@ -29,7 +29,7 @@ return {
 				},
 			})
 			-- uncomment for day theme --
-			vim.cmd.colorscheme("dayfox")
+			-- vim.cmd.colorscheme("dayfox")
 			----------------------------
 
 			-- -- sel0 = "#2a2a38",
@@ -76,11 +76,11 @@ return {
 
 			-- uncomment for day theme --
 
-			fix_telescope_borders()
-			vim.api.nvim_create_autocmd("ColorScheme", {
-				pattern = "dayfox",
-				callback = fix_telescope_borders,
-			})
+			-- fix_telescope_borders()
+			-- vim.api.nvim_create_autocmd("ColorScheme", {
+			-- 	pattern = "dayfox",
+			-- 	callback = fix_telescope_borders,
+			-- })
 
 			----------------------------
 		end,
@@ -90,7 +90,7 @@ return {
 		name = "catppuccin",
 		config = function()
 			require("catppuccin").setup({
-				flavour = "mocha",
+				flavour = "frappe", -- change to frappe (midday) or mocha (night)
 				transparent_background = true,
 				show_end_of_buffer = true,
 				styles = {
@@ -114,17 +114,22 @@ return {
 
 			-- uncomment for dark theme -----------------------------------
 
-			-- local hl = vim.api.nvim_set_hl
-			-- local c = require("catppuccin.palettes").get_palette()
-			-- hl(0, "NoiceCmdlinePopup", { fg = c.surface2, bg = "#080c10" })
-			-- hl(0, "LightBulbDimmer", { fg = c.surface2 })
-			-- vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
-			-- vim.cmd.colorscheme("catppuccin")
+			local hl = vim.api.nvim_set_hl
+			local c = require("catppuccin.palettes").get_palette()
+			-- hl(0, "NoiceCmdlinePopup", { fg = c.surface2, bg = "#080c10" }) -- uncomment for midday
+			-- hl(0, "LightBulbDimmer", { fg = c.surface2 }) -- uncomment for midday
+			vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
+			vim.cmd.colorscheme("catppuccin")
 
-			---------------------------------------------------------------
-
+			-- optional uncomment
 			-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1e1e2e" }) -- Set background for LSP floats
 			-- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#8be9fd", bg = "none" })
+
+			--------------------------------------------------------------
+
+			-- uncomment for midday
+			vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#1e1e2e" }) -- Set background for LSP floats
+			vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#8be9fd", bg = "none" })
 		end,
 	},
 }

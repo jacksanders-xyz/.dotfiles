@@ -2,9 +2,11 @@ return {
 	{
 		"vimwiki/vimwiki",
 		config = function()
-			-- pull Catppuccin palette for header colors
+			-- dark theme
 			local colors = require("catppuccin.palettes").get_palette()
-			-- local colors = require("midnight.palettes").get_palette()
+
+			-- light theme
+			-- local colors = require("nightfox.palette").load("dayfox")
 
 			vim.g.vimwiki_table_mappings = 0
 			vim.g.vimwiki_markdown_link_ext = 1
@@ -31,11 +33,20 @@ return {
 				{ path = "~/VimWiki/work_content", syntax = "markdown", ext = ".md" },
 			}
 
-			-- Header highlights using Catppuccin colors
-			vim.api.nvim_set_hl(0, "VimwikiHeader2", { fg = colors.peach })
-			vim.api.nvim_set_hl(0, "VimwikiHeader3", { fg = colors.red })
-			vim.api.nvim_set_hl(0, "VimwikiHeader4", { fg = colors.blue })
-			vim.api.nvim_set_hl(0, "VimwikiHeader5", { fg = colors.yellow })
+			local current_colorscheme = vim.g.colors_name
+			if current_colorscheme == "dayfox" then
+				-- Header highlights using Catppuccin colors
+				vim.api.nvim_set_hl(0, "VimwikiHeader2", { fg = colors.green.base })
+				vim.api.nvim_set_hl(0, "VimwikiHeader3", { fg = colors.red.base })
+				vim.api.nvim_set_hl(0, "VimwikiHeader4", { fg = colors.blue.base })
+				vim.api.nvim_set_hl(0, "VimwikiHeader5", { fg = colors.yellow.base })
+			else
+				-- catppuccin
+				vim.api.nvim_set_hl(0, "VimwikiHeader2", { fg = colors.peach })
+				vim.api.nvim_set_hl(0, "VimwikiHeader3", { fg = colors.red })
+				vim.api.nvim_set_hl(0, "VimwikiHeader4", { fg = colors.blue })
+				vim.api.nvim_set_hl(0, "VimwikiHeader5", { fg = colors.yellow })
+			end
 		end,
 	},
 }

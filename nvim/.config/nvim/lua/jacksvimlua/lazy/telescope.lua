@@ -67,7 +67,7 @@ return {
 			local multi_rg = require("jacksvimlua.lazy.telescope.multi-ripgrep")
 
 			-- BASIC TELE
-			vim.keymap.set("n", "<leader>ff", function()
+			vim.keymap.set("n", "<leader>fp", function()
 				builtin.find_files({
 					find_command = { "rg", "--hidden", "--files", "-g", "!node_modules/**", "-g", "!.git/**" },
 				})
@@ -242,12 +242,12 @@ return {
 			---------------------------------------------------------------------------
 
 			-- QFIX STUFF
-			vim.keymap.set("n", "<leader>fps", function()
+			vim.keymap.set("n", "<leader>fis", function()
 				builtin.grep_string({
 					search = vim.fn.input("--Grep For > "),
 				})
 			end)
-			vim.keymap.set("n", "<leader>fpw", function()
+			vim.keymap.set("n", "<leader>fiw", function()
 				local word = vim.fn.expand("<cWORD>")
 				builtin.grep_string({ search = word })
 			end)

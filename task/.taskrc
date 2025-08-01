@@ -31,7 +31,7 @@ data.location=~/.task
 # include /usr/local/Cellar/task/3.4.1/share/doc/task/rc/dark-blue-256.theme
 
 # light-theme
-include /usr/local/Cellar/task/3.4.1/share/doc/task/rc/light-16.theme
+# include /usr/local/Cellar/task/3.4.1/share/doc/task/rc/light-16.theme
 
-news.version=3.4.1
+    news.version=3.4.1
 report.next.filter=(status:pending or status:waiting)

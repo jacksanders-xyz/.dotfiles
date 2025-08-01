@@ -6,18 +6,21 @@ font-family             = "Iosevka Nerd Font Mono Medium"
 font-family-bold        = "Iosevka Nerd Font Mono Bold"
 font-size               = 14
 
-# dark theme
+## morning
+# theme                   = "dayfox"
+# background              = #b3b3b3
+# cursor-text             = #b3b7bd
 
+
+## dreary mid-day
+theme                   = "catppuccin-frappe"
+background              = #2A3744
+cursor-text             = #080c10
+
+## night
 # theme                   = "catppuccin-mocha"
 # background              = #080c10
 # cursor-text             = #080c10
-
-
-# light theme
-
-theme                   = "dayfox"
-background              = #b3b3b3
-cursor-text             = #b3b7bd
 
 
 
