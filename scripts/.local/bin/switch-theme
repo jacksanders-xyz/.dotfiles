@@ -41,7 +41,14 @@ fi
 ln -sf  "$TASK_DIR/$THEME.theme"     "$TASK_DIR/active.theme"
 
 ##############################################################################
-# 5  Neovim + global environment variable
+# 5  Neovim day-part file  (no env vars needed)
 ##############################################################################
-mkdir -p "$HOME/.config/env"
-echo "export DAYPART=$THEME" > "$HOME/.config/env/daypart.zsh"
+LUAFILE="$HOME/.config/env/daypart.lua"
+mkdir -p "$(dirname "$LUAFILE")"
+
+wanted="return '$THEME'"
+
+# Only rewrite when the value actually changes → avoids useless disk writes
+if ! grep -qxF "$wanted" "$LUAFILE" 2>/dev/null; then
+  printf "%s\n" "$wanted" > "$LUAFILE"
+fi

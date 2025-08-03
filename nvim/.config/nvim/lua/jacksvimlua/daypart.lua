@@ -1,16 +1,14 @@
 -- lua/daypart.lua
--- Returns "morning" | "mid-day" | "night" (default: "mid-day")
+-- Reads ~/.config/env/daypart.lua and returns "morning" / "mid-day" / "night"
 
-local path = vim.fn.expand("~/.config/env/daypart.zsh")
-local file = io.open(path, "r")
+local filepath = vim.fn.expand("~/.config/env/daypart.lua")
 
-if file then
-	local line = file:read("*l") -- "export DAYPART=night"
-	file:close()
-	local val = line and line:match("DAYPART%s*=%s*(%S+)")
-	print(val)
-	if val == "morning" or val == "mid-day" or val == "night" then
-		return val
+local ok, chunk = pcall(loadfile, filepath)
+if ok and type(chunk) == "function" then
+	local ok2, part = pcall(chunk)
+	if ok2 and (part == "morning" or part == "mid-day" or part == "night") then
+		return part
 	end
 end
-return "mid-day"
+
+return "mid-day" -- fallback

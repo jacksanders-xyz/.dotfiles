@@ -38,7 +38,6 @@ return {
 			}
 
 			local current_colorscheme = vim.g.colors_name
-			print(current_colorscheme)
 			if current_colorscheme == "dayfox" then
 				-- Header highlights using Catppuccin colors
 				vim.api.nvim_set_hl(0, "VimwikiHeader2", { fg = colors.green.base })
