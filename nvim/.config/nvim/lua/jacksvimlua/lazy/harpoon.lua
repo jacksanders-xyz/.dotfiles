@@ -1,38 +1,38 @@
 return {
-    "ThePrimeagen/harpoon",
-    config = function()
-        -- Setup harpoon
-        require('harpoon').setup({
-            nav_first_in_list = true,
-        })
+	"ThePrimeagen/harpoon",
+	branch = "harpoon2",
+	dependencies = { "nvim-lua/plenary.nvim" },
+	config = function()
+		local harpoon = require("harpoon")
 
-        -- Import the correct submodules
-        local mark = require('harpoon.mark')
-        local ui = require('harpoon.ui')
+		harpoon:setup({
+			settings = {
+				save_on_toggle = true,
+				sync_on_ui_close = true,
+				save_on_bufleave = false,
+			},
+		})
 
-        -- Set key mappings
-        vim.keymap.set('n', '<leader>a', function()
-            mark.add_file()
-        end, { noremap = true, silent = true })
+		local list = harpoon:list()
+		local ui = harpoon.ui -- ← use the bound UI, not require("harpoon.ui")
 
-        vim.keymap.set('n', '<C-a>', function()
-            ui.toggle_quick_menu()
-        end, { noremap = true, silent = true })
-
-        vim.keymap.set('n', '<C-h>', function()
-            ui.nav_file(1)
-        end, { noremap = true, silent = true })
-
-        vim.keymap.set('n', '<C-t>', function()
-            ui.nav_file(2)
-        end, { noremap = true, silent = true })
-
-        vim.keymap.set('n', '<C-n>', function()
-            ui.nav_file(3)
-        end, { noremap = true, silent = true })
-
-        vim.keymap.set('n', '<C-s>', function()
-            ui.nav_file(4)
-        end, { noremap = true, silent = true })
-    end
+		vim.keymap.set("n", "<leader>a", function()
+			list:add()
+		end, { silent = true, desc = "Harpoon add file" })
+		vim.keymap.set("n", "<C-a>", function()
+			ui:toggle_quick_menu(list)
+		end, { noremap = true, silent = true })
+		vim.keymap.set("n", "<C-h>", function()
+			list:select(1)
+		end, { silent = true })
+		vim.keymap.set("n", "<C-t>", function()
+			list:select(2)
+		end, { silent = true })
+		vim.keymap.set("n", "<C-n>", function()
+			list:select(3)
+		end, { silent = true })
+		vim.keymap.set("n", "<C-s>", function()
+			list:select(4)
+		end, { silent = true })
+	end,
 }

@@ -60,11 +60,11 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<leader>S", ':setlocal spell! spelllang=en_us<CR>"')
 
 -- MOVING TEXT AROUND
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { silent = true })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { silent = true })
 
-vim.keymap.set("n", "<leader>j", ":m .+1<CR>==")
-vim.keymap.set("n", "<leader>k", ":m .-2<CR>==")
+vim.keymap.set("n", "<leader>j", ":m .+1<CR>==", { silent = true })
+vim.keymap.set("n", "<leader>k", ":m .-2<CR>==", { silent = true })
 vim.keymap.set("n", "]e", "I<CR><ESC>==")
 
 -- NETRW

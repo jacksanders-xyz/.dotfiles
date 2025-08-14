@@ -69,11 +69,19 @@ return {
 			-- BASIC TELE
 			vim.keymap.set("n", "<leader>fp", function()
 				builtin.find_files({
-					find_command = { "rg", "--hidden", "--files", "-g", "!node_modules/**", "-g", "!.git/**" },
+					find_command = {
+						"rg",
+						"-u",
+						"--hidden",
+						"--files",
+						"-g",
+						"!node_modules/**",
+					},
+					-- find_command = { "rg", "--hidden", "--files", "-g", "!node_modules/**", "-g", "!.git/**" },
 				})
 			end, { noremap = true, silent = true })
 
-			vim.keymap.set("n", "<leader>fg", function()
+			vim.keymap.set("n", "<leader>fo", function()
 				multi_rg({
 					vimgrep_arguments = {
 						"rg",
@@ -446,7 +454,7 @@ return {
 		"fredrikaverpil/godoc.nvim",
 		ft = "go", -- Lazy load only for Go files
 		event = "VeryLazy",
-		build = "go install github.com/lotusirous/gostdsym/stdsym@latest",
+		-- build = "go install github.com/lotusirous/gostdsym/stdsym@latest",
 		dependencies = {
 			"nvim-telescope/telescope.nvim",
 			{

@@ -6,11 +6,11 @@ return {
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			"artemave/workspace-diagnostics.nvim",
-			{
-				"j-hui/fidget.nvim",
-				tag = "v1.0.0",
-				opts = {}, -- or use config if you want a function call
-			},
+			-- {
+			-- 	"j-hui/fidget.nvim",
+			-- 	tag = "v1.0.0",
+			-- 	opts = {}, -- or use config if you want a function call
+			-- },
 		},
 		config = function()
 			-- add cmp capabilities if available
@@ -24,7 +24,7 @@ return {
 				require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
 			end
 
-			require("fidget").setup({})
+			-- require("fidget").setup({})
 			require("mason").setup()
 
 			require("mason-lspconfig").setup({

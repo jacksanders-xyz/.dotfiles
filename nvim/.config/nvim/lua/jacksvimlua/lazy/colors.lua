@@ -102,8 +102,11 @@ return {
 				vim.cmd.colorscheme("catppuccin")
 
 				if part == "night" then
-					hl(0, "NoiceCmdlinePopup", { fg = c.surface2, bg = "#080c10" }) -- night
+					-- hl(0, "NoiceCmdlinePopup", { fg = c.surface2, bg = "#080c10" }) -- night
+					hl(0, "NoiceCmdlinePopup", { fg = c.surface2, bg = "none" }) -- night
 					hl(0, "LightBulbDimmer", { fg = c.surface2 }) -- night
+					-- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" }) -- Set background for LSP floats
+					-- vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#8be9fd", bg = "none" }) -- black boxes if you want
 				end
 
 				if part == "mid-day" then

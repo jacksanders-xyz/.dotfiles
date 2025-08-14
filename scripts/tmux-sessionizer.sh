@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/code ~/code/Personal/ ~/code/maximo ~/code/WatsonX_Ansible_Assistant/ ~/code/Mcdonalds/ code/DirectTV ~/code/nbcu-maximo/WILSON-67.228.221.82 ~/code/SOULMACHINE_2 ~/code/SOULMACHINE_LAUNCHPAD/SMLP-TechZone ~/code/Tmobile/wd_json_servers ~/code/Tmobile/ ~/code/Verizon/vz-pso-ticket-summarization-nextapp ~/code/Verizon/ ~/code/MWC-AVATAR/ ~/ ~/VimWiki ~/VimWiki/jacks_brain/ ~/VimWiki/work_content/ -mindepth 1 -maxdepth 1 -type d | fzf)
+    selected=$(find ~/code ~/code/Personal ~/code/Personal/GO_practice/ ~/code/nbcu-maximo/WILSON-67.228.221.82 ~/code/SOULMACHINE_2 ~/code/SOULMACHINE_LAUNCHPAD/SMLP-TechZone ~/code/Tmobile/wd_json_servers ~/code/Tmobile/ ~/code/Verizon/vz-pso-ticket-summarization-nextapp ~/code/Verizon/ ~/ -mindepth 2 -maxdepth 3 -type d | fzf)
 fi
 
 if [[ -z $selected ]]; then
@@ -21,5 +21,4 @@ fi
 if ! tmux has-session -t $selected_name 2> /dev/null; then
     tmux new-session -ds $selected_name -c $selected
 fi
-
 tmux switch-client -t $selected_name

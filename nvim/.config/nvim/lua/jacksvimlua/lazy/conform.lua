@@ -9,10 +9,17 @@ return {
 			typescript = { "prettierd", "prettier" },
 			typescriptreact = { "prettierd", "prettier" },
 			go = { "goimports", "gofmt" }, -- gofmt is only used if goimports   isn't available
+			sh = { "shfmt" },
+			json = { "jq" },
 		},
 
 		-- don’t let Conform auto-attach its own save-formatting —
 		-- we’ll wire up the autocommand ourselves.
+		formatters = {
+			shfmt = {
+				prepend_args = { "-i", "2", "-ci", "-sr" }, -- 2-space indent, indent switch cases, simplify redirects
+			},
+		},
 		format_on_save = false,
 	},
 	config = function(_, opts)
@@ -25,7 +32,7 @@ return {
 		local grp = vim.api.nvim_create_augroup("ConformAsyncFormat", { clear = true })
 		vim.api.nvim_create_autocmd("BufWritePost", {
 			group = grp,
-			pattern = { "*.lua", "*.py", "*.rs", "*.js", "*.ts", "*.tsx", "*.go" }, -- need to add the language here as well
+			pattern = { "*.lua", "*.py", "*.rs", "*.js", "*.ts", "*.tsx", "*.go", "*.sh", "*.json" }, -- need to add the language here as well
 			callback = function(args)
 				conform.format({
 					bufnr = args.buf,
