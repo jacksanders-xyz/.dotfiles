@@ -1,1 +1,1 @@
-/Users/jsanders/.tmux/themes/mid-day.tmux
+/Users/jsanders/.tmux/themes/night.tmux

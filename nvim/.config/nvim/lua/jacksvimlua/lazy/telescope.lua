@@ -256,7 +256,7 @@ return {
 				})
 			end)
 			vim.keymap.set("n", "<leader>fiw", function()
-				local word = vim.fn.expand("<cWORD>")
+				local word = vim.fn.expand("<cword>")
 				builtin.grep_string({ search = word })
 			end)
 

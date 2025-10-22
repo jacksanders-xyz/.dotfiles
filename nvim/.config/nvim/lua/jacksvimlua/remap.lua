@@ -130,3 +130,4 @@ vim.keymap.set("n", "<leader>q", function()
 end)
 
 vim.api.nvim_set_keymap("n", "<C-w><C-b>", "<C-W><C-q><C-w><C-p>", { noremap = true, silent = true })
+

@@ -57,7 +57,7 @@ return {
 		require("treesitter-context").setup({
 			enable = true,
 			multiline_threshold = 8, -- show up to 8 lines of context
-			-- max_lines = 3,         -- uncomment to clamp height instead
+			max_lines = 8, -- uncomment to clamp height instead
 		})
 
 		--------------------------------------------------------------------------
