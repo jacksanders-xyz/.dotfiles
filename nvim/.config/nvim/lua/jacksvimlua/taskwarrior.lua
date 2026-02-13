@@ -65,7 +65,7 @@ setup_maps = function(buf)
 	end, opts)
 
 	vim.keymap.set("n", "ta", function()
-		feed(":!task add ")
+		feed(":!task add project:")
 	end, opts)
 
 	vim.keymap.set("n", "tm", function()
@@ -75,6 +75,8 @@ setup_maps = function(buf)
 	vim.keymap.set("n", "td", function()
 		feed(":!task done ")
 	end, opts)
+
+	vim.keymap.set("n", "tc", "<cmd>!/Users/jsanders/.local/bin/gen_task_project_colors.py<cr>", opts)
 
 	-- refresh in place (no new split) — uses stored args
 	vim.keymap.set("n", "tr", function()

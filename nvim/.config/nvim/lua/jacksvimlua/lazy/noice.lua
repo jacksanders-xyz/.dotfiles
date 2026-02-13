@@ -40,7 +40,7 @@ return {
 					},
 				},
 				messages = {
-					enabled = false, -- enables the Noice messages UI
+					enabled = true, -- enables the Noice messages UI
 					view = "cmdline",
 					view_error = "notify", -- view for errors
 					view_warn = "notify", -- view for warnings

@@ -63,7 +63,7 @@ autocmd("LspAttach", {
 			vim.lsp.buf.rename()
 		end, opts)
 
-		vim.keymap.set("n", "<leader>csh", function()
+		vim.keymap.set("n", "<leader>ch", function()
 			vim.lsp.buf.signature_help()
 		end, opts)
 	end,
