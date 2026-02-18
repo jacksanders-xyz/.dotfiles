@@ -84,7 +84,7 @@ return {
 			bang = true,
 		})
 
-		vim.keymap.set("n", "<leader>CT", "<cmd>FormatToggle<cr>", {
+		vim.keymap.set("n", "<leader>}", "<cmd>FormatToggle<cr>", {
 			desc = "Conform: toggle format-on-save",
 			silent = true,
 		})

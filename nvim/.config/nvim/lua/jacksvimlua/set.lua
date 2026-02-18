@@ -36,6 +36,6 @@ vim.opt.cmdheight = 1 -- GIVE MORE SPACE FOR DISPLAYING MESSAGES.
 vim.opt.updatetime = 50
 -- HAVING LONGER UPDATETIME (DEFAULT IS 4000 MS = 4 S) LEADS TO NOTICEABLE
 -- DELAYS AND POOR USER EXPERIENCE.
+vim.opt.colorcolumn = "80"
 
 vim.opt.shortmess:append("c") -- DON'T PASS MESSAGES TO |INS-COMPLETION-MENU|.
-vim.opt.colorcolumn = "80"

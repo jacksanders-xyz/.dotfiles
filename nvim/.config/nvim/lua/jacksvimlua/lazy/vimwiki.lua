@@ -24,17 +24,8 @@ return {
 			}
 
 			vim.g.vimwiki_list = {
-				{ path = "~/VimWiki", syntax = "markdown", ext = ".md" },
-				{ path = "~/VimWiki/jacks_brain", syntax = "markdown", ext = ".md" },
-				{ path = "~/VimWiki/jacks_brain/RedHat", syntax = "markdown", ext = ".md" },
-				{ path = "~/VimWiki/jacks_brain/RedHat/DO180", syntax = "markdown", ext = ".md" },
-				{ path = "~/VimWiki/jacks_brain/PIPELINE", syntax = "markdown", ext = ".md" },
-				{ path = "~/VimWiki/jacks_brain/CLUSTER", syntax = "markdown", ext = ".md" },
-				{ path = "~/VimWiki/jacks_brain/AIandML", syntax = "markdown", ext = ".md" },
-				{ path = "~/VimWiki/jacks_brain/LANGS", syntax = "markdown", ext = ".md" },
-				{ path = "~/VimWiki/jacks_brain/WORKFLOW", syntax = "markdown", ext = ".md" },
-				{ path = "~/VimWiki/jacks_brain/RANDOM", syntax = "markdown", ext = ".md" },
 				{ path = "~/VimWiki/work_content", syntax = "markdown", ext = ".md" },
+				{ path = "~/VimWiki/jacks_brain", syntax = "markdown", ext = ".md" },
 			}
 
 			local current_colorscheme = vim.g.colors_name

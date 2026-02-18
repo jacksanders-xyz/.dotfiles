@@ -5,11 +5,13 @@ return {
 		opts = {},
 		dependencies = {
 			"MunifTanjim/nui.nvim",
-			-- "rcarriga/nvim-notify", -- optional
+			"rcarriga/nvim-notify", -- optional
 		},
 		config = function()
+			-- Make the bottom messages split separator visible
+			vim.api.nvim_set_hl(0, "NoiceSplitSeparator", { link = "Comment" })
+			vim.keymap.set("n", "<leader>C", "<cmd>NoiceDismiss<cr>", { noremap = true, silent = true })
 			-- clear
-			vim.keymap.set("n", "<leader>C", "<cmd>NoiceDismiss<cr>", { noremap = true, silent = false })
 			require("noice").setup({
 				lsp = {
 					override = {
@@ -27,23 +29,23 @@ return {
 				},
 				-- Tell noice.nvim to use the "cmdline_popup" view for cmdline input.
 				cmdline = {
-					input_view = "cmdline_popup",
+					input_view = "cmdline",
 					format = {
 						cmdline = { icon = ":" },
 						search_down = { icon = "/" },
 						search_up = { icon = "?" },
 						filter = { icon = "$" },
 						lua = { icon = "☾" },
-						help = { icon = "?" },
+						help = { icon = "" },
 						-- OPTIONAL: give shell commands their own icon
 						-- shell = { pattern = "^!", icon = "!" },
 					},
 				},
 				messages = {
 					enabled = true, -- enables the Noice messages UI
-					view = "cmdline",
-					view_error = "notify", -- view for errors
-					view_warn = "notify", -- view for warnings
+					view = "mini",
+					view_error = "mini", -- view for errors
+					view_warn = "mini", -- view for warnings
 					view_history = "messages", -- view for :messages
 					view_search = "virtualtext", -- view for search count messages. Set to `false` to disable
 				},
@@ -60,6 +62,7 @@ return {
 						enter = false,
 						win_options = {
 							winfixheight = true,
+							winhighlight = "WinSeparator:NoiceSplitSeparator",
 						},
 					},
 				},

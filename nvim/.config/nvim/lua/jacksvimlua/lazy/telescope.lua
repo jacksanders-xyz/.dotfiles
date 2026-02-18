@@ -5,6 +5,7 @@ return {
 			"nvim-lua/plenary.nvim",
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 			"jvgrootveld/telescope-zoxide",
+			"camgraff/telescope-tmux.nvim",
 			"nvim-telescope/telescope-file-browser.nvim",
 			"sshelll/telescope-gott.nvim",
 			"benfowler/telescope-luasnip.nvim",
@@ -13,11 +14,28 @@ return {
 		},
 		config = function()
 			local actions = require("telescope.actions")
+			local action_state = require("telescope.actions.state")
 			local telescope = require("telescope")
 			local themes = require("telescope.themes")
 			local builtin = require("telescope.builtin")
 			local open_with_trouble = require("trouble.sources.telescope").open
 			-- local ts_trbl = require("trouble.sources.telescope")
+
+			local function yank_telescope_path(prompt_bufnr)
+				local entry = action_state.get_selected_entry()
+				if not entry then
+					return
+				end
+				local path = entry.path or entry.filename or entry.value
+				if type(path) ~= "string" or path == "" then
+					vim.notify("No path for selected entry", vim.log.levels.WARN)
+					return
+				end
+				path = vim.fn.fnamemodify(path, ":p") -- absolute; use path as-is for relative
+				actions.close(prompt_bufnr)
+				vim.fn.setreg("+", path)
+				vim.notify("Yanked: " .. path)
+			end
 
 			require("telescope").setup({
 				defaults = {
@@ -43,6 +61,10 @@ return {
 						i = {
 							["<C-q>"] = actions.send_to_qflist,
 							["<c-t>"] = open_with_trouble, -- send to trouble
+							["<C-y>"] = yank_telescope_path,
+						},
+						n = {
+							["yy"] = yank_telescope_path,
 						},
 					},
 				},
@@ -114,7 +136,6 @@ return {
 			---------------------------------------------------------------------------
 			--  traverser start
 			---------------------------------------------------------------------------
-			local action_state = require("telescope.actions.state")
 			local api, fn = vim.api, vim.fn
 
 			local function split_opts()
@@ -448,6 +469,82 @@ return {
 			vim.keymap.set("n", "<leader>fm", function()
 				builtin.marks({ "local" })
 			end)
+
+			-- get all the vimwiki links
+			vim.keymap.set("n", "<leader>wu", function()
+				-- Pick Markdown links in the current buffer that are NOT http(s) URLs.
+				local pickers = require("telescope.pickers")
+				local finders = require("telescope.finders")
+				local conf = require("telescope.config").values
+
+				local bufnr = vim.api.nvim_get_current_buf()
+				local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+
+				local results = {}
+				for lnum, line in ipairs(lines) do
+					local from = 1
+					while true do
+						local s, e, text, target = line:find("%[([^%]]+)%]%(([^)]+)%)", from)
+						if not s then
+							break
+						end
+						from = e + 1
+
+						-- Skip images: ![alt](...)
+						local is_image = (s > 1 and line:sub(s - 1, s - 1) == "!")
+						local is_http = target:match("^https?://") ~= nil
+
+						if (not is_image) and not is_http then
+							table.insert(results, {
+								lnum = lnum,
+								col = s,
+								text = text,
+								target = target,
+								line = line,
+							})
+						end
+					end
+				end
+				pickers
+					.new({}, {
+						prompt_title = "Wiki Links (buffer)",
+						finder = finders.new_table({
+							results = results,
+							entry_maker = function(item)
+								return {
+									value = item,
+									ordinal = (item.target or "")
+										.. " "
+										.. (item.text or "")
+										.. " "
+										.. (item.line or ""),
+									display = string.format(
+										"%4d:%-3d  %s  ->  %s",
+										item.lnum,
+										item.col,
+										item.text,
+										item.target
+									),
+								}
+							end,
+						}),
+						sorter = conf.generic_sorter({}),
+						attach_mappings = function(prompt_bufnr, _)
+							actions.select_default:replace(function()
+								local entry = action_state.get_selected_entry()
+								actions.close(prompt_bufnr)
+								if not entry or not entry.value then
+									return
+								end
+								local v = entry.value
+								vim.api.nvim_win_set_buf(0, bufnr)
+								vim.api.nvim_win_set_cursor(0, { v.lnum, math.max((v.col or 1) - 1, 0) })
+							end)
+							return true
+						end,
+					})
+					:find()
+			end, { desc = "Pick wiki links (buffer)" })
 		end,
 	},
 	{
@@ -498,4 +595,22 @@ return {
 			vim.keymap.set("n", "<leader>fc", "<cmd>Telescope neoclip<cr>")
 		end,
 	},
+	{
+		"axieax/urlview.nvim",
+		config = function()
+			require("urlview").setup({
+				-- netrw BrowseX can fail silently in some setups; use OS browser.
+				default_action = "system",
+				-- Ensure Telescope picker is used when available.
+				default_picker = "telescope",
+			})
+			vim.keymap.set("n", "<leader>fu", "<Cmd>UrlView<CR>", { desc = "View buffer URLs" })
+		end,
+	},
 }
+
+-- local actions = require("telescope.actions")
+-- local action_state = require("telescope.actions.state")
+--
+--
+-- ```
