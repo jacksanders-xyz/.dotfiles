@@ -43,7 +43,7 @@ return {
 				},
 				messages = {
 					enabled = true, -- enables the Noice messages UI
-					view = "cmdline",
+					view = "messages",
 					view_error = "mini", -- view for errors
 					view_warn = "mini", -- view for warnings
 					view_history = "messages", -- view for :messages
