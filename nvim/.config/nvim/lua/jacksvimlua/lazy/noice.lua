@@ -57,6 +57,16 @@ return {
 							},
 						},
 					},
+					mini = {
+						border = { style = "single" },
+						win_options = {
+							winblend = 0,
+							winhighlight = {
+								Normal = "NoiceMini",
+								FloatBorder = "NoiceMiniBorder",
+							},
+						},
+					},
 					messages = {
 						backend = "split",
 						enter = false,
