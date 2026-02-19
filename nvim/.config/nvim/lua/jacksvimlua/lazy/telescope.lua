@@ -478,6 +478,7 @@ return {
 				local conf = require("telescope.config").values
 
 				local bufnr = vim.api.nvim_get_current_buf()
+				local origin_win = vim.api.nvim_get_current_win()
 				local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
 
 				local results = {}
@@ -529,17 +530,46 @@ return {
 							end,
 						}),
 						sorter = conf.generic_sorter({}),
-						attach_mappings = function(prompt_bufnr, _)
-							actions.select_default:replace(function()
+						attach_mappings = function(prompt_bufnr, map)
+							local function jump(open)
 								local entry = action_state.get_selected_entry()
-								actions.close(prompt_bufnr)
 								if not entry or not entry.value then
+									actions.close(prompt_bufnr)
 									return
 								end
 								local v = entry.value
-								vim.api.nvim_win_set_buf(0, bufnr)
-								vim.api.nvim_win_set_cursor(0, { v.lnum, math.max((v.col or 1) - 1, 0) })
+								actions.close(prompt_bufnr)
+
+								vim.schedule(function()
+									if vim.api.nvim_win_is_valid(origin_win) then
+										vim.api.nvim_set_current_win(origin_win)
+									end
+
+									local win = vim.api.nvim_get_current_win()
+									if vim.api.nvim_buf_is_valid(bufnr) and vim.api.nvim_win_get_buf(win) ~= bufnr then
+										vim.api.nvim_win_set_buf(win, bufnr)
+									end
+
+									local col0 = math.max((v.col or 1) - 1, 0)
+									pcall(vim.api.nvim_win_set_cursor, win, { v.lnum, col0 })
+
+									if open then
+										local keys = vim.api.nvim_replace_termcodes("<CR>", true, false, true)
+										vim.api.nvim_feedkeys(keys, "nx", false)
+									end
+								end)
+							end
+							actions.select_default:replace(function()
+								jump(false)
 							end)
+
+							map("i", "<C-g>", function()
+								jump(true)
+							end)
+							map("n", "<C-g>", function()
+								jump(true)
+							end)
+
 							return true
 						end,
 					})

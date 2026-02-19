@@ -10,6 +10,20 @@ return {
 		config = function()
 			-- Make the bottom messages split separator visible
 			vim.api.nvim_set_hl(0, "NoiceSplitSeparator", { link = "Comment" })
+			-- Search count view (messages.view_search = "virtualtext") uses NoiceVirtualText
+			local function set_noice_hls()
+				-- Dark/dim slate blue for virtual text
+				if vim.o.termguicolors then
+					vim.api.nvim_set_hl(0, "NoiceVirtualText", { fg = "#2d4a6a" })
+				else
+					-- 256-color fallback (NavyBlue)
+					vim.api.nvim_set_hl(0, "NoiceVirtualText", { ctermfg = 18 })
+				end
+			end
+			set_noice_hls()
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				callback = set_noice_hls,
+			})
 			vim.keymap.set("n", "<leader>C", "<cmd>NoiceDismiss<cr>", { noremap = true, silent = true })
 			-- clear
 			require("noice").setup({

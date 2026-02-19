@@ -74,7 +74,7 @@ return {
 				local flavour = (part == "mid-day") and "frappe" or "mocha"
 				require("catppuccin").setup({
 					flavour = flavour, -- (midday) or mocha (night)
-					transparent_background = true,
+					transparent_background = false,
 					show_end_of_buffer = true,
 					styles = {
 						comments = { "italic" },
