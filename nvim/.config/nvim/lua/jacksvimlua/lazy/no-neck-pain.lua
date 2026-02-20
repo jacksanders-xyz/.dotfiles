@@ -17,7 +17,7 @@ return {
 						blend = 5,
 					},
 					wo = {
-						fillchars = "eob: ",
+						fillchars = "eob: ,horiz:─,horizup:┴,horizdown:┬,vert:│,vertleft:┤,vertright:├,verthoriz:┼",
 						winfixwidth = false,
 					},
 					bo = {

@@ -33,7 +33,7 @@ return {
 
 				-- Code blocks with darker background
 				vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "#11111b" })
-				vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", { bg = "#181825", fg = "#89dceb" })
+				vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", { bg = "#181825", fg = "#a6e3a1" }) -- Bright green
 
 				-- Callout colors
 				vim.api.nvim_set_hl(0, "RenderMarkdownInfo", { bg = "#1e1e2e", fg = "#89dceb" })
@@ -94,7 +94,9 @@ return {
 				},
 				bullet = {
 					enabled = true,
-					icons = { "●", "○", "◆", "◇" },
+					-- Smaller, cleaner list markers (nesting levels 1..4)
+					-- icons = { "●", "○", "◆", "◇" },
+					icons = { "•", "◦", "▪", "▫" },
 				},
 				checkbox = {
 					enabled = true,
@@ -110,6 +112,7 @@ return {
 					enabled = true,
 					custom = {
 						web = { pattern = "^http[s]?://", icon = "󰖟 " }, -- Globe icon for external links
+						-- path = { pattern = "[/~][-%.%w/_]+", icon = " " }, -- File/folder icon for paths
 					},
 				},
 				callout = {

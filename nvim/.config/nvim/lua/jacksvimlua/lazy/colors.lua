@@ -21,7 +21,7 @@ return {
 				vim.cmd.colorscheme("dayfox")
 
 				-- -- sel0 = "#2a2a38",
-				vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
+				vim.api.nvim_set_hl(0, "WinSeparator", { fg = "#6b7280", bg = "NONE" })
 				local function fix_telescope_borders()
 					local hl = vim.api.nvim_set_hl
 					local p = require("nightfox.palette").load("dayfox")
@@ -98,8 +98,9 @@ return {
 				-- shared
 				local hl = vim.api.nvim_set_hl
 				local c = require("catppuccin.palettes").get_palette()
-				vim.api.nvim_set_hl(0, "WinSeparator", { bg = "NONE" })
+
 				vim.cmd.colorscheme("catppuccin")
+				vim.api.nvim_set_hl(0, "WinSeparator", { fg = c.surface2, bg = "NONE" })
 
 				if part == "night" then
 					-- hl(0, "NoiceCmdlinePopup", { fg = c.surface2, bg = "#080c10" }) -- night

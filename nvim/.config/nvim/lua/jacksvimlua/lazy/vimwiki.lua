@@ -72,7 +72,6 @@ return {
 				{ path = "~/VimWiki/jacks_brain", syntax = "markdown", ext = ".md" },
 			}
 
-			-- Optional: disable some VimWiki features you might not use
 			vim.g.vimwiki_table_mappings = 0
 		end,
 		config = function()
