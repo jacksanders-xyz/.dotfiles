@@ -31,19 +31,20 @@ return {
 				vim.api.nvim_set_hl(0, "RenderMarkdownH5", { fg = "#d5a8f8", bold = true }) -- Brighter Violet
 				vim.api.nvim_set_hl(0, "RenderMarkdownH6", { fg = "#f5c2e7", bold = true }) -- Intense Magenta
 
-				-- Code blocks with darker background
-				vim.api.nvim_set_hl(0, "RenderMarkdownCode", { bg = "#11111b" })
-				vim.api.nvim_set_hl(0, "RenderMarkdownCodeInline", { bg = "#181825", fg = "#a6e3a1" }) -- Bright green
-
 				-- Callout colors
 				vim.api.nvim_set_hl(0, "RenderMarkdownInfo", { bg = "#1e1e2e", fg = "#89dceb" })
 				vim.api.nvim_set_hl(0, "RenderMarkdownSuccess", { bg = "#1e1e2e", fg = "#a6e3a1" })
 				vim.api.nvim_set_hl(0, "RenderMarkdownHint", { bg = "#1e1e2e", fg = "#94e2d5" })
 				vim.api.nvim_set_hl(0, "RenderMarkdownWarn", { bg = "#1e1e2e", fg = "#f9e2af" })
 				vim.api.nvim_set_hl(0, "RenderMarkdownError", { bg = "#1e1e2e", fg = "#f38ba8" })
+				vim.api.nvim_set_hl(0, "RenderMarkdownSubnote", { bg = "#313244", fg = "#a6adc8", italic = true }) -- Subtle box bg
 
 				-- Bullets and list items
 				vim.api.nvim_set_hl(0, "RenderMarkdownBullet", { fg = "#f5c2e7" })
+
+				-- Softer inline code (teal instead of bright green)
+				-- vim.api.nvim_set_hl(0, "@markup.raw.markdown_inline", { fg = "#94e2d5" })
+				vim.api.nvim_set_hl(0, "@markup.raw.block.markdown", { fg = "#b4befe" }) -- catppuccin lavender
 
 				-- Tables
 				vim.api.nvim_set_hl(0, "RenderMarkdownTableHead", { fg = "#89b4fa", bold = true })
@@ -123,6 +124,7 @@ return {
 					caution = { raw = "[!CAUTION]", rendered = "󰳦 Caution", highlight = "RenderMarkdownError" },
 					abstract = { raw = "[!ABSTRACT]", rendered = "󰨸 Abstract", highlight = "RenderMarkdownInfo" },
 					todo = { raw = "[!TODO]", rendered = "󰝖 Todo", highlight = "RenderMarkdownInfo" },
+					subnote = { raw = "[!SUBNOTE]", rendered = "↳ ", highlight = "RenderMarkdownSubnote" },
 				},
 			})
 		end,

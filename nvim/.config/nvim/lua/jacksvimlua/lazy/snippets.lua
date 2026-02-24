@@ -12,6 +12,9 @@ return {
 			local ls = require("luasnip")
 			ls.filetype_extend("javascript", { "jsdoc" })
 
+			-- Load custom markdown snippets
+			ls.add_snippets("markdown", require("jacksvimlua.snippets.markdown"))
+
 			vim.keymap.set({ "i" }, "<C-s>e", function()
 				ls.expand()
 			end, { silent = true }) -- expand snippet

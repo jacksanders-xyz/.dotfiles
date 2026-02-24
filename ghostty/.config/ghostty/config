@@ -15,8 +15,8 @@ mouse-hide-while-typing = true
 background-opacity      = 0.9
 
 # Font thickening (macOS only)
-font-thicken            = true
-font-thicken-strength   = 64
+# font-thicken            = true
+# font-thicken-strength   = 10
 
 # Disable Ghostty’s auto shell integration (we’ll source our own with 12 h timestamps)
 shell-integration       = "none"
