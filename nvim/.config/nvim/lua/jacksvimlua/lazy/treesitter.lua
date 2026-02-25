@@ -46,6 +46,8 @@ return {
 					keymaps = {
 						["af"] = "@function.outer",
 						["if"] = "@function.inner",
+						["ac"] = "@block.outer", -- around code block
+						["ic"] = "@block.inner", -- inside code block
 					},
 				},
 			},
