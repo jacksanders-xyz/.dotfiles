@@ -29,6 +29,10 @@ return {
 			require("ufo").goPreviousClosedFold()
 		end, { desc = "UFO: previous closed fold" })
 
+		vim.keymap.set("n", "zK", function()
+			require("ufo").peekFoldedLinesUnderCursor()
+		end, { desc = "UFO: preview fold" })
+
 		-- finally, start Ufo
 		require("ufo").setup()
 	end,

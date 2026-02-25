@@ -37,6 +37,7 @@ return {
 					["<c-y>"] = cmp.mapping.confirm({ select = true }),
 				}),
 				sources = {
+					{ name = "luasnip" },
 					{ name = "nvim_lsp" },
 					{ name = "path" },
 					{ name = "buffer" },

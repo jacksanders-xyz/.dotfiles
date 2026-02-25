@@ -29,6 +29,7 @@ return {
 					ls.change_choice(1)
 				end
 			end, { silent = true })
+			-- Usage: Type the trigger (e.g., subnote), then press <C-s>e to expand. Use <C-s>; to jump to the next placeholder.
 
 			-- vim.keymap.set("n", "<leader><leader>s", "<cmd>source ~/.config/nvim/") reload snippet file
 		end,
