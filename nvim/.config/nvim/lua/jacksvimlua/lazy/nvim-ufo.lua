@@ -9,6 +9,10 @@ return {
 		vim.o.foldlevelstart = 99
 		vim.o.foldenable = true
 
+		-- Calmer fold line colors (catppuccin)
+		vim.api.nvim_set_hl(0, "Folded", { bg = "#313244", fg = "#a6adc8" }) -- surface0 bg, subtext0 fg
+		vim.api.nvim_set_hl(0, "UfoFoldedEllipsis", { fg = "#6c7086" }) -- overlay0 (muted)
+
 		-- keymaps for Ufo
 		vim.keymap.set("n", "zR", function()
 			require("ufo").openAllFolds()
