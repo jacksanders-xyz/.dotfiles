@@ -3,7 +3,19 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/code ~/code/Personal ~/code/Personal/GO_practice/ ~/code/nbcu-maximo/WILSON-67.228.221.82 ~/code/SOULMACHINE_2 ~/code/SOULMACHINE_LAUNCHPAD/SMLP-TechZone ~/code/Tmobile/wd_json_servers ~/code/Tmobile/ ~/code/Verizon/vz-pso-ticket-summarization-nextapp ~/code/Verizon/ ~/ -mindepth 2 -maxdepth 3 -type d | fzf)
+    # --print-query outputs the typed query on the first line
+    # ctrl-o creates a new directory with the typed name
+    result=$(find ~/code -mindepth 2 -maxdepth 4 -type d | fzf --print-query --bind 'ctrl-o:print-query+abort')
+
+    query=$(echo "$result" | sed -n '1p')
+    selected=$(echo "$result" | sed -n '2p')
+
+    # If ctrl-o was pressed (selected is empty but query exists), create new dir
+    if [[ -z $selected && -n $query ]]; then
+        selected="$HOME/code/$query"
+        mkdir -p "$selected"
+        echo "Created: $selected"
+    fi
 fi
 
 if [[ -z $selected ]]; then

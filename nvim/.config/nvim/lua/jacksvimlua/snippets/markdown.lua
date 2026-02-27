@@ -55,7 +55,7 @@ return {
 	s("subnote", {
 		t(">[!SUBNOTE]"),
 		i(1, "title"),
-		t({ "", "```subnote", "" }),
+		t({ "", "```md", "" }),
 		i(2, "note content here"),
 		t({ "", "```", "" }),
 		i(0),

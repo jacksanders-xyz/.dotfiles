@@ -10,8 +10,12 @@ return {
 		vim.o.foldenable = true
 
 		-- Calmer fold line colors (catppuccin)
-		vim.api.nvim_set_hl(0, "Folded", { bg = "#313244", fg = "#a6adc8" }) -- surface0 bg, subtext0 fg
-		vim.api.nvim_set_hl(0, "UfoFoldedEllipsis", { fg = "#6c7086" }) -- overlay0 (muted)
+		local function set_fold_highlights()
+			vim.api.nvim_set_hl(0, "Folded", { bg = "#313244", fg = "#a6adc8" }) -- surface0 bg, subtext0 fg
+			vim.api.nvim_set_hl(0, "UfoFoldedEllipsis", { fg = "#6c7086" }) -- overlay0 (muted)
+		end
+		set_fold_highlights()
+		vim.api.nvim_create_autocmd("ColorScheme", { pattern = "*", callback = set_fold_highlights })
 
 		-- keymaps for Ufo
 		vim.keymap.set("n", "zR", function()
