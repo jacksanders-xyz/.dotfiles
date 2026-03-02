@@ -36,3 +36,10 @@ vim.keymap.set("n", "<leader>R", function() -- run code
 		once = true, -- fire only for this terminal window
 	})
 end, { buffer = 0, desc = "go run (main) in persistent terminal" })
+
+vim.keymap.set("n", "<leader>FG", "<cmd>GoDoc<cr>", {
+	buffer = 0,
+	desc = "GoDoc Search",
+	noremap = true,
+	silent = true,
+})

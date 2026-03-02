@@ -268,7 +268,6 @@ return {
 
 			-- trouble
 			-- this thing is gonna let you give the window information of the trouble windows to edgy i think
-
 			-- opts is the table above table... you are looping through top bot left etc.
 			for _, pos in ipairs({ "top", "bottom", "left", "right" }) do -- loop through with a 1: top 2:bottom 3:left 4: right
 				opts[pos] = opts[pos] or {} -- pos is your iterator, position. its top bottom left or right

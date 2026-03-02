@@ -359,7 +359,7 @@ function M.setup()
 
 	-- you put nodes on traces
 	-- make a trace <leader>tN
-	-- look at it <leader>tS
+	-- look at it <leader>tN
 	vim.api.nvim_create_user_command("TraverserEdit", open_editor, {})
 	local map = vim.keymap.set
 	map("n", "<leader>ta", "<Cmd>TraverserAddNode<CR>", { desc = "Traverser: add/remove node" })

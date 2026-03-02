@@ -69,108 +69,143 @@ return {
 							require("trouble").refresh({ mode = view.mode })
 						end,
 					},
-					["<c-r>"] = { -- call on an outgoing func to see references in its scope
-						-- then q <c-o> to jump back (q<c-o><leader>to for back to outgoing)
-						-- If only 1 call it will jump only to that, to go back <c-o><c-o>
-						desc = "Jump to symbol, then list refs inside this function",
+					["<c-r>"] = { -- call on an outgoing func to see scoped references
+						-- populates quickfix list, use <leader>tq for trouble view, :cnext/:cprev to navigate
+						desc = "Scoped refs: quickfix list of references within the caller's function",
 						action = function(view)
-							local current_line = vim.fn.line(".")
-							require("trouble").cancel()
-							vim.schedule(function()
-								local function get_func_range_ts()
-									-- local ok, tsu = pcall(require, "vim.treesitter.ts_utils")
-									if not ok then
-										ok, tsu = pcall(require, "nvim-treesitter.ts_utils")
-									end
-									if not ok then
-										return
-									end
+							local loc = view:at()
+							local item = loc.item
+							if not item then
+								vim.notify("No item under cursor", vim.log.levels.WARN)
+								return
+							end
 
-									local node = tsu.get_node_at_cursor()
-									while
-										node
-										and not vim.tbl_contains({
+							local def_file = item.filename
+							local def_line = item.pos and item.pos[1] or nil
+
+							-- Get caller's file + function scope from the code window
+							local caller_file, start_l, end_l, code_win
+							for _, win in ipairs(vim.api.nvim_list_wins()) do
+								local bufnr = vim.api.nvim_win_get_buf(win)
+								local cfg = vim.api.nvim_win_get_config(win)
+								local t = vim.w[win].trouble
+								local bt = vim.bo[bufnr].buftype
+								local ft = vim.bo[bufnr].filetype
+
+								if not t and cfg.relative == "" and bt == "" and ft ~= "trouble" then
+									code_win = win
+									caller_file = vim.api.nvim_buf_get_name(bufnr)
+
+									local result = vim.api.nvim_win_call(win, function()
+										local ok_parser, parser = pcall(vim.treesitter.get_parser, bufnr)
+										if ok_parser and parser then
+											parser:parse()
+										end
+										local ts_node = vim.treesitter.get_node()
+										if not ts_node then
+											return nil
+										end
+										local func_types = {
 											"function_definition",
 											"function_declaration",
 											"method_declaration",
+											"func_literal",
 											"function",
 											"method",
-										}, node:type())
-									do
-										node = node:parent()
+										}
+										while ts_node and not vim.tbl_contains(func_types, ts_node:type()) do
+											ts_node = ts_node:parent()
+										end
+										if not ts_node then
+											return nil
+										end
+										local sr, _, er, _ = ts_node:range()
+										return { sr + 1, er + 1 }
+									end)
+									if result then
+										start_l = result[1]
+										end_l = result[2]
 									end
-									if not node then
+									break
+								end
+							end
+
+							if not start_l then
+								vim.notify("Couldn't detect function scope (Treesitter). Navigate to the caller's file first.", vim.log.levels.WARN)
+								return
+							end
+
+							view:jump()
+
+							vim.schedule(function()
+								local clients = vim.lsp.get_clients({ bufnr = 0 })
+								local encoding = clients[1] and clients[1].offset_encoding or "utf-16"
+								local params = vim.lsp.util.make_position_params(0, encoding)
+								params.context = { includeDeclaration = false }
+
+								vim.lsp.buf_request(0, "textDocument/references", params, function(err, result)
+									if err or not result or #result == 0 then
+										vim.notify("No references found", vim.log.levels.INFO)
 										return
 									end
-									local sr, _, er, _ = node:range()
-									return sr + 1, er + 1 -- 1-indexed
-								end
-								local start_l, end_l = get_func_range_ts()
-								if not start_l then
-									vim.notify("Couldn’t detect function scope (Treesitter)", vim.log.levels.WARN)
-									return
-								end
-								local parent_file = vim.api.nvim_buf_get_name(0)
-								-- print(parent_file)
-								view:jump()
-								require("trouble").open({
-									mode = "lsp_references",
-									open_no_results = true,
-									keys = {
-										["<C-e>"] = {
-											desc = "reset cursor to outgoing",
-											action = function(view)
-												view:close()
 
-												-- Step 1: run <C-o> first
-												vim.defer_fn(function()
-													vim.api.nvim_feedkeys(
-														vim.api.nvim_replace_termcodes("<C-o>", true, false, true),
-														"n",
-														false
-													)
+									local qf_items = {}
+									for _, ref in ipairs(result) do
+										local ref_file = vim.uri_to_fname(ref.uri)
+										local ref_line = ref.range.start.line + 1
+										local ref_col = ref.range.start.character + 1
 
-													-- Step 2: give <C-o> time to execute, then move to the outgoing Trouble window
-													vim.defer_fn(function()
-														for _, win in ipairs(vim.api.nvim_list_wins()) do
-															local t = vim.w[win].trouble
-															if t and t.type == "split" and t.relative == "editor" then
-																if
-																	t.mode == "lsp_outgoing_calls"
-																	or t.mode == "traverser_outgoing"
-																then
-																	vim.api.nvim_set_current_win(win)
-																	break
-																end
-															end
-														end
-														vim.defer_fn(function()
-															vim.api.nvim_win_set_cursor(0, { current_line, 0 })
-														end, 180)
-													end, 90)
-												end, 10)
-											end,
-										},
-									},
-									filter = function(items)
-										return vim.tbl_filter(function(item)
-											local same_file = (
-												item.filename
-												and vim.fn.fnamemodify(item.filename, ":p")
-													== vim.fn.fnamemodify(parent_file, ":p")
-											)
-												or (item.bufnr and vim.api.nvim_buf_get_name(item.bufnr) == parent_file)
+										local is_definition = def_line
+											and vim.fn.fnamemodify(ref_file, ":p") == vim.fn.fnamemodify(def_file, ":p")
+											and ref_line == def_line
 
-											local l = item.pos[1]
-											local in_range = l and l >= start_l and l <= end_l
+										if not is_definition then
+											local same_file = vim.fn.fnamemodify(ref_file, ":p")
+												== vim.fn.fnamemodify(caller_file, ":p")
+											local in_scope = ref_line >= start_l and ref_line <= end_l
 
-											-- print(parent_file, same_file, start_l, end_l, l)
-											return same_file and in_range
-										end, items)
-									end,
-								})
-								require("trouble").first({ mode = "lsp_references" })
-								require("trouble").focus({ mode = "lsp_references" })
+											if same_file and in_scope then
+												local bufnr = vim.fn.bufadd(ref_file)
+												vim.fn.bufload(bufnr)
+												local lines = vim.api.nvim_buf_get_lines(bufnr, ref_line - 1, ref_line, false)
+												local text = lines[1] and vim.trim(lines[1]) or ""
+
+												table.insert(qf_items, {
+													filename = ref_file,
+													lnum = ref_line,
+													col = ref_col,
+													text = text,
+												})
+											end
+										end
+									end
+
+									if #qf_items == 0 then
+										vim.notify("No references in current function scope", vim.log.levels.INFO)
+										return
+									end
+
+									if #qf_items == 1 then
+										if code_win and vim.api.nvim_win_is_valid(code_win) then
+											vim.api.nvim_set_current_win(code_win)
+										end
+										local qf = qf_items[1]
+										local bufnr = vim.fn.bufadd(qf.filename)
+										vim.fn.bufload(bufnr)
+										vim.api.nvim_win_set_buf(0, bufnr)
+										vim.api.nvim_win_set_cursor(0, { qf.lnum, qf.col - 1 })
+										vim.cmd("normal! zz")
+										return
+									end
+
+									vim.fn.setqflist(qf_items, "r")
+									vim.fn.setqflist({}, "a", { title = "Scoped refs (in caller)" })
+
+									if code_win and vim.api.nvim_win_is_valid(code_win) then
+										vim.api.nvim_set_current_win(code_win)
+									end
+									vim.cmd("cfirst")
+								end)
 							end)
 						end,
 					},

@@ -10,6 +10,20 @@ return {
 
 	config = function()
 		--------------------------------------------------------------------------
+		-- Register tree-sitter-godoc parser (for godoc.nvim)
+		--------------------------------------------------------------------------
+		local parser_configs = require("nvim-treesitter.parsers").get_parser_configs()
+		parser_configs.godoc = {
+			install_info = {
+				url = "https://github.com/fredrikaverpil/tree-sitter-godoc",
+				files = { "src/parser.c" },
+				branch = "main",
+			},
+			filetype = "godoc",
+		}
+		vim.treesitter.language.register("godoc", "godoc")
+
+		--------------------------------------------------------------------------
 		-- Base Treesitter setup
 		--------------------------------------------------------------------------
 		require("nvim-treesitter.configs").setup({

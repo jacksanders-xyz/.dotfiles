@@ -12,50 +12,43 @@ return {
 	-- Callouts
 	s("note", {
 		t(">[!NOTE]"),
-		t({ "", ">" }),
-		i(1, "Your note here"),
+		i(1),
 	}),
 
 	s("tip", {
 		t(">[!TIP]"),
-		t({ "", ">" }),
-		i(1, "Your tip here"),
+		i(1),
 	}),
 
 	s("important", {
 		t(">[!IMPORTANT]"),
-		t({ "", ">" }),
-		i(1, "Important information here"),
+		i(1),
 	}),
 
 	s("warning", {
 		t(">[!WARNING]"),
-		t({ "", ">" }),
-		i(1, "Warning message here"),
+		i(1),
 	}),
 
 	s("caution", {
 		t(">[!CAUTION]"),
-		t({ "", ">" }),
-		i(1, "Caution message here"),
+		i(1),
 	}),
 
 	s("abstract", {
 		t(">[!ABSTRACT]"),
-		t({ "", ">" }),
-		i(1, "Abstract here"),
+		i(1),
 	}),
 
 	s("todo", {
 		t(">[!TODO]"),
-		t({ "", ">" }),
-		i(1, "Todo item here"),
+		i(1),
 	}),
 
 	s("subnote", {
 		t(">[!SUBNOTE]"),
 		i(1, "title"),
-		t({ "", "```md", "" }),
+		t({ "", "```subnote", "" }),
 		i(2, "note content here"),
 		t({ "", "```", "" }),
 		i(0),

@@ -55,7 +55,7 @@ autocmd("LspAttach", {
 		-- end, opts)
 
 		--       trouble
-		--       vim.keymap.set("n", "<leader>cr", function()
+		-- vim.keymap.set("n", "<leader>cr", function()
 		-- 	vim.lsp.buf.references()
 		-- end, opts)
 
@@ -74,7 +74,6 @@ autocmd("LspAttach", {
 -- <leader>vca code_action()            Show available refactors/quick fixes
 --                                      (A code action is an automated fix, suggestion, or refactor provided by your
 --                                      LSP (Language Server Protocol) for the code under your cursor.)
-
 -- <leader>vrr references()             Find all uses of current symbol
 -- <leader>vrn rename()                 Rename symbol across project
 -- <leader>vrh signature_help()         Show parameter hints while writing a call

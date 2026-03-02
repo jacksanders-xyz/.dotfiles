@@ -2,7 +2,15 @@
 vim.opt.guicursor = ""
 
 vim.opt.laststatus = 3
-vim.opt.fillchars = { horiz = "─", horizup = "┴", horizdown = "┬", vert = "│", vertleft = "┤", vertright = "├", verthoriz = "┼" }
+vim.opt.fillchars = {
+	horiz = "─",
+	horizup = "┴",
+	horizdown = "┬",
+	vert = "│",
+	vertleft = "┤",
+	vertright = "├",
+	verthoriz = "┼",
+}
 
 vim.opt.nu = true
 vim.opt.relativenumber = true

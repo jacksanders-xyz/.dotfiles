@@ -72,6 +72,13 @@ return {
 						},
 					},
 					mini = {
+						position = { -- comment out position to move messages to the right
+							row = -2, -- from bottom
+							col = 0, -- left side
+						},
+						size = {
+							max_width = 44,
+						},
 						border = { style = "single" },
 						win_options = {
 							winblend = 0,

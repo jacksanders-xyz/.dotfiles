@@ -425,7 +425,6 @@ return {
 			pcall(require("telescope").load_extension("helpgrep"))
 			pcall(require("telescope").load_extension("luasnip"))
 			pcall(require("telescope").load_extension("zoxide"))
-			-- pcall(require("telescope").load_extension("godoc"))
 			pcall(require("telescope").load_extension("ui-select"))
 
 			-- GOTEST
@@ -579,24 +578,34 @@ return {
 	},
 	{
 		"fredrikaverpil/godoc.nvim",
-		ft = "go", -- Lazy load only for Go files
-		event = "VeryLazy",
-		-- build = "go install github.com/lotusirous/gostdsym/stdsym@latest",
+		version = "*",
+		cmd = { "GoDoc" },
+		ft = "godoc",
 		dependencies = {
 			"nvim-telescope/telescope.nvim",
-			{
-				"nvim-treesitter/nvim-treesitter",
-				opts = { ensure_installed = { "go" } },
+			"nvim-treesitter/nvim-treesitter",
+		},
+		opts = {
+			picker = {
+				type = "telescope",
+				telescope = {
+					previewer = true,
+				},
+			},
+			adapters = {
+				{
+					name = "go",
+					opts = {
+						get_syntax_info = function()
+							return {
+								filetype = "godoc",
+								language = "godoc",
+							}
+						end,
+					},
+				},
 			},
 		},
-		config = function()
-			require("godoc").setup({})
-			vim.keymap.set("n", "<leader>FG", "<cmd>GoDoc<cr>", {
-				desc = "GoDoc Search",
-				noremap = true,
-				silent = true,
-			})
-		end,
 	},
 	{
 		"ANGkeith/telescope-terraform-doc.nvim",
@@ -638,7 +647,6 @@ return {
 		end,
 	},
 }
-
 -- local actions = require("telescope.actions")
 -- local action_state = require("telescope.actions.state")
 --
