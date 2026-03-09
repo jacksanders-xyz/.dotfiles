@@ -77,7 +77,8 @@ return {
 							col = 0, -- left side
 						},
 						size = {
-							max_width = 44,
+							max_width = 50,
+							-- max_width = 44,
 						},
 						border = { style = "single" },
 						win_options = {

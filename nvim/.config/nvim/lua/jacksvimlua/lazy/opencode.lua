@@ -6,13 +6,47 @@ return {
 		{ "folke/snacks.nvim", opts = { input = {}, picker = {}, terminal = {} } },
 	},
 	config = function()
+		local opencode_pane_id = nil
+
+		local function find_opencode_pane()
+			if opencode_pane_id then
+				-- Verify pane still exists
+				local check = vim.fn.system("tmux has-session -t " .. opencode_pane_id .. " 2>/dev/null; echo $?")
+				-- has-session works on sessions, use display-message to check pane
+				local result = vim.fn.system("tmux display-message -t " .. opencode_pane_id .. " -p '#{pane_id}' 2>/dev/null")
+				if vim.trim(result) ~= "" and not result:match("can't find") then
+					return opencode_pane_id
+				end
+				opencode_pane_id = nil
+			end
+			return nil
+		end
+
+		local function start_opencode()
+			local result = vim.fn.system("tmux split-window -hb -d -l 33% -PF '#{pane_id}' 'opencode --port'")
+			opencode_pane_id = vim.trim(result)
+		end
+
 		---@type opencode.Opts
 		vim.g.opencode_opts = {
-			provider = {
-				enabled = "tmux",
-				tmux = {
-					options = "-hb -l 33%", -- Open in horizontal split with 33% width
-				},
+			server = {
+				start = start_opencode,
+				stop = function()
+					local pane = find_opencode_pane()
+					if pane then
+						vim.fn.system("tmux kill-pane -t " .. pane)
+						opencode_pane_id = nil
+					end
+				end,
+				toggle = function()
+					local pane = find_opencode_pane()
+					if pane then
+						vim.fn.system("tmux kill-pane -t " .. pane)
+						opencode_pane_id = nil
+					else
+						start_opencode()
+					end
+				end,
 			},
 		}
 		-- Required for `opts.events.reload`.

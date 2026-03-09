@@ -378,6 +378,33 @@ return {
 						"%.DS_Store",
 						"^jacks_brain/MUSIC",
 					},
+					attach_mappings = function(_, map)
+						-- <C-e> create new file
+						map("i", "<c-e>", function(prompt_bufnr)
+							local selection = require("telescope.actions.state").get_selected_entry()
+							require("telescope.actions").close(prompt_bufnr)
+							local dir = vim.fn.fnamemodify(selection.path, ":h")
+							local filename = vim.fn.input("New file in " .. dir .. ": ")
+							if filename ~= "" then
+								local full_path = dir .. "/" .. filename
+								vim.fn.mkdir(vim.fn.fnamemodify(full_path, ":h"), "p")
+								vim.cmd("e " .. full_path)
+							end
+						end)
+						-- <C-o> create new directory and open in Oil
+						map("i", "<c-o>", function(prompt_bufnr)
+							local selection = require("telescope.actions.state").get_selected_entry()
+							require("telescope.actions").close(prompt_bufnr)
+							local dir = vim.fn.fnamemodify(selection.path, ":h")
+							local dirname = vim.fn.input("New directory in " .. dir .. ": ")
+							if dirname ~= "" then
+								local full_path = dir .. "/" .. dirname
+								vim.fn.mkdir(full_path, "p")
+								require("oil").open(full_path)
+							end
+						end)
+						return true
+					end,
 					cwd = "~/VimWiki/",
 					hidden = true,
 				})
@@ -439,6 +466,21 @@ return {
 			vim.keymap.set("n", "<leader>fl", function()
 				telescope.extensions.file_browser.file_browser({})
 			end, { noremap = true, silent = true })
+
+			-- file_browser to notes to create *entry in notes
+			-- vim.keymap.set("n", "<leader>fe", function()
+			-- 	telescope.extensions.file_browser.file_browser({
+			-- 		prompt_title = "<Browser Jack's Brain >",
+			-- 		file_ignore_patterns = {
+			-- 			"^IMAGE_POOL/",
+			-- 			"%.git",
+			-- 			"%.DS_Store",
+			-- 			"^jacks_brain/MUSIC",
+			-- 		},
+			-- 		path = "~/VimWiki",
+			-- 		hidden = true,
+			-- 	})
+			-- end, { noremap = true, silent = true })
 
 			-- GIT
 			vim.keymap.set("n", "<leader>gc", function()
