@@ -41,7 +41,23 @@ fi
 ln -sf  "$TASK_DIR/$THEME.theme"     "$TASK_DIR/active.theme"
 
 ##############################################################################
-# 5  Neovim day-part file  (no env vars needed)
+# 5 VS Code
+##############################################################################
+VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User/settings.json"
+
+if [ -f "$VSCODE_SETTINGS" ]; then
+  case "$THEME" in
+    morning) VSCODE_THEME="Catppuccin Latte"  ;;
+    mid-day) VSCODE_THEME="Catppuccin Frappé" ;;
+    night)   VSCODE_THEME="Catppuccin Mocha"  ;;
+  esac
+
+  sed -i '' "s/\"workbench.colorTheme\": \".*\"/\"workbench.colorTheme\": \"$VSCODE_THEME\"/" \
+    "$VSCODE_SETTINGS"
+fi
+
+##############################################################################
+# 6  Neovim day-part file  (no env vars needed)
 ##############################################################################
 LUAFILE="$HOME/.config/env/daypart.lua"
 mkdir -p "$(dirname "$LUAFILE")"
