@@ -118,6 +118,7 @@ export PATH="$HOME/.local/share/nvim/lazy-rocks/bin:$PATH"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+export BOBSHELL_API_KEY="$(security find-generic-password -a "$USER" -s "BOBSHELL_API_KEY" -w 2>/dev/null)"
+
 # At the very bottom of ~/.zshrc
 zprof
-

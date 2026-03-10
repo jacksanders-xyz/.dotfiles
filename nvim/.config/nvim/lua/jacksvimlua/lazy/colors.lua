@@ -117,4 +117,7 @@ return {
 			end
 		end,
 	},
+	{
+		"sainnhe/gruvbox-material",
+	},
 }

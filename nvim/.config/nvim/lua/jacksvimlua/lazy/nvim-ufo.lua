@@ -9,10 +9,19 @@ return {
 		vim.o.foldlevelstart = 99
 		vim.o.foldenable = true
 
-		-- Calmer fold line colors (catppuccin)
+		-- Theme-aware fold line colors
+		local part = require("jacksvimlua.daypart")
 		local function set_fold_highlights()
-			vim.api.nvim_set_hl(0, "Folded", { bg = "#313244", fg = "#a6adc8" }) -- surface0 bg, subtext0 fg
-			vim.api.nvim_set_hl(0, "UfoFoldedEllipsis", { fg = "#6c7086" }) -- overlay0 (muted)
+			if part == "night" then
+				vim.api.nvim_set_hl(0, "Folded", { bg = "#313244", fg = "#a6adc8" }) -- mocha surface0, subtext0
+				vim.api.nvim_set_hl(0, "UfoFoldedEllipsis", { fg = "#6c7086" })      -- mocha overlay0
+			elseif part == "mid-day" then
+				vim.api.nvim_set_hl(0, "Folded", { bg = "#414559", fg = "#b5bfe2" }) -- frappe surface0, subtext1
+				vim.api.nvim_set_hl(0, "UfoFoldedEllipsis", { fg = "#838ba7" })      -- frappe overlay1
+			else -- morning
+				vim.api.nvim_set_hl(0, "Folded", { bg = "#8f97a5", fg = "#3a5a7a" }) -- slightly lighter slate, muted blue fg
+				vim.api.nvim_set_hl(0, "UfoFoldedEllipsis", { fg = "#5e6e82" })      -- muted blue-grey
+			end
 		end
 		set_fold_highlights()
 		vim.api.nvim_create_autocmd("ColorScheme", { pattern = "*", callback = set_fold_highlights })
