@@ -4,8 +4,8 @@
 set -euo pipefail
 
 case "${1:-}" in
-  morning|mid-day|night) THEME="$1" ;;
-  *) echo "Usage: $0 {morning|mid-day|night}" ; exit 1 ;;
+  morning|mid-day|mid-gruv|night) THEME="$1" ;;
+  *) echo "Usage: $0 {morning|mid-day|mid-gruv|night}" ; exit 1 ;;
 esac
 
 DOT="$HOME/.dotfiles"             # adjust if your repo lives elsewhere
@@ -47,9 +47,10 @@ VSCODE_SETTINGS="$HOME/Library/Application Support/Code/User/settings.json"
 
 if [ -f "$VSCODE_SETTINGS" ]; then
   case "$THEME" in
-    morning) VSCODE_THEME="Catppuccin Latte"  ;;
-    mid-day) VSCODE_THEME="Catppuccin Frappé" ;;
-    night)   VSCODE_THEME="Catppuccin Mocha"  ;;
+    morning)  VSCODE_THEME="Catppuccin Latte"          ;;
+    mid-day)  VSCODE_THEME="Catppuccin Frappé"         ;;
+    mid-gruv) VSCODE_THEME="Gruvbox Material Dark"     ;;
+    night)    VSCODE_THEME="Catppuccin Mocha"           ;;
   esac
 
   sed -i '' "s/\"workbench.colorTheme\": \".*\"/\"workbench.colorTheme\": \"$VSCODE_THEME\"/" \

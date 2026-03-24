@@ -70,7 +70,7 @@ return {
 		"catppuccin/nvim",
 		name = "catppuccin",
 		config = function()
-			if part ~= "morning" then
+			if part ~= "morning" and part ~= "mid-gruv" then
 				local flavour = (part == "mid-day") and "frappe" or "mocha"
 				require("catppuccin").setup({
 					flavour = flavour, -- (midday) or mocha (night)
@@ -119,5 +119,25 @@ return {
 	},
 	{
 		"sainnhe/gruvbox-material",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			if part == "mid-gruv" then
+				vim.o.background = "dark" -- light | dark
+				vim.g.gruvbox_material_background = "hard" -- soft | medium | hard
+				vim.g.gruvbox_material_foreground = "material" -- material | original | mix
+				vim.g.gruvbox_material_enable_italic = true
+				vim.g.gruvbox_material_enable_bold = true
+				vim.g.gruvbox_material_transparent_background = 0
+				vim.g.gruvbox_material_better_performance = 1
+
+				vim.cmd.colorscheme("gruvbox-material")
+
+				local hl = vim.api.nvim_set_hl
+				hl(0, "WinSeparator", { fg = "#665c54", bg = "NONE" })
+				hl(0, "NormalFloat", { bg = "#282828" })
+				hl(0, "FloatBorder", { fg = "#a89984", bg = "NONE" })
+			end
+		end,
 	},
 }
