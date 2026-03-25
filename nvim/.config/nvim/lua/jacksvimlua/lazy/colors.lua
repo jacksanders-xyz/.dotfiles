@@ -124,8 +124,8 @@ return {
 		config = function()
 			if part == "mid-gruv" then
 				vim.o.background = "dark" -- light | dark
-				vim.g.gruvbox_material_background = "hard" -- soft | medium | hard
-				vim.g.gruvbox_material_foreground = "material" -- material | original | mix
+				vim.g.gruvbox_material_background = "soft" -- soft | medium | hard
+				vim.g.gruvbox_material_foreground = "mix" -- material | original | mix
 				vim.g.gruvbox_material_enable_italic = true
 				vim.g.gruvbox_material_enable_bold = true
 				vim.g.gruvbox_material_transparent_background = 0

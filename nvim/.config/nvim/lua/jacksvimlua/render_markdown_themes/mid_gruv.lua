@@ -20,11 +20,11 @@ function M.set_highlights()
 	hl(0, "RenderMarkdownH6", { fg = "#d8a657", bold = true }) -- Yellow
 
 	-- Callouts
-	hl(0, "RenderMarkdownInfo", { bg = "#504945", fg = "#7daea3" })    -- Aqua
+	hl(0, "RenderMarkdownInfo", { bg = "#504945", fg = "#7daea3" }) -- Aqua
 	hl(0, "RenderMarkdownSuccess", { bg = "#504945", fg = "#a9b665" }) -- Green
-	hl(0, "RenderMarkdownHint", { bg = "#504945", fg = "#89b482" })    -- Dark Aqua
-	hl(0, "RenderMarkdownWarn", { bg = "#504945", fg = "#d8a657" })    -- Yellow
-	hl(0, "RenderMarkdownError", { bg = "#504945", fg = "#ea6962" })   -- Red
+	hl(0, "RenderMarkdownHint", { bg = "#504945", fg = "#89b482" }) -- Dark Aqua
+	hl(0, "RenderMarkdownWarn", { bg = "#504945", fg = "#d8a657" }) -- Yellow
+	hl(0, "RenderMarkdownError", { bg = "#504945", fg = "#ea6962" }) -- Red
 	hl(0, "RenderMarkdownSubnote", { bg = "#45403d", fg = "#a89984", italic = true }) -- bg_dim, fg4
 
 	-- Bullets
@@ -35,7 +35,7 @@ function M.set_highlights()
 
 	-- Tables
 	hl(0, "RenderMarkdownTableHead", { fg = "#7daea3", bold = true }) -- Aqua
-	hl(0, "RenderMarkdownTableRow", { fg = "#d4be98" })              -- fg0
+	hl(0, "RenderMarkdownTableRow", { fg = "#d4be98" }) -- fg0
 end
 
 return M
