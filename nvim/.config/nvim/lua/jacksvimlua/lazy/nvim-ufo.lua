@@ -14,16 +14,16 @@ return {
 		local function set_fold_highlights()
 			if part == "night" then
 				vim.api.nvim_set_hl(0, "Folded", { bg = "#313244", fg = "#a6adc8" }) -- mocha surface0, subtext0
-				vim.api.nvim_set_hl(0, "UfoFoldedEllipsis", { fg = "#6c7086" })      -- mocha overlay0
+				vim.api.nvim_set_hl(0, "UfoFoldedEllipsis", { fg = "#6c7086" }) -- mocha overlay0
 			elseif part == "mid-day" then
 				vim.api.nvim_set_hl(0, "Folded", { bg = "#414559", fg = "#b5bfe2" }) -- frappe surface0, subtext1
-				vim.api.nvim_set_hl(0, "UfoFoldedEllipsis", { fg = "#838ba7" })      -- frappe overlay1
+				vim.api.nvim_set_hl(0, "UfoFoldedEllipsis", { fg = "#838ba7" }) -- frappe overlay1
 			elseif part == "mid-gruv" then
-				vim.api.nvim_set_hl(0, "Folded", { bg = "#3c3836", fg = "#bdae93" })  -- gruvbox bg1, fg3
-				vim.api.nvim_set_hl(0, "UfoFoldedEllipsis", { fg = "#7c6f64" })       -- gruvbox bg4
+				vim.api.nvim_set_hl(0, "Folded", { bg = "#3c3836", fg = "#bdae93" }) -- gruvbox bg1, fg3
+				vim.api.nvim_set_hl(0, "UfoFoldedEllipsis", { fg = "#7c6f64" }) -- gruvbox bg4
 			else -- morning
 				vim.api.nvim_set_hl(0, "Folded", { bg = "#8f97a5", fg = "#3a5a7a" }) -- slightly lighter slate, muted blue fg
-				vim.api.nvim_set_hl(0, "UfoFoldedEllipsis", { fg = "#5e6e82" })      -- muted blue-grey
+				vim.api.nvim_set_hl(0, "UfoFoldedEllipsis", { fg = "#5e6e82" }) -- muted blue-grey
 			end
 		end
 		set_fold_highlights()
