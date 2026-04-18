@@ -4,6 +4,7 @@ return {
 		config = function()
 			require("no-neck-pain").setup({
 				-- width = 80,
+				width = 120,
 				autocmds = {
 					-- enableOnTabEnter = true,
 					-- skipEnteringNoNeckPainBuffer = true,

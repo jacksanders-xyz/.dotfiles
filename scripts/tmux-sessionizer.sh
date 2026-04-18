@@ -5,7 +5,7 @@ if [[ $# -eq 1 ]]; then
 else
     # --print-query outputs the typed query on the first line
     # ctrl-o creates a new directory with the typed name
-    result=$(find ~/code ~/personal -mindepth 2 -maxdepth 4 -type d | fzf --print-query --bind 'ctrl-o:print-query+abort')
+    result=$(find ~/code ~/Personal -mindepth 2 -maxdepth 4 -type d | fzf --print-query --bind 'ctrl-o:print-query+abort')
 
     query=$(echo "$result" | sed -n '1p')
     selected=$(echo "$result" | sed -n '2p')

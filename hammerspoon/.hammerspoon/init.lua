@@ -3,6 +3,7 @@ appMappings = {
 	{ "g", "Zen.app" },
 	{ "c", "Ghostty.app" },
 	{ "r", "Slack.app" },
+	-- { "r", "Amazon Kindle.app" },
 	{ "&", "Microsoft Outlook.app" },
 	{ "=", "Spotify.app" },
 	{ "*", "Microsoft Teams.app" },

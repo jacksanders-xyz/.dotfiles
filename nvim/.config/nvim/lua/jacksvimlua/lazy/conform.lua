@@ -8,6 +8,7 @@ return {
 			javascript = { "prettierd", "prettier" }, -- fallback order
 			typescript = { "prettierd", "prettier" },
 			typescriptreact = { "prettierd", "prettier" },
+			c = { "clang-format" },
 			go = { "goimports", "gofmt" }, -- gofmt is only used if goimports   isn't available
 			sh = { "shfmt" },
 			json = { "jq" },
@@ -33,7 +34,7 @@ return {
 		local grp = vim.api.nvim_create_augroup("ConformAsyncFormat", { clear = true })
 		vim.api.nvim_create_autocmd("BufWritePost", {
 			group = grp,
-			pattern = { "*.lua", "*.py", "*.rs", "*.js", "*.ts", "*.tsx", "*.go", "*.sh", "*.json" }, -- need to add the language here as well
+			pattern = { "*.lua", "*.py", "*.rs", "*.js", "*.ts", "*.tsx", "*.c", "*.go", "*.sh", "*.json" }, -- need to add the language here as well
 			callback = function(args)
 				if vim.g.disable_autoformat or vim.b[args.buf].disable_autoformat then
 					return

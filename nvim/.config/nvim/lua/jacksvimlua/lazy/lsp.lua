@@ -88,6 +88,13 @@ return {
 						})
 					end,
 
+					["clangd"] = function()
+						require("lspconfig").clangd.setup({
+							capabilities = capabilities,
+							on_attach = on_attach,
+                        })
+					end,
+
 					-- jedi_language_server
 					["jedi_language_server"] = function()
 						require("lspconfig").jedi_language_server.setup({
