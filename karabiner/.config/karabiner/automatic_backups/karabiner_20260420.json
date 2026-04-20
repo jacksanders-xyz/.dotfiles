@@ -70,13 +70,13 @@
                         ]
                     },
                     {
-                        "description": "CTRL-W to delete-backward-word, unless you have ghostty open",
+                        "description": "CTRL-W to delete-backward-word, unless you have iterm2 open",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "com.mitchellh.ghostty"
+                                            "com.googlecode.iterm2"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
@@ -99,13 +99,13 @@
                         ]
                     },
                     {
-                        "description": "CTRL-h to delete-backward-char, unless you have ghostty open",
+                        "description": "CTRL-h to delete-backward-char, unless you have iterm2 open",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "com.mitchellh.ghostty"
+                                            "com.googlecode.iterm2"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
@@ -128,13 +128,13 @@
                         ]
                     },
                     {
-                        "description": "CTRL-u to delete-backward-line, unless you have ghostty open",
+                        "description": "CTRL-u to delete-backward-line, unless you have iterm2 open",
                         "manipulators": [
                             {
                                 "conditions": [
                                     {
                                         "bundle_identifiers": [
-                                            "com.mitchellh.ghostty"
+                                            "com.googlecode.iterm2"
                                         ],
                                         "type": "frontmost_application_unless"
                                     }
@@ -339,36 +339,6 @@
                             "to": [{ "key_code": "open_bracket" }]
                         }
                     ]
-                },
-                {
-                    "identifiers": { "is_keyboard": true },
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "caps_lock" },
-                            "to": [{ "key_code": "right_control" }]
-                        },
-                        {
-                            "from": { "key_code": "left_command" },
-                            "to": [{ "key_code": "left_option" }]
-                        },
-                        {
-                            "from": { "key_code": "left_control" },
-                            "to": [{ "key_code": "caps_lock" }]
-                        },
-                        {
-                            "from": { "key_code": "left_option" },
-                            "to": [{ "key_code": "left_command" }]
-                        }
-                    ]
-                },
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": true,
-                        "product_id": 24926,
-                        "vendor_id": 7504
-                    },
-                    "ignore": false
                 }
             ],
             "fn_function_keys": [

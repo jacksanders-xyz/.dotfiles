@@ -1,11 +1,9 @@
 #!/usr/bin/env zsh
-if [[ -z $STOW_FOLDERS ]]; then
-    STOW_FOLDERS="nvim,ubersicht,yabai,task,tmux,zsh,htop,qutebrowser,karabiner,hammerspoon,ghostty"
-fi
 
-if [[ -z $DOTFILES ]]; then
-    DOTFILES=$HOME/.dotfiles
-fi
+export STOW_FOLDERS="${STOW_FOLDERS:-nvim,ubersicht,yabai,task,tmux,zsh,htop,qutebrowser,karabiner,hammerspoon,ghostty,keyboard}"
+export DOTFILES="${DOTFILES:-$HOME/.dotfiles}"
 
-STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install
-echo "hello"
+echo "DOTFILES=$DOTFILES"
+echo "STOW_FOLDERS=$STOW_FOLDERS"
+
+"$DOTFILES/install"
