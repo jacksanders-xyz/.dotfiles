@@ -1,1 +1,1 @@
-/Users/jsanders/.tmux/themes/night.tmux
+/Users/jsanders/.tmux/themes/mid-gruv.tmux
