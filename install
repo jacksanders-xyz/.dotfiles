@@ -1,13 +1,20 @@
 #!/usr/bin/env zsh
-# I am using zsh instead of bash.  I was having some troubles using bash with
-# arrays.  Didn't want to investigate, so I just did zsh
-pushd $DOTFILES
-for folder in $(echo $STOW_FOLDERS | sed "s/,/ /g")
+
+if [[ -z $STOW_FOLDERS ]]; then
+    STOW_FOLDERS="nvim,ubersicht,yabai,task,tmux,zsh,htop,qutebrowser,karabiner,hammerspoon,ghostty"
+fi
+
+if [[ -z $DOTFILES ]]; then
+    DOTFILES="$HOME/.dotfiles"
+fi
+
+pushd "$DOTFILES" >/dev/null || exit 1
+
+for folder in ${(s:,:)STOW_FOLDERS}
 do
-    stow -D $folder
-    stow $folder
+    echo "stowing $folder"
+    stow -D "$folder" 2>/dev/null
+    stow "$folder"
 done
-popd
 
-
-# if you want the tmux executable global you could run $ stow scripts --target=/usr/local/bin
+popd >/dev/null
